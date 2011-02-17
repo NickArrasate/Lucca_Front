@@ -1,0 +1,94 @@
+.results .sold { 
+	border:1px solid #790100;
+	display:block;
+	margin:5px 0 0;
+	padding:1px 5px;
+	text-transform:uppercase;
+	width:35px;
+	background-color:#E3E4E6;
+}
+
+.wrapper {width:682px;}
+
+.item-category .nav dd {
+	margin:10px 0 0;
+	width: 160px;
+}
+
+	.item-category .nav dd:first-child {margin-top: 0px}
+
+	.item-category .nav {margin:0 10px 0 0}
+
+		.item-category .nav a  {
+			margin:0 20px 0 0;
+			color:#754842;
+			display:block;
+			font-size:13px;
+			overflow:hidden;
+			padding:5px 16px 5px 13px;
+			text-align:left;
+			text-decoration: none;
+		}
+		
+			.item-category .nav .active a, .item-category .nav a:hover{	
+				background-color:#C42F33;
+				color: #fff;
+				text-decoration:none; 
+			}
+			
+body h3.notifications {line-height:30px;
+margin:0;}
+
+.item-category .nav, .item-category .wrapper {float:left}
+	
+.results dd ul li {width:142px; font-family:Arial}
+
+.breadcrumbs {margin:0 0 5px 0; overflow:hidden;}
+
+p.category-summary {
+color:#352F2F;
+font-family:Helvetica;
+font-size:14px;
+margin:5px 0;
+text-align:left;
+}
+
+.small-button {line-height:25px;}
+
+	.breadcrumbs a, .breadcrumbs .pagination a.active {color:#790100;}
+
+	.breadcrumbs .pagination{float:right;}
+	.breadcrumbs .pagination span {color:#802E34; margin:0 4px;}
+
+	.breadcrumbs dd:first-child {float:left;}
+
+		.breadcrumbs .pagination a  {color:#9A9C9B; margin:0 1px;}
+
+		
+.item-title a {color:#534741; font-size:12px;}
+
+.results {clear:both; overflow:hidden; min-height:400px; margin:0 0 20px;}
+
+.results dd {
+	float:left;
+	margin:25px 0 0;
+}
+
+.results .no-margin {margin:0 }
+
+	.results dd ul li, .results dd ul{margin:0 12px 0 0; padding:0; list-style-type:none}
+	
+		.results dd ul .item-price, .results .sold {color:#790100;}
+		
+.category-results-divider2 {
+	background:url(../img/item-category-divider.png) repeat-x;
+	height:2px;
+	margin:20px 0 0;
+	width:682px;
+}
+.item-category {
+	margin:15px 0 0;
+	display:block;
+	overflow:hidden;
+	background:url(../img/item-category-divider.png) repeat-x bottom;
+}

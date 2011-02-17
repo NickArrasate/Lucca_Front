@@ -1,0 +1,117 @@
+
+.wrapper {padding: 0 22px; min-height:400px; margin:15px 0;}
+
+.c_checkout p a {color: #c42f33; text-decoration: underline}
+.c_checkout p, .c_checkout, .form dl dt { color: #534741; font-weight: normal}
+
+th, dt {color: #790100; text-align:left}
+.price, .amount {text-align:right}
+.quantity  {text-align: center}
+.solid-line {border-bottom: 1px solid #c9c8c8; margin: 0;}
+.dotted-line {border-bottom: 1px dotted #c9c8c8;}
+table, table td dl dt {color: #534741}
+
+	table td dl dt {margin: 11px 0 1px 0}
+
+.item-name {color: #968375; width: 200px}
+
+	.quantity input {width: 40px; border:1px solid #c9c8c8; text-align:right;}
+
+.remove {text-align:right}
+
+.amount {padding:0 30px 0 0; font-weight: bold}
+
+.total { padding: 6px 55px 6px 60px; background-color: #E0E0E0; border-top: solid 1px #a2a2a2 }
+.subtotal { background-color: #f2f2f2; padding: 6px 55px 6px 60px; }
+
+	.subtotal, .total {
+		float:right;
+		width:170px;
+		clear:both;
+	}
+	
+.shoppingcart  .title a {color:#565656}
+	
+	.place-order .subtotal, .place-order .total { width: 245px}
+	
+	
+.update {border:0 none;
+left:520px;
+margin:0 12px 20px 0;
+position:relative;}
+	
+	.total dd {font-weight: bold}
+
+	.subtotal dl {
+		margin:6px 0;
+		overflow: hidden;
+		width: 165px;
+	}
+	
+	.place-order .subtotal dl {width: 245px}
+	
+		.subtotal dl dt {text-align: right}
+		.subtotal dl dd {text-align: right}
+		
+		.subtotal dt, .total dt  {float: left}
+		.subtotal dd, .total dd {float: right}
+
+	.subtotal .shipping {margin: 0; }
+
+.continue-shopping , .checkout {margin: 45px 0 61px;}
+
+.continue-shopping  {float: left}
+.checkout {float: right}
+
+.button-wrap {margin: 30px 0 61px 0}
+
+	.button-wrap  dd{float: left}
+
+	.button-wrap dd {margin: 0 15px 0 0}
+
+
+.order-steps {width: 100%; margin: 15px 0 0; background-color:#efefef }
+
+	.order-steps dd.last {border:0 }
+
+		.order-steps dd  { 
+			background-color:#EFEFEF;
+			color:#9A9B9B;
+			display:block;
+			font-size:15px;
+			font-weight:bold;
+			padding:10px 0;
+			text-decoration:none;
+			text-indent:10px;
+			border-right:1px solid #CCCCCC;
+			float:left;
+			width:14.3em;
+		}
+		.order-steps dd.active {background-color:#790100; color:#fff}	
+
+
+.order-info-summary {clear: both; padding: 20px 0 0;}
+	
+	.order-info-summary div {overflow: hidden}
+
+	.order-info-summary dl { 
+		clear:none;
+		float:left;
+		width:33%;
+		margin:0 0 21px;
+	}
+
+	.order-info-summary  dd {color:#534741 }
+	
+.required { float: right; color:#968375; position: relative; top: -35px}
+
+.instructions {color: #968375}
+
+.form { max-width: 350px; margin:15px 0;}
+	
+	.form dl dt , .form dl dd {margin:0 0 10px 0}
+	.form dl dt { float: left}
+	.form dl dd { float: right; width:215px}
+	.form input { height: 15px; float: left; font-size:11px;}
+	
+.place-order {float: right; margin:15px 0 20px;}

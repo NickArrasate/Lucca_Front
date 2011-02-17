@@ -1,0 +1,8 @@
+
+/*Example for a Menu Style*/
+/*.menu {background-color:#ececec; color:#272727; border-bottom:1px solid #d7d7d7; height:23px;width:200px;}
+.tabmenu ul {margin:0px; padding:0px; list-style:none; text-align:center;}
+.tabmenu li {display:inline; line-height:23px;}*/
+.tabs span, .press span a{font-weight:bold;padding:2px 6px;}
+.tabs span.tabactive a {color:#fff; background:#790100}
+#tabcontent1,#tabcontent2,#tabcontent3,#tabcontent4 {border:0px solid #ececec; width:527px; text-align:left; font-size:12px; overflow:hidden;}

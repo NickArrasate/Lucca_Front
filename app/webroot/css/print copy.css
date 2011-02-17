@@ -1,0 +1,88 @@
+body{
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+#PrintSheetContent{
+	width: 920px;
+}
+.container {font-family:Helvetica;
+font-size:76%;
+width:850px;
+margin:0 auto;}
+.product-written-details {text-align:left}
+
+body .s_product3 h2 {color:#C42F33; font-size:20px}
+
+.wrapper .product-visuals {width:850px;}
+.logo{width:450px; text-align:center}
+.s_product3 {width:900px;}
+.item-details dt{ font-size:20px; width:200px}
+.item-details dd { font-size:20px; width:500px;  padding-bottom:5px; line-height:inherit}
+.product-written-details{
+	width: 920px;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+}
+.product-written-details dt {font-weight: bold;}
+.item-details dt{ margin-right:10px;}
+body .product-visuals dl dd, body .product-visuals dl {margin:0}
+.width300{ width:400px;line-height:30px;}
+.width300 li{padding-bottom:0px}
+.item-details{padding-left:0px;margin-left:0px}
+.product-written-details .item-details dl dd  {
+	float:left;
+	margin:0px;
+	padding:0px;
+	text-align:left;
+	line-height: 22px;
+}
+.product-written-details .item-details dl dt  {
+	margin:0px;
+	padding:0px;
+}
+.product-written-details dl {
+	margin-left:0px;
+	padding-left:0px;
+}.product-written-details dd {
+	margin-left:0px;
+	padding-left:0px;
+}
+h2.ProductTitle{
+	font-weight: lighter;
+	color:#C42F33; 
+	font-size: 22px; 
+	margin:0 0 0px;
+	padding: 0px;
+	}
+h3.details{
+	margin: 0px;
+	padding-bottom: 10px;
+	font-weight: lighter;
+}
+h6{
+	float: right;
+	width: 750px;
+}
+h6.DetailTitle{
+	margin: 0px;
+	padding: 0px 0px 5px 0px;
+	font-size: 20px;
+	font-weight: lighter;
+}
+h6.ContactDetail{
+	margin: 0px;
+	font-size: 20px;
+	font-weight: lighter;
+}
+span.OfNote{
+	font-weight: bold;
+	font-style: normal;
+}
+h5.NoPad{
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+	font-weight: lighter;
+	font-style: italic;
+	float: left;
+	width: 150px;
+}

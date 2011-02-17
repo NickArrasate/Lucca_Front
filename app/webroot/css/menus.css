@@ -1,0 +1,36 @@
+
+.menu-block { width: 862px; height: 38px; margin-top: 17px; background: #9A9B9C; }
+	ul.menus { margin: 0px; padding: 0px; height: 38px; list-style: none; }
+		ul.menus li { margin: 0px; padding: 0px; display: inline; }
+		ul.menus li a { float: left; height: 38px; text-indent: -9999px; }
+		.menu1 a { width: 108px; background: url(../img/nav2.png) no-repeat 0px 0px; }
+			.menu1 a:hover, .menu1 a.selected { background-position: 0px -38px; }
+		.menu2 a { width: 94px; background: url(../img/nav2.png) no-repeat -108px 0px; }
+			.menu2 a:hover, .menu2 a.selected{ background-position: -108px -38px; }
+		.menu3 a { width: 85px; background: url(../img/nav2.png) no-repeat -202px 0px; }
+			.menu3 a:hover, .menu3 a.selected { background-position: -202px -38px; }
+		.menu4 a { width: 114px; background: url(../img/nav2.png) no-repeat -287px 0px; }
+			.menu4 a:hover, .menu4 a.selected { background-position: -287px -38px; }
+		.menu5 a { width: 121px; background: url(../img/nav2.png) no-repeat -401px 0px; }
+			.menu5 a:hover, .menu5 a.selected { background-position: -401px -38px; }
+		.menu6 a { width: 140px; background: url(../img/nav2.png) no-repeat -522px 0px; }
+			.menu6 a:hover, .menu6 a.selected { background-position: -522px -38px; }
+		.menu7 a { width: 130px; background: url(../img/nav2.png) no-repeat -662px 0px; }
+			.menu7 a:hover, .menu7 a.selected { background-position: -662px -38px; }
+			
+		.locations { float: left; height: 38px; position: relative; z-index: 30; }
+			.pulldown { position: absolute; display: none; top: 38px; left: 0px; width: 200px; height: 60px; 
+				background: #9A9B9C; text-indent: 0px; z-index: 20; }
+			.locations:hover .pulldown { display: block; }
+			
+			ul.submenus { margin: 0px; padding: 0px; height: 60px; list-style: none; }
+				ul.submenus li { margin: 0px; padding: 0px; display: inline; }
+				ul.submenus li a { height: 30px; text-indent: -9999px; }
+				.submenu1 a { width: 200px; background: url(../img/subnav.png) no-repeat 0px 0px; }
+					.submenu1 a:hover { background-position: -200px 0px; }
+				.submenu2 a { width: 200px; background: url(../img/subnav.png) no-repeat 0px -30px; }
+					.submenu2 a:hover { background-position: -200px -30px; }
+
+/* override for the floating menu */
+
+.header { overflow: visible; }

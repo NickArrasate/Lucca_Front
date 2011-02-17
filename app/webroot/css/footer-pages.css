@@ -1,0 +1,56 @@
+.mailtoLink a {text-decoration: none; color: #790100;}
+
+h2, h3 {
+	background:transparent url(../img/item-category-divider.png) repeat-x scroll 0 35px;
+	margin:20px 0 15px;
+	padding:0 0 12px;
+	clear:both;
+	font-weight:bold;
+}
+
+.overlay {
+	overflow:hidden; 
+	background: #EFEFEF url(../img/footer_pages_content_overlay.png) repeat-x scroll 0 0;
+	padding:0 0 45px;
+}
+
+	 .overlay .wrapper {padding:0 25px}
+
+		 .overlay .wrapper  p {color:#534741; line-height: 21px; clear: both}
+		
+		.overlay .wrapper  img {float:right}
+		
+		.about .overlay .wrapper  dd {
+			float:left;
+			width: 50%;
+		}
+		
+		.press .overlay a {color: #534741}
+		
+		.press .overlay .current-press-item {color: #790100; font-weight: bold}
+		
+		.press .overlay .wrapper .nav {float:left}
+		
+		.contactLeft {float:left; width: 250px;}
+		.contactRight {float:left; width:500px}
+		.press .overlay .wrapper .details {float:right;margin:0 0 20px;}
+		
+		.press .overlay .wrapper .nav {width:250px; }
+		
+		.press h3 {margin:0 0 5px; background:none; padding: 0}
+		
+		.press .overlay .wrapper  p {margin:0; line-height: 25px;}
+		
+		.press .overlay .wrapper img {margin:10px 0 0}
+		
+		.press span, .press span a{font-weight:bold;padding:2px 6px;}
+		.press .current-press-subitem { color:#fff; background:#790100;}
+		
+dt { color:#790100; }
+
+dl {margin: 0 0 15px 0}
+
+dd {line-height: 21px;}
+
+	.disclosure h3{color:#534741; margin:0 0 5px; padding:0; text-decoration: underline; font-size:12px; font-weight: bold;}
+		

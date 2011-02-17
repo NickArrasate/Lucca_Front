@@ -1,0 +1,17 @@
+DROP TABLE `addons`;
+DROP TABLE `autofills`;
+DROP TABLE `creditcards`;
+DROP TABLE `inventory_locations`;
+DROP TABLE `inventory_quantity`;
+DROP TABLE `items`;
+DROP TABLE `item_categories`;
+DROP TABLE `item_images`;
+DROP TABLE `item_types`;
+DROP TABLE `item_variations`;
+DROP TABLE `note`;
+DROP TABLE `note_status`;
+DROP TABLE `options`;
+DROP TABLE `ordered_items`;
+DROP TABLE `orders`;
+DROP TABLE `people`;
+DROP TABLE `users`;
