@@ -3,13 +3,34 @@
 		$.cookie("delete_url", null);
 	
 		$('#select_item_type').change(function(){
-			var item_type = $(this).val();
-			var item_status = $('#item_statuses .active').text();
+			selectedItemType = $('#select_item_type').val();
+			
+			textSortMode = "";
+			selectedSortMode = $('#filterMenu').val();
+			if (selectedSortMode != "") {
+				textSortMode = "/filter:" + selectedSortMode;
+			}
+			item_status = $('#item_statuses .active').text();
 			item_status = item_status.replace(/ \([0-9]+\)/, '');
 			if(item_status == 'Works in Progress'){
 				item_status = 'Unpublished';
 			}
-			window.location.href = '/admin/item/grid/' + item_type + '/' + item_status;
+			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
+		});
+		$('#filterMenu').change(function () {
+			selectedItemType = $('#select_item_type').val();
+			
+			textSortMode = "";
+			selectedSortMode = $('#filterMenu').val();
+			if (selectedSortMode != "") {
+				textSortMode = "/filter:" + selectedSortMode;
+			}
+			item_status = $('#item_statuses .active').text();
+			item_status = item_status.replace(/ \([0-9]+\)/, '');
+			if(item_status == 'Works in Progress'){
+				item_status = 'Unpublished';
+			}
+			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
 		});
 		
 		$('#delete-dialog').dialog({
@@ -36,5 +57,22 @@
 				return false;
 			
 		});
+
 	
 	});
+
+function applySelectedFilter() {
+	selectedItemType = $('#select_item_type').val();
+	
+	textSortMode = "";
+	selectedSortMode = $('#SortMenu').val();
+	if (selectedSortMode != "") {
+		textSortMode = "/sort:" + selectedSortMode;
+	}
+	item_status = $('#item_statuses .active').text();
+	item_status = item_status.replace(/ \([0-9]+\)/, '');
+	if(item_status == 'Works in Progress'){
+		item_status = 'Unpublished';
+	}
+	window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
+}

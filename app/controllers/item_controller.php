@@ -919,6 +919,24 @@
 			
 			$type_id = $this->params['pass'][0];
 			$status = $this->params['pass'][1];
+
+			$selectedFilter = null;
+			$filterCondition = array();
+			if (isset($this->params['named']['filter'])) {
+				$selectedFilter = $this->params['named']['filter'];
+				switch ($selectedFilter) {
+					case "lucca_originals":
+						$filterCondition = array(
+							'Item.lucca_original' => 1
+						);
+						break;
+					case "newest_notes":
+						break;
+					default: // by default filter by inventory location
+						
+						break;
+				}
+			}
 			
 			$navmenu = $this->Navigation->navigation($status, $type_id);
 			
@@ -935,83 +953,41 @@
 			
 			$item_types['all'] = '-- All Categories --';
 			
-			
+			$itemRetriveConditions = array();
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
 				// view all button is clicked
-
 				if($type_id == 'all') {
-
-					$items = $this->Item->find('all', array(
-							'conditions' => array(
-								'Item.status' => $status,
-								),
-							'order' => array('Item.publish_date' => 'desc')
-							)
-						);
-						
-					$count = $this->Item->find('count', array(
-							'conditions' => array(
-								'Item.status' => $status,
-								),
-							'order' => array('Item.publish_date' => 'desc')
-							)
-						);
+					$itemRetriveConditions = array('Item.status' => $status);
+					$itemRetriveOrders = array('Item.publish_date' => 'desc');
 				} else {
-
-					$items = $this->Item->find('all', array(
-							'conditions' => array(
-								'Item.status' => $status,
-								'Item.item_type_id' => $type_id,
-								),
-							'order' => array('Item.publish_date' => 'desc')
-							)
-						);
-						
-					$count = $this->Item->find('count', array(
-							'conditions' => array(
-								'Item.status' => $status,
-								'Item.item_type_id' => $type_id,
-								),
-							'order' => array('Item.publish_date' => 'desc')
-							)
-						);
+					$itemRetriveConditions = array(
+						'Item.status' => $status,
+						'Item.item_type_id' => $type_id
+					);
+					$itemRetriveOrders = array('Item.publish_date' => 'desc');
 				}
 				
+				$items = $this->Item->find('all', array(
+					'conditions' => array_merge($itemRetriveConditions, $filterCondition),
+					'order' => $itemRetriveOrders
+				));
+						
 				$this->set('all_items','all_items');
-			
 			} else {
-			
 				if($type_id == 'all') {
-					$items = $this->paginate('Item', array(
-						'Item.status' => $status
-						)
-					);
-					
-					$count = $this->Item->find('count', array(
-						'conditions' => array(
-							'Item.status' => $status
-							)
-						)
-					);
-
+					$itemRetriveConditions = array('Item.status' => $status);
 				} else {
-					$items = $this->paginate('Item', array(
+					$itemRetriveConditions = array(
 						'Item.status' => $status,
 						'Item.item_type_id' => $type_id,
-						)
 					);
-					
-					$count = $this->Item->find('count', array(
-						'conditions' => array(
-							'Item.status' => $status,
-							'Item.item_type_id' => $type_id,
-							)
-						)
-					);
-					
 				}
+
+				$items = $this->paginate('Item', array_merge($itemRetriveConditions, $filterCondition));
 			}
-			
+
+			$count = $this->Item->find('count', array('conditions' => array_merge($itemRetriveConditions, $filterCondition)));
+
 			$this->set('count',$count);
 			// this little extra bit of transforming is a little unecessary 
 			foreach($item_types as $key => $name) {
@@ -1032,8 +1008,11 @@
 			$chunked_items = array_chunk($items, 4);
 
 			$this->loadModel('InventoryLocation');
-			$sortMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.name')));	
-			$this->set('sortMenu', $sortMenu);
+			$filterMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.name')));	
+			$filterMenu['lucca_originals'] = 'Lucca Originals';
+			$filterMenu['newest_notes'] = 'Newest Notes';
+			$this->set('filterMenu', $filterMenu);
+			$this->set('selectedFilter', $selectedFilter);
 			
 			$this->set('chunked_items', $chunked_items);
 			$this->set('item_types', $item_types);

@@ -60,6 +60,12 @@
 		<?php } ?>
 		</select>
 		<?php } ?>
+		<select id="filterMenu" name="data[filterMenu]">
+			<option value=""> -- sort by -- </option>
+			<?php foreach ($filterMenu as $key => $name): ?>
+			<option value="<?php echo $key; ?>" <?php echo (($selectedFilter == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
+			<?php endforeach; ?>
+		</select>
 		</dd>
 		<?php if(!isset($all_items) ) { ?>
 		<dd>
