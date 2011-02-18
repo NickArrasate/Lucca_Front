@@ -933,7 +933,12 @@
 					case "newest_notes":
 						break;
 					default: // by default filter by inventory location
-						
+						$this->loadModel('InventoryLocation');
+						$this->loadModel('ItemInventoryLocation');
+						$this->InventoryLocation->bindModel(array('hasMany' => array('ItemInventoryLocation')));
+						$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
+						$itemsByInventoryLocation = $this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter)));
+						var_dump($itemsByInventoryLocation);
 						break;
 				}
 			}
@@ -995,7 +1000,6 @@
 					$type_name = $name;
 					$type_id = $key;
 				}
-				
 			}
 			
 			if(!isset($type_name)) {
