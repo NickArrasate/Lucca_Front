@@ -4,7 +4,7 @@ class Item extends AppModel {
 
     var $name = 'Item';
 	var $hasMany = array('ItemVariation', 'ItemImage');
-	var $belongsTo = array('ItemType', 'ItemCategory', 'InventoryLocation');
+	var $belongsTo = array('ItemType', 'ItemCategory');
 	var $cacheQueries = true;
 
 	

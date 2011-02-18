@@ -677,6 +677,7 @@
 			$this->loadModel('ItemCategory');
 			$this->loadModel('ItemType');
 			$this->loadModel('InventoryLocation');
+			$this->loadModel('ItemInventoryLocation');
 			
 			$item_category = $this->ItemCategory->find('list', array(
 				'fields' => array(
@@ -693,10 +694,10 @@
 			$inventory_location = $this->InventoryLocation->find('list', array(
 				'fields' => array(
 					'InventoryLocation.id',
-					'InventoryLocation.name',
+					'InventoryLocation.short',
 				)
 			));
-			
+
 			$this->loadModel('Addon');
 			$addons = $this->Addon->find('list');
 			
@@ -783,6 +784,18 @@
 						)
 				));
 				
+				$item_inventory_location = $this->ItemInventoryLocation->find('list', array(
+					'fields' => array(
+						'ItemInventoryLocation.inventory_location_id',
+						'ItemInventoryLocation.quantity',
+					),
+					'conditions' => array(
+						'ItemInventoryLocation.item_id' => $item_id
+					)
+				));
+
+				$item_details[0]['ItemInventoryLocation'] = $item_inventory_location;
+
 				$item_variations = array();
 				
 				foreach($item_details[0]['ItemVariation'] as $i) {
@@ -923,8 +936,6 @@
 			$item_types['all'] = '-- All Categories --';
 			
 			
-			
-			
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
 				// view all button is clicked
 
@@ -1019,7 +1030,10 @@
 			$this->set('type_id', $type_id);
 					
 			$chunked_items = array_chunk($items, 4);
-			
+
+			$this->loadModel('InventoryLocation');
+			$sortMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.name')));	
+			$this->set('sortMenu', $sortMenu);
 			
 			$this->set('chunked_items', $chunked_items);
 			$this->set('item_types', $item_types);
@@ -1097,12 +1111,25 @@
 				$item_id = $this->params['pass'][0];
 				
 				$this->loadModel('ItemVariation');
+				$this->loadModel('ItemInventoryLocation');
 				$this->ItemVariation->set($this->data['ItemVariation']);
 				
 				$this->Item->id = $item_id;
-				
+
+				foreach ($this->data['ItemInventoryLocation'] as $locationId => $itemQuantity) {
+					$uniqueKey['item_id'] = $item_id;
+					$uniqueKey['inventory_location_id'] = $locationId;
+					
+					$extraFiels['quantity'] = intval($itemQuantity);
+
+					if ($this->ItemInventoryLocation->find('count', array('conditions' => $uniqueKey))) {
+						$this->ItemInventoryLocation->updateAll($extraFiels, $uniqueKey);
+					} else {
+						$this->ItemInventoryLocation->save(array_merge($extraFiels, $uniqueKey));
+					}
+				}
+
 				if( $this->Item->save($this->data) && $this->ItemVariation->validates() )  {
-				
 				
 					if($this->data['Item']['item_category_id'] == '1' ) {
 						// 1 is an antique
@@ -1146,7 +1173,7 @@
 				
 				
 			}
-			
+		exit();	
 		}
 	
 		function admin_update_status() {
@@ -1189,7 +1216,6 @@
 		function admin_save() {
 		
 			if(!empty($this->data)) {
-
 				$this->loadModel('ItemVariation');
 				$this->data['Item']['publish_date'] = date('Y-m-d h:i:s A');
 				$this->data['Item']['status'] = 'Unpublished';

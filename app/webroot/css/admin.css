@@ -401,3 +401,10 @@ min-height:300px;
 .cake-sql-log{clear:both; overflow:hidden}
 
 .paging div {float:left;margin: 0 20px 0 0}
+
+.details label.inline_label {clear:none !important;float:none !important;font-weight:normal !important;}
+.details .little-input {float:left; margin:5px 0; width:100px}
+.details .little-input dd {margin:0}
+.details .little-input input {width:50px;}
+.details .little-input label {width:50px !important;text-align:center;font-weight:normal !important;}
+.details .group-header label {float:none !important;}

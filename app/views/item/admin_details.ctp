@@ -217,12 +217,24 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 		<input type="text" name="data[ItemVariation][quantity]" value="<?php if(isset($data)) { echo $data['ItemVariation']['quantity']; } else {if(isset($item_details)) { echo $item_details[0]['ItemVariation'][0]['quantity']; }} ?>"/>
 	</dd>
 	<?php } ?>
-	
-	
+
+	<dd>
+		<input type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><label for="ItemLuccaOriginal" class="inline_label">Lucca Original</label>
+	</dd>
+
+	<dd class="group-header"><label>Inventory Location</label></dd>
+	<?php foreach ($inventory_location as $id => $shortName): ?>
+		<dd class="little-input">
+			<dl>
+				<dd><label><?php echo $shortName; ?></label><input type="text" name="data[ItemInventoryLocation][<?php echo $id; ?>]" value="<?php if(isset($data) && isset($data['ItemInventoryLocation'][$id])) { echo $data['ItemInventoryLocation'][$id]; } else { if(isset($item_details) && isset($item_details[0]['ItemInventoryLocation'][$id])) { echo $item_details[0]['ItemInventoryLocation'][$id]; } } ?>"/></dd>
+			</dl>
+		</dd>
+	<?php endforeach; ?>
+
 </dl>
 <dl class="column">
 	<dd><label>Condition:</label></dd>
-	<dd><input type="text" name="data[Item][condition]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
+	<dd><input type="text" name="data[InventoryLocation][]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
 	
 	<dd><label>Units of Measurement:</label></dd>
 	<dd>
@@ -294,29 +306,6 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<dd><input type="text" name="data[Item][country_of_origin]" value="<?php if(isset($data)) { echo $data['Item']['country_of_origin']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['country_of_origin']; } } ?>"/></dd>
 	<dd><label>Period:</label></dd>
 	<dd><input type="text" name="data[Item][period]" value="<?php if(isset($data)) { echo $data['Item']['period']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['period']; } } ?>"/></dd>
-	
-	<?php if(isset($item_details)) { ?>
-		<dd><label>Inventory Location</label></dd>
-		<dd>
-			<?php if (isset($item_details)){ ?>
-			<select name="data[Item][inventory_location_id]">
-				<?php foreach($inventory_location as $key => $value) {  ?>
-					<?php if ($key == $item_details[0]['InventoryLocation']['id']) { ?>
-						<option selected="selected" value="<?php echo $key ?>"><?php echo $value ?></option>
-					<?php } else {?>
-						<option value="<?php echo $key ?>"><?php echo $value ?></option>
-					<?php } ?>
-				<?php } ?>
-			</select>
-			<?php } else { ?>
-			<select name="data[Item][inventory_location_id]">
-				<?php foreach($inventory_location as $key => $value) {  ?>
-					<option value="<?php echo $key ?>"><?php echo $value ?></option>
-				<?php } ?>
-			</select>
-			<?php } ?>
-		</dd>
-	<?php } ?>
 </dl>
 
 <?php if(isset($item_variations) && $item_details[0]['Item']['item_category_id'] == '2') { ?>
