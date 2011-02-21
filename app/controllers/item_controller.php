@@ -37,7 +37,7 @@
 		}
 		
 		function forceSSL() {
-			$this->redirect('https://' . env('SERVER_NAME') . $this->here);
+			//$this->redirect('https://' . env('SERVER_NAME') . $this->here);
 		}
 
 		function grid() {
