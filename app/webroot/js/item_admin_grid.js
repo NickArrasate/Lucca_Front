@@ -2,18 +2,58 @@
 	
 		$.cookie("delete_url", null);
 
-		$('#itemNotes textarea').focus(function () {
+		$('.notesPlace textarea').focus(function () {
 			if ($(this).val() == 'Start Typing...') {
-				$(this).val("");
+				$(this).css('color', '#000000').val("");
 			}
-			$('.hiddenFields').show();
 		});
-		$('#itemNotes textarea').blur(function () {
+		$('.notesPlace textarea').blur(function () {
 			if ($(this).val() == "") {
-				$(this).val("Start Typing...");
-				$('.hiddenFields').hide();
+				$(this).css('color', '#9B9B99').val("Start Typing...");
+				$(this).parent().children('.hiddenFields').hide();
 			}
 		});
+		$('.notesPlace textarea').keypress(function () {
+			$(this).parent().children('.hiddenFields').show();
+		});
+		$('div.bottomMenu a:first-child').click(function () {
+			link = this;
+			$.ajax({
+				url: '/admin/item/edit_note/' + $(link).parent().children('input').val(),
+				type: 'GET',
+				dataType: 'html',
+				success: function (html) {
+					$(link).parent().hide();
+					container = $(link).parent().parent();
+					container.children('p').remove();
+					container.prepend(html);
+					container.children('form').css('width', '70%');
+					container.children('form').children('textarea').css('color', '#000000');
+					container.children('form').children('.hiddenFields').css('width', '70%').show();
+					container.children('form').submit(function () {
+						form = this;
+						$.ajax({
+							url: '/admin/item/edit_note/' + $(this).children('input[name="data[Note][id]"]').val(),
+							type: 'POST',
+							data: $(form).serialize(),
+							dataType: 'html',
+							success: function (html) {
+								container.children('form').remove();
+								container.prepend(html);
+								$(link).parent().show();
+							}
+						});
+						return false;
+					});
+				}
+			})
+			return false;
+		});
+		$('div.bottomMenu a:last-child').click(function () {
+			$(this).parent().parent().children('.commentForm').toggle();
+			return false;
+		});
+
 	
 		$('#select_item_type').change(function(){
 			selectedItemType = $('#select_item_type').val();

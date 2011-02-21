@@ -59,7 +59,7 @@
 <?php if($i['filename'] !== '') { ?>
 	<?php if($i['primary'] == '1' ) { ?>
 	<dd>
-		<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $main_settings)?>" />
+		<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $main_settings)?>" />
 		
 	</dd>
 	<?php } else { ?>
@@ -107,7 +107,15 @@
 
 <div class="notesPlace">
 <div class="header">Notes</div>
-<div class="filter"><select></select></div>
+<div class="filter">
+<select name="noteFilter">
+<option value="newest">newest</option>
+<option value="oldest">oldest</option>
+<?php foreach ($noteStatuses as $id => $text): ?>
+<option value="<?php echo $id; ?>"><?php echo $text; ?></option>
+<?php endforeach; ?>
+</select>
+</div>
 <div class="notesForm">
 <form id="itemNotes" method="post" action="/admin/item/save_note/">
 <input type="hidden" name="data[Note][item]" value="<?php echo $item_details[0]['Item']['id']; ?>" />
@@ -133,14 +141,47 @@
 </div>
 <div class="notesList">
 	<?php foreach ($itemNotes as $note): ?>
-		<div>
-		<?php echo date('D, j M \a\t g:ia', strtotime($note['Note']['created'])); ?>
-		<p><?php echo $note['Note']['note']; ?></p>
-		<div class="bottomMenu"><a href="#">edit</a>&nbsp;|&nbsp;<a href="#">comments()</a></div>
-		
+		<div class="note">
+			<p><?php echo date('D, j M \a\t g:ia', strtotime($note['Note']['created'])); ?></p>
+			<p><?php echo $note['Note']['note']; ?></p>
+			<div class="bottomMenu"><a href="#">edit</a><input type="hidden" value="<?php echo $note['Note']['id']; ?>" name="id" />&nbsp;|&nbsp;<a href="#">comments(<?php echo count($note['Comments']); ?>)</a></div>
+			<div class="commentForm">
+				<?php foreach ($note['Comments'] as $comment): ?>
+					<div>
+						<p><?php echo date('D, j M \a\t g:ia', strtotime($comment['created'])); ?></p>
+						<p><?php echo $comment['note']; ?></p>
+						<div class="bottomMenu"><a href="#">edit</a><input type="hidden" value="<?php echo $comment['id']; ?>" name="id" /></div>
+					</div>
+				<?php endforeach; ?>
+				<form method="post" action="/admin/item/save_note/">
+				<input type="hidden" name="data[Note][item]" value="<?php echo $item_details[0]['Item']['id']; ?>" />
+				<input type="hidden" name="data[Note][parent]" value="<?php echo $note['Note']['id']; ?>" />
+				<textarea name="data[Note][note]">Start Typing...</textarea>
+				<div class="hiddenFields">
+					<div class="subheading">To:</div>
+						<div>
+						<?php foreach ($locationsNames as $locationId => $locationNamesRecord): ?>
+							<input type="checkbox" name="data[Note][to][]" value="<?php echo $locationId; ?>" /><?php echo $locationNamesRecord['shortName']; ?>
+						<?php endforeach; ?>
+					</div>
+					<div class="subheading">Status:</div>
+					<div>
+						<select name="data[Note][status]">
+							<?php foreach ($noteStatuses as $id => $text): ?>
+								<option value="<?php echo $id; ?>"><?php echo $text; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+					<input type="submit" value="Save" class="button gray-background black-text"/>
+				</div>
+				</form>
+			</div>
 		</div>
 	<?php endforeach; ?>
 </div>
+<div class="paginator">
+<?php $paginator->options(array('url' => $this->passedArgs));?>
+<?php echo $paginator->numbers(array('separator' => ' ')); ?></div>
 </div>
 
 <h4>Product Details</h4>

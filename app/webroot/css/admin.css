@@ -415,6 +415,11 @@ min-height:300px;
 .notesPlace {
 	padding-bottom:5px;
 	border-bottom: 1px dotted #575757;
+	color: #565655;
+}
+
+.notesPlace a {
+	color: #0B43D0;
 }
 
 .notesPlace .header {
@@ -428,19 +433,20 @@ min-height:300px;
 }
 .notesPlace .notesForm {
 	clear:both;
-	border-bottom: 2px solid #9b9b99;
+	border-bottom: 2px solid #CFCFCE;
 	width: 70%;
 	padding-bottom: 5px;
 }
-.notesPlace .notesForm textarea {
+.notesPlace textarea {
 	border: 1px solid #9b9b99;
 	width: 100%;
 	height: 71px;
+	color: #9B9B99;
 }
 .notesPlace .hiddenFields {
 	display: none;
 }
-.notesPlace .hiddenFields .subheading {
+.notesPlace .subheading {
 	width: 50px;
 	float:left;
 }
@@ -449,8 +455,9 @@ min-height:300px;
 }
 .notesPlace .notesList {
 }
-.notesPlace .notesList div {
+.notesPlace .notesList div.note {
 	margin:5px 0px;
+	clear: both;
 }
 .notesPlace .notesList p {
 	margin: 0;
@@ -458,4 +465,21 @@ min-height:300px;
 }
 .notesPlace .notesList .bottomMenu {
 	text-align: right;
+}
+.notesPlace .notesList .commentForm {
+	display: none;
+	float: right;
+	width: 90%;
+	margin-right: 5px;
+}
+.notesPlace .notesList .commentForm form {
+	float: left;
+	width: 70%;
+}
+.notesPlace .paginator {
+	clear: both;
+}
+div.delete-note {
+	float:right;
+	margin-top:18px;
 }

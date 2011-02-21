@@ -16,6 +16,11 @@
 				'order' => array(
 					'Item.publish_date' => 'desc'
 				)
+			),
+			'Note' => array(
+				'conditions' => array('(Note.parent = 0 OR Note.parent IS NULL)'),
+				'order' => array('Note.created' => 'desc'),
+				'limit' => 10
 			)
 		);
 		
@@ -1106,7 +1111,7 @@
 			$this->set('locationsNames', $locationsShortAndDisplayNames);
 
 			$this->loadModel('Note');
-			$itemNotes = $this->paginate('Note');
+			$itemNotes = $this->paginate('Note', array('(Note.parent = 0 OR Note.parent IS NULL)', 'Note.item' => $item_id));
 			$this->set('itemNotes', $itemNotes);
 
 			$this->loadModel('NoteStatus');
@@ -1486,10 +1491,85 @@
 				$this->loadModel('Note');
 				$this->Note->create();
 				if ($this->Note->save($this->data)) {
+					$this->loadModel('InventoryLocation');
+					if (isset($this->data['Note']['to']) && !empty($this->data['Note']['to'])) {
+						$emails = $this->InventoryLocation->find('list', array('conditions' => array('InventoryLocation.id' => $this->data['Note']['to']), 'fields' => array('InventoryLocation.id', 'InventoryLocation.email')));
+						$commentedItem = $this->Item->find('first', array('conditions' => array('Item.id' => $this->data['Note']['item'])));
 
+						foreach ($emails as $email) {
+							$this->Email->sendAs = 'html';
+							$this->Email->template = 'new_comment';
+							$this->Email->to = $email;
+							$this->Email->subject = 'New comment on '.$commentedItem['Item']['name'];
+
+							$this->set('itemId', $this->data['Note']['item']);
+							$this->set('noteText', $this->data['Note']['note']);
+
+							$this->Email->send();
+						}
+					}
 				}
 			}
 			$this->redirect(array('controller' => 'item', 'action' => 'summary', intval($this->data['Note']['item'])));
+		}
+
+		function admin_edit_note($id) {
+			$this->loadModel('Note');
+			if ($id && !empty($this->data)) {
+				if ($this->Note->save($this->data)) {
+					$this->loadModel('InventoryLocation');
+					if (isset($this->data['Note']['to']) && !empty($this->data['Note']['to'])) {
+						$emails = $this->InventoryLocation->find('list', array('conditions' => array('InventoryLocation.id' => $this->data['Note']['to']), 'fields' => array('InventoryLocation.id', 'InventoryLocation.email')));
+						$commentedItem = $this->Item->find('first', array('conditions' => array('Item.id' => $this->data['Note']['item'])));
+
+						foreach ($emails as $email) {
+							$this->Email->sendAs = 'html';
+							$this->Email->template = 'edit_comment';
+							$this->Email->to = $email;
+							$this->Email->subject = 'New comment on '.$commentedItem['Item']['name'];
+
+							$this->set('itemId', $this->data['Note']['item']);
+							$this->set('noteText', $this->data['Note']['note']);
+
+							$this->Email->send();
+						}
+					}
+				}
+				$this->set('hasText', true);
+			}
+			if ($this->RequestHandler->isAjax() && $id) {
+				$this->layout = 'ajax';
+
+				$this->loadModel('InventoryLocation');
+				$this->InventoryLocation->recursive = 0;
+				$locations = $this->InventoryLocation->find('all');
+				$locationsShortAndDisplayNames = array();
+				foreach ($locations as $location) {
+					$locationsShortAndDisplayNames[$location['InventoryLocation']['id']] = array(
+						'shortName' => $location['InventoryLocation']['short'],
+						'longName' => $location['InventoryLocation']['display_name']
+					);
+				}
+				$this->set('locationsNames', $locationsShortAndDisplayNames);
+
+				$this->loadModel('NoteStatus');
+				$noteStatuses = $this->NoteStatus->find('list', array('fields' => array('NoteStatus.int', 'NoteStatus.name')));
+				$this->set('noteStatuses', $noteStatuses);
+				
+				$this->set('note', $this->Note->find('first', array('conditions' => array('Note.id' => $id))));
+			} else {
+				$this->redirect(array('controller' => 'item', 'action' => 'grid'));
+			}
+		}
+
+		function admin_delete_note($id) {
+			if ($id) {
+				$this->loadModel('Note');
+				$note = $this->Note->find('first', array('conditions' => array('Note.id' => $id)));
+				$this->Note->delete($id);
+				$this->redirect(array('controller' => 'item', 'action' => 'summary', 'prefix' => 'admin', $note['Note']['item']));
+			}
+			$this->redirect(array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 3, 'Available'));
 		}
 
 		function __send_item_emails($data, $email, $subject) {
