@@ -10,10 +10,12 @@
 		var $components = array('Session', 'Email', 'JqImgcrop', 'RequestHandler', 'Navigation', 'Ssl');
 		
 		var $paginate = array(
-			'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id'),
-			'limit' => 8,        
-			'order' => array(
-				'Item.publish_date' => 'desc'
+			'Item' => array(
+				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original'),
+				'limit' => 8,        
+				'order' => array(
+					'Item.publish_date' => 'desc'
+				)
 			)
 		);
 		
@@ -101,7 +103,7 @@
 				$inventory_location = 'all';
 			} else {
 				$conditions_array = array_merge($conditions_array, array(
-					'Item.inventory_location_id' => $inventory_location
+					'Item.location' => $inventory_location
 					)
 				);
 			}
@@ -199,7 +201,7 @@
 					'Item.condition',
 					'Item.item_category_id',
 					'Item.item_type_id',
-					'Item.inventory_location_id',
+					'Item.location',
 					'Item.addon_id',
 					'Item.status',
 				),
@@ -246,7 +248,7 @@
 			
 			$this->set('item_details', $item_details);
 			$this->set('item_category_id', $item_details[0]['Item']['item_category_id']);
-			$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
+			$this->set('location', $item_details[0]['Item']['location']);
 			$this->set('item_type_id', $item_details[0]['Item']['item_type_id']);
 			$this->set('primary_image', $primary_image);
 			$this->set('current_date_time', $current_date_time);
@@ -636,7 +638,7 @@
 			$inventory_location = $this->InventoryLocation->find('list', array(
 					'fields' => array('name','contact'),
 					'conditions' => array(
-						'InventoryLocation.id' => $item[0]['Item']['inventory_location_id']
+						'InventoryLocation.id' => $item[0]['Item']['location']
 					)
 			));
 
@@ -677,7 +679,7 @@
 			$this->loadModel('ItemCategory');
 			$this->loadModel('ItemType');
 			$this->loadModel('InventoryLocation');
-			$this->loadModel('ItemInventoryLocation');
+			$this->loadModel('InventoryQuantity');
 			
 			$item_category = $this->ItemCategory->find('list', array(
 				'fields' => array(
@@ -784,17 +786,17 @@
 						)
 				));
 				
-				$item_inventory_location = $this->ItemInventoryLocation->find('list', array(
+				$item_inventory_location = $this->InventoryQuantity->find('list', array(
 					'fields' => array(
-						'ItemInventoryLocation.inventory_location_id',
-						'ItemInventoryLocation.quantity',
+						'InventoryQuantity.location',
+						'InventoryQuantity.quantity',
 					),
 					'conditions' => array(
-						'ItemInventoryLocation.item_id' => $item_id
+						'InventoryQuantity.item' => $item_id
 					)
 				));
 
-				$item_details[0]['ItemInventoryLocation'] = $item_inventory_location;
+				$item_details[0]['InventoryQuantity'] = $item_inventory_location;
 
 				$item_variations = array();
 				
@@ -916,7 +918,6 @@
 			// will return a list/grid of unpublished items
 			$this->layout = 'admin_product_management';
 			//$type_id = $this->params['pass'][0]; // or the data that is passed...throgh $this->data...
-			
 			$type_id = $this->params['pass'][0];
 			$status = $this->params['pass'][1];
 
@@ -934,18 +935,20 @@
 						break;
 					default: // by default filter by inventory location
 						$this->loadModel('InventoryLocation');
-						$this->loadModel('ItemInventoryLocation');
-						$this->InventoryLocation->bindModel(array('hasMany' => array('ItemInventoryLocation')));
+						$this->loadModel('InventoryQuantity');
+						$this->InventoryLocation->bindModel(array('hasMany' => array('InventoryQuantity' => array('foreignKey' => 'location'))));
 						$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
 						$itemsByInventoryLocation = array_shift($this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter))));
-						$filteredItems = array();
-						foreach ($itemsByInventoryLocation['ItemInventoryLocation'] as $foundedItem) {
-							if (intval($foundedItem['quantity']) > 0) {
-								array_push($filteredItems, $foundedItem['item_id']);
+						if (!empty($itemsByInventoryLocation)) {
+							$filteredItems = array();
+							foreach ($itemsByInventoryLocation['InventoryQuantity'] as $foundedItem) {
+								if (intval($foundedItem['quantity']) > 0) {
+									array_push($filteredItems, $foundedItem['item']);
+								}
 							}
-						}
 
-						$filterCondition = array('Item.id' => $filteredItems);
+							$filterCondition = array('Item.id' => $filteredItems);
+						}
 						break;
 				}
 			}
@@ -957,7 +960,6 @@
 			$this->Session->write('admin_subnavigation', $navmenu['subnavigation']);
 			
 			$this->loadModel('ItemType');
-			
 			
 			$item_types = $this->ItemType->find('list', array(
 					'fields' => array('id', 'name')
@@ -1035,7 +1037,7 @@
 				);
 			}
 			$this->set('locationsNames', $locationsShortAndDisplayNames);
-			
+
 			$this->set('chunked_items', $chunked_items);
 			$this->set('item_types', $item_types);
 			$this->set('status', $status);
@@ -1091,6 +1093,26 @@
 			
 			$this->set('item_details', $item_details);
 			
+			$this->loadModel('InventoryLocation');
+			$this->InventoryLocation->recursive = 0;
+			$locations = $this->InventoryLocation->find('all');
+			$locationsShortAndDisplayNames = array();
+			foreach ($locations as $location) {
+				$locationsShortAndDisplayNames[$location['InventoryLocation']['id']] = array(
+					'shortName' => $location['InventoryLocation']['short'],
+					'longName' => $location['InventoryLocation']['display_name']
+				);
+			}
+			$this->set('locationsNames', $locationsShortAndDisplayNames);
+
+			$this->loadModel('Note');
+			$itemNotes = $this->paginate('Note');
+			$this->set('itemNotes', $itemNotes);
+
+			$this->loadModel('NoteStatus');
+			$noteStatuses = $this->NoteStatus->find('list', array('fields' => array('NoteStatus.int', 'NoteStatus.name')));
+			$this->set('noteStatuses', $noteStatuses);
+			
 			$this->set('item_variations', $item_variations);
 			$this->set('status', $item_status);
 			$this->set('main_settings', array('w'=>230,'crop'=>1));
@@ -1112,21 +1134,22 @@
 				$item_id = $this->params['pass'][0];
 				
 				$this->loadModel('ItemVariation');
-				$this->loadModel('ItemInventoryLocation');
+				$this->loadModel('InventoryQuantity');
 				$this->ItemVariation->set($this->data['ItemVariation']);
 				
 				$this->Item->id = $item_id;
 
-				foreach ($this->data['ItemInventoryLocation'] as $locationId => $itemQuantity) {
-					$uniqueKey['item_id'] = $item_id;
-					$uniqueKey['inventory_location_id'] = $locationId;
-					
-					$extraFiels['quantity'] = intval($itemQuantity);
+				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $item_id), false, false);
+				foreach ($this->data['InventoryQuantity'] as $locationId => $itemQuantity) {
+					var_dump(is_numeric($itemQuantity));
+					if (is_numeric($itemQuantity)) {
+						$uniqueKey['item'] = $item_id;
+						$uniqueKey['location'] = $locationId;
+						
+						$extraFiels['quantity'] = intval($itemQuantity);
 
-					if ($this->ItemInventoryLocation->find('count', array('conditions' => $uniqueKey))) {
-						$this->ItemInventoryLocation->updateAll($extraFiels, $uniqueKey);
-					} else {
-						$this->ItemInventoryLocation->save(array_merge($extraFiels, $uniqueKey));
+						$this->InventoryQuantity->create();
+						$this->InventoryQuantity->save(array_merge($extraFiels, $uniqueKey));
 					}
 				}
 
@@ -1458,6 +1481,17 @@
 		
 		}
 		
+		function admin_save_note() {
+			if (!empty($this->data)) {
+				$this->loadModel('Note');
+				$this->Note->create();
+				if ($this->Note->save($this->data)) {
+
+				}
+			}
+			$this->redirect(array('controller' => 'item', 'action' => 'summary', intval($this->data['Note']['item'])));
+		}
+
 		function __send_item_emails($data, $email, $subject) {
 
 			$item_details = $this->Item->find('first', array(

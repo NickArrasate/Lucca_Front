@@ -226,7 +226,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<?php foreach ($inventory_location as $id => $shortName): ?>
 		<dd class="little-input">
 			<dl>
-				<dd><label><?php echo $shortName; ?></label><input type="text" name="data[ItemInventoryLocation][<?php echo $id; ?>]" value="<?php if(isset($data) && isset($data['ItemInventoryLocation'][$id])) { echo $data['ItemInventoryLocation'][$id]; } else { if(isset($item_details) && isset($item_details[0]['ItemInventoryLocation'][$id])) { echo $item_details[0]['ItemInventoryLocation'][$id]; } } ?>"/></dd>
+				<dd><label><?php echo $shortName; ?></label><input type="text" name="data[InventoryQuantity][<?php echo $id; ?>]" value="<?php if(isset($data) && isset($data['InventoryQuantity'][$id])) { echo $data['InventoryQuantity'][$id]; } else { if(isset($item_details) && isset($item_details[0]['InventoryQuantity'][$id])) { echo $item_details[0]['InventoryQuantity'][$id]; } } ?>"/></dd>
 			</dl>
 		</dd>
 	<?php endforeach; ?>

@@ -3,8 +3,8 @@
 class Item extends AppModel {
 
     var $name = 'Item';
-	var $hasMany = array('ItemVariation', 'ItemImage', 'ItemInventoryLocation' => array('conditions' => 'ItemInventoryLocation.quantity > 0'));
-	var $belongsTo = array('ItemType', 'ItemCategory');
+	var $hasMany = array('ItemVariation', 'ItemImage', 'InventoryQuantity' => array('foreignKey' => 'item', 'conditions' => 'InventoryQuantity.quantity >= 0 AND InventoryQuantity.quantity IS NOT NULL'));
+	var $belongsTo = array('ItemType', 'ItemCategory', 'InventoryLocation');
 	var $cacheQueries = true;
 
 	

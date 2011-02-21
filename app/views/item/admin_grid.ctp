@@ -122,17 +122,18 @@
 					<dt><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>"><?php echo $u['Item']['name'] ?></a></dt>
 					<dd class="price"><?php if (isset($u['ItemVariation'][0]['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation'][0]['price']); } ?></dd>
 					<dd class="end-info-block">
-						<?php if (!empty($u['ItemInventoryLocation'])): ?>
-							<?php if (count($u['ItemInventoryLocation']) > 1): ?>
+						<?php if (!empty($u['InventoryQuantity'])): ?>
+							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original']): ?>
 								<?php 
 									$displayInformation = array();
-									foreach ($u['ItemInventoryLocation'] as $itemInventoryLocation) {
-										array_push($displayInformation, $locationsNames[$itemInventoryLocation['inventory_location_id']]['shortName'].':&nbsp;'.$itemInventoryLocation['quantity']);
+									foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
+										array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
 									} 
 								?>
 								<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
 							<?php else: ?>
-							<?php echo $locationsNames[$u['ItemInventoryLocation'][0]['inventory_location_id']]['longName']; ?>:&nbsp;<?php echo $u['ItemInventoryLocation'][0]['quantity']; ?>
+							<?php echo $locationsNames[$u['InventoryQuantity'][0]['location']]['longName']; ?>:&nbsp;
+								<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
 							<?php endif; ?>
 						<?php endif; ?>
 					</dd>					

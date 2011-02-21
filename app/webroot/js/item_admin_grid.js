@@ -1,6 +1,19 @@
 	$(document).ready(function() {
 	
 		$.cookie("delete_url", null);
+
+		$('#itemNotes textarea').focus(function () {
+			if ($(this).val() == 'Start Typing...') {
+				$(this).val("");
+			}
+			$('.hiddenFields').show();
+		});
+		$('#itemNotes textarea').blur(function () {
+			if ($(this).val() == "") {
+				$(this).val("Start Typing...");
+				$('.hiddenFields').hide();
+			}
+		});
 	
 		$('#select_item_type').change(function(){
 			selectedItemType = $('#select_item_type').val();

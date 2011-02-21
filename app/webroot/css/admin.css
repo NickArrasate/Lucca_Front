@@ -323,6 +323,7 @@ margin:0 20px 0 0;
 }
 .summary .general dd {float:left; margin:0 20px 0 0;}
 .summary .general, .summary .product-details, .summary .product-images {border-bottom: 1px dotted #575757;overflow:hidden; padding:0 0 10px 0}
+.summary .general {border-bottom:none;}
 .summary .product-images dd {float: left; margin:0 10px 0 0;}
 .summary .actions dd {clear:both; line-height:20px}
 .actions {clear:both;
@@ -410,3 +411,51 @@ min-height:300px;
 .details .little-input input {width:50px;}
 .details .little-input label {width:50px !important;text-align:center;font-weight:normal !important;}
 .details .group-header label {float:none !important;}
+
+.notesPlace {
+	padding-bottom:5px;
+	border-bottom: 1px dotted #575757;
+}
+
+.notesPlace .header {
+	float:left;
+	font-size:115%;
+	color:#4D4D4D;
+	border:none;
+}
+.notesPlace .filter {
+	float:right;
+}
+.notesPlace .notesForm {
+	clear:both;
+	border-bottom: 2px solid #9b9b99;
+	width: 70%;
+	padding-bottom: 5px;
+}
+.notesPlace .notesForm textarea {
+	border: 1px solid #9b9b99;
+	width: 100%;
+	height: 71px;
+}
+.notesPlace .hiddenFields {
+	display: none;
+}
+.notesPlace .hiddenFields .subheading {
+	width: 50px;
+	float:left;
+}
+.notesPlace .hiddenFields .button {
+	margin-left:160px;
+}
+.notesPlace .notesList {
+}
+.notesPlace .notesList div {
+	margin:5px 0px;
+}
+.notesPlace .notesList p {
+	margin: 0;
+	padding: 0;
+}
+.notesPlace .notesList .bottomMenu {
+	text-align: right;
+}

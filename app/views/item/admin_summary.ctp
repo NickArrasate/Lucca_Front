@@ -98,7 +98,50 @@
 
 <p><em>Date Added : <?php echo $item_details[0]['Item']['publish_date']; ?> </em></p>
 </dd>
+<dd>
+<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
+	<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
+<?php endforeach; ?>
+</dd>
 </dl>
+
+<div class="notesPlace">
+<div class="header">Notes</div>
+<div class="filter"><select></select></div>
+<div class="notesForm">
+<form id="itemNotes" method="post" action="/admin/item/save_note/">
+<input type="hidden" name="data[Note][item]" value="<?php echo $item_details[0]['Item']['id']; ?>" />
+<textarea name="data[Note][note]">Start Typing...</textarea>
+<div class="hiddenFields">
+	<div class="subheading">To:</div>
+		<div>
+		<?php foreach ($locationsNames as $locationId => $locationNamesRecord): ?>
+			<input type="checkbox" name="data[Note][to][]" value="<?php echo $locationId; ?>" /><?php echo $locationNamesRecord['shortName']; ?>
+		<?php endforeach; ?>
+	</div>
+	<div class="subheading">Status:</div>
+	<div>
+		<select name="data[Note][status]">
+			<?php foreach ($noteStatuses as $id => $text): ?>
+				<option value="<?php echo $id; ?>"><?php echo $text; ?></option>
+			<?php endforeach; ?>
+		</select>
+	</div>
+	<input type="submit" value="Save" class="button gray-background black-text"/>
+</div>
+</form>
+</div>
+<div class="notesList">
+	<?php foreach ($itemNotes as $note): ?>
+		<div>
+		<?php echo date('D, j M \a\t g:ia', strtotime($note['Note']['created'])); ?>
+		<p><?php echo $note['Note']['note']; ?></p>
+		<div class="bottomMenu"><a href="#">edit</a>&nbsp;|&nbsp;<a href="#">comments()</a></div>
+		
+		</div>
+	<?php endforeach; ?>
+</div>
+</div>
 
 <h4>Product Details</h4>
 
