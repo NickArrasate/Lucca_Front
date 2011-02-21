@@ -10,8 +10,10 @@
 
 .grid dd.price {
 color:#343434;
-margin:0 0 10px;
 text-align:left;
+}
+.grid dd.end-info-block {
+margin:0 0 10px;
 }
 
 .general select {overflow:hidden}

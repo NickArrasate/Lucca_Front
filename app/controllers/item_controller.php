@@ -937,8 +937,15 @@
 						$this->loadModel('ItemInventoryLocation');
 						$this->InventoryLocation->bindModel(array('hasMany' => array('ItemInventoryLocation')));
 						$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
-						$itemsByInventoryLocation = $this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter)));
-						var_dump($itemsByInventoryLocation);
+						$itemsByInventoryLocation = array_shift($this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter))));
+						$filteredItems = array();
+						foreach ($itemsByInventoryLocation['ItemInventoryLocation'] as $foundedItem) {
+							if (intval($foundedItem['quantity']) > 0) {
+								array_push($filteredItems, $foundedItem['item_id']);
+							}
+						}
+
+						$filterCondition = array('Item.id' => $filteredItems);
 						break;
 				}
 			}
@@ -957,7 +964,7 @@
 			));
 			
 			$item_types['all'] = '-- All Categories --';
-			
+
 			$itemRetriveConditions = array();
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
 				// view all button is clicked
@@ -1001,7 +1008,7 @@
 					$type_id = $key;
 				}
 			}
-			
+
 			if(!isset($type_name)) {
 				$type_name = 'All';
 				$type_id = 'all';
@@ -1012,11 +1019,22 @@
 			$chunked_items = array_chunk($items, 4);
 
 			$this->loadModel('InventoryLocation');
-			$filterMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.name')));	
+			$filterMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.display_name')));	
 			$filterMenu['lucca_originals'] = 'Lucca Originals';
 			$filterMenu['newest_notes'] = 'Newest Notes';
 			$this->set('filterMenu', $filterMenu);
 			$this->set('selectedFilter', $selectedFilter);
+
+			$this->InventoryLocation->recursive = 0;
+			$locations = $this->InventoryLocation->find('all');
+			$locationsShortAndDisplayNames = array();
+			foreach ($locations as $location) {
+				$locationsShortAndDisplayNames[$location['InventoryLocation']['id']] = array(
+					'shortName' => $location['InventoryLocation']['short'],
+					'longName' => $location['InventoryLocation']['display_name']
+				);
+			}
+			$this->set('locationsNames', $locationsShortAndDisplayNames);
 			
 			$this->set('chunked_items', $chunked_items);
 			$this->set('item_types', $item_types);
@@ -1110,6 +1128,10 @@
 					} else {
 						$this->ItemInventoryLocation->save(array_merge($extraFiels, $uniqueKey));
 					}
+				}
+
+				if (!isset($this->data['Item']['lucca_original'])) {
+					$this->data['Item']['lucca_original'] = 0;
 				}
 
 				if( $this->Item->save($this->data) && $this->ItemVariation->validates() )  {
