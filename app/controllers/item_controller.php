@@ -37,7 +37,7 @@
 		}
 		
 		function forceSSL() {
-			//$this->redirect('https://' . env('SERVER_NAME') . $this->here);
+			$this->redirect('https://' . env('SERVER_NAME') . $this->here);
 		}
 
 		function grid() {
@@ -937,6 +937,20 @@
 						);
 						break;
 					case "newest_notes":
+						$this->paginate['Item']['joins'] = array(
+							array(
+								'table' => 'note',
+								'alias' => 'Note',
+								'type' => 'Inner',
+								'conditions' => array('Item.id = Note.item')
+							)
+						);
+						$this->paginate['Item']['group'] = array(
+							'Item.id'
+						);
+						$this->paginate['Item']['order'] = array(
+							'Note.created' => 'DESC'
+						);
 						break;
 					default: // by default filter by inventory location
 						$this->loadModel('InventoryLocation');
@@ -1055,6 +1069,29 @@
 		
 			$this->Ssl->force(); 
 		
+			$selectedNoteFilter = null;
+			$filterCondition = array();
+			if (isset($this->params['named']['filter'])) {
+				$selectedNoteFilter = $this->params['named']['filter'];
+				switch ($selectedNoteFilter) {
+					case "newest":
+						$this->paginate['Note']['order'] = array('Note.created' => 'desc');
+						break;
+					case "oldest":
+						$this->paginate['Note']['order'] = array('Note.created' => 'asc');
+						break;
+					default:
+						$this->loadModel('NoteStatus');
+						$noteStatus = $this->NoteStatus->find('first', array('conditions' => array('NoteStatus.short' => $selectedNoteFilter)));
+						if (!empty($noteStatus)) {
+							$this->paginate['Note']['conditions'] = array(
+								'Note.status' => $noteStatus['NoteStatus']['int']
+							);
+						}
+						break;
+				}
+			}
+
 			$this->layout = 'admin_product_management';
 			$item_id = $this->params['pass'][0];
 			$item_details = $this->Item->find('all', array(
@@ -1115,9 +1152,14 @@
 			$this->set('itemNotes', $itemNotes);
 
 			$this->loadModel('NoteStatus');
-			$noteStatuses = $this->NoteStatus->find('list', array('fields' => array('NoteStatus.int', 'NoteStatus.name')));
-			$this->set('noteStatuses', $noteStatuses);
+			$noteStatusesFilter['newest'] = 'newest';
+			$noteStatusesFilter['oldest'] = 'oldest';
+			$noteStatusesFilter = array_merge($noteStatusesFilter, $this->NoteStatus->find('list', array('fields' => array('NoteStatus.short', 'NoteStatus.name'))));
+			$this->set('noteStatuses', $this->NoteStatus->find('list', array('fields' => array('NoteStatus.int', 'NoteStatus.name'))));
+			$this->set('noteStatusesFilter', $noteStatusesFilter);
 			
+			$this->set('selectedNoteFilter', $selectedNoteFilter);
+
 			$this->set('item_variations', $item_variations);
 			$this->set('status', $item_status);
 			$this->set('main_settings', array('w'=>230,'crop'=>1));

@@ -108,11 +108,9 @@
 <div class="notesPlace">
 <div class="header">Notes</div>
 <div class="filter">
-<select name="noteFilter">
-<option value="newest">newest</option>
-<option value="oldest">oldest</option>
-<?php foreach ($noteStatuses as $id => $text): ?>
-<option value="<?php echo $id; ?>"><?php echo $text; ?></option>
+<select name="noteFilter" id="noteFilter">
+<?php foreach ($noteStatusesFilter as $id => $text): ?>
+<option value="<?php echo $id; ?>" <?php echo (($selectedNoteFilter == $id) ? 'selected="selected"' : ''); ?>><?php echo $text; ?></option>
 <?php endforeach; ?>
 </select>
 </div>

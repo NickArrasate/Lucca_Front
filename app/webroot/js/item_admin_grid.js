@@ -86,6 +86,15 @@
 			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
 		});
 		
+		$('#noteFilter').change(function () {
+			selectedSortMode = $('#noteFilter').val();
+			if (selectedSortMode != "") {
+				textSortMode = "/filter:" + selectedSortMode;
+			}
+			selectedItemId = $('input[name="data[Note][item]"]').val();
+			window.location.href = '/admin/item/summary/' + selectedItemId + textSortMode;
+		});
+		
 		$('#delete-dialog').dialog({
             autoOpen: false,
             width: 400,

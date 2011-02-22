@@ -44,7 +44,7 @@ class AppController extends Controller {
 	
 	# goes with line 67 and 68
 	function forceSSL() {
-		//$this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
+		$this->redirect('https://' . $_SERVER['SERVER_NAME'] . $this->here);
 	}
 	
 	function beforeFilter() {
