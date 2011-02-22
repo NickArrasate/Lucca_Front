@@ -107,8 +107,12 @@
 			if ($inventory_location == '' || $inventory_location == 'all' ) {
 				$inventory_location = 'all';
 			} else {
-				$conditions_array = array_merge($conditions_array, array(
-					'Item.location' => $inventory_location
+				$this->paginate['Item']['joins'] = array(
+					array(
+						'table' => 'inventory_quantity',
+						'alias' => 'InventoryQuantity',
+						'type' => 'Inner',
+						'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
 					)
 				);
 			}
