@@ -1540,18 +1540,22 @@
 		function admin_save_note() {
 			if (!empty($this->data)) {
 				$this->loadModel('Note');
+				$this->loadModel('NoteStatus');
 				$this->Note->create();
 				if ($this->Note->save($this->data)) {
 					$this->loadModel('InventoryLocation');
 					if (isset($this->data['Note']['to']) && !empty($this->data['Note']['to'])) {
 						$emails = $this->InventoryLocation->find('list', array('conditions' => array('InventoryLocation.id' => $this->data['Note']['to']), 'fields' => array('InventoryLocation.id', 'InventoryLocation.email')));
 						$commentedItem = $this->Item->find('first', array('conditions' => array('Item.id' => $this->data['Note']['item'])));
+						$noteStatus = $this->NoteStatus->find('first', array('conditions' => array('NoteStatus.int' => $this->data['Note']['status'])));
 
 						foreach ($emails as $email) {
+							$this->Email->replyTo = 'Lucca Antiques<info@luccaantiques.com>';
+							$this->Email->from = 'Lucca Antiques<info@luccaantiques.com>';  
 							$this->Email->sendAs = 'html';
 							$this->Email->template = 'new_comment';
 							$this->Email->to = $email;
-							$this->Email->subject = 'New comment on '.$commentedItem['Item']['name'];
+							$this->Email->subject = $noteStatus['NoteStatus']['name'] . ' - New comment for '.$commentedItem['Item']['name'];
 
 							$this->set('itemId', $this->data['Note']['item']);
 							$this->set('noteText', $this->data['Note']['note']);
@@ -1566,18 +1570,22 @@
 
 		function admin_edit_note($id) {
 			$this->loadModel('Note');
+			$this->loadModel('NoteStatus');
 			if ($id && !empty($this->data)) {
 				if ($this->Note->save($this->data)) {
 					$this->loadModel('InventoryLocation');
 					if (isset($this->data['Note']['to']) && !empty($this->data['Note']['to'])) {
 						$emails = $this->InventoryLocation->find('list', array('conditions' => array('InventoryLocation.id' => $this->data['Note']['to']), 'fields' => array('InventoryLocation.id', 'InventoryLocation.email')));
 						$commentedItem = $this->Item->find('first', array('conditions' => array('Item.id' => $this->data['Note']['item'])));
+						$noteStatus = $this->NoteStatus->find('first', array('conditions' => array('NoteStatus.int' => $this->data['Note']['status'])));
 
 						foreach ($emails as $email) {
+							$this->Email->replyTo = 'Lucca Antiques<info@luccaantiques.com>';
+							$this->Email->from = 'Lucca Antiques<info@luccaantiques.com>';  
 							$this->Email->sendAs = 'html';
 							$this->Email->template = 'edit_comment';
 							$this->Email->to = $email;
-							$this->Email->subject = 'New comment on '.$commentedItem['Item']['name'];
+							$this->Email->subject = $noteStatus['NoteStatus']['name'] . ' - Update comment for '.$commentedItem['Item']['name'];
 
 							$this->set('itemId', $this->data['Note']['item']);
 							$this->set('noteText', $this->data['Note']['note']);

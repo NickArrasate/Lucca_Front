@@ -28,11 +28,19 @@
 				success: function (html) {
 					$(link).parent().hide();
 					container = $(link).parent().parent();
-					container.children('p').remove();
+					container.children('p').hide();
 					container.prepend(html);
 					container.children('form').css('width', '70%');
 					container.children('form').children('textarea').css('color', '#000000');
 					container.children('form').children('.hiddenFields').css('width', '70%').show();
+					container.find('div.cancel-edit-note').find('a').click(function (event) {
+						event.preventDefault();
+						
+						$(this).parent().parent().parent().parent()
+							.find('.bottomMenu').show().parent()
+							.children('p').show().parent()
+							.children('form').hide();
+					});
 					container.children('form').submit(function () {
 						form = this;
 						$.ajax({

@@ -22,7 +22,9 @@
 				<?php endforeach; ?>
 			</select>
 		</div>
-		<input type="submit" value="Save" class="button gray-background black-text"/><div class="delete-note"><a href="<?php echo $html->url(array('controller' => 'item', 'action' => 'delete_note', 'prefix' => 'admin', $note['Note']['id'])); ?>">delete</a></div>
+		<div class="cancel-edit-note"><a href="#">cancel</a></div>
+		<input type="submit" value="Save" class="button gray-background black-text"/>
+		<div class="delete-note"><a href="<?php echo $html->url(array('controller' => 'item', 'action' => 'delete_note', 'prefix' => 'admin', $note['Note']['id'])); ?>">delete</a></div>
 	</div>
 	</form>
 <?php endif; ?>

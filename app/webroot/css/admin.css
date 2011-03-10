@@ -430,10 +430,10 @@ min-height:300px;
 }
 .notesPlace .filter {
 	float:right;
+	padding-bottom:3px;
 }
 .notesPlace .notesForm {
 	clear:both;
-	border-bottom: 2px solid #CFCFCE;
 	width: 70%;
 	padding-bottom: 5px;
 }
@@ -452,12 +452,18 @@ min-height:300px;
 }
 .notesPlace .hiddenFields .button {
 	margin-left:160px;
+	
 }
 .notesPlace .notesList {
+	clear:both;
+	margin-top:3px;
 }
 .notesPlace .notesList div.note {
 	margin:5px 0px;
 	clear: both;
+	padding-top:10px;
+	border-top:1px solid #eee;
+	margin-top:5px
 }
 .notesPlace .notesList p {
 	margin: 0;
@@ -471,6 +477,7 @@ min-height:300px;
 	float: right;
 	width: 90%;
 	margin-right: 5px;
+	padding-bottom:10px;
 }
 .notesPlace .notesList .commentForm form {
 	float: left;
@@ -482,4 +489,8 @@ min-height:300px;
 div.delete-note {
 	float:right;
 	margin-top:18px;
+}
+div.cancel-edit-note {
+	float: left;
+	margin-top: 20px;
 }
