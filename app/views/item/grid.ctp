@@ -37,7 +37,7 @@
 			<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
 				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/2/">New York</a>
 			</dd>
-			<dd <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
+			<dd style="display:none" <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
 				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/3/">Warehouse</a>
 			</dd>
 

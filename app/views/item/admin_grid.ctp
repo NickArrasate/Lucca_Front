@@ -137,7 +137,7 @@
 							<?php endif; ?>
 						<?php endif; ?>
 					</dd>					
-
+					<dd>-- <a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">View Summary</a></dd>
 					<dd>-- <a href="/admin/item/image/edit/<?php echo $u['Item']['id'] ?>">Edit Images</a></dd>
 					<dd>-- <a href="/admin/item/details/edit/<?php echo $u['Item']['id'] ?>">Edit Item Details</a></dd>
 					<?php if($status == 'Unpublished') { ?>

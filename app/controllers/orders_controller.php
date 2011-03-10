@@ -1087,6 +1087,7 @@
 			}
 			
 			$page = $this->Order->get_page($this->params['pass'][0]);
+			
 			if (isset($this->params['pass'][1]) && $this->params['pass'][1] == 'all') {
 				$records = $this->Order->find('all', array(
 					'conditions' => array(
@@ -1115,6 +1116,7 @@
 			$this->loadModel('Person');
 			$this->loadmodel('ItemVariation');
 			$this->loadmodel('Option');
+			
 			for($r=0; $r <count($records); $r++) {
 				$person_info = $this->Person->find('all', array(
 						'conditions' => array(

@@ -1,21 +1,24 @@
 	$(document).ready(function() {
 	
 		$.cookie("delete_url", null);
-
+	
 		$('.notesPlace textarea').focus(function () {
 			if ($(this).val() == 'Start Typing...') {
 				$(this).css('color', '#000000').val("");
 			}
+			$(this).parent().children('.hiddenFields').slideDown('slow');
 		});
 		$('.notesPlace textarea').blur(function () {
 			if ($(this).val() == "") {
 				$(this).css('color', '#9B9B99').val("Start Typing...");
-				$(this).parent().children('.hiddenFields').hide();
+				$(this).parent().children('.hiddenFields').slideUp('slow');
 			}
 		});
+		/*
 		$('.notesPlace textarea').keypress(function () {
-			$(this).parent().children('.hiddenFields').show();
+			$(this).parent().children('.hiddenFields').slideDown();
 		});
+		*/
 		$('div.bottomMenu a:first-child').click(function () {
 			link = this;
 			$.ajax({
@@ -50,11 +53,9 @@
 			return false;
 		});
 		$('div.bottomMenu a:last-child').click(function () {
-			$(this).parent().parent().children('.commentForm').toggle();
+			$(this).parent().parent().children('.commentForm').slideToggle('slow');
 			return false;
 		});
-
-	
 		$('#select_item_type').change(function(){
 			selectedItemType = $('#select_item_type').val();
 			
@@ -119,6 +120,5 @@
 				return false;
 			
 		});
-
 	
 	});

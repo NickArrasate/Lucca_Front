@@ -63,8 +63,12 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
+							),
+							'Lucca Originals' => array(
+								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
+								'class' => '',
+								'title' => 'Lucca Originals',
 							)
-							
 						),
 						
 						'navigation' => array(
@@ -122,6 +126,11 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
+							),
+							'Lucca Originals' => array(
+								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
+								'class' => '',
+								'title' => 'Lucca Originals',
 							)
 							
 						),
@@ -181,6 +190,11 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
+							),
+							'Lucca Originals' => array(
+								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
+								'class' => '',
+								'title' => 'Lucca Originals',
 							)
 							
 						),
@@ -247,6 +261,11 @@
 							'link' => '/admin/autofill/edit',
 							'class' => '',
 							'title' => 'Autofill Text',
+						),
+						'Lucca Originals' => array(
+							'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
+							'class' => '',
+							'title' => 'Lucca Originals',
 						)
 						
 					),
@@ -307,6 +326,11 @@
 							'link' => '/admin/autofill/edit',
 							'class' => '',
 							'title' => 'Autofill Text',
+						),
+						'Lucca Originals' => array(
+							'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
+							'class' => '',
+							'title' => 'Lucca Originals',
 						)
 						
 					),

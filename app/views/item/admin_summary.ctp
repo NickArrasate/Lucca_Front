@@ -104,16 +104,9 @@
 <?php endforeach; ?>
 </dd>
 </dl>
-
 <div class="notesPlace">
 <div class="header">Notes</div>
-<div class="filter">
-<select name="noteFilter" id="noteFilter">
-<?php foreach ($noteStatusesFilter as $id => $text): ?>
-<option value="<?php echo $id; ?>" <?php echo (($selectedNoteFilter == $id) ? 'selected="selected"' : ''); ?>><?php echo $text; ?></option>
-<?php endforeach; ?>
-</select>
-</div>
+
 <div class="notesForm">
 <form id="itemNotes" method="post" action="/admin/item/save_note/">
 <input type="hidden" name="data[Note][item]" value="<?php echo $item_details[0]['Item']['id']; ?>" />
@@ -136,6 +129,13 @@
 	<input type="submit" value="Save" class="button gray-background black-text"/>
 </div>
 </form>
+</div>
+<div class="filter">
+<select name="noteFilter" id="noteFilter">
+<?php foreach ($noteStatusesFilter as $id => $text): ?>
+<option value="<?php echo $id; ?>" <?php echo (($selectedNoteFilter == $id) ? 'selected="selected"' : ''); ?>><?php echo $text; ?></option>
+<?php endforeach; ?>
+</select>
 </div>
 <div class="notesList">
 	<?php foreach ($itemNotes as $note): ?>
@@ -306,7 +306,12 @@
 		</dl>
 		<dl>
 		<dt><label>Inventory Location:</label></dt>
-		<dd><?php echo $item_details[0]['InventoryLocation']['name']; ?></dd>
+		<dd style="display:none"><?php echo $item_details[0]['InventoryLocation']['name']; ?></dd>
+		<dd>
+		<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
+			<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
+		<?php endforeach; ?>
+		</dd>
 		</dl>
 	</div>
 	<p><a class="button gray-background black-text" href="/admin/item/details/edit/<?php echo $item_details[0]['Item']['id'] ?>">Edit Details</a></p>

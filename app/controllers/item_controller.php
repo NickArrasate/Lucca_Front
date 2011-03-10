@@ -12,9 +12,9 @@
 		var $paginate = array(
 			'Item' => array(
 				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original'),
-				'limit' => 8,        
-				'order' => array(
-					'Item.publish_date' => 'desc'
+			'limit' => 8,        
+			'order' => array(
+				'Item.publish_date' => 'desc'
 				)
 			),
 			'Note' => array(
@@ -210,7 +210,7 @@
 					'Item.condition',
 					'Item.item_category_id',
 					'Item.item_type_id',
-					'Item.location',
+					'Item.inventory_location_id',
 					'Item.addon_id',
 					'Item.status',
 				),
@@ -257,7 +257,7 @@
 			
 			$this->set('item_details', $item_details);
 			$this->set('item_category_id', $item_details[0]['Item']['item_category_id']);
-			$this->set('location', $item_details[0]['Item']['location']);
+			$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
 			$this->set('item_type_id', $item_details[0]['Item']['item_type_id']);
 			$this->set('primary_image', $primary_image);
 			$this->set('current_date_time', $current_date_time);
@@ -647,7 +647,7 @@
 			$inventory_location = $this->InventoryLocation->find('list', array(
 					'fields' => array('name','contact'),
 					'conditions' => array(
-						'InventoryLocation.id' => $item[0]['Item']['location']
+						'InventoryLocation.id' => $item[0]['Item']['inventory_location_id']
 					)
 			));
 
@@ -708,7 +708,7 @@
 					'InventoryLocation.short',
 				)
 			));
-
+			
 			$this->loadModel('Addon');
 			$addons = $this->Addon->find('list');
 			
@@ -794,7 +794,6 @@
 							'Item.id' => $item_id
 						)
 				));
-				
 				$item_inventory_location = $this->InventoryQuantity->find('list', array(
 					'fields' => array(
 						'InventoryQuantity.location',
@@ -806,7 +805,7 @@
 				));
 
 				$item_details[0]['InventoryQuantity'] = $item_inventory_location;
-
+				
 				$item_variations = array();
 				
 				foreach($item_details[0]['ItemVariation'] as $i) {
@@ -927,9 +926,9 @@
 			// will return a list/grid of unpublished items
 			$this->layout = 'admin_product_management';
 			//$type_id = $this->params['pass'][0]; // or the data that is passed...throgh $this->data...
+			
 			$type_id = $this->params['pass'][0];
 			$status = $this->params['pass'][1];
-
 			$selectedFilter = null;
 			$filterCondition = array();
 			if (isset($this->params['named']['filter'])) {
@@ -984,16 +983,22 @@
 			
 			$this->loadModel('ItemType');
 			
+			
 			$item_types = $this->ItemType->find('list', array(
 					'fields' => array('id', 'name')
 			));
 			
 			$item_types['all'] = '-- All Categories --';
-
+			
+			
+			
+			
 			$itemRetriveConditions = array();
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
 				// view all button is clicked
+
 				if($type_id == 'all') {
+
 					$itemRetriveConditions = array('Item.status' => $status);
 					$itemRetriveOrders = array('Item.publish_date' => 'desc');
 				} else {
@@ -1003,8 +1008,8 @@
 					);
 					$itemRetriveOrders = array('Item.publish_date' => 'desc');
 				}
-				
-				$items = $this->Item->find('all', array(
+
+					$items = $this->Item->find('all', array(
 					'conditions' => array_merge($itemRetriveConditions, $filterCondition),
 					'order' => $itemRetriveOrders
 				));
@@ -1015,16 +1020,16 @@
 					$itemRetriveConditions = array('Item.status' => $status);
 				} else {
 					$itemRetriveConditions = array(
-						'Item.status' => $status,
-						'Item.item_type_id' => $type_id,
-					);
+								'Item.status' => $status,
+								'Item.item_type_id' => $type_id,
+						);
 				}
-
+				
 				$items = $this->paginate('Item', array_merge($itemRetriveConditions, $filterCondition));
-			}
-
+					
+				}
 			$count = $this->Item->find('count', array('conditions' => array_merge($itemRetriveConditions, $filterCondition)));
-
+			
 			$this->set('count',$count);
 			// this little extra bit of transforming is a little unecessary 
 			foreach($item_types as $key => $name) {
@@ -1032,8 +1037,9 @@
 					$type_name = $name;
 					$type_id = $key;
 				}
+				
 			}
-
+			
 			if(!isset($type_name)) {
 				$type_name = 'All';
 				$type_id = 'all';
@@ -1042,7 +1048,7 @@
 			$this->set('type_id', $type_id);
 					
 			$chunked_items = array_chunk($items, 4);
-
+			
 			$this->loadModel('InventoryLocation');
 			$filterMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.display_name')));	
 			$filterMenu['lucca_originals'] = 'Lucca Originals';
@@ -1060,7 +1066,7 @@
 				);
 			}
 			$this->set('locationsNames', $locationsShortAndDisplayNames);
-
+			
 			$this->set('chunked_items', $chunked_items);
 			$this->set('item_types', $item_types);
 			$this->set('status', $status);
@@ -1095,7 +1101,6 @@
 						break;
 				}
 			}
-
 			$this->layout = 'admin_product_management';
 			$item_id = $this->params['pass'][0];
 			$item_details = $this->Item->find('all', array(
@@ -1163,7 +1168,6 @@
 			$this->set('noteStatusesFilter', $noteStatusesFilter);
 			
 			$this->set('selectedNoteFilter', $selectedNoteFilter);
-
 			$this->set('item_variations', $item_variations);
 			$this->set('status', $item_status);
 			$this->set('main_settings', array('w'=>230,'crop'=>1));
@@ -1189,7 +1193,7 @@
 				$this->ItemVariation->set($this->data['ItemVariation']);
 				
 				$this->Item->id = $item_id;
-
+				
 				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $item_id), false, false);
 				foreach ($this->data['InventoryQuantity'] as $locationId => $itemQuantity) {
 					var_dump(is_numeric($itemQuantity));
@@ -1207,7 +1211,7 @@
 				if (!isset($this->data['Item']['lucca_original'])) {
 					$this->data['Item']['lucca_original'] = 0;
 				}
-
+				
 				if( $this->Item->save($this->data) && $this->ItemVariation->validates() )  {
 				
 					if($this->data['Item']['item_category_id'] == '1' ) {
@@ -1252,6 +1256,7 @@
 				
 				
 			}
+			
 		}
 	
 		function admin_update_status() {
@@ -1294,6 +1299,7 @@
 		function admin_save() {
 		
 			if(!empty($this->data)) {
+
 				$this->loadModel('ItemVariation');
 				$this->data['Item']['publish_date'] = date('Y-m-d h:i:s A');
 				$this->data['Item']['status'] = 'Unpublished';
@@ -1616,7 +1622,7 @@
 			}
 			$this->redirect(array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 3, 'Available'));
 		}
-
+		
 		function __send_item_emails($data, $email, $subject) {
 
 			$item_details = $this->Item->find('first', array(
