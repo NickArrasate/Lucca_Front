@@ -123,7 +123,7 @@
 					<dd class="price"><?php if (isset($u['ItemVariation'][0]['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation'][0]['price']); } ?></dd>
 					<dd class="end-info-block">
 						<?php if (!empty($u['InventoryQuantity'])): ?>
-							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original']): ?>
+							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
 								<?php 
 									$displayInformation = array();
 									foreach ($u['InventoryQuantity'] as $InventoryQuantity) {

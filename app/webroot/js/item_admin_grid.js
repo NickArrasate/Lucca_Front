@@ -122,19 +122,3 @@
 
 	
 	});
-
-function applySelectedFilter() {
-	selectedItemType = $('#select_item_type').val();
-	
-	textSortMode = "";
-	selectedSortMode = $('#SortMenu').val();
-	if (selectedSortMode != "") {
-		textSortMode = "/sort:" + selectedSortMode;
-	}
-	item_status = $('#item_statuses .active').text();
-	item_status = item_status.replace(/ \([0-9]+\)/, '');
-	if(item_status == 'Works in Progress'){
-		item_status = 'Unpublished';
-	}
-	window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
-}

@@ -59,7 +59,7 @@
 <?php if($i['filename'] !== '') { ?>
 	<?php if($i['primary'] == '1' ) { ?>
 	<dd>
-		<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $main_settings)?>" />
+		<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $main_settings)?>" />
 		
 	</dd>
 	<?php } else { ?>

@@ -1252,7 +1252,6 @@
 				
 				
 			}
-		exit();	
 		}
 	
 		function admin_update_status() {
