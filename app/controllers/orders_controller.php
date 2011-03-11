@@ -4,7 +4,7 @@
 
 		var $name = 'Order';
 		
-		var $helpers = array('Ajax','Html','Form','Paginator', 'Fieldformatting');
+		var $helpers = array('Ajax','Html','Form','Paginator', 'Fieldformatting', 'Resizeimage');
 		var $components = array('Session', 'Email', 'Crypter', 'RequestHandler', 'Ssl');
 		//var $components = array('Security', 'Session', 'Email', 'Crypter', 'RequestHandler');
 		//var $components = array('Session', 'Email', 'Crypter', 'RequestHandler');
@@ -1539,6 +1539,52 @@
 			$this->redirect('process/inventory_check/');
 		}
 	
-		
-		
+		function admin_process_lucca ($type = '') {
+			$this->Ssl->force(); 
+			$this->layout = 'admin_orders_management';
+			
+			$this->Order->processLuccaOrders = true;
+			$this->paginate = array(
+				'Order' => array(
+					'fields' => array('*'),
+					'limit' => 8,
+					'order' => 'Order.date DESC'
+				),
+			);
+			
+			$this->set('orders', $this->paginate());
+
+			$this->loadModel('InventoryLocation');
+			$this->InventoryLocation->recursive = 0;
+			$locations = $this->InventoryLocation->find('all');
+			$locationsShortAndDisplayNames = array();
+			foreach ($locations as $location) {
+				$locationsShortAndDisplayNames[$location['InventoryLocation']['id']] = array(
+					'shortName' => $location['InventoryLocation']['short'],
+					'longName' => $location['InventoryLocation']['display_name']
+				);
+			}
+			$this->set('locationsNames', $locationsShortAndDisplayNames);
+
+			$this->loadModel('NoteStatus');
+			$noteStatusesFilter['newest'] = 'newest';
+			$noteStatusesFilter['oldest'] = 'oldest';
+			$noteStatusesFilter = array_merge($noteStatusesFilter, $this->NoteStatus->find('list', array('fields' => array('NoteStatus.short', 'NoteStatus.name'))));
+			$this->set('noteStatuses', $this->NoteStatus->find('list', array('fields' => array('NoteStatus.int', 'NoteStatus.name'))));
+			$this->set('noteStatusesFilter', $noteStatusesFilter);
+
+			$this->loadModel('ItemType');
+			$this->ItemType->recursive = 0;
+			$itemTypesFilter = array('-- All Categories --');
+			$itemTypesFilter += $this->ItemType->find('list');
+			$this->set('itemTypesFilter', $itemTypesFilter);
+
+			$navigation = $this->Order->navigation_menu;
+			for($n=0; $n < count($navigation); $n++) {
+				if($navigation[$n]['title'] == 'Inventory Check') {
+					$navigation[$n]['class'] = 'active';
+				}
+			}
+			$this->Session->write('admin_subnavigation', $navigation);
+		}
 	}

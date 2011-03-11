@@ -494,3 +494,57 @@ div.cancel-edit-note {
 	float: left;
 	margin-top: 20px;
 }
+table.lucca-process {
+	width: 930px;
+	text-align: center;
+	border-collapse:collapse;
+}
+table.lucca-process tr {
+	text-align: left;
+}
+table.lucca-process tr.item {
+	border-top: 2px solid #d6d6d6;
+}
+table.lucca-process th {
+	text-align: center;
+	color: #999999;
+	font-size: 14px;
+}
+table.lucca-process td {
+	padding: 5px;
+}
+table.lucca-process td.quantity {
+	text-align: center;
+	width: 20px;
+}
+table.lucca-process td.image {
+	width: 100px;
+}
+table.lucca-process td.name {
+	width: 200px;
+	font-weight: bold;
+}
+table.lucca-process td.description {
+	width: 400px;
+}
+table.lucca-process td.note-link {
+	width: 100px;
+}
+table.lucca-process td.note-link a {
+	color: #3366cc;
+}
+table.lucca-process .notesPlace {
+	border: none;
+}
+.process-lucca-filter {
+	margin-top:20px;
+	margin-bottom: 15px;
+}
+.process-lucca-paging a {
+	color: #3366cc;
+}
+div.view-all-notes {
+	padding-top: 5px;
+	text-align: right;
+	color: #3366cc;
+}
