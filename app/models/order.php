@@ -302,6 +302,7 @@ class Order extends AppModel {
 	}
 
 	function luccaOriginalsOrdersCount($conditions = null, $recursive = 0, $extra = array()) {
+		$typeFilter = (isset($extra['extra']['type'])) ? 'Item.item_type_id = '.$extra['extra']['type'] : '';
 		$dbo = $this->getDataSource();
 		$subQuery = $dbo->buildStatement(
 			array(
@@ -324,7 +325,9 @@ class Order extends AppModel {
 						'alias' => 'Item',
 						'type' => 'INNER',
 						'conditions' => array(
-							'Item.name = OrderedItem.item_name AND Item.lucca_original = 1',
+							'Item.name = OrderedItem.item_name',
+							'Item.lucca_original = 1',
+							$typeFilter
 						)
 					)
 				),
@@ -346,6 +349,8 @@ class Order extends AppModel {
 	}
 
 	function luccaOriginalsOrders($conditions, $fields, $order, $limit, $page, $recursive, $extra) {
+		$typeFilter = (isset($extra['extra']['type'])) ? 'Item.item_type_id = '.$extra['extra']['type'] : '';
+		$page = ($page) ? $page : 1 ;
 		$dbo = $this->getDataSource();
 		$subQuery = $dbo->buildStatement(
 			array(
@@ -368,7 +373,9 @@ class Order extends AppModel {
 						'alias' => 'Item',
 						'type' => 'INNER',
 						'conditions' => array(
-							'Item.name = OrderedItem.item_name AND Item.lucca_original = 1',
+							'Item.name = OrderedItem.item_name',
+							'Item.lucca_original = 1',
+							$typeFilter
 						)
 					),
 					array(  
@@ -418,7 +425,8 @@ class Order extends AppModel {
 		$this->Note = ClassRegistry::init('Note');
 		foreach ($result as &$row) {
 			$row['NoteCount'] = $this->Note->find('count', array('conditions' => array('Note.item' => $row['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)')));
-			$row['Note'] = $this->Note->find('all', array('conditions' => array('Note.item' => $row['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)'), 'limit' => 10));
+			$row['NoteOrderCount'] = $this->Note->find('count', array('conditions' => array('Note.item' => $row['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)', 'Note.status' => 3)));
+			$row['Note'] = $this->Note->find('all', array('conditions' => array('Note.item' => $row['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)'), 'limit' => 10, 'order' => array('Note.created DESC')));
 		}
 
 		return $result;

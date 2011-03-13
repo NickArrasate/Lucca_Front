@@ -1539,7 +1539,7 @@
 			$this->redirect('process/inventory_check/');
 		}
 	
-		function admin_process_lucca ($type = '') {
+		function admin_process_lucca ($type = null, $isViewAll = false) {
 			$this->Ssl->force(); 
 			$this->layout = 'admin_orders_management';
 			
@@ -1548,11 +1548,23 @@
 				'Order' => array(
 					'fields' => array('*'),
 					'limit' => 8,
-					'order' => 'Order.date DESC'
+					'order' => 'Order.date DESC',
 				),
 			);
+			if (intval($type) > 0) {
+				$this->paginate['Order']['extra'] = array(
+					'type' => intval($type)
+				);
+			}
+
+			$this->set('selectedType', $type);
 			
-			$this->set('orders', $this->paginate());
+			if ($isViewAll) {
+				$this->paginate();
+				$this->set('orders', $this->Order->luccaOriginalsOrders(array(), array('*'), 'Order.date DESC', null, null, 1, array()));
+			}	else {
+				$this->set('orders', $this->paginate());
+			}
 
 			$this->loadModel('InventoryLocation');
 			$this->InventoryLocation->recursive = 0;
@@ -1575,7 +1587,7 @@
 
 			$this->loadModel('ItemType');
 			$this->ItemType->recursive = 0;
-			$itemTypesFilter = array('-- All Categories --');
+			$itemTypesFilter = array('all' => '-- All Categories --');
 			$itemTypesFilter += $this->ItemType->find('list');
 			$this->set('itemTypesFilter', $itemTypesFilter);
 
@@ -1586,5 +1598,46 @@
 				}
 			}
 			$this->Session->write('admin_subnavigation', $navigation);
+		}
+		function admin_save_note() {
+			if (!empty($this->data)) {
+				$this->loadModel('Note');
+				$this->loadModel('NoteStatus');
+				$this->loadModel('Item');
+				$this->Note->create();
+				if ($this->Note->save($this->data)) {
+					$this->loadModel('InventoryLocation');
+					if (isset($this->data['Note']['to']) && !empty($this->data['Note']['to'])) {
+						$emails = $this->InventoryLocation->find('list', array('conditions' => array('InventoryLocation.id' => $this->data['Note']['to']), 'fields' => array('InventoryLocation.id', 'InventoryLocation.email')));
+						$commentedItem = $this->Item->find('first', array('conditions' => array('Item.id' => $this->data['Note']['item'])));
+						$noteStatus = $this->NoteStatus->find('first', array('conditions' => array('NoteStatus.int' => $this->data['Note']['status'])));
+
+						foreach ($emails as $email) {
+							$this->Email->replyTo = 'Lucca Antiques<info@luccaantiques.com>';
+							$this->Email->from = 'Lucca Antiques<info@luccaantiques.com>';  
+							$this->Email->sendAs = 'html';
+							$this->Email->template = 'new_comment';
+							$this->Email->to = $email;
+							$this->Email->subject = $noteStatus['NoteStatus']['name'] . ' - New comment for '.$commentedItem['Item']['name'];
+
+							$this->set('itemId', $this->data['Note']['item']);
+							$this->set('noteText', $this->data['Note']['note']);
+
+							$this->Email->send();
+						}
+					}
+				}
+			}
+			$this->redirect(array('controller' => 'orders', 'action' => 'process_lucca'));
+		}
+
+		function admin_delete_note($id) {
+			if ($id) {
+				$this->loadModel('Note');
+				$note = $this->Note->find('first', array('conditions' => array('Note.id' => $id)));
+				$this->Note->delete($id);
+				$this->redirect(array('controller' => 'orders', 'action' => 'process_lucca', 'prefix' => 'admin', $note['Note']['item']));
+			}
+			$this->redirect(array('controller' => 'orders', 'action' => 'process_lucca', 'prefix' => 'admin'));
 		}
 	}
