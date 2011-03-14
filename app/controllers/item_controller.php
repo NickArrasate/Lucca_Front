@@ -1196,7 +1196,6 @@
 				
 				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $item_id), false, false);
 				foreach ($this->data['InventoryQuantity'] as $locationId => $itemQuantity) {
-					var_dump(is_numeric($itemQuantity));
 					if (is_numeric($itemQuantity)) {
 						$uniqueKey['item'] = $item_id;
 						$uniqueKey['location'] = $locationId;

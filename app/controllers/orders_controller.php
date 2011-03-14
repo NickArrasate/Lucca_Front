@@ -1640,4 +1640,26 @@
 			}
 			$this->redirect(array('controller' => 'orders', 'action' => 'process_lucca', 'prefix' => 'admin'));
 		}
+		function admin_update_quantity($id) {
+			if ($this->RequestHandler->isAjax()) {
+				$this->loadModel('InventoryQuantity');
+				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => intval($id)), false, false);
+				foreach ($this->data['InventoryQuantity'] as $locationId => $itemQuantity) {
+					if (is_numeric($itemQuantity)) {
+						$uniqueKey['item'] = $id;
+						$uniqueKey['location'] = $locationId;
+						
+						$extraFiels['quantity'] = intval($itemQuantity);
+
+						$this->InventoryQuantity->create();
+						$this->InventoryQuantity->save(array_merge($extraFiels, $uniqueKey));
+					}
+				}
+
+				$this->layout = 'ajax';
+				$this->set('response', json_encode(array('succes' => true)));
+			} else {
+				$this->redirect('/admin');
+			}
+		}
 	}

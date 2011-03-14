@@ -119,13 +119,25 @@
 		})
 		$('td.quantity').click(function () {
 				formContainer = $(this).parent().next().find('td[colspan=7]');
+				quantityContainers = $(this).parent().find('td.quantity');
 				if (formContainer.length == 0) {
 						formContainer = $(this).parent().after('<tr><td colspan="7" align="right"></td></tr>').next().find('td[colspan=7]');
 						formContainer.html($('<div/>').addClass('details').width(300).css('text-align', 'center')).find('div')
 								.hide()
-								.append('<dd class="little-input"> <dl> <dd><label>LA</label><input type="text" value="" name="data[InventoryQuantity][1]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>NY</label><input type="text" value="" name="data[InventoryQuantity][2]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>WH</label><input type="text" value="" name="data[InventoryQuantity][3]"></dd> </dl> </dd><dd><input type="submit" class="gray-background button black-text" value="Save Changes" name="submit"></dd>').find('input[type=submit]') 
+								.append('<dd class="little-input"><dl><dd><label>LA</label><input type="text" value="" name="data[InventoryQuantity][1]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>NY</label><input type="text" value="" name="data[InventoryQuantity][2]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>WH</label><input type="text" value="" name="data[InventoryQuantity][3]"></dd> </dl> </dd><dd><input type="submit" class="gray-background button black-text" value="Save Changes" name="submit"></dd>')
+								.find('label').css({'float': 'left', 'clear': 'both'}).parent()
+								.find('input[name="data[InventoryQuantity][1]"]').val($(quantityContainers[1]).text()).parent().parent().parent().parent()
+								.find('input[name="data[InventoryQuantity][2]"]').val($(quantityContainers[0]).text()).parent().parent().parent().parent()
+								.find('input[name="data[InventoryQuantity][3]"]').val($(quantityContainers[2]).text()).parent().parent().parent().parent()
+								.find('input[type=submit]') 
 								.click(function (event) {
 									event.preventDefault();
+
+									$.post('/admin/orders/admin_update_quantity/'+item_id, formContainer.find('input').serialize(), function (response) {
+										response = $.parseJSON(response);
+										if (response.status) {
+										}
+									});
 								});
 				}
 				formContainer.find('div').slideToggle('slow');
