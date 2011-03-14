@@ -31,7 +31,7 @@ $(function () {
 											$(quantityContainers[1]).text(formContainer.find('input[name="data[InventoryQuantity][1]"]').val());
 											$(quantityContainers[0]).text(formContainer.find('input[name="data[InventoryQuantity][2]"]').val());
 											$(quantityContainers[2]).text(formContainer.find('input[name="data[InventoryQuantity][3]"]').val());
-											formContainer.parent().parent().hide();
+											formContainer.hide();
 										}
 									});
 								});
