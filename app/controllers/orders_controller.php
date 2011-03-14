@@ -1542,28 +1542,30 @@
 		function admin_process_lucca ($type = null, $isViewAll = false) {
 			$this->Ssl->force(); 
 			$this->layout = 'admin_orders_management';
-			
-			$this->Order->processLuccaOrders = true;
+
+			$this->loadModel('Item');
+			$this->Item->processLuccaItems = true;
 			$this->paginate = array(
-				'Order' => array(
+				'Item' => array(
+					'conditions' => array(
+						'Item.lucca_original' => 1
+					),
 					'fields' => array('*'),
 					'limit' => 8,
-					'order' => 'Order.date DESC',
+					'order' => 'Item.name ASC',
 				),
 			);
 			if (intval($type) > 0) {
-				$this->paginate['Order']['extra'] = array(
-					'type' => intval($type)
-				);
+				$this->paginate['Item']['conditions']['Item.item_type_id'] = intval($type);
 			}
 
 			$this->set('selectedType', $type);
-			
+
 			if ($isViewAll) {
 				$this->paginate();
-				$this->set('orders', $this->Order->luccaOriginalsOrders(array(), array('*'), 'Order.date DESC', null, null, 1, array()));
+				$this->set('luccaOriginalItems', $this->Item->luccaOriginalsItems(array('Item.lucca_original' => 1), array('*'), 'Item.name ASC', null, null, 1, array()));
 			}	else {
-				$this->set('orders', $this->paginate());
+				$this->set('luccaOriginalItems', $this->paginate('Item'));
 			}
 
 			$this->loadModel('InventoryLocation');
@@ -1599,6 +1601,7 @@
 			}
 			$this->Session->write('admin_subnavigation', $navigation);
 		}
+
 		function admin_save_note() {
 			if (!empty($this->data)) {
 				$this->loadModel('Note');
@@ -1657,7 +1660,8 @@
 				}
 
 				$this->layout = 'ajax';
-				$this->set('response', json_encode(array('succes' => true)));
+				Configure::write('debug', 0);
+				$this->set('response', json_encode(array('succes' => true, 'item_id' => $id)));
 			} else {
 				$this->redirect('/admin');
 			}

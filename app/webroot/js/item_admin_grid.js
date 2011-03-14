@@ -129,18 +129,4 @@
 			
 		});
 	
-		$('td.note-link a').click(function (event) {
-			event.preventDefault();
-
-			formContainer = $(this).parent().parent().next().find('.notesForm');
-			formContainer.parent().show();
-			formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
-			formContainer.find('select').val(3);
-			formContainer.find('textarea').focus();
-		});
-		$('#filter_item_type').change(function(){
-			selectedItemType = $('#filter_item_type').val();
-			
-			window.location.href = '/admin/orders/process_lucca/' + selectedItemType + '/';
-		});
 	});

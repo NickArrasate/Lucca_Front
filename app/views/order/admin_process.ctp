@@ -90,6 +90,7 @@
 	}
 	?>
 </div>
+<?php echo $html->link('Lucca Originals Products', array('action' => 'process_lucca'), array('class' => 'underline')); ?>
 <h6 class="notifications">
 <?php
 if(isset($order_management_feedback_message)) {
