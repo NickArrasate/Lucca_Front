@@ -428,6 +428,9 @@ min-height:300px;
 	color:#4D4D4D;
 	border:none;
 }
+.notesPlace .header span {
+	cursor:pointer;
+}
 .notesPlace .filter {
 	float:right;
 	padding-bottom:3px;
@@ -442,6 +445,7 @@ min-height:300px;
 	width: 100%;
 	height: 71px;
 	color: #9B9B99;
+	resize: none;
 }
 .notesPlace .hiddenFields {
 	display: none;
@@ -516,6 +520,7 @@ table.lucca-process td {
 table.lucca-process td.quantity {
 	text-align: center;
 	width: 20px;
+	cursor:pointer;
 }
 table.lucca-process td.image {
 	width: 100px;
@@ -535,6 +540,13 @@ table.lucca-process td.note-link a {
 }
 table.lucca-process .notesPlace {
 	border: none;
+}
+table.lucca-process .notesPlace .header span {
+	font-size:12px;
+	color: #3366cc;
+}
+table.lucca-process .divider {
+	border-right: 1px solid #d6d6d6;
 }
 .process-lucca-filter {
 	margin-top:20px;

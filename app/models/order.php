@@ -43,11 +43,11 @@ class Order extends AppModel {
 				$breadcrumbs = array(
 					array(
 						'title' => 'Order',
-						'link' => '/admin/order/inventory_check'
+						'link' => '/admin/orders/process/inventory_check'
 					),
 					array(
 						'title' => $status,
-						'link' => '/admin/order/inventory_check'
+						'link' => '/admin/orders/process/inventory_check'
 					),
 				);
 				break;
@@ -56,11 +56,11 @@ class Order extends AppModel {
 				$breadcrumbs = array(
 					array(
 						'title' => 'Order',
-						'link' => '/admin/order/inventory_check'
+						'link' => '/admin/orders/process/inventory_check'
 					),
 					array(
 						'title' => $status,
-						'link' => '/admin/order/payment_and_shipping'
+						'link' => '/admin/orders/process/payment_and_shipping'
 					),
 				);
 				break;
@@ -69,11 +69,11 @@ class Order extends AppModel {
 				$breadcrumbs = array(
 					array(
 						'title' => 'Order',
-						'link' => '/admin/order/inventory_check'
+						'link' => '/admin/orders/process/inventory_check'
 					),
 					array(
 						'title' => $status,
-						'link' => '/admin/order/shipped'
+						'link' => '/admin/orders/process/shipped'
 					),
 				);
 				break;
@@ -82,11 +82,11 @@ class Order extends AppModel {
 				$breadcrumbs = array(
 					array(
 						'title' => 'Order',
-						'link' => '/admin/order/inventory_check'
+						'link' => '/admin/orders/process/inventory_check'
 					),
 					array(
 						'title' => $status,
-						'link' => '/admin/order/returned'
+						'link' => '/admin/orders/process/returned'
 					),
 				);
 				break;
