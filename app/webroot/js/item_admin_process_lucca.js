@@ -1,16 +1,16 @@
 $(function () {
-		$('.header').css('float', 'none').parent().find('.notesArea').hide();
-		$('.header span').click(function () {
-			$(this).parent().parent().find('.notesArea').slideToggle('slow');
-		})
+		$('.notesPlace').parent().parent().hide();
+		$('.notesPlace').find('.notes').hide();
+		$('.notesPlace').find('.orders').hide();
 		$('td.quantity').click(function () {
 				formContainer = $(this).parent().next().find('td[colspan=7]');
 				quantityContainers = $(this).parent().find('td.quantity');
 				if (formContainer.length == 0) {
 						formContainer = $(this).parent().after('<tr><td colspan="7" align="right"></td></tr>').next().find('td[colspan=7]');
+						formContainer.css('padding', '0px');
 						formContainer.html($('<div/>').addClass('details').width(190).css({'text-align': 'center', 'margin-right': '38px'})).find('div')
 								.hide()
-								.append('<dd class="little-input"><dl><dd><label>LA</label><input type="text" value="" name="data[InventoryQuantity][1]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>NY</label><input type="text" value="" name="data[InventoryQuantity][2]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>WH</label><input type="text" value="" name="data[InventoryQuantity][3]"></dd> </dl> </dd><dd><input type="submit" class="gray-background button black-text" value="Save Changes" name="submit"></dd>')
+								.append('<dd class="little-input"><dl><dd><label>NY</label><input type="text" value="" name="data[InventoryQuantity][2]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>LA</label><input type="text" value="" name="data[InventoryQuantity][1]"></dd> </dl> </dd><dd class="little-input"> <dl> <dd><label>WH</label><input type="text" value="" name="data[InventoryQuantity][3]"></dd> </dl> </dd><dd><input type="submit" class="gray-background button black-text" value="Save Changes" name="submit"></dd>')
 								.find('dd.little-input').css('width', '60px').parent()
 								.find('label').css({'float': 'left', 'clear': 'both'}).parent()
 								.find('input[name="data[InventoryQuantity][1]"]').val($(quantityContainers[1]).text()).parent().parent().parent().parent()
@@ -38,17 +38,52 @@ $(function () {
 				}
 				formContainer.find('div').slideToggle('slow');
 		});	
-		$('td.note-link a').click(function (event) {
+		$('td.note-link a:first-child').click(function (event) {
 			event.preventDefault();
 
-			formContainer = $(this).parent().parent().next().find('.notesForm');
+			formRowContainer = $(this).parent().parent().next();
+			formContainer = formRowContainer.find('.notesArea');
 			if (formContainer.length == 0) {
-				formContainer = $(this).parent().parent().next().next().find('.notesForm');
+				formRowContainer = $(this).parent().parent().next().next();
 			}
-			formContainer.parent().show();
-			formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
-			formContainer.find('select').val(3);
-			formContainer.find('textarea').focus();
+			if (formRowContainer.css('display') == 'none') {
+				formRowContainer.fadeIn('slow');
+				formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
+				formContainer.find('select').val(3);
+				formContainer.find('textarea').focus();
+			} else {
+				if (formContainer.find('.orders').css('display') == 'none') {
+					formContainer.find('.notes').slideToggle('slow');
+					formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
+					formContainer.find('select').val(3);
+					formContainer.find('textarea').focus();
+				} else {
+					formRowContainer.fadeOut('slow');
+				}
+			}
+			formRowContainer.find('.orders').slideToggle('slow');
+		});
+
+		$('td.note-link a:last-child').click(function (event) {
+			event.preventDefault();
+
+			formRowContainer = $(this).parent().parent().next();
+			formContainer = formRowContainer.find('.notesArea');
+			if (formContainer.length == 0) {
+				formRowContainer = $(this).parent().parent().next().next();
+			}
+			if (formRowContainer.css('display') == 'none') {
+				formRowContainer.fadeIn('slow');
+			} else {
+				if (formContainer.find('.notes').css('display') == 'none') {
+					formContainer.find('.orders').slideToggle('slow');
+					formContainer.find('input[type=checkbox][value=3]').attr('checked', false);
+					formContainer.find('select').val(1);
+				} else {
+					formRowContainer.fadeOut('slow');
+				}
+			}
+			formRowContainer.find('.notes').slideToggle('slow');
 		});
 		$('#filter_item_type').change(function(){
 			selectedItemType = $('#filter_item_type').val();

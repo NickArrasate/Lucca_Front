@@ -19,7 +19,7 @@
 				<dd class="nav">
 					<dl>
 						<!-- the navigation items need to be dynamic at some point-->
-						<dd class="active"><a href="/admin/orders/process/inventory_check/"><span>Order Management</span></a></dd>
+						<dd class="active"><a href="/admin/orders/process_lucca/"><span>Order Management</span></a></dd>
 						<dd class=""><a href="/admin/item/grid/all/Unpublished/"><span>Product Management</span></a></dd>
 					</dl>
 				</dd>
