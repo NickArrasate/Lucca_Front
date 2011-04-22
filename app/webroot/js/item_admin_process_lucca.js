@@ -45,15 +45,20 @@ $(function () {
 			formContainer = formRowContainer.find('.notesArea');
 			if (formContainer.length == 0) {
 				formRowContainer = $(this).parent().parent().next().next();
+				formContainer = formRowContainer.find('.notesArea');
 			}
+
 			if (formRowContainer.css('display') == 'none') {
 				formRowContainer.fadeIn('slow');
+				formContainer.find('.notes').slideUp('slow');
+				formContainer.find('.notes').data('isDisplay', false);
 				formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
 				formContainer.find('select').val(3);
 				formContainer.find('textarea').focus();
 			} else {
-				if (formContainer.find('.orders').css('display') == 'none') {
+				if (formContainer.find('.notes').data('isDisplay')) {
 					formContainer.find('.notes').slideToggle('slow');
+					formContainer.find('.notes').data('isDisplay', false);
 					formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
 					formContainer.find('select').val(3);
 					formContainer.find('textarea').focus();
@@ -62,6 +67,7 @@ $(function () {
 				}
 			}
 			formRowContainer.find('.orders').slideToggle('slow');
+			formRowContainer.find('.orders').data('isDisplay', true);
 		});
 
 		$('td.note-link a:last-child').click(function (event) {
@@ -71,12 +77,17 @@ $(function () {
 			formContainer = formRowContainer.find('.notesArea');
 			if (formContainer.length == 0) {
 				formRowContainer = $(this).parent().parent().next().next();
+				formContainer = formRowContainer.find('.notesArea');
 			}
+
 			if (formRowContainer.css('display') == 'none') {
 				formRowContainer.fadeIn('slow');
+				formContainer.find('.orders').slideUp('slow');
+				formContainer.find('.orders').data('isDisplay', false);
 			} else {
-				if (formContainer.find('.notes').css('display') == 'none') {
+				if (formContainer.find('.orders').data('isDisplay')) {
 					formContainer.find('.orders').slideToggle('slow');
+					formContainer.find('.orders').data('isDisplay', false);
 					formContainer.find('input[type=checkbox][value=3]').attr('checked', false);
 					formContainer.find('select').val(1);
 				} else {
@@ -84,6 +95,7 @@ $(function () {
 				}
 			}
 			formRowContainer.find('.notes').slideToggle('slow');
+			formRowContainer.find('.notes').data('isDisplay', true);
 		});
 		$('#filter_item_type').change(function(){
 			selectedItemType = $('#filter_item_type').val();
