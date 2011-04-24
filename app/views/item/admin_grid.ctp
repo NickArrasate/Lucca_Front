@@ -3,7 +3,7 @@
 	//$javascript->link('jquery.ui', false);
 	//$javascript->link('jquery.cookie', false);
 	//$javascript->link('item_admin_grid', false);
-	
+
 	//debug($item_types);
 ?>
 
@@ -17,7 +17,7 @@
 		} else {
 			echo '<dd><a class="'. $n['class'] .'" href="'. $n['link'] .'">'. $n['title'] .' ('. $n['count'] .')</a></dd>';
 		}
-	} 
+	}
 ?>
 </dl>
 
@@ -30,7 +30,7 @@
 			}
 		}
 	?> >
-	
+
 	<?php
 	foreach($navigation as $n) {
 		if($n['class'] == 'active') {
@@ -41,9 +41,9 @@
 	<?php
 	if(isset($type_id) && $type_id !== 'all') {
 		echo '> '. $item_types[$type_id];
-	} 
+	}
 	?>
-	
+
 	</div>
 	<form action="/admin/item/grid/" method="post">
 	<dl class="subheader">
@@ -76,7 +76,7 @@
 			<?php } ?>
 			<div class="pagination">
 			<dl>
-			<?php 
+			<?php
 			$paginator->options(array('url' => $this->passedArgs));
 			?>
 			<dd><?php echo $paginator->prev('<<'); ?></dd>
@@ -86,13 +86,13 @@
 			</div>
 		</dd>
 		<?php } else { ?>
-		
+
 			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo $item_types[$type_id]?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/">View 8 per page</a></div>
-		
+
 		<?php } ?>
-		
+
 	</dl>
-	
+
 	<?php if(count($chunked_items) > 0) {?>
 	<table>
 	<?php foreach ($chunked_items as $unpublished_items) { ?>
@@ -105,16 +105,16 @@
 					<?php if($i['primary'] == '1') { ?>
 						<?php if(isset($all_items)) { ?>
 							<dd><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">
-							
+
 							<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $settings)?>" />
-							
-							
+
+
 							</a></dd>
 						<?php } else { ?>
 							<dd><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">
-								
+
 								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $settings)?>" />
-								
+
 							</a></dd>
 						<?php } ?>
 					<?php }?>
@@ -124,19 +124,25 @@
 					<dd class="end-info-block">
 						<?php if (!empty($u['InventoryQuantity'])): ?>
 							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
-								<?php 
+								<?php
 									$displayInformation = array();
 									foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
 										array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
-									} 
+									}
 								?>
 								<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
 							<?php else: ?>
-							<?php echo $locationsNames[$u['InventoryQuantity'][0]['location']]['longName']; ?>:&nbsp;
-								<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
+								<?php echo $locationsNames[$u['InventoryQuantity'][0]['location']]['longName']; ?>
+								<?php if ($u['InventoryQuantity'][0]['quantity'] > 1): ?>
+									:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
+								<?php else: ?>
+									<span class="hidden-inventory-quantity">
+										:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
+									</span>
+								<?php endif; ?>
 							<?php endif; ?>
 						<?php endif; ?>
-					</dd>					
+					</dd>
 					<dd>-- <a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">View Summary</a></dd>
 					<dd>-- <a href="/admin/item/image/edit/<?php echo $u['Item']['id'] ?>">Edit Images</a></dd>
 					<dd>-- <a href="/admin/item/details/edit/<?php echo $u['Item']['id'] ?>">Edit Item Details</a></dd>
@@ -144,12 +150,12 @@
 					<dd>-- <a target="_blank" href="/item/details/<?php echo $u['Item']['id'] ?>">Preview</a></dd>
 					<?php } ?>
 					<dd>-- <a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">Change Status</a></dd>
-					
+
 					<dd>-- <a href="/admin/item/email/<?php echo $u['Item']['id'] ?>">
 Email</a></dd>
-					
+
 					<?php if($status == 'Unpublished') { ?>
-					<dd>-- 
+					<dd>--
 <a href="/admin/item/publish/<?php echo $u['Item']['id'] ?>/<?php echo $u['Item']['item_type_id'] ?>/<?php echo $status ?>">Publish</a></dd>
 					<?php }?>
 					<?php if($status !== 'Unsorted') { ?>

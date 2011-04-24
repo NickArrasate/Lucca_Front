@@ -560,3 +560,6 @@ div.view-all-notes {
 	text-align: right;
 	color: #3366cc;
 }
+.hidden-inventory-quantity {
+	display: none;
+}

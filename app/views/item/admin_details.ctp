@@ -9,10 +9,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('table.stripe>tbody>tr:even').addClass("dark-background"); 
-		
+		$('table.stripe>tbody>tr:even').addClass("dark-background");
+
 		$('a.image').fancybox();
-	
+
 	});
 </script>
 
@@ -24,7 +24,7 @@
 		} else {
 			echo '<dd><a class="'. $n['class'] .'" href="'. $n['link'] .'">'. $n['title'] .' ('. $n['count'] .')</a></dd>';
 		}
-	} 
+	}
 ?>
 </dl>
 
@@ -38,13 +38,13 @@
 					}
 				}
 			?> >
-			
+
 			<?php if ($item_details[0]['ItemType']['name']!== null) {?>
 			<?php
 				echo '<a href="/admin/item/grid/'. $item_details[0]['Item']['item_type_id'] .'/'. $item_details[0]['Item']['status'] .'">'. $item_details[0]['ItemType']['name'] .'</a>';
 			?> >
 			<?php } ?>
-			
+
 			<?php
 			foreach($navigation as $n) {
 				if($n['class'] == 'active') {
@@ -64,17 +64,17 @@
 
 <p class="required"><em>* required</em></p>
 <div class="notifications">
-<?php 
+<?php
 if(isset($errors_item)) {
 	foreach($errors_item as $ei) {
 		echo $ei .'<br/>';
 	}
-} 
+}
 if(isset($errors_item_variation)) {
 	foreach($errors_item_variation as $eiv) {
 		echo $eiv . '<br/>';
 	}
-} 
+}
 if(isset($details_feedback_message)) {
 	echo $details_feedback_message;
 }
@@ -93,9 +93,9 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 <dd>
 
 	<a class="image" href="../../../../../files/<?php echo $i['filename'] ?>"><img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $settings)?>" /></a>
-	
+
 </dd>
-<?php	
+<?php
 	}
 }
 ?>
@@ -105,7 +105,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 <?php if(!isset($item_details)) { ?>
 	<form action="/admin/item/save/" method="post" enctype="multipart/form-data">
 	<p class="instructions">Enter in item information: </p>
-	
+
 	<input type="hidden" name="data[ItemVariation][primary]" value="1"/>
 <?php } else { ?>
 	<form action="/admin/item/update_details/<?php echo $item_details[0]['Item']['id'] ?>" method="post" enctype="multipart/form-data">
@@ -114,7 +114,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<?php if(!isset($item_details)) { ?>
 	<dd><label>SKU: *</label></dd>
 	<dd><input type="text" name="data[ItemVariation][sku]" value="<?php if(isset($item_details)) { echo $item_details[0]['ItemVariation'][0]['sku']; } ?><?php if(isset($random_variation_id)) { echo $random_variation_id; } ?>"/></dd>
-	<?php } ?> 
+	<?php } ?>
 	<?php if((isset($item_details)) && ($item_details[0]['Item']['status'] !== 'Unpublished')) { ?>
 	<dd><label class="status">Status:</label></dd>
 	<dd>
@@ -157,7 +157,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 				<option value="<?php echo $key ?>"><?php echo $value ?></option>
 			<?php } ?>
 			</select>
-		<?php } ?> 
+		<?php } ?>
 	</dd>
 	<dd><label>Subcategory: *</label></dd>
 	<dd>
@@ -210,16 +210,16 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<dd>
 		<input type="text" name="data[ItemVariation][price]" value="<?php if(isset($data)) { echo $data['ItemVariation']['price']; } else {if(isset($item_details)) { echo $item_details[0]['ItemVariation'][0]['price']; }} ?>"/>
 	</dd>
-	
+
 	<?php if((isset($item_details) && ($item_details[0]['Item']['item_category_id'] == '3') )) {?>
 	<dd><label>Quantity: </label></dd>
 	<dd>
 		<input type="text" name="data[ItemVariation][quantity]" value="<?php if(isset($data)) { echo $data['ItemVariation']['quantity']; } else {if(isset($item_details)) { echo $item_details[0]['ItemVariation'][0]['quantity']; }} ?>"/>
 	</dd>
 	<?php } ?>
-	
+
 	<dd>
-		<input style="width:25px" type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><span style="font-weight:bold">Lucca Original</span>
+		<input style="width:25px" type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><span style="font-weight:bold">Lucca Studio</span>
 	</dd>
 
 	<dd class="group-header"><label>Inventory Location</label></dd>
@@ -230,12 +230,12 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 			</dl>
 		</dd>
 	<?php endforeach; ?>
-	
+
 </dl>
 <dl class="column">
 	<dd><label>Condition:</label></dd>
 	<dd><input type="text" name="data[InventoryLocation][]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
-	
+
 	<dd><label>Units of Measurement:</label></dd>
 	<dd>
 		<?php
@@ -243,10 +243,10 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 			$units = array(
 				'in' => 'Inches',
 				'cm' => 'Centimeters'
-				
+
 			);
 		?>
-		
+
 		<?php if (isset($item_details)) { ?>
 		<select name="data[Item][units]">
 			<?php foreach($units as $key => $value) { ?>
@@ -263,8 +263,8 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 				<option value="<?php echo $key ?>"><?php echo $value ?></option>
 			<?php } ?>
 			</select>
-		<?php } ?> 
-		
+		<?php } ?>
+
 	</dd>
 	<dd class="short-input">
 		<dl>
@@ -296,8 +296,8 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 		<dd><input type="text" name="data[Item][diameter]" value="<?php if(isset($data)) { echo $data['Item']['diameter']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['diameter']; } } ?>"/></dd>
 		</dl>
 	</dd>
-	
-	
+
+
 	<dd><label>Material and Techniques:</label></dd>
 	<dd><input type="text" name="data[Item][materials_and_techniques]" value="<?php if(isset($data)) { echo $data['Item']['materials_and_techniques']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['materials_and_techniques']; } } ?>"/></dd>
 	<dd><label>Creator:</label></dd>
@@ -306,13 +306,13 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<dd><input type="text" name="data[Item][country_of_origin]" value="<?php if(isset($data)) { echo $data['Item']['country_of_origin']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['country_of_origin']; } } ?>"/></dd>
 	<dd><label>Period:</label></dd>
 	<dd><input type="text" name="data[Item][period]" value="<?php if(isset($data)) { echo $data['Item']['period']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['period']; } } ?>"/></dd>
-	
+
 </dl>
 
 <?php if(isset($item_variations) && $item_details[0]['Item']['item_category_id'] == '2') { ?>
 
 	<h4>Variations</h4>
-	
+
 	<?php if (count($item_variations) > 0) { ?>
 	<table class="stripe">
 		<tr>

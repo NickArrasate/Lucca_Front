@@ -5,10 +5,17 @@
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<title><?php echo $title_for_layout?></title>
+		<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="/css/jquery.ui.css" />
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.js"></script>
+		<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/js/item_admin_grid.js"></script>
+		<script type="text/javascript" src="/js/item_admin_process_lucca.js">		
 		<?php 
 			echo $scripts_for_layout;
-			echo $html->css('admin');
-			echo $html->css('jquery.ui');
+			//echo $html->css('admin');
+			//echo $html->css('jquery.ui');
 		?>
 	</head>
 
