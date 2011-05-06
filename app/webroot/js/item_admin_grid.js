@@ -77,7 +77,13 @@
 			if(item_status == 'Works in Progress'){
 				item_status = 'Unpublished';
 			}
-			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
+			pagination_status = $('.pagination a.underline').text();
+			if (pagination_status == 'View All' || pagination_status == '') {
+				pagination_status = '';
+			} else {
+				pagination_status = '/all';
+			}
+			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + pagination_status + textSortMode;
 		});
 		$('#filterMenu').change(function () {
 			selectedItemType = $('#select_item_type').val();
@@ -92,7 +98,13 @@
 			if(item_status == 'Works in Progress'){
 				item_status = 'Unpublished';
 			}
-			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + textSortMode;
+			pagination_status = $('.pagination a.underline').text();
+			if (pagination_status == 'View All' || pagination_status == '') {
+				pagination_status = '';
+			} else {
+				pagination_status = '/all';
+			}
+			window.location.href = '/admin/item/grid/' + selectedItemType + '/' + item_status + pagination_status + textSortMode;
 		});
 		
 		$('#noteFilter').change(function () {

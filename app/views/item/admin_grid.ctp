@@ -71,7 +71,7 @@
 		<dd>
 			<?php if($count > 8) { ?>
 			<div class="pagination">
-				<a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/all/">View All</a>
+			<a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/all/<?php echo ($selectedFilter ? 'filter:'.$selectedFilter: ''); ?>">View All</a>
 			</div>
 			<?php } ?>
 			<div class="pagination">
@@ -87,7 +87,7 @@
 		</dd>
 		<?php } else { ?>
 
-			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo $item_types[$type_id]?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/">View 8 per page</a></div>
+			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo $item_types[$type_id]?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/<?php echo ($selectedFilter ? 'filter:'.$selectedFilter: ''); ?>">View 8 per page</a></div>
 
 		<?php } ?>
 
