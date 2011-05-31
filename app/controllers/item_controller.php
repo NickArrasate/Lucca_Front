@@ -77,6 +77,7 @@
 
 			// Set grid display conditions
 			$conditions_array = array (
+				'Item.not_published' => 0,
 				'OR' => array (
 					'Item.status' => 'Available',
 					array (
@@ -104,10 +105,11 @@
 				);
 			}
 
+			$item_quantity_join = array();
 			if ($inventory_location == '' || $inventory_location == 'all' ) {
 				$inventory_location = 'all';
 			} else {
-				$this->paginate['Item']['joins'] = array(
+				$item_quantity_join	= array(
 					array(
 						'table' => 'inventory_quantity',
 						'alias' => 'InventoryQuantity',
@@ -115,6 +117,7 @@
 						'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
 					)
 				);
+				$this->paginate['Item']['joins'] = $item_quantity_join;
 			}
 
 			if ($pager == 'all') {
@@ -123,14 +126,7 @@
 					'conditions' => $conditions_array,
 					'fields' => array('Item.name', 'Item.status'),
 					'order' => array('Item.publish_date' => 'desc'),
-					'joins' => array(
-						array(
-							'table' => 'inventory_quantity',
-							'alias' => 'InventoryQuantity',
-							'type' => 'Inner',
-							'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
-						)
-					)
+					'joins' => $item_quantity_join
 				));
 				$this->set('all_items', 'All');
 
@@ -190,8 +186,17 @@
 
 			$item_details = $this->Item->find('all', array(
 				'conditions' => array(
+					'Item.not_published' => 0,
 					'Item.id' => $item_id
-				)
+				),
+				'joins' => array(
+							array(
+								'table' => 'inventory_quantity',
+								'alias' => 'InventoryQuantity',
+								'type' => 'Inner',
+								'conditions' => array('Item.id = InventoryQuantity.item')
+							)
+						)
 			));
 
 			/*
@@ -264,7 +269,8 @@
 
 			$this->set('item_details', $item_details);
 			$this->set('item_category_id', $item_details[0]['Item']['item_category_id']);
-			$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
+			//$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
+			$this->set('inventory_location_id', $item_details[0]['InventoryQuantity'][0]['location']);
 			$this->set('item_type_id', $item_details[0]['Item']['item_type_id']);
 			$this->set('primary_image', $primary_image);
 			$this->set('current_date_time', $current_date_time);
@@ -1217,6 +1223,9 @@
 				if (!isset($this->data['Item']['lucca_original'])) {
 					$this->data['Item']['lucca_original'] = 0;
 				}
+				if (!isset($this->data['Item']['not_published'])) {
+					$this->data['Item']['not_published'] = 0;
+				}
 
 				if( $this->Item->save($this->data) && $this->ItemVariation->validates() )  {
 
@@ -1635,6 +1644,63 @@
 				$this->redirect(array('controller' => 'item', 'action' => 'summary', 'prefix' => 'admin', $note['Note']['item']));
 			}
 			$this->redirect(array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 3, 'Available'));
+		}
+
+		function admin_duplicate($itemId) {
+			if (!empty($itemId) && intval($itemId)) {
+				$originalItem = $this->Item->find('first', array('conditions' => array('Item.id' => intval($itemId))));
+				if ($originalItem) {
+					$this->Item->create();
+					$duplicateItem['Item'] = $originalItem['Item'];
+					unset($duplicateItem['Item']['id']);
+					$duplicateItem['Item']['not_published'] = true;
+					$this->Item->save($duplicateItem);
+					$duplicateItemId = $this->Item->getLastInsertId();
+					$duplicateItem['ItemImage'] = $originalItem['ItemImage'];
+					foreach ($duplicateItem['ItemImage'] as &$itemImage) {
+						if (!empty($itemImage['filename']) && file_exists(WWW_ROOT . '/files/' . $itemImage['filename'])) {
+							$itemImage['item_id'] = $duplicateItemId;
+							unset($itemImage['id']);
+
+							$newImageFileName = $itemImage['filename'];
+							while (file_exists(WWW_ROOT. '/files/' . $newImageFileName)) {
+								$extension = pathinfo(WWW_ROOT . '/files/' . $newImageFileName, PATHINFO_EXTENSION);
+								$fileName = substr(md5($newImageFileName . time() . rand()), 0, 10);//pathinfo(WWW_ROOT . '/files/' . $newImageFileName, PATHINFO_FILENAME);
+								$newImageFileName = sprintf('%s.%s', $fileName, $extension);
+							}
+							copy(WWW_ROOT . '/files/' . $itemImage['filename'], WWW_ROOT . '/files/' . $newImageFileName);
+							$itemImage['filename'] = $newImageFileName;
+						} else {
+							unset($itemImage);
+						}
+					}
+					$this->loadModel('ItemImage');
+					$this->ItemImage->saveAll($duplicateItem['ItemImage']);
+
+					$duplicateItem['ItemVariation'] = $originalItem['ItemVariation'];
+					$this->loadModel('ItemVariation');
+					$skuValue = $this->ItemVariation->find('first', array('fields' => array('MAX(ItemVariation.sku) AS `maxSku`')));
+					$sku = $skuValue[0]['maxSku'];
+					foreach ($duplicateItem['ItemVariation'] as &$itemVariation) {
+						$itemVariation['item_id'] = $duplicateItemId;
+						$itemVariation['sku'] = ++$sku;
+						unset($itemVariation['id']);
+					}
+					$this->ItemVariation->saveAll($duplicateItem['ItemVariation']);
+
+					$duplicateItem['InventoryQuantity'] = $originalItem['InventoryQuantity'];
+					foreach ($duplicateItem['InventoryQuantity'] as &$InventoryQuantity) {
+						$InventoryQuantity['item'] = $duplicateItemId;
+						unset($InventoryQuantity['id']);
+					}
+					$this->loadModel('InventoryQuantity');
+					$this->InventoryQuantity->saveAll($duplicateItem['InventoryQuantity']);
+
+					$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'summary', $duplicateItemId));
+				}
+			}
+
+			$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'grid'));
 		}
 
 		function __send_item_emails($data, $email, $subject) {
