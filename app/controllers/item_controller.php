@@ -1,5 +1,5 @@
 <?php
-
+App::import('Inflector');
 
 	class ItemController extends AppController {
 
@@ -934,61 +934,84 @@
 		}
 
 		function admin_grid() {
-
 			$this->Ssl->force();
+
+			$this->loadModel('InventoryLocation');
+			$this->loadModel('ItemCategory');
+			//
 			// will return a list/grid of unpublished items
 			$this->layout = 'admin_product_management';
-			//$type_id = $this->params['pass'][0]; // or the data that is passed...throgh $this->data...
 
-			$type_id = $this->params['pass'][0];
+			$selectedFilter['categories'] = (isset($this->params['pass'][0]) && !empty($this->params['pass'][0]) ? $this->params['pass'][0] : 'all' );
+			$selectedFilter['subcategories'] = (isset($this->params['named']['subcategory']) && !empty($this->params['named']['subcategory']) ? $this->params['named']['subcategory'] : 'all');
+			$selectedFilter['locations'] = (isset($this->params['named']['location']) && !empty($this->params['named']['location']) ? $this->params['named']['location'] : 'all');
+			$selectedFilter['other'] = (isset($this->params['named']['other']) && !empty($this->params['named']['other']) ? $this->params['named']['other'] : 'all');
+
 			$status = $this->params['pass'][1];
-			$selectedFilter = null;
-			$filterCondition = array();
-			if (isset($this->params['named']['filter'])) {
-				$selectedFilter = $this->params['named']['filter'];
-				switch ($selectedFilter) {
-					case "lucca_originals":
-						$filterCondition = array(
-							'Item.lucca_original' => 1
-						);
-						break;
-					case "newest_notes":
-						$this->paginate['Item']['joins'] = array(
-							array(
-								'table' => 'note',
-								'alias' => 'Note',
-								'type' => 'Inner',
-								'conditions' => array('Item.id = Note.item')
-							)
-						);
-						$this->paginate['Item']['group'] = array(
-							'Item.id'
-						);
-						$this->paginate['Item']['order'] = array(
-							'Note.created' => 'DESC'
-						);
-						break;
-					default: // by default filter by inventory location
-						$this->loadModel('InventoryLocation');
-						$this->loadModel('InventoryQuantity');
-						$this->InventoryLocation->bindModel(array('hasMany' => array('InventoryQuantity' => array('foreignKey' => 'location'))));
-						$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
-						$itemsByInventoryLocation = array_shift($this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter))));
-						if (!empty($itemsByInventoryLocation)) {
-							$filteredItems = array();
-							foreach ($itemsByInventoryLocation['InventoryQuantity'] as $foundedItem) {
-								if (intval($foundedItem['quantity']) > 0) {
-									array_push($filteredItems, $foundedItem['item']);
-								}
-							}
 
-							$filterCondition = array('Item.id' => $filteredItems);
+			$itemRetriveConditions = array();
+			$itemRetriveOrders = array();
+
+			$itemRetriveConditions['Item.status'] = $status;
+			$itemRetriveOrders['Item.publish_date'] = 'desc';
+			if ($selectedFilter['categories'] != 'all') {
+					$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
+			}
+
+			switch ($selectedFilter['subcategories']) {
+				case "lucca_studio":
+					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($selectedFilter['subcategories']))));
+					$itemRetriveConditions[] = sprintf('(Item.lucca_original = 1 OR Item.item_category_id = %s)', $subcategory['ItemCategory']['id']);
+					break;
+				case "antiques":
+				case "found":
+					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($selectedFilter['subcategories']))));
+					$itemRetriveConditions['Item.item_category_id'] = $subcategory['ItemCategory']['id'];
+					break;
+				default:
+					break;
+			}
+
+			if ($selectedFilter['locations'] != 'all') {
+				$this->loadModel('InventoryLocation');
+				$this->loadModel('InventoryQuantity');
+				$this->InventoryLocation->bindModel(array('hasMany' => array('InventoryQuantity' => array('foreignKey' => 'location'))));
+				$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
+				$itemsByInventoryLocation = array_shift($this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter))));
+				if (!empty($itemsByInventoryLocation)) {
+					$filteredItems = array();
+					foreach ($itemsByInventoryLocation['InventoryQuantity'] as $foundedItem) {
+						if (intval($foundedItem['quantity']) > 0) {
+							array_push($filteredItems, $foundedItem['item']);
 						}
-						break;
+					}
+
+					$itemRetriveConditions['Item.id'] = $filteredItems;
 				}
 			}
 
-			$navmenu = $this->Navigation->navigation($status, $type_id);
+			switch ($selectedFilter['other']) {
+				case "newest_notes":
+					$this->paginate['Item']['joins'] = array(
+						array(
+							'table' => 'note',
+							'alias' => 'Note',
+							'type' => 'Inner',
+							'conditions' => array('Item.id = Note.item')
+						)
+					);
+					$this->paginate['Item']['group'] = array(
+						'Item.id'
+					);
+					$this->paginate['Item']['order'] = array(
+						'Note.created' => 'DESC'
+					);
+					break;
+				default:
+					break;
+			}
+
+			$navmenu = $this->Navigation->navigation($status, $selectedFilter['categories']);
 
 			$this->set('navigation', $navmenu['navigation']);
 			$this->set('h3', $navmenu['h3']);
@@ -996,76 +1019,36 @@
 
 			$this->loadModel('ItemType');
 
-
-			$item_types = $this->ItemType->find('list', array(
-					'fields' => array('id', 'name')
-			));
-
-			$item_types['all'] = '-- All Categories --';
-
-
-
-
-			$itemRetriveConditions = array();
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
-				// view all button is clicked
-
-				if($type_id == 'all') {
-
-					$itemRetriveConditions = array('Item.status' => $status);
-					$itemRetriveOrders = array('Item.publish_date' => 'desc');
-				} else {
-					$itemRetriveConditions = array(
-						'Item.status' => $status,
-						'Item.item_type_id' => $type_id
-					);
-					$itemRetriveOrders = array('Item.publish_date' => 'desc');
-				}
-
-					$items = $this->Item->find('all', array(
-					'conditions' => array_merge($itemRetriveConditions, $filterCondition),
-					'order' => $itemRetriveOrders
-				));
+				$items = $this->Item->find(
+					'all',
+					array(
+						'conditions' => $itemRetriveConditions,
+						'order' => $itemRetriveOrders
+					)
+				);
 
 				$this->set('all_items','all_items');
 			} else {
-				if($type_id == 'all') {
-					$itemRetriveConditions = array('Item.status' => $status);
-				} else {
-					$itemRetriveConditions = array(
-								'Item.status' => $status,
-								'Item.item_type_id' => $type_id,
-						);
-				}
+				$items = $this->paginate('Item', $itemRetriveConditions);
+			}
 
-				$items = $this->paginate('Item', array_merge($itemRetriveConditions, $filterCondition));
-
-				}
-			$count = $this->Item->find('count', array('conditions' => array_merge($itemRetriveConditions, $filterCondition)));
+			$count = $this->Item->find('count', array('conditions' => $itemRetriveConditions));
 
 			$this->set('count',$count);
-			// this little extra bit of transforming is a little unecessary
-			foreach($item_types as $key => $name) {
-				if($key == $type_id) {
-					$type_name = $name;
-					$type_id = $key;
-				}
 
-			}
-
-			if(!isset($type_name)) {
-				$type_name = 'All';
-				$type_id = 'all';
-			}
-			$this->set('type_name', $type_name);
-			$this->set('type_id', $type_id);
+			$this->set('type_id', $selectedFilter['categories']);
 
 			$chunked_items = array_chunk($items, 4);
 
-			$this->loadModel('InventoryLocation');
-			$filterMenu = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.display_name')));
-			$filterMenu['lucca_originals'] = 'Lucca Originals';
-			$filterMenu['newest_notes'] = 'Newest Notes';
+			$filterMenu['categories'] = $this->ItemType->find('list', array('fields' => array('id', 'name')));
+			$filterMenu['subcategories'] = $this->ItemCategory->find('list', array('fields' => array('id', 'name')));
+			foreach ($filterMenu['subcategories'] as $key => $value) {
+				$filterMenu['subcategories'][strtolower(Inflector::slug($value))] = $value;
+				unset($filterMenu['subcategories'][$key]);
+			}
+			$filterMenu['locations'] = $this->InventoryLocation->find('list', array('fields' => array('InventoryLocation.short', 'InventoryLocation.display_name')));
+			$filterMenu['other']['newest_notes'] = 'Newest Notes';
 			$this->set('filterMenu', $filterMenu);
 			$this->set('selectedFilter', $selectedFilter);
 
@@ -1081,11 +1064,8 @@
 			$this->set('locationsNames', $locationsShortAndDisplayNames);
 
 			$this->set('chunked_items', $chunked_items);
-			$this->set('item_types', $item_types);
 			$this->set('status', $status);
 			$this->set('settings', array('w'=>142, 'h' => 142, 'crop'=>1));
-
-			//$this->set('item_category', $item_category);
 		}
 
 		function admin_summary() {

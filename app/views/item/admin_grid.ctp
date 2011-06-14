@@ -40,7 +40,7 @@
 	?>
 	<?php
 	if(isset($type_id) && $type_id !== 'all') {
-		echo '> '. $item_types[$type_id];
+		echo '> '. $filterMenu['categories'][$type_id];
 	}
 	?>
 
@@ -50,28 +50,38 @@
 		<dd>
 		<h3><?php echo $h3 ?></h3>
 		<?php if($status !== 'Unsorted') {?>
-		<select id="select_item_type" name="data[ItemType][id]">
-		<?php foreach($item_types as $key => $value) {?>
-			<?php if($key == $type_id) { ?>
-				<option selected="selected" value="<?php echo $key ?>"><?php echo $value ?></option>
-			<?php } else { ?>
-				<option value="<?php echo $key ?>"><?php echo $value ?></option>
-			<?php } ?>
+			<select name="data[categories]">
+				<option value="all"> -- All Categories -- </option>
+				<?php foreach ($filterMenu['categories'] as $key => $name): ?>
+				<option value="<?php echo $key; ?>" <?php echo (($selectedFilter['categories'] == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
+				<?php endforeach; ?>
+			</select>
 		<?php } ?>
+
+		<select name="data[subcategories]">
+			<option value="all"> -- All subcategories -- </option>
+			<?php foreach ($filterMenu['subcategories'] as $key => $name): ?>
+			<option value="<?php echo $key; ?>" <?php echo (($selectedFilter['subcategories'] == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
+			<?php endforeach; ?>
 		</select>
-		<?php } ?>
-		<select id="filterMenu" name="data[filterMenu]">
-			<option value=""> -- sort by -- </option>
-			<?php foreach ($filterMenu as $key => $name): ?>
-			<option value="<?php echo $key; ?>" <?php echo (($selectedFilter == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
+		<select name="data[locations]">
+			<option value="all"> -- All locations -- </option>
+			<?php foreach ($filterMenu['locations'] as $key => $name): ?>
+			<option value="<?php echo $key; ?>" <?php echo (($selectedFilter['locations'] == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
+			<?php endforeach; ?>
+		</select>
+		<select name="data[other]">
+			<option value="all"> -- All other -- </option>
+			<?php foreach ($filterMenu['other'] as $key => $name): ?>
+			<option value="<?php echo $key; ?>" <?php echo (($selectedFilter['other'] == $key) ? 'selected="selected"' : "" ); ?>><?php echo $name; ?></option>
 			<?php endforeach; ?>
 		</select>
 		</dd>
 		<?php if(!isset($all_items) ) { ?>
-		<dd>
+		<dd style="clear:both;">
 			<?php if($count > 8) { ?>
 			<div class="pagination">
-			<a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/all/<?php echo ($selectedFilter ? 'filter:'.$selectedFilter: ''); ?>">View All</a>
+			<a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/all/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View All</a>
 			</div>
 			<?php } ?>
 			<div class="pagination">
@@ -87,7 +97,7 @@
 		</dd>
 		<?php } else { ?>
 
-			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo $item_types[$type_id]?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/<?php echo ($selectedFilter ? 'filter:'.$selectedFilter: ''); ?>">View 8 per page</a></div>
+			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo $filterMenu['categories'][$type_id]?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View 8 per page</a></div>
 
 		<?php } ?>
 
