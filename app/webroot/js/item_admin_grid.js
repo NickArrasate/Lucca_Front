@@ -94,6 +94,74 @@
 			selectedItemId = $('input[name="data[Note][item]"]').val();
 			window.location.href = '/admin/item/summary/' + selectedItemId + textSortMode;
 		});
+
+		$("ul.grid-output").dragsort(
+			{ 
+				dragSelector: "li.item", 
+				dragEnd: function() {
+					var curLeft = parseInt($(this).attr('left'));
+					var nextLeft = $(this).next().attr('left') || false;
+					var prevLeft = $(this).prev().attr('left') || false;
+
+					var data = {
+						current: curLeft,
+						next: nextLeft,
+						prev: prevLeft,
+						occurrence: {
+							category: $('select[name="data[categories]"]').val() || 0,
+							subcategory: $('select[name="data[subcategories]"]').val() || 0,
+							location: $('select[name="data[locations]"]').val() || 0
+						}
+					};
+
+					if (nextLeft && parseInt(nextLeft) < curLeft) {
+						nextLeft = parseInt(nextLeft);
+
+						var selector = [];
+						for (i = nextLeft; i < curLeft; i += 2) {
+							selector.push("li[left=" + i + "]");
+						}
+						
+						var movedItems = $.makeArray($(selector.join(",")));
+
+						$(this).attr('left', $(this).next().attr('left'));
+						$(this).attr('right', $(this).next().attr('right'));
+
+						for (itemIndex in movedItems) {
+							$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) + 2);
+							$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) + 2);
+						}
+					}
+
+					if (prevLeft && parseInt(prevLeft) > curLeft) {
+						prevLeft = parseInt(prevLeft);
+
+						var selector = [];
+						for (i = (curLeft + 2); i <= prevLeft; i += 2) {
+							selector.push("li[left=" + i + "]");
+						}
+						
+						var movedItems = $.makeArray($(selector.join(",")));
+
+						$(this).attr('left', $(this).prev().attr('left'));
+						$(this).attr('right', $(this).prev().attr('right'));
+
+						for (itemIndex in movedItems) {
+							$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) - 2);
+							$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) - 2);
+						}
+					}
+
+					$.post(
+						'/admin/item/reordering',
+						{data: JSON.stringify(data)},
+						function (response) {}
+					);
+				}, 
+				dragBetween: false, 
+				placeHolderTemplate: '<li class="placeholder"></li>'
+			}
+		);
 		
 		$('#delete-dialog').dialog({
             autoOpen: false,
@@ -119,5 +187,4 @@
 				return false;
 			
 		});
-	
-	});
+});

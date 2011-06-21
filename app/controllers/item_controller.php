@@ -12,10 +12,10 @@ App::import('Inflector');
 		var $paginate = array(
 			'Item' => array(
 				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original'),
-			'limit' => 8,
-			'order' => array(
-				'Item.publish_date' => 'desc'
-				)
+				'limit' => 8,
+//			'order' => array(
+//				'Item.publish_date' => 'desc'
+//				)
 			),
 			'Note' => array(
 				'conditions' => array('(Note.parent = 0 OR Note.parent IS NULL)'),
@@ -57,6 +57,10 @@ App::import('Inflector');
 			$inventory_location = $this->params['pass'][2];
 			$pager = (isset($this->params['pass'][3]) ? $this->params['pass'][3] : "");
 
+			$categoryId = 0;
+			$subcategoryId = 0;
+			$locationId = 0;
+
 			// Category Summary display
 			switch($item_category) {
 				case 'all':
@@ -92,6 +96,7 @@ App::import('Inflector');
 			if ($item_type == '' || $item_type == 'all') {
 				$item_type == 'all';
 			} else {
+				$categoryId = $item_type;
 				$conditions_array = array_merge($conditions_array, array(
 					'Item.item_type_id' => $item_type
 					)
@@ -99,6 +104,7 @@ App::import('Inflector');
 			}
 
 			if ($item_category != 'all') {
+				$subcategoryId = $item_category;
 				$conditions_array = array_merge($conditions_array, array(
 					'Item.item_category_id' => $item_category
 					)
@@ -109,15 +115,14 @@ App::import('Inflector');
 			if ($inventory_location == '' || $inventory_location == 'all' ) {
 				$inventory_location = 'all';
 			} else {
+				$locationId = $inventory_location;
 				$item_quantity_join	= array(
-					array(
-						'table' => 'inventory_quantity',
-						'alias' => 'InventoryQuantity',
-						'type' => 'Inner',
-						'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
-					)
+					'table' => 'inventory_quantity',
+					'alias' => 'InventoryQuantity',
+					'type' => 'Inner',
+					'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
 				);
-				$this->paginate['Item']['joins'] = $item_quantity_join;
+				$this->paginate['Item']['joins'][] = $item_quantity_join;
 			}
 
 			if ($pager == 'all') {
@@ -125,8 +130,28 @@ App::import('Inflector');
 				$items = $this->Item->find('all', array(
 					'conditions' => $conditions_array,
 					'fields' => array('Item.name', 'Item.status'),
-					'order' => array('Item.publish_date' => 'desc'),
-					'joins' => $item_quantity_join
+//					'order' => array('Item.publish_date' => 'desc'),
+					'order' => array('ItemOccurrence.left' => 'asc'),
+					'joins' => array(
+						array(
+							'table' => 'item_occurrences',
+							'alias' => 'ItemOccurrence',
+							'type' => 'Inner',
+							'conditions' => array('Item.id = ItemOccurrence.item_id'),
+						),
+						array(
+							'table' => 'occurrences',
+							'alias' => 'Occurrence',
+							'type' => 'Inner',
+							'conditions' => array(
+								'Occurrence.id = ItemOccurrence.occurrence_id',
+								sprintf('Occurrence.category = %s', $categoryId),
+								sprintf('Occurrence.subcategory = %s', $subcategoryId),
+								sprintf('Occurrence.location = %s', $locationId),
+							),
+						),
+						$item_quantity_join
+					)
 				));
 				$this->set('all_items', 'All');
 
@@ -139,6 +164,27 @@ App::import('Inflector');
 				);
 
 				$this->set('count', $count);
+
+				$this->paginate['Item']['joins'][] = array(
+							'table' => 'item_occurrences',
+							'alias' => 'ItemOccurrence',
+							'type' => 'Inner',
+							'conditions' => array('Item.id = ItemOccurrence.item_id'),
+						);
+				$this->paginate['Item']['joins'][] = array(
+							'table' => 'occurrences',
+							'alias' => 'Occurrence',
+							'type' => 'Inner',
+							'conditions' => array(
+								'Occurrence.id = ItemOccurrence.occurrence_id',
+								sprintf('Occurrence.category = %s', $categoryId),
+								sprintf('Occurrence.subcategory = %s', $subcategoryId),
+								sprintf('Occurrence.location = %s', $locationId),
+							),
+						);
+				$this->paginate['Item']['order'] = array(
+					'ItemOccurrence.left' => 'asc'
+				);
 
 				$items = $this->paginate('Item', array(
 					$conditions_array,
@@ -369,6 +415,8 @@ App::import('Inflector');
 					$this->Item->save();
 					$item_id = $this->Item->getLastInsertId();
 
+					$this->loadModel('ItemOccurrence');
+					$this->ItemOccurrence->createItemOccurrences($item_id);
 					// need to also create the rows for the item_images, and item variations.
 
 					$this->loadModel('ItemVariation');
@@ -946,6 +994,9 @@ App::import('Inflector');
 			$selectedFilter['subcategories'] = (isset($this->params['named']['subcategory']) && !empty($this->params['named']['subcategory']) ? $this->params['named']['subcategory'] : 'all');
 			$selectedFilter['locations'] = (isset($this->params['named']['location']) && !empty($this->params['named']['location']) ? $this->params['named']['location'] : 'all');
 			$selectedFilter['other'] = (isset($this->params['named']['other']) && !empty($this->params['named']['other']) ? $this->params['named']['other'] : 'all');
+			$categoryId = 0;
+			$subcategoryId = 0;
+			$locationId = 0;
 
 			$status = $this->params['pass'][1];
 
@@ -955,18 +1006,21 @@ App::import('Inflector');
 			$itemRetriveConditions['Item.status'] = $status;
 			$itemRetriveOrders['Item.publish_date'] = 'desc';
 			if ($selectedFilter['categories'] != 'all') {
-					$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
+				$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
+				$categoryId = $selectedFilter['categories'];
 			}
 
 			switch ($selectedFilter['subcategories']) {
 				case "lucca_studio":
 					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($selectedFilter['subcategories']))));
 					$itemRetriveConditions[] = sprintf('(Item.lucca_original = 1 OR Item.item_category_id = %s)', $subcategory['ItemCategory']['id']);
+					$subcategoryId = $subcategory['ItemCategory']['id'];
 					break;
 				case "antiques":
 				case "found":
 					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($selectedFilter['subcategories']))));
 					$itemRetriveConditions['Item.item_category_id'] = $subcategory['ItemCategory']['id'];
+					$subcategoryId = $subcategory['ItemCategory']['id'];
 					break;
 				default:
 					break;
@@ -979,6 +1033,7 @@ App::import('Inflector');
 				$this->InventoryLocation->unbindModel(array('hasMany' => array('Item')));
 				$itemsByInventoryLocation = array_shift($this->InventoryLocation->find('all', array('conditions' => array('InventoryLocation.short' => $selectedFilter))));
 				if (!empty($itemsByInventoryLocation)) {
+					$locationId = $itemsByInventoryLocation['InventoryLocation']['id'];
 					$filteredItems = array();
 					foreach ($itemsByInventoryLocation['InventoryQuantity'] as $foundedItem) {
 						if (intval($foundedItem['quantity']) > 0) {
@@ -1023,17 +1078,91 @@ App::import('Inflector');
 				$items = $this->Item->find(
 					'all',
 					array(
+						'fields' => array(
+							'Item.*',
+							'ItemOccurrence.*'
+						),
 						'conditions' => $itemRetriveConditions,
-						'order' => $itemRetriveOrders
+						'joins' => array(
+							array(
+								'table' => 'item_occurrences',
+								'alias' => 'ItemOccurrence',
+								'type' => 'Inner',
+								'conditions' => array('Item.id = ItemOccurrence.item_id'),
+							),
+							array(
+								'table' => 'occurrences',
+								'alias' => 'Occurrence',
+								'type' => 'Inner',
+								'conditions' => array(
+									'Occurrence.id = ItemOccurrence.occurrence_id',
+									sprintf('Occurrence.category = %s', $categoryId),
+									sprintf('Occurrence.subcategory = %s', $subcategoryId),
+									sprintf('Occurrence.location = %s', $locationId),
+								),
+							)
+						),
+						'order' => array('ItemOccurrence.left' => 'asc'),
+//						'order' => $itemRetriveOrders
 					)
 				);
 
 				$this->set('all_items','all_items');
 			} else {
+				$this->paginate['Item']['fields'] = array(
+					'Item.*',
+					'ItemOccurrence.*'
+				);
+				$this->paginate['Item']['joins'] = array(
+					array(
+						'table' => 'item_occurrences',
+						'alias' => 'ItemOccurrence',
+						'type' => 'Inner',
+						'conditions' => array('Item.id = ItemOccurrence.item_id'),
+					),
+					array(
+						'table' => 'occurrences',
+						'alias' => 'Occurrence',
+						'type' => 'Inner',
+						'conditions' => array(
+							'Occurrence.id = ItemOccurrence.occurrence_id',
+							sprintf('Occurrence.category = %s', $categoryId),
+							sprintf('Occurrence.subcategory = %s', $subcategoryId),
+							sprintf('Occurrence.location = %s', $locationId),
+						),
+					)
+				);
+				$this->paginate['Item']['order'] = array(
+					'ItemOccurrence.left' => 'asc'
+				);
 				$items = $this->paginate('Item', $itemRetriveConditions);
 			}
 
-			$count = $this->Item->find('count', array('conditions' => $itemRetriveConditions));
+			$count = $this->Item->find(
+				'count',
+				array(
+					'conditions' => $itemRetriveConditions,
+					'joins' => array(
+						array(
+							'table' => 'item_occurrences',
+							'alias' => 'ItemOccurrence',
+							'type' => 'Inner',
+							'conditions' => array('Item.id = ItemOccurrence.item_id'),
+						),
+						array(
+							'table' => 'occurrences',
+							'alias' => 'Occurrence',
+							'type' => 'Inner',
+							'conditions' => array(
+								'Occurrence.id = ItemOccurrence.occurrence_id',
+								sprintf('Occurrence.category = %s', $categoryId),
+								sprintf('Occurrence.subcategory = %s', $subcategoryId),
+								sprintf('Occurrence.location = %s', $locationId),
+							),
+						)
+					),
+				)
+			);
 
 			$this->set('count',$count);
 
@@ -1187,6 +1316,10 @@ App::import('Inflector');
 
 				$this->Item->id = $item_id;
 
+				$categoryId = $this->data['Item']['item_type_id'];
+				$subcategoryId = $this->data['Item']['item_category_id'];
+				$locationIds = array();
+
 				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $item_id), false, false);
 				foreach ($this->data['InventoryQuantity'] as $locationId => $itemQuantity) {
 					if (is_numeric($itemQuantity)) {
@@ -1197,6 +1330,8 @@ App::import('Inflector');
 
 						$this->InventoryQuantity->create();
 						$this->InventoryQuantity->save(array_merge($extraFiels, $uniqueKey));
+
+						array_push($locationIds, $locationId);
 					}
 				}
 
@@ -1238,6 +1373,8 @@ App::import('Inflector');
 						)
 					);
 
+					$this->loadModel('ItemOccurrence');
+					$this->ItemOccurrence->createItemOccurrences($item_id, $categoryId, $subcategoryId, $locationIds);
 
 					$this->Session->write('details_feedback_message', 'Details saved.');
 					$this->redirect('details/edit/' . $item_id);
@@ -1630,6 +1767,10 @@ App::import('Inflector');
 			if (!empty($itemId) && intval($itemId)) {
 				$originalItem = $this->Item->find('first', array('conditions' => array('Item.id' => intval($itemId))));
 				if ($originalItem) {
+					$categoryId = $originalItem['Item']['item_type_id'];
+					$subcategoryId = $originalItem['Item']['item_category_id'];
+					$locationId = array();
+
 					$this->Item->create();
 					$duplicateItem['Item'] = $originalItem['Item'];
 					unset($duplicateItem['Item']['id']);
@@ -1672,15 +1813,99 @@ App::import('Inflector');
 					foreach ($duplicateItem['InventoryQuantity'] as &$InventoryQuantity) {
 						$InventoryQuantity['item'] = $duplicateItemId;
 						unset($InventoryQuantity['id']);
+						array_push($locationId, $InventoryQuantity['location']);
 					}
 					$this->loadModel('InventoryQuantity');
 					$this->InventoryQuantity->saveAll($duplicateItem['InventoryQuantity']);
+
+					$this->loadModel('ItemOccurrence');
+					$this->ItemOccurrence->createItemOccurrences($item_id, $categoryId, $subcategoryId, $locationId);
 
 					$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'summary', $duplicateItemId));
 				}
 			}
 
 			$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'grid'));
+		}
+
+		function admin_reordering() {
+			if (!empty($this->data)) {
+				$this->layout = 'ajax';
+
+				$this->loadModel('Occurrence');
+				$this->loadModel('ItemOccurrence');
+				$this->loadModel('InventoryLocation');
+				$this->loadModel('ItemCategory');
+
+				$data = json_decode($this->data);
+
+				$categoryId = 0;
+				$subcategoryId = 0;
+				$locationId = 0;
+
+				if ($data->occurrence->category != 'all') {
+					$categoryId = $data->occurrence->category;
+				}
+
+				if ($data->occurrence->subcategory != 'all') {
+					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($data->occurrence->subcategory), 'recursive' => false)));
+					$subcategoryId = $subcategory['ItemCategory']['id'];
+				}
+
+				if ($data->occurrence->location != 'all') {
+					$location = $this->InventoryLocation->find('first', array('conditions' => array('InventoryLocation.short' => $data->occurrence->location), 'recursive' => false));
+					$locationId = $location['InventoryLocation']['id'];
+				}
+
+				$occurrence = $this->Occurrence->find(
+					'first',
+					array(
+						'conditions' => array(
+							'category' => $categoryId,
+							'subcategory' => $subcategoryId,
+							'location' => $locationId
+						)
+					)
+				);
+
+				$currentItemOccurrence = $this->ItemOccurrence->find(
+					'first',
+					array(
+						'conditions' => array(
+							'ItemOccurrence.left' => $data->current,
+							'ItemOccurrence.occurrence_id' => $occurrence['Occurrence']['id']
+						)
+					)
+				);
+
+				if ($data->next && $data->next < $data->current) {
+					$this->ItemOccurrence->moveRight($occurrence['Occurrence']['id'], $data->next, $data->current);
+
+					$this->ItemOccurrence->updateAll(
+						array(
+							'ItemOccurrence.left' => $data->next,
+							'ItemOccurrence.right' => $data->next + 1
+						),
+						array(
+							'ItemOccurrence.id' => $currentItemOccurrence['ItemOccurrence']['id']
+						)
+					);
+				}
+
+				if ($data->prev && $data->prev > $data->current) {
+					$this->ItemOccurrence->moveLeft($occurrence['Occurrence']['id'], $data->current, $data->prev);
+
+					$this->ItemOccurrence->updateAll(
+						array(
+							'ItemOccurrence.left' =>  $data->prev,
+							'ItemOccurrence.right' =>  $data->prev + 1
+						),
+						array(
+							'ItemOccurrence.id' => $currentItemOccurrence['ItemOccurrence']['id']
+						)
+					);
+				}
+			}
 		}
 
 		function __send_item_emails($data, $email, $subject) {
@@ -1772,6 +1997,82 @@ App::import('Inflector');
 
 		}
 
+		function make_default_ordering() {
+			$this->loadModel('Item');
+			$this->loadModel('Occurrence'); // occurrence
+			$this->loadModel('ItemOccurrence'); // item occurrence
+
+			echo "<pre>";
+
+			$occurrences = $this->Occurrence->find('all');
+
+			foreach ($occurrences as $occurrence) {
+				$count = 0;
+				$left = 1;
+				$right = 2;
+				$occurrenceId = $occurrence['Occurrence']['id'];
+
+				$conditions = array();
+				$joins = array();
+
+				if ($occurrence['Occurrence']['category'] > 0) {
+					$conditions['Item.item_type_id'] = $occurrence['Occurrence']['category'];
+				}
+
+				if ($occurrence['Occurrence']['subcategory'] > 0) {
+					$conditions['Item.item_category_id'] = $occurrence['Occurrence']['subcategory'];
+				}
+
+				if ($occurrence['Occurrence']['location'] > 0) {
+					$joins = array(
+						array(
+							'table' => 'inventory_quantity',
+							'alias' => 'InventoryQuantity',
+							'type' => 'Inner',
+							'conditions' => array(
+								sprintf('InventoryQuantity.location = %s', $occurrence['Occurrence']['location']),
+								'Item.id = InventoryQuantity.item',
+								'InventoryQuantity.quantity > 0'
+							),
+						)
+					);
+				}
+
+				$items = $this->Item->find(
+					'all',
+					array(
+						'conditions' => $conditions,
+						'joins' => $joins,
+						'order' => array('Item.publish_date' => 'desc'),
+					)
+				);
+
+				foreach ($items as $item) {
+					$this->ItemOccurrence->id = null;
+					$this->ItemOccurrence->set('item_id', $item['Item']['id']);
+					$this->ItemOccurrence->set('occurrence_id', $occurrenceId);
+					$this->ItemOccurrence->set('left', $left);
+					$this->ItemOccurrence->set('right', $right);
+					$this->ItemOccurrence->save();
+
+					$left += 2;
+					$right += 2;
+
+					$count++;
+				}
+
+				echo "Saved items occurrences for category ".
+					$occurrence['Occurrence']['category'].
+					" subcategory ".
+					$occurrence['Occurrence']['subcategory'].
+					" location ".
+					$occurrence['Occurrence']['location'].
+					" : ".$count."\n";
+			}
+
+			echo "</pre>";
+			exit();
+		}
 	}
 
 ?>
