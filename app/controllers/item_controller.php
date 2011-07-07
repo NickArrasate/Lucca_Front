@@ -1848,7 +1848,7 @@ App::import('Inflector');
 				}
 
 				if ($data->occurrence->subcategory != 'all') {
-					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($data->occurrence->subcategory), 'recursive' => false)));
+					$subcategory = $this->ItemCategory->find('first', array('conditions' => array('ItemCategory.name' => Inflector::humanize($data->occurrence->subcategory)), 'recursive' => false));
 					$subcategoryId = $subcategory['ItemCategory']['id'];
 				}
 

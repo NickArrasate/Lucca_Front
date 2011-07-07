@@ -393,7 +393,7 @@ min-height:300px;
 	float:left;
 	overflow:hidden;
 	padding:0 0 0 15px;
-	width:770px;
+	width:768px;
 }	
 
 .addons table { margin: 20px 0 0}
@@ -562,4 +562,39 @@ div.view-all-notes {
 }
 .hidden-inventory-quantity {
 	display: none;
+}
+dd.hide-from-front-end {
+	padding-top: 10px;
+	clear:both;
+}
+ul.grid-output {
+	width: 768px;
+	padding: 0px;
+	margin: 10px 0px 0px 0px;
+}
+ul.grid-output li.item {
+	width: 162px;
+	height: 366px;
+	padding: 10px 0px 10px 0px;
+	margin: 0px 25px 0px 5px;
+	float: left;
+	list-style: none;
+}
+ul.grid-output li.separator {
+	border-top: 1px #575757 dotted;
+	height: 5px;
+	margin-top: 5px;
+	list-style: none;
+	float: left;
+	width: 768px;
+	clear: both;
+}
+ul.grid-output li.placeholder {
+	border: 1px #575757 dotted;
+	width: 160px !important;
+	height: 364px !important;
+	float: left;
+	list-style: none;
+	padding: 10px 0px 10px 0px;
+	margin: 0px 25px 0px 5px;
 }
