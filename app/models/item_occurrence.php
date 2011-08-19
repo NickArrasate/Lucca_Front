@@ -66,15 +66,29 @@ class ItemOccurrence extends AppModel {
 		$occurrencesIdList = array_unique($occurrencesIdList);
 
 		foreach ($occurrencesIdList as $occurrenceId) {
-			$existItemUccerrence = $this->find('first', array('conditions' => array('ItemOccurrence.occurrence_id' => $occurrenceId, 'ItemOccurrence.item_id' => $itemId), 'order' => array('ItemOccurrence.left' => 'desc')));
-			if (!$existItemUccerrence) {
-				$maxItemUccerrence = $this->find('first', array('conditions' => array('ItemOccurrence.occurrence_id' => $occurrenceId), 'order' => array('ItemOccurrence.left' => 'desc')));
+			$existItemOccurrence = $this->find('first', array('conditions' => array('ItemOccurrence.occurrence_id' => $occurrenceId, 'ItemOccurrence.item_id' => $itemId), 'order' => array('ItemOccurrence.left' => 'desc')));
+			if (!$existItemOccurrence) {
+				$maxItemOccurrence = $this->find('first', array('conditions' => array('ItemOccurrence.occurrence_id' => $occurrenceId), 'order' => array('ItemOccurrence.left' => 'desc')));
+				$itemOccurrenceLeft = $maxItemOccurrence['ItemOccurrence']['left'] + 2;
+				$itemOccurrenceRight= $maxItemOccurrence['ItemOccurrence']['right'] + 2;
 				$this->create();
 				$this->set('item_id', $itemId);
 				$this->set('occurrence_id', $occurrenceId);
-				$this->set('left', $maxItemUccerrence['ItemOccurrence']['left'] + 2);
-				$this->set('right', $maxItemUccerrence['ItemOccurrence']['right'] + 2);
+				$this->set('left', $itemOccurrenceLeft);
+				$this->set('right', $itemOccurrenceRight);
 				$this->save();
+
+				$this->moveRight($occurrenceId, 1, $itemOccurrenceLeft);
+
+				$this->updateAll(
+					array(
+						'ItemOccurrence.left' =>  1,
+						'ItemOccurrence.right' =>  2,
+					),
+					array(
+						'ItemOccurrence.id' => $this->getInsertID(),
+					)
+				);
 			}
 		}
 	}

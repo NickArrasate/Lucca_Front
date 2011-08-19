@@ -10,9 +10,11 @@
 		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/jquery.ui.js"></script>
 		<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="/js/jquery.dragsort-0.4.2.min.js"></script>
+		<script type="text/javascript" src="/js/json2.js"></script>
 		<script type="text/javascript" src="/js/item_admin_grid.js"></script>
-		<script type="text/javascript" src="/js/item_admin_process_lucca.js">		
-		<?php 
+		<script type="text/javascript" src="/js/item_admin_process_lucca.js">
+		<?php
 			echo $scripts_for_layout;
 			//echo $html->css('admin');
 			//echo $html->css('jquery.ui');
@@ -30,12 +32,12 @@
 						<dd class=""><a href="/admin/item/grid/all/Unpublished/"><span>Product Management</span></a></dd>
 					</dl>
 				</dd>
-				
+
 				<dd class="floatRight logout">
 					<a class="button white-background black-text" href="/users/logout/" />Logout</a>
 				</dd>
 			</dl>
-			
+
 			<!--<h2>Product Management</h2>-->
 
 			<dl class="subnavigation">
@@ -48,7 +50,7 @@
 			</div>
 
 		</div>
-		
+
 		<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -60,8 +62,8 @@
 		} catch(err) {}</script>
 
 	</body>
-	
-</html> 
+
+</html>
 
 </body>
 </html>

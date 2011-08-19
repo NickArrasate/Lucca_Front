@@ -4,6 +4,7 @@
 	$javascript->link('jquery', false);
 	$javascript->link('jquery.easing.1.3.js', false);
 	$javascript->link('jquery.fancybox-1.2.1.pack.js', false);
+	$javascript->link('jquery-ui-1.8.12.custom.min.js',false);
 	//if(isset($data)) {print_r($data);}
 ?>
 
@@ -13,6 +14,7 @@
 
 		$('a.image').fancybox();
 
+		$( "#publish_date" ).datepicker({dateFormat:'yy-mm-dd'});
 	});
 </script>
 
@@ -179,6 +181,19 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 		</select>
 		<?php } ?>
 	</dd>
+	<dd><label>Lucca Studio Family:</label></dd>
+	<dd>
+		<select name="data[Item][parent_id]" <?php echo (isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) || (!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) ? 'disabled="disabled"' : '' ; ?>>
+			<option value=''>None</option>
+			<?php foreach($lucca_studio_family as $key => $value):  ?>
+				<?php if ($key == $item_details[0]['Item']['parent_id']): ?>
+					<option selected="selected" value="<?php echo $key ?>"><?php echo $value ?></option>
+				<?php else: ?>
+					<option value="<?php echo $key ?>"><?php echo $value ?></option>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</select>
+	</dd>
 	<?php if(isset($item_details) && $item_details[0]['Item']['item_category_id'] !== '1' ) { ?>
 	<dd><label>Addons:</label></dd>
 	<dd>
@@ -218,18 +233,17 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	</dd>
 	<?php } ?>
 
-	<dd>
-		<input style="width:25px" type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><span style="font-weight:bold">Lucca Studio</span>
-	</dd>
-
 	<dd class="group-header"><label>Inventory Location</label></dd>
 	<?php foreach ($inventory_location as $id => $shortName): ?>
 		<dd class="little-input">
 			<dl>
-				<dd><label><?php echo $shortName; ?></label><input type="text" name="data[InventoryQuantity][<?php echo $id; ?>]" value="<?php if(isset($data) && isset($data['InventoryQuantity'][$id])) { echo $data['InventoryQuantity'][$id]; } else { if(isset($item_details) && isset($item_details[0]['InventoryQuantity'][$id])) { echo $item_details[0]['InventoryQuantity'][$id]; } } ?>"/></dd>
+				<dd><label><?php echo $shortName; ?></label><input <?php echo (isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) || (!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) ? 'readonly="readonly" style="background-color:#e6e6e6;"' : '' ; ?> type="text" name="data[InventoryQuantity][<?php echo $id; ?>]" value="<?php if(isset($data) && isset($data['InventoryQuantity'][$id])) { echo $data['InventoryQuantity'][$id]; } else { if(isset($item_details) && isset($item_details[0]['InventoryQuantity'][$id])) { echo $item_details[0]['InventoryQuantity'][$id]; } } ?>"/></dd>
 			</dl>
 		</dd>
 	<?php endforeach; ?>
+	<dd class="hide-from-front-end">
+		<input style="width:25px" type="checkbox" name="data[Item][not_published]" value="1" <?php if(isset($data['Item']['not_published']) && $data['Item']['not_published']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['not_published']) && $item_details[0]['Item']['not_published']) { echo 'checked="checked"'; }} ?> id="ItemNotPublished"/><span style="font-weight:bold">Hide from front end</span>
+	</dd>
 
 </dl>
 <dl class="column">
@@ -307,6 +321,11 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<dd><label>Period:</label></dd>
 	<dd><input type="text" name="data[Item][period]" value="<?php if(isset($data)) { echo $data['Item']['period']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['period']; } } ?>"/></dd>
 
+	<dd><label>Created Date:</label></dd>
+	<dd><input id="publish_date" type="text" name="data[Item][publish_date]" value="<?php if(isset($data)) { echo $data['Item']['publish_date']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['publish_date']; } } ?>"/></dd>
+	<dd>
+		<input style="width:25px" type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><span style="font-weight:bold">Lucca Studio Inventory</span>
+	</dd>
 </dl>
 
 <?php if(isset($item_variations) && $item_details[0]['Item']['item_category_id'] == '2') { ?>

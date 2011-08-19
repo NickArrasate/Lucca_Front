@@ -9,9 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 		<link rel="stylesheet" type="text/css" href="/css/jquery.ui.css" />
 		<script type="text/javascript" src="/js/jquery.min.js"></script> 
-		<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script> 		
 		<script type="text/javascript" src="/js/jquery.cookie.js"></script> 
+		<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script> 		
+		<script type="text/javascript" src="/js/json2.js"></script>
+		<script type="text/javascript" src="/js/jquery.dragsort-0.4.2.min.js"></script>
 		<script type="text/javascript" src="/js/item_admin_grid.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.js"></script>
 		<?php 
 			echo $scripts_for_layout;
 			//echo $html->css('admin');

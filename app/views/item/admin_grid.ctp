@@ -91,9 +91,9 @@
 			<?php
 			$paginator->options(array('url' => $this->passedArgs));
 			?>
-			<dd><?php echo $paginator->prev('<<'); ?></dd>
+			<dd><?php echo $paginator->prev('<< previous'); ?></dd>
 			<?php echo '<dd>' . $paginator->numbers() . '</dd>'; ?>
-			<dd><?php echo $paginator->next('>>'); ?> </dd>
+			<dd><?php echo $paginator->next('next >>'); ?> </dd>
 			</dl>
 			</div>
 		</dd>
@@ -104,7 +104,6 @@
 		<?php } ?>
 
 	</dl>
-
 	<?php if(count($chunked_items) > 0) {?>
 	<ul class="grid-output">
 	<?php foreach ($chunked_items as $unpublished_items) { ?>
@@ -133,23 +132,33 @@
 					<dt><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>"><?php echo $u['Item']['name'] ?></a></dt>
 					<dd class="price"><?php if (isset($u['ItemVariation'][0]['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation'][0]['price']); } ?></dd>
 					<dd class="end-info-block">
-						<?php if (!empty($u['InventoryQuantity'])): ?>
-							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
-								<?php
-									$displayInformation = array();
-									foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
-										array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
-									}
-								?>
-								<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
-							<?php else: ?>
-								<?php echo (isset($locationsNames[$u['InventoryQuantity'][0]['location']]['longName'])) ? $locationsNames[$u['InventoryQuantity'][0]['location']]['longName'] : ''; ?>
-								<?php if ($u['InventoryQuantity'][0]['quantity'] > 1): ?>
-									:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
+						<?php if ($u['Item']['lucca_original']): ?>
+							<?php
+								$displayInformation = array();
+								if (!empty($u['Item']['ItemLAQuantity'])) {array_push($displayInformation, sprintf('LA:&nbsp;%s', $u['Item']['ItemLAQuantity']));}
+								if (!empty($u['Item']['ItemNYQuantity'])) {array_push($displayInformation, sprintf('NY:&nbsp;%s', $u['Item']['ItemNYQuantity']));}
+								if (!empty($u['Item']['ItemWHQuantity'])) {array_push($displayInformation, sprintf('WH:&nbsp;%s', $u['Item']['ItemWHQuantity']));}
+							?>
+							<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
+						<?php else: ?>
+							<?php if (!empty($u['InventoryQuantity'])): ?>
+								<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
+									<?php
+										$displayInformation = array();
+										foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
+											array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
+										}
+									?>
+									<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
 								<?php else: ?>
-									<span class="hidden-inventory-quantity">
+									<?php echo (isset($locationsNames[$u['InventoryQuantity'][0]['location']]['longName'])) ? $locationsNames[$u['InventoryQuantity'][0]['location']]['longName'] : ''; ?>
+									<?php if ($u['InventoryQuantity'][0]['quantity'] > 1): ?>
 										:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
-									</span>
+									<?php else: ?>
+										<span class="hidden-inventory-quantity">
+											:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
+										</span>
+									<?php endif; ?>
 								<?php endif; ?>
 							<?php endif; ?>
 						<?php endif; ?>

@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('table.stripe>tbody>tr:even').addClass("dark-background"); 
+		$('table.stripe>tbody>tr:even').addClass("dark-background");
 		$('a.image').fancybox();
 	});
 </script>
@@ -19,7 +19,7 @@
 		} else {
 			echo '<dd><a class="'. $n['class'] .'" href="'. $n['link'] .'">'. $n['title'] .' ('. $n['count'] .')</a></dd>';
 		}
-	} 
+	}
 
 ?>
 </dl>
@@ -34,13 +34,13 @@
 					}
 				}
 			?> >
-			
+
 			<?php if ($item_details[0]['ItemType']['name']!== null) {?>
 			<?php
 				echo '<a href="/admin/item/grid/'. $item_details[0]['Item']['item_type_id'] .'/'. $item_details[0]['Item']['status'] .'/">'. $item_details[0]['ItemType']['name'] . '</a>';
 			?> >
 			<?php } ?>
-			
+
 			<?php
 			foreach($navigation as $n) {
 				if($n['class'] == 'active') {
@@ -60,7 +60,7 @@
 	<?php if($i['primary'] == '1' ) { ?>
 	<dd>
 		<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $main_settings)?>" />
-		
+
 	</dd>
 	<?php } else { ?>
 	<?php } ?>
@@ -72,7 +72,7 @@
 <form action="/admin/item/update_status/<?php echo $item_details[0]['Item']['id'] ?>" method="post">
 <select name="data[Item][status]" >
 	<?php foreach($item_statuses as $s ) {?>
-		<?php 
+		<?php
 		if($s == 'Works in Progress') {
 			$s_value = 'Unpublished';
 		} else {
@@ -94,14 +94,26 @@
 <dd><a class="button gray-background black-text" href="/admin/item/email/<?php echo $item_details[0]['Item']['id'] ?>">Email Item</a></dd>
 
 <dd><a target="_blank" class="button gray-background black-text" href="/item/details/<?php echo $item_details[0]['Item']['id'] ?>/print/">Print Item</a></dd>
+<dd><a class="button gray-background black-text" href="/admin/item/delete/<?php echo $item_details[0]['Item']['id'] ?>/<?php echo $item_details[0]['Item']['item_type_id'] ?>/">Delete Item</a></dd>
+<dd><a class="button gray-background black-text" href="/admin/item/duplicate/<?php echo $item_details[0]['Item']['id'] ?>">Duplicate Item</a></dd>
 </dl>
 
 <p><em>Date Added : <?php echo $item_details[0]['Item']['publish_date']; ?> </em></p>
 </dd>
 <dd>
-<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
-	<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
-<?php endforeach; ?>
+<?php if ($item_details[0]['Item']['lucca_original']): ?>
+	<?php
+		$displayInformation = array();
+		if (!empty($item_details[0]['Item']['ItemLAQuantity'])) {array_push($displayInformation, sprintf('Los Angeles&nbsp;:&nbsp;%s', $item_details[0]['Item']['ItemLAQuantity']));}
+		if (!empty($item_details[0]['Item']['ItemNYQuantity'])) {array_push($displayInformation, sprintf('New York&nbsp;:&nbsp;%s', $item_details[0]['Item']['ItemNYQuantity']));}
+		if (!empty($item_details[0]['Item']['ItemWHQuantity'])) {array_push($displayInformation, sprintf('Warehouse&nbsp;:&nbsp;%s', $item_details[0]['Item']['ItemWHQuantity']));}
+	?>
+	<?php echo implode('<br/>', $displayInformation); ?>
+<?php else: ?>
+	<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
+		<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
+	<?php endforeach; ?>
+<?php endif; ?>
 </dd>
 </dl>
 <div class="notesPlace">
@@ -210,41 +222,41 @@
 		<dl>
 		<dt><label>Addons:</label></dt>
 			<dd>
-				<?php 
-				if (count($addons) != 0 ) { 
+				<?php
+				if (count($addons) != 0 ) {
 				foreach($addons as $a) {
 					echo $a;
 				}
-				} else { 
+				} else {
 					echo 'None';
 				}
 				?>
 			</dd>
 		</dl>
 		<?php } ?>
-		
+
 		<dl>
 		<dt><label>Condition:</label></dt>
 		<dd><?php echo $item_details[0]['Item']['condition'] ?></dd>
 		</dl>
-		
+
 		<dl>
 		<dt><label>Price:</label></dt>
 		<dd><?php if(isset($item_details[0]['ItemVariation'][0]['price'])) { echo '$'. $fieldformatting->price_formatting($item_details[0]['ItemVariation'][0]['price']) ; }?></dd>
 		</dl>
-		
+
 	</div>
 	<div class="column">
-	
+
 	<dl>
 	<dt><label>Measurements:</label></dt>
 	<dd>
-		
+
 		<?php if ($item_details[0]['Item']['height'] !== null && $item_details[0]['Item']['height'] !== '') { ?>
 			Height: <?php echo $item_details[0]['Item']['height'] . $item_details[0]['Item']['units']?>
 			<br/>
 		<?php } ?>
-		
+
 		<?php if ($item_details[0]['Item']['height_2'] !== null && $item_details[0]['Item']['height_2'] !== '') { ?>
 			Height 2: <?php echo $item_details[0]['Item']['height_2'] . $item_details[0]['Item']['units'] ?>
 			<br/>
@@ -254,13 +266,13 @@
 			Width: <?php echo $item_details[0]['Item']['width'] . $item_details[0]['Item']['units'] ?>
 			<br/>
 		<?php } ?>
-		
-		
+
+
 		<?php if ($item_details[0]['Item']['depth'] !== null && $item_details[0]['Item']['depth'] !== '') { ?>
 			Depth: <?php echo $item_details[0]['Item']['depth'] . $item_details[0]['Item']['units'] ?>
 			<br/>
 		<?php } ?>
-		
+
 		<?php if ($item_details[0]['Item']['diameter'] !== null && $item_details[0]['Item']['diameter'] !== '') { ?>
 			Diameter: <?php echo $item_details[0]['Item']['diameter'] . $item_details[0]['Item']['units'] ?>
 			<br/>
@@ -270,22 +282,22 @@
 	<dl>
 	<dt><label>Specifications:</label></dt>
 	<dd>
-		
+
 		<?php if ($item_details[0]['Item']['materials_and_techniques'] !== null && $item_details[0]['Item']['materials_and_techniques'] !== '') { ?>
 			Material/Techniques: <?php echo $item_details[0]['Item']['materials_and_techniques'] ?>
 			<br/>
 		<?php } ?>
-		
+
 		<?php if ($item_details[0]['Item']['creator'] !== null && $item_details[0]['Item']['creator'] !== '') { ?>
 			Creator: <?php echo $item_details[0]['Item']['creator'] ?>
 			<br/>
 		<?php } ?>
-		
+
 		<?php if ($item_details[0]['Item']['country_of_origin'] !== null && $item_details[0]['Item']['country_of_origin'] !== '') { ?>
 			Origin: <?php echo $item_details[0]['Item']['country_of_origin'] ?>
 			<br/>
 		<?php } ?>
-		
+
 		<?php if ($item_details[0]['Item']['period'] !== null && $item_details[0]['Item']['period'] !== '') { ?>
 			Period: <?php echo $item_details[0]['Item']['period'] ?>
 			<br/>
@@ -299,7 +311,7 @@
 			foreach($contact as $c) {
 				$formatted_contact[] = '<li>'. $c .'</li>';
 			}
-			
+
 			$contact = '<ul>' . implode($formatted_contact) . '</ul>';
 		?>
 		<dd><?php echo $contact ?></dd>
@@ -324,7 +336,7 @@
 <?php if($i['filename'] !== '') { ?>
 	<dd>
 		<a class="image" href="../../../../../files/<?php echo $i['filename'] ?>"><img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $thumb_settings)?>" /></a>
-		
+
 	</dd>
 <?php } ?>
 <?php } ?>

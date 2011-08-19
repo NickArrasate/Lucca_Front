@@ -416,6 +416,7 @@ min-height:300px;
 	padding-bottom:5px;
 	border-bottom: 1px dotted #575757;
 	color: #565655;
+	width: 100%;
 }
 
 .notesPlace a {
@@ -520,7 +521,6 @@ table.lucca-process td {
 table.lucca-process td.quantity {
 	text-align: center;
 	width: 20px;
-	cursor:pointer;
 }
 table.lucca-process td.image {
 	width: 100px;
@@ -533,7 +533,7 @@ table.lucca-process td.description {
 	width: 400px;
 }
 table.lucca-process td.note-link {
-	width: 100px;
+	width: 210px;
 }
 table.lucca-process td.note-link a {
 	color: #3366cc;
@@ -597,4 +597,20 @@ ul.grid-output li.placeholder {
 	list-style: none;
 	padding: 10px 0px 10px 0px;
 	margin: 0px 25px 0px 5px;
+}
+tr.products-rows {
+}
+tr.products-rows td.name,
+tr.products-rows td.description,
+tr.products-rows td.quantity,
+tr.products-rows td.note-link {
+	border-top: 1px solid #D6D6D6;
+}
+tr.products-rows td.note-link {
+	text-align: center;
+}
+tr.products-rows td.name {
+	font-weight: normal;
+	padding-left: 20px;
+	width: 180px;
 }

@@ -12,7 +12,7 @@ App::import('Inflector');
 		var $paginate = array(
 			'Item' => array(
 				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original'),
-				'limit' => 8,
+				'limit' => 48,
 //			'order' => array(
 //				'Item.publish_date' => 'desc'
 //				)
@@ -54,7 +54,7 @@ App::import('Inflector');
 
 			$item_type = $this->params['pass'][0];
 			$item_category = $this->params['pass'][1];
-			$inventory_location = $this->params['pass'][2];
+			$inventory_location = (isset($this->params['pass'][2]) ? $this->params['pass'][2] : 'all');
 			$pager = (isset($this->params['pass'][3]) ? $this->params['pass'][3] : "");
 
 			$categoryId = 0;
@@ -111,7 +111,7 @@ App::import('Inflector');
 				);
 			}
 
-			$item_quantity_join = array();
+			$item_quantity_join = null;
 			if ($inventory_location == '' || $inventory_location == 'all' ) {
 				$inventory_location = 'all';
 			} else {
@@ -126,32 +126,35 @@ App::import('Inflector');
 			}
 
 			if ($pager == 'all') {
+				$joins = array(
+					array(
+						'table' => 'item_occurrences',
+						'alias' => 'ItemOccurrence',
+						'type' => 'Inner',
+						'conditions' => array('Item.id = ItemOccurrence.item_id'),
+					),
+					array(
+						'table' => 'occurrences',
+						'alias' => 'Occurrence',
+						'type' => 'Inner',
+						'conditions' => array(
+							'Occurrence.id = ItemOccurrence.occurrence_id',
+							sprintf('Occurrence.category = %s', $categoryId),
+							sprintf('Occurrence.subcategory = %s', $subcategoryId),
+							sprintf('Occurrence.location = %s', $locationId),
+						),
+					)
+				);
+				if (is_array($item_quantity_join)) {
+					array_push($joins, $item_quantity_join);
+				}
 
 				$items = $this->Item->find('all', array(
 					'conditions' => $conditions_array,
 					'fields' => array('Item.name', 'Item.status'),
 //					'order' => array('Item.publish_date' => 'desc'),
 					'order' => array('ItemOccurrence.left' => 'asc'),
-					'joins' => array(
-						array(
-							'table' => 'item_occurrences',
-							'alias' => 'ItemOccurrence',
-							'type' => 'Inner',
-							'conditions' => array('Item.id = ItemOccurrence.item_id'),
-						),
-						array(
-							'table' => 'occurrences',
-							'alias' => 'Occurrence',
-							'type' => 'Inner',
-							'conditions' => array(
-								'Occurrence.id = ItemOccurrence.occurrence_id',
-								sprintf('Occurrence.category = %s', $categoryId),
-								sprintf('Occurrence.subcategory = %s', $subcategoryId),
-								sprintf('Occurrence.location = %s', $locationId),
-							),
-						),
-						$item_quantity_join
-					)
+					'joins' => $joins,
 				));
 				$this->set('all_items', 'All');
 
@@ -769,6 +772,20 @@ App::import('Inflector');
 					'InventoryLocation.short',
 				)
 			));
+			$lucca_studio_family = $this->Item->find('list', array(
+					'fields' => array(
+						'Item.id',
+						'Item.name'
+					),
+					'conditions' => array(
+						'Item.lucca_original' => 1
+					),
+					'recursive' => false,
+					'order' => array(
+						'Item.name' => 'ASC'
+					)
+				)
+			);
 
 			$this->loadModel('Addon');
 			$addons = $this->Addon->find('list');
@@ -854,16 +871,50 @@ App::import('Inflector');
 						'conditions' => array(
 							'Item.id' => $item_id
 						)
-				));
-				$item_inventory_location = $this->InventoryQuantity->find('list', array(
-					'fields' => array(
-						'InventoryQuantity.location',
-						'InventoryQuantity.quantity',
-					),
-					'conditions' => array(
-						'InventoryQuantity.item' => $item_id
 					)
-				));
+				);
+
+				$item_inventory_location = array();
+				if ($item_details[0]['Item']['lucca_original']) {
+					$childItems = $this->Item->find('list', array(
+							'conditions' => array(
+								'Item.parent_id' => $item_id
+							),
+							'recursive' => false
+						)
+					);
+
+					if (!empty($childItems)) {
+						$childItemsId = array_keys($childItems);
+
+						$child_item_inventory_location = $this->InventoryQuantity->find('all', array(
+							'fields' => array(
+								'InventoryQuantity.location',
+								'SUM(InventoryQuantity.quantity) as quantity',
+							),
+							'conditions' => array(
+								'InventoryQuantity.item' => $childItemsId,
+							),
+							'group' => array(
+								'InventoryQuantity.location'
+							)
+						));
+
+						foreach ($child_item_inventory_location as $child_inventory_location) {
+							$item_inventory_location[$child_inventory_location['InventoryQuantity']['location']] = $child_inventory_location['InventoryQuantity']['quantity'];
+						}
+					}
+				} else {
+					$item_inventory_location = $this->InventoryQuantity->find('list', array(
+						'fields' => array(
+							'InventoryQuantity.location',
+							'InventoryQuantity.quantity',
+						),
+						'conditions' => array(
+							'InventoryQuantity.item' => $item_id
+						)
+					));
+				}
 
 				$item_details[0]['InventoryQuantity'] = $item_inventory_location;
 
@@ -904,6 +955,7 @@ App::import('Inflector');
 			$this->set('item_type', $item_type);
 			$this->set('item_category', $item_category);
 			$this->set('inventory_location', $inventory_location);
+			$this->set('lucca_studio_family', $lucca_studio_family);
 			$this->set('addons', $addons);
 
 		}
@@ -1004,6 +1056,7 @@ App::import('Inflector');
 			$itemRetriveOrders = array();
 
 			$itemRetriveConditions['Item.status'] = $status;
+			$itemRetriveConditions[] = '(Item.lucca_original = 0 OR Item.lucca_original IS NULL)';
 			$itemRetriveOrders['Item.publish_date'] = 'desc';
 			if ($selectedFilter['categories'] != 'all') {
 				$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
@@ -1138,6 +1191,58 @@ App::import('Inflector');
 				$items = $this->paginate('Item', $itemRetriveConditions);
 			}
 
+			foreach ($items as &$item) {
+				if ($item['Item']['lucca_original']) {
+					$childrens = $this->Item->find(
+						'first',
+						array(
+							'fields' => array(
+								'SUM(ItemLA.quantity) as ItemLAQuantity',
+								'SUM(ItemNY.quantity) as ItemNYQuantity',
+								'SUM(ItemWH.quantity) as ItemWHQuantity',
+							),
+							'conditions' => array(
+								'Item.parent_id' => $item['Item']['id']
+							),
+							'joins' => array(
+								array(
+									'table' => 'inventory_quantity',
+									'alias' => 'ItemLA',
+									'type' => 'LEFT',
+									'conditions' => array(
+										'ItemLA.item = Item.id AND ItemLA.location = 1',
+									)
+								),
+								array(
+									'table' => 'inventory_quantity',
+									'alias' => 'ItemNY',
+									'type' => 'LEFT',
+									'conditions' => array(
+										'ItemNY.item = Item.id AND ItemNY.location = 2',
+									)
+								),
+								array(
+									'table' => 'inventory_quantity',
+									'alias' => 'ItemWH',
+									'type' => 'LEFT',
+									'conditions' => array(
+										'ItemWH.item = Item.id AND ItemWH.location = 3',
+									)
+								),
+							),
+							'group' => array(
+								'Item.parent_id'
+							),
+							'recursive' => false
+						)
+					);
+
+					if ($childrens) {
+						$item = array_merge_recursive($item, $childrens);
+					}
+				}
+			}
+
 			$count = $this->Item->find(
 				'count',
 				array(
@@ -1230,6 +1335,56 @@ App::import('Inflector');
 						'Item.id' => $item_id
 					)
 			));
+
+			if ($item_details[0]['Item']['lucca_original']) {
+				$childrens = $this->Item->find(
+					'first',
+					array(
+						'fields' => array(
+							'SUM(ItemLA.quantity) as ItemLAQuantity',
+							'SUM(ItemNY.quantity) as ItemNYQuantity',
+							'SUM(ItemWH.quantity) as ItemWHQuantity',
+						),
+						'conditions' => array(
+							'Item.parent_id' => $item_details[0]['Item']['id']
+						),
+						'joins' => array(
+							array(
+								'table' => 'inventory_quantity',
+								'alias' => 'ItemLA',
+								'type' => 'LEFT',
+								'conditions' => array(
+									'ItemLA.item = Item.id AND ItemLA.location = 1',
+								)
+							),
+							array(
+								'table' => 'inventory_quantity',
+								'alias' => 'ItemNY',
+								'type' => 'LEFT',
+								'conditions' => array(
+									'ItemNY.item = Item.id AND ItemNY.location = 2',
+								)
+							),
+							array(
+								'table' => 'inventory_quantity',
+								'alias' => 'ItemWH',
+								'type' => 'LEFT',
+								'conditions' => array(
+									'ItemWH.item = Item.id AND ItemWH.location = 3',
+								)
+							),
+						),
+						'group' => array(
+							'Item.parent_id'
+						),
+						'recursive' => false
+					)
+				);
+
+				if ($childrens) {
+					$item_details[0] = array_merge_recursive($item_details[0], $childrens);
+				}
+			}
 
 			$item_variations = array();
 
@@ -1337,7 +1492,10 @@ App::import('Inflector');
 
 				if (!isset($this->data['Item']['lucca_original'])) {
 					$this->data['Item']['lucca_original'] = 0;
+				} else {
+					$this->data['Item']['parent_id'] = null;
 				}
+
 				if (!isset($this->data['Item']['not_published'])) {
 					$this->data['Item']['not_published'] = 0;
 				}
@@ -1537,7 +1695,7 @@ App::import('Inflector');
 
 			$item_id = $this->params['pass'][0];
 			$item_type_id = $this->params['pass'][1];
-			$status =  $this->params['pass'][2];
+			$status =  (isset($this->params['pass'][2]) ? $this->params['pass'][2] : 'Available');
 
 			// need filenames to unlink
 			$image_filenames = $this->Item->ItemImage->find('list', array(
@@ -1799,9 +1957,16 @@ App::import('Inflector');
 					$this->ItemImage->saveAll($duplicateItem['ItemImage']);
 
 					$duplicateItem['ItemVariation'] = $originalItem['ItemVariation'];
+					if (empty($duplicateItem['ItemVariation'])) {
+						$duplicateItem['ItemVariation'][] = array(
+							'name' => $duplicateItem['Item']['name'],
+							'quantity' => 0,
+							'primary' => 1
+						);
+					}
 					$this->loadModel('ItemVariation');
 					$skuValue = $this->ItemVariation->find('first', array('fields' => array('MAX(ItemVariation.sku) AS `maxSku`')));
-					$sku = $skuValue[0]['maxSku'];
+					$sku = $skuValue['ItemVariation']['maxSku'];
 					foreach ($duplicateItem['ItemVariation'] as &$itemVariation) {
 						$itemVariation['item_id'] = $duplicateItemId;
 						$itemVariation['sku'] = ++$sku;
@@ -1819,7 +1984,7 @@ App::import('Inflector');
 					$this->InventoryQuantity->saveAll($duplicateItem['InventoryQuantity']);
 
 					$this->loadModel('ItemOccurrence');
-					$this->ItemOccurrence->createItemOccurrences($item_id, $categoryId, $subcategoryId, $locationId);
+					$this->ItemOccurrence->createItemOccurrences($duplicateItemId, $categoryId, $subcategoryId, $locationId);
 
 					$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'summary', $duplicateItemId));
 				}
@@ -1997,14 +2162,14 @@ App::import('Inflector');
 
 		}
 
-		function make_default_ordering() {
+		function make_default_ordering($occurrence_id = 1) {
 			$this->loadModel('Item');
 			$this->loadModel('Occurrence'); // occurrence
 			$this->loadModel('ItemOccurrence'); // item occurrence
 
-			echo "<pre>";
+//			echo "<pre>";
 
-			$occurrences = $this->Occurrence->find('all');
+			$occurrences = $this->Occurrence->find('all', array('conditions' => array('Occurrence.id' => array($occurrence_id, $occurrence_id + 1))));
 
 			foreach ($occurrences as $occurrence) {
 				$count = 0;
@@ -2061,17 +2226,25 @@ App::import('Inflector');
 					$count++;
 				}
 
-				echo "Saved items occurrences for category ".
-					$occurrence['Occurrence']['category'].
-					" subcategory ".
-					$occurrence['Occurrence']['subcategory'].
-					" location ".
-					$occurrence['Occurrence']['location'].
-					" : ".$count."\n";
+//				echo "Saved items occurrences for category ".
+//					$occurrence['Occurrence']['category'].
+//					" subcategory ".
+//					$occurrence['Occurrence']['subcategory'].
+//					" location ".
+//					$occurrence['Occurrence']['location'].
+//					" : ".$count."\n";
 			}
 
-			echo "</pre>";
+//			echo "</pre>";
+//			exit();
+			$occurrence_id += 2;
+
+			if ($this->Occurrence->find('count', array('conditions' => array('Occurrence.id >=' => $occurrence_id)))) {
+				$this->redirect('/item/make_default_ordering/' . $occurrence_id . '/');
+			} else {
+				echo "Completed";
 			exit();
+			}
 		}
 	}
 
