@@ -11,19 +11,20 @@
 		<tr>
 			<td valign="top" colspan="2" align="center" style="padding:20px 0px;">
 			<?php if(isset($images) && count($images) !== 0) {
+				$top_image = '';
 				foreach($images as $i) {
-					$top_image .= '<a href="http://www.luccaantiques.com/item/details/'. $item_details['Item']['id'] .'"><img border="0" alt="Lucca Antiques Item Photo" height="450" width="450" src="http://www.luccaantiques.com/files/'. $i .'"/></a>'; 
-					//CODE FOR ADDING A NICE LOOKING BORDER AROUND IMAGES - style="padding:5px; border:5px solid #352F2F" 
+					$top_image .= '<a href="http://www.luccaantiques.com/item/details/'. $item_details['Item']['id'] .'"><img border="0" alt="Lucca Antiques Item Photo" height="450" width="450" src="http://www.luccaantiques.com/files/'. $i .'"/></a>';
+					//CODE FOR ADDING A NICE LOOKING BORDER AROUND IMAGES - style="padding:5px; border:5px solid #352F2F"
 					$top_image_url = $i;
-				break;	
+				break;
 				}
+				echo $top_image;
 			}
-			echo $top_image;
 			?>
 			</td>
 			</tr>
 			<?php
-			
+
 			if(isset($asking_price)) {
 				if($asking_price !== '') {
 					$item_details['Item']['price'] = $asking_price;
@@ -37,38 +38,38 @@
 				if(isset($item_details['Item']['description'])) {
 					$content .= '<span style="font-size:14px">' . $item_details['Item']['description'] . '</span></td></tr>';
 				}
-				
+
 				if(isset($item_details['Item']['price'])) {
 					$content .= '<tr><td colspan="2" align="left" style="padding-top:20px"><span style="font-size:18px">Price </span><br /><span style="font-size:14px">$'.$fieldformatting->price_formatting($item_details['Item']['price']) . '</span></td></tr>';
 				}
-			
+
 				$units = $item_details['Item']['units'];
-				
+
 				$right_style ='<span style="font-size:14px">';
 				$condition = '<tr><td colspan="2" valign="top" align="left" style="padding-top:20px"><span style="font-size:18px">Condition:</span><br />'.$right_style;
 				$measurements = '<tr><td colspan="2" valign="top" align="left" style="padding-top:20px"><span style="font-size:18px">Measurements:</span><br />'.$right_style;
 				$specifications = '<tr><td colspan="2" valign="top" align="left" style="padding-top:20px"><span style="font-size:18px">Specifications:</span><br />'.$right_style;
-				
-				foreach($item_details['Item'] as $key => $value) { 
-					if ($item_details['Item'][$key] !== null && $item_details['Item'][$key] !== '' && $key !== 'units' && $key !== 'name' && $key !== 'price' && $key !== 'description' && $key !== 'id' && $key !== 'inventory_location_id' ) { 
+
+				foreach($item_details['Item'] as $key => $value) {
+					if ($item_details['Item'][$key] !== null && $item_details['Item'][$key] !== '' && $key !== 'units' && $key !== 'name' && $key !== 'price' && $key !== 'description' && $key !== 'id' && $key !== 'inventory_location_id' ) {
 						if($key == 'condition'){
-							
+
 							$condition .= $fieldformatting->append($key, $value, $units) .'<br />';
-							
+
 						}elseif ($key == 'height' || $key == 'height_2' || $key == 'width' || $key == 'depth' || $key == 'diameter') {
-							
+
 							$measurements .= $fieldformatting->modify($key) .': ' . $fieldformatting->append($key, $value, $units) .'<br />';
-							
+
 						} elseif ($key == 'creator' || $key == 'country_of_origin' || $key == 'period') {
 
 							$specifications .= $fieldformatting->modify($key) .': ' . $fieldformatting->append($key, $value, $units) .'<br />';
 
 						}
-						
-					} 
+
+					}
 				}
-				
-			} 	
+
+			}
 				$end_style ='</span></td></tr>';
 				echo $content;
 				echo $condition.$end_style;
@@ -97,11 +98,11 @@
 						$contents .= '<a href="http://www.luccaantiques.com/item/details/'. $item_details['Item']['id'] .'"><img alt="Lucca Antiques Item Photo"  style="border:0; padding:10px 10px 0px 0px;" height="100" width="100" src="http://www.luccaantiques.com/files/'. $i .'"/></a>';
 					}
 				}
-	
+
 			echo $contents;
-		
+
 			</td>
-		</tr>  */ ?>	
+		</tr>  */ ?>
 		<tr>
 			<td colspan="2">&nbsp;</td>
 		</tr>

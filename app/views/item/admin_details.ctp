@@ -120,6 +120,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<?php if((isset($item_details)) && ($item_details[0]['Item']['status'] !== 'Unpublished')) { ?>
 	<dd><label class="status">Status:</label></dd>
 	<dd>
+	<input type="hidden" name="data[Item][sold_date]" value="<?php echo $item_details[0]['Item']['sold_date']; ?>" />
 		<select name="data[Item][status]">
 			<?php foreach($item_statuses as $s) { ?>
 				<?php

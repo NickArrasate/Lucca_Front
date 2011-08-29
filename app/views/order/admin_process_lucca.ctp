@@ -9,6 +9,7 @@
 </select>
 </div>
 <?php if (!empty($luccaOriginalItems)): ?>
+<?php $paginator->options(array('url' => $this->passedArgs)); ?>
 <div class="process-lucca-paging">[<?php echo$html->link('view all', array('all', 'view_all')); ?>]&nbsp;<?php echo $paginator->numbers(); ?></div>
 <table class="lucca-process">
 <tr>
@@ -237,6 +238,7 @@
 	<?php endforeach; ?>
 <?php endforeach; ?>
 </table>
+<?php $paginator->options(array('url' => $this->passedArgs)); ?>
 <div class="process-lucca-paging"><?php echo $paginator->numbers(); ?></div>
 <?php else: ?>
 <h3 class="center notifications">Theare are currently no lucca originals products</h3>

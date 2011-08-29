@@ -121,7 +121,7 @@ class Item extends AppModel {
 						'ItemWH.*'
 					),
 					'conditions' => array(
-						'Item.parent_id' => $row['Item']['id']
+						'Item.parent_id' => $row['Item']['id'],
 					),
 					'joins' => array(
 						array(
@@ -154,9 +154,11 @@ class Item extends AppModel {
 			);
 			$row['ChildrenCount'] = count($row['Children']);
 			foreach ($row['Children'] as &$children) {
-				$row['ItemLA'] += $children['ItemLA']['quantity'];
-				$row['ItemNY'] += $children['ItemNY']['quantity'];
-				$row['ItemWH'] += $children['ItemWH']['quantity'];
+				if ($children['Item']['status'] != 'Sold') {
+					$row['ItemLA'] += $children['ItemLA']['quantity'];
+					$row['ItemNY'] += $children['ItemNY']['quantity'];
+					$row['ItemWH'] += $children['ItemWH']['quantity'];
+				}
 
 				$children['NoteCount'] = $this->Note->find('count', array('conditions' => array('Note.item' => $children['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)')));
 				$children['Note'] = $this->Note->find('all', array('conditions' => array('Note.item' => $children['Item']['id'], '(Note.parent IS NULL OR Note.parent = 0)'), 'limit' => 10, 'order' => array('Note.created DESC')));

@@ -41,7 +41,6 @@ App::import('Inflector');
 		}
 
 		function grid() {
-
 			// once the user starts viewing items - set the session id
 
 			$session_details = $this->Session->read();
@@ -362,9 +361,18 @@ App::import('Inflector');
 
 				if($this->EmailMessage->validates()) {
 
-					$admin_email = "archive@luccaantiques.com";
 
-					if($this->__send_item_emails($this->data, $admin_email, $this->data['EmailMessage']['subject']) && $this->__send_item_emails($this->data, $this->data['EmailMessage']['address'], $this->data['EmailMessage']['subject'])) {
+					//$admin_email = "archive@luccaantiques.com";
+					$admin_email = "gurgen@office.e2e4gu.ru";
+
+					$email_from = null;
+					if (!empty($this->data['EmailMessage']['address_from'])) {
+						$email_from = $this->data['EmailMessage']['address_from'];
+					}
+
+					if($this->__send_item_emails($this->data, $admin_email, $this->data['EmailMessage']['subject']) &&
+						$this->__send_item_emails($this->data, $this->data['EmailMessage']['address_to'], $this->data['EmailMessage']['subject'], $email_from)
+					) {
 						$this->set('email_result', array('Success. Message sent.'));
 					} else {
 						$this->set('email_result', $this->Session->read('smtp_errors'));
@@ -878,7 +886,8 @@ App::import('Inflector');
 				if ($item_details[0]['Item']['lucca_original']) {
 					$childItems = $this->Item->find('list', array(
 							'conditions' => array(
-								'Item.parent_id' => $item_id
+								'Item.parent_id' => $item_id,
+								'Item.status != "Sold"'
 							),
 							'recursive' => false
 						)
@@ -1202,7 +1211,8 @@ App::import('Inflector');
 								'SUM(ItemWH.quantity) as ItemWHQuantity',
 							),
 							'conditions' => array(
-								'Item.parent_id' => $item['Item']['id']
+								'Item.parent_id' => $item['Item']['id'],
+								'Item.status != "Sold"'
 							),
 							'joins' => array(
 								array(
@@ -1346,7 +1356,8 @@ App::import('Inflector');
 							'SUM(ItemWH.quantity) as ItemWHQuantity',
 						),
 						'conditions' => array(
-							'Item.parent_id' => $item_details[0]['Item']['id']
+							'Item.parent_id' => $item_details[0]['Item']['id'],
+							'Item.status != "Sold"'
 						),
 						'joins' => array(
 							array(
@@ -1498,6 +1509,14 @@ App::import('Inflector');
 
 				if (!isset($this->data['Item']['not_published'])) {
 					$this->data['Item']['not_published'] = 0;
+				}
+
+				if ($this->data['Item']['status'] == 'Sold') {
+					if (empty($this->data['Item']['sold_date'])) {
+						$this->data['Item']['sold_date'] = date('Y-m-d');
+					}
+				} else {
+					$this->data['Item']['sold_date'] = null;
 				}
 
 				if( $this->Item->save($this->data) && $this->ItemVariation->validates() )  {
@@ -2073,7 +2092,7 @@ App::import('Inflector');
 			}
 		}
 
-		function __send_item_emails($data, $email, $subject) {
+		function __send_item_emails($data, $email, $subject, $email_from = null) {
 
 			$item_details = $this->Item->find('first', array(
 				'conditions' => array(
@@ -2118,20 +2137,25 @@ App::import('Inflector');
 				'host' => 'localhost',
 				'username' => 'anne@luccaantiques.com',
 				'password' => 'queenanne1');
+				*/
 
 				$this->Email->smtpOptions = array(
-					'port' => '465',
+					'port' => '25',
 					'timeout' => '30',
-					'host' => 'ssl://smtp.gmail.com',
-					'username' => 'info@@luccaantiques.com.test-google-a.com',
-					'password' => 'lucca1908');
+					'host' => 'mail.office.e2e4gu.ru',
+					'username' => 'postman',
+					'password' => 'GhzFk8iSMhsP'
+				);
 
 				$this->Email->delivery = 'smtp';
-				*/
 				$this->Email->to = '<'. $email .'>';
 				$this->Email->subject = $subject;
 				$this->Email->replyTo = $item_details['InventoryLocation']['email'];  // 'no-reply@luccantiques.com';
-				$this->Email->from = 'Lucca Antiques<'.$item_details['InventoryLocation']['email'].'>';
+				if (is_null($email_from)) {
+					$this->Email->from = 'Lucca Antiques<'.$item_details['InventoryLocation']['email'].'>';
+				} else {
+					$this->Email->from = '<' . $email_from . '>';
+				}
 
 
 				if(isset($data['EmailMessage']['message'])) {
