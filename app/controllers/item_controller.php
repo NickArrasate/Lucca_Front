@@ -243,6 +243,12 @@ App::import('Inflector');
 								'alias' => 'InventoryQuantity',
 								'type' => 'Inner',
 								'conditions' => array('Item.id = InventoryQuantity.item')
+							),
+							array(
+								'table' => 'inventory_locations',
+								'alias' => 'ItemLocation',
+								'type' => 'left',
+								'conditions' => array('InventoryQuantity.location = ItemLocation.id')
 							)
 						)
 			));
@@ -355,7 +361,6 @@ App::import('Inflector');
 			}
 
 			if($this->data) {
-
 				$this->loadModel('EmailMessage');
 				$this->EmailMessage->set($this->data['EmailMessage']);
 
@@ -371,7 +376,7 @@ App::import('Inflector');
 					}
 
 					if($this->__send_item_emails($this->data, $admin_email, $this->data['EmailMessage']['subject']) &&
-						$this->__send_item_emails($this->data, $this->data['EmailMessage']['address_to'], $this->data['EmailMessage']['subject'], $email_from)
+						$this->__send_item_emails($this->data, $this->data['EmailMessage']['address_to'], $this->data['EmailMessage']['subject'], $email_from, $this->data['EmailMessage']['address_from_name'])
 					) {
 						$this->set('email_result', array('Success. Message sent.'));
 					} else {
@@ -2092,7 +2097,7 @@ App::import('Inflector');
 			}
 		}
 
-		function __send_item_emails($data, $email, $subject, $email_from = null) {
+		function __send_item_emails($data, $email, $subject, $email_from = null, $email_from_name = '') {
 
 			$item_details = $this->Item->find('first', array(
 				'conditions' => array(
@@ -2150,11 +2155,12 @@ App::import('Inflector');
 				$this->Email->delivery = 'smtp';
 				$this->Email->to = '<'. $email .'>';
 				$this->Email->subject = $subject;
-				$this->Email->replyTo = $item_details['InventoryLocation']['email'];  // 'no-reply@luccantiques.com';
 				if (is_null($email_from)) {
-					$this->Email->from = 'Lucca Antiques<'.$item_details['InventoryLocation']['email'].'>';
+					$this->Email->from = 'Lucca Antiques <'.$item_details['InventoryLocation']['email'].'>';
+					$this->Email->replyTo = $item_details['InventoryLocation']['email'];  // 'no-reply@luccantiques.com';
 				} else {
-					$this->Email->from = '<' . $email_from . '>';
+					$this->Email->from = html_entity_decode($email_from_name, ENT_COMPAT, 'UTF-8') . ' <' . $email_from . '>';
+					$this->Email->replyTo = html_entity_decode($email_from_name, ENT_COMPAT, 'UTF-8') . ' <' . $email_from . '>';
 				}
 
 
