@@ -13,7 +13,7 @@
 			<?php if(isset($images) && count($images) !== 0) {
 				$top_image = '';
 				foreach($images as $i) {
-					$top_image .= '<a href="http://www.luccaantiques.com/item/details/'. $item_details['Item']['id'] .'"><img border="0" alt="Lucca Antiques Item Photo" height="450" width="450" src="http://www.luccaantiques.com/files/'. $i .'"/></a>';
+					$top_image .= '<a href="'. Router::url('/item/details/'. $item_details['Item']['id'], true) .'"><img border="0" alt="Lucca Antiques Item Photo" height="450" width="450" src="'. Router::url('/files/'.$i, true) .'"/></a>';
 					//CODE FOR ADDING A NICE LOOKING BORDER AROUND IMAGES - style="padding:5px; border:5px solid #352F2F"
 					$top_image_url = $i;
 				break;

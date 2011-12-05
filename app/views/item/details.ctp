@@ -38,6 +38,7 @@ $(document).ready(function() {
 	$("#email-item").bind("submit", function() {
 		var email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 		var email_from = $('#email_from').val();
+		var email_from_name = $('#email_from_name').val();
 		var	email_to = $('#email_to').val();
 
 		var is_form_valid = true;
@@ -48,9 +49,14 @@ $(document).ready(function() {
 		} else if (!email_pattern.test(email_to)) {
 			is_form_valid = false;
 			$('#email_error').text('Email To is invalid. Please enter valid email address');
-		} else if (email_from.length != 0 && !email_pattern.test(email_from)) {
+		}
+
+		if (email_from.length == 0) {
 			is_form_valid = false;
-			$('#email_error').text('Email From is invalid. Please enter valid email address');
+			$('#email_error').text('Please enter in an your email');
+		} else if (!email_pattern.test(email_from)) {
+			is_form_valid = false;
+			$('#email_error').text('Your Email is invalid. Please enter valid email address');
 		}
 
 		if (is_form_valid) {
@@ -62,6 +68,10 @@ $(document).ready(function() {
 				url		: "/item/email_item/<?php echo $this->params['pass'][0]; ?>",
 				data	: $(this).serializeArray(),
 				success	: function(data) {
+					$('#email_from').val('<?php echo $item_details[0]['ItemLocation']['email']; ?>');
+					$('#email_from_name').val('Lucca Antiques');
+					$('#email_to').val('');
+					$('#email_message').val('');
 					$.fancybox(data);
 				}
 			});
@@ -80,17 +90,21 @@ $(document).ready(function() {
 <div style="display:none">
 	<form id="email-item" method="post" action="">
 		<p>Send this page to your email:</p>
-		<div style="width:265px;margin-bottom:8px;">
-			<label for="email_to" style="float:left; dispaly: block; width: 68px; padding-top: 4px;">Email To:</label><input type="text" id="email_to" name="data[EmailMessage][address_to]" size="20" />
+		<div style="width:267px;margin-bottom:8px;">
+			<label for="email_to" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">*To:&nbsp;</label><input type="text" id="email_to" name="data[EmailMessage][address_to]" size="20" />
 		</div>
-		<div style="width:265px;margin-bottom:8px;">
-			<label for="email_from" style="float:left; dispaly: block; width: 68px; padding-top: 4px;">Email From:</label><input type="text" id="email_from" name="data[EmailMessage][address_from]" size="20" />
+		<div style="width:267px;margin-bottom:8px;">
+		<label for="email_from" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">*Your Email:&nbsp;</label><input type="text" id="email_from" name="data[EmailMessage][address_from]" size="20" value="<?php echo $item_details[0]['ItemLocation']['email']; ?>"/>
 		</div>
-		<div style="width:265px;margin-bottom:5px;">
+		<div style="width:267px;margin-bottom:8px;">
+			<label for="email_from_name" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">Your Name:&nbsp;</label><input type="text" id="email_from_name" name="data[EmailMessage][address_from_name]" size="20" value="Lucca Antiques"/>
+		</div>
+		<div style="width:267px;margin-bottom:5px;">
 			Message: <br />
-			<textarea name="data[EmailMessage][message]" cols="20" rows="5" style="width: 260px;"></textarea>
+			<textarea name="data[EmailMessage][message]" cols="20" rows="5" style="width: 262px;" id="email_message"></textarea>
 		</div>
-    	<p id="email_error" style="display:none; color: red; font-weight: bold;">Please enter in an email.</p>
+   	<p style="font-weight: bold;">* Required</p>
+   	<p id="email_error" style="display:none; color: red; font-weight: bold;">Please enter in an email.</p>
 		<p style="text-align:center">
 			<input type="hidden" name="data[EmailMessage][subject]" value="Lucca Antiques : <?php echo $item_details[0]['Item']['name']; ?>" />
 			<input type="hidden" name="data[EmailMessage][asking_price]" value="<?php echo $item_details[0]['ItemVariation'][0]['price']; ?>" />

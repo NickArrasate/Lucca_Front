@@ -249,7 +249,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 </dl>
 <dl class="column">
 	<dd><label>Condition:</label></dd>
-	<dd><input type="text" name="data[InventoryLocation][]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
+	<dd><input type="text" name="data[Item][condition]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
 
 	<dd><label>Units of Measurement:</label></dd>
 	<dd>
