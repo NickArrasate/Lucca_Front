@@ -4,8 +4,10 @@
 
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<meta name="robots" content="noindex,nofollow,noarchive">
 		<title><?php echo $title_for_layout?></title>
+		<meta name="description" content="Lucca Antiques is a constantly changing inventory of fresh and the eclectic antique tables, lamps, wall decor, furniture, seating and more.  Locations in New York and Los Angeles.">
+		<meta name="keywords" content="lucca antiques, furniture, wall decor, pictures, paintings, couch, seating, chair, lamps, mirrors, lights, antiques, antique">
+		<meta name="google-site-verification" content="TRc8B8MLF5on9ePLPX6Rlovh5rAUV3nAQKzE_xccaE8" />
 		<?php 
 			echo $scripts_for_layout;
 			echo $html->css('base');
@@ -80,14 +82,14 @@
 		<!-- <p class="design-credits"><a href="http://www.btrax.com">web design by btrax, Inc.</a></p> -->
 		
 		<script type="text/javascript">
-		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-		<script type="text/javascript">
-		try {
-		var pageTracker = _gat._getTracker("UA-12063725-1");
-		pageTracker._trackPageview();
-		} catch(err) {}</script>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15786570-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 
 	</body>
 	

@@ -77,7 +77,6 @@ class ItemOccurrence extends AppModel {
 				$this->set('left', $itemOccurrenceLeft);
 				$this->set('right', $itemOccurrenceRight);
 				$this->save();
-
 				$this->moveRight($occurrenceId, 1, $itemOccurrenceLeft);
 
 				$this->updateAll(

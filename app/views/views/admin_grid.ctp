@@ -1,8 +1,8 @@
 <?php
-	$javascript->link('jquery', false);
-	$javascript->link('jquery.ui', false);
-	$javascript->link('jquery.cookie', false);
-	$javascript->link('item_admin_grid', false);
+	//$javascript->link('jquery', false);
+	//$javascript->link('jquery.ui', false);
+	//$javascript->link('jquery.cookie', false);
+	//$javascript->link('item_admin_grid', false);
 	
 	//debug($item_types);
 ?>
@@ -60,6 +60,19 @@
 		<?php } ?>
 		</select>
 		<?php } ?>
+		</dd>
+		<dd>
+			<dl>
+			<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
+				<span><a href="/admin/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/all/">All Locations</a>
+			</dd>
+			<dd <?php if ($inventory_location == '1') { echo 'class="active"'; } ?>>
+				<span><a href="/admin/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/1/">Los Angeles</a>
+			</dd>
+			<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
+				<span><a href="/admin/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/2/">New York</a>
+			</dd>
+			</dl>
 		</dd>
 		<?php if(!isset($all_items) ) { ?>
 		<dd>

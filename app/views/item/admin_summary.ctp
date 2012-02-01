@@ -110,9 +110,9 @@
 	?>
 	<?php echo implode('<br/>', $displayInformation); ?>
 <?php else: ?>
-	<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
-		<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
-	<?php endforeach; ?>
+<?php foreach ($item_details[0]['InventoryQuantity'] as $inventoryQuantity): ?>
+	<?php echo $locationsNames[$inventoryQuantity['location']]['longName'];?>&nbsp;:&nbsp;<?php echo $inventoryQuantity['quantity']; ?><br/>
+<?php endforeach; ?>
 <?php endif; ?>
 </dd>
 </dl>

@@ -5,8 +5,8 @@
 	//$javascript->link('item_admin_grid', false);
 
 	//debug($item_types);
-	$javascript->link('jquery.dragsort-0.4.2.min', false);
-	$javascript->link('json2', false);
+	//$javascript->link('jquery.dragsort-0.4.2.min', false);
+	//$javascript->link('json2', false);
 ?>
 
 <div id="delete-dialog"><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span><p><strong>Are you sure you want to delete this item?</strong><p></div>
@@ -104,6 +104,7 @@
 		<?php } ?>
 
 	</dl>
+
 	<?php if(count($chunked_items) > 0) {?>
 	<ul class="grid-output">
 	<?php foreach ($chunked_items as $unpublished_items) { ?>
@@ -141,23 +142,23 @@
 							?>
 							<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
 						<?php else: ?>
-							<?php if (!empty($u['InventoryQuantity'])): ?>
-								<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
-									<?php
-										$displayInformation = array();
-										foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
-											array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
-										}
-									?>
-									<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
+						<?php if (!empty($u['InventoryQuantity'])): ?>
+							<?php if (count($u['InventoryQuantity']) > 1 || $u['Item']['lucca_original'] == 1): ?>
+								<?php
+									$displayInformation = array();
+									foreach ($u['InventoryQuantity'] as $InventoryQuantity) {
+										array_push($displayInformation, $locationsNames[$InventoryQuantity['location']]['shortName'].':&nbsp;'.(($InventoryQuantity['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$InventoryQuantity['quantity'].'</font>' : $InventoryQuantity['quantity']));
+									}
+								?>
+								<?php echo implode('&nbsp;|&nbsp;', $displayInformation); ?>
+							<?php else: ?>
+								<?php echo (isset($locationsNames[$u['InventoryQuantity'][0]['location']]['longName'])) ? $locationsNames[$u['InventoryQuantity'][0]['location']]['longName'] : ''; ?>
+								<?php if ($u['InventoryQuantity'][0]['quantity'] > 1): ?>
+									:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
 								<?php else: ?>
-									<?php echo (isset($locationsNames[$u['InventoryQuantity'][0]['location']]['longName'])) ? $locationsNames[$u['InventoryQuantity'][0]['location']]['longName'] : ''; ?>
-									<?php if ($u['InventoryQuantity'][0]['quantity'] > 1): ?>
+									<span class="hidden-inventory-quantity">
 										:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
-									<?php else: ?>
-										<span class="hidden-inventory-quantity">
-											:&nbsp;<?php echo ($u['InventoryQuantity'][0]['quantity'] == 0 && $u['Item']['lucca_original'] == 1) ? '<font color="red">'.$u['InventoryQuantity'][0]['quantity'].'</font>' : $u['InventoryQuantity'][0]['quantity']; ?>
-										</span>
+									</span>
 									<?php endif; ?>
 								<?php endif; ?>
 							<?php endif; ?>

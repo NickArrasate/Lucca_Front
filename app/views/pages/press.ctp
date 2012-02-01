@@ -18,6 +18,118 @@
 	<div class="overlay">
 		<div class="wrapper">
 			<div id="CoversBox">
+			<!-- Thumbs 200 x 259 -->
+			<!-- Regular Max Height 500, Max Width 600-->
+            	<a href="/press/images/ad_nov11/inside.jpg" class="lightbox" title="Antique Textile Pillow & <br /> 18th Century Gilt Table Lamp">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_nov11/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />November 2011</h5>
+					</div>
+				</a>
+            	<a href="/press/images/ca_sep11/inside.jpg" class="lightbox" title="Lamp">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ca_sep11/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">California Home + Design<br />September 2011</h5>
+					</div>
+				</a>
+            	<a href="/press/images/ad_aug11/inside.jpg" class="lightbox" title="Commode &  Desk">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_aug11/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />August 2011</h5>
+					</div>
+				</a>
+                <a href="/press/images/sb_sum11/inside.jpg" class="lightbox" title="">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/sb_sum11/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Santa Barbara<br />Summer 2011</h5>
+					</div>
+				</a>
+            	<a href="/press/images/ad_may11/table.jpg" class="lightbox" title="Table">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_may11/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />June 2011</h5>
+					</div>
+				</a>
+				<a href="/press/images/elle_dec10/tablechandelier.jpg" class="lightbox" title="Dining Table & Chandelier">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/elle_dec10/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Elle D&eacute;cor<br />December 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/elle_dec10/chandelier.jpg" class="lightbox hidden" title="Chandelier"></a>
+				<a href="/press/images/th_oct10/chandelier.jpg" class="lightbox" title="Chandelier">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/th_oct10/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Traditional Home<br />October 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/hb_sep10/Chandelier.jpg" class="lightbox" title="Chandelier">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/hb_sep10/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">House Beautiful<br />September 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/hb_sep10/Buffet.jpg" class="lightbox hidden" title="Buffet"></a>
+				<a href="/press/images/hb_sep10/Mantle.jpg" class="lightbox hidden" title="Mantle"></a>
+				<a href="/press/images/ver_sep10/veranda2.jpg" class="lightbox" title="Table">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ver_sep10/veranda.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Veranda<br />September 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/ver_sep10/veranda3.jpg" class="lightbox hidden" title="Settee"></a>
+				
+				<a href="/press/images/elle_july10/ElleSpotlightFinal.jpg" class="lightbox" title="New York Store">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/elle_july10/JulyElleCover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Elle D&eacute;cor<br />July 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/elle_july10/ElleJulyAdFinal.jpg" class="lightbox hidden" title="Bench"></a>
+				<a href="/press/images/elle_june10/ElleAdFinal.jpg" class="lightbox" title="New York Store">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/elle_june10/JuneElleCover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Elle D&eacute;cor<br />June 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/th_may10/tradhome2.jpg" class="lightbox" title="Chandelier">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/th_may10/tradhome.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Traditional Home<br />May 2010</h5>
+					</div>
+				</a>
+				<a href="/press/images/elle_may10/ElleAdFinal.jpg" class="lightbox" title="">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/elle_may10/MayElleCover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Elle D&eacute;cor<br />May 2010</h5>
+					</div>
+				</a>
 				<a href="/press/images/sb_10/lighting_FM10.jpg" class="lightbox" title="Lighting">
 					<div id="CoverObject">
 						<div id="CoverObjectImgWrap">

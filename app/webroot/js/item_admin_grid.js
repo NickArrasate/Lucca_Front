@@ -95,75 +95,75 @@
 		});
 
 		if ($.isFunction($().dragsort)) {
-			$("ul.grid-output").dragsort(
-				{ 
-					dragSelector: "li.item", 
-					dragEnd: function() {
-						var curLeft = parseInt($(this).attr('left'));
-						var nextLeft = $(this).next().attr('left') || false;
-						var prevLeft = $(this).prev().attr('left') || false;
+		$("ul.grid-output").dragsort(
+			{ 
+				dragSelector: "li.item", 
+				dragEnd: function() {
+					var curLeft = parseInt($(this).attr('left'));
+					var nextLeft = $(this).next().attr('left') || false;
+					var prevLeft = $(this).prev().attr('left') || false;
 
-						var data = {
-							current: curLeft,
-							next: nextLeft,
-							prev: prevLeft,
-							occurrence: {
-								category: $('select[name="data[categories]"]').val() || 0,
-								subcategory: $('select[name="data[subcategories]"]').val() || 0,
-								location: $('select[name="data[locations]"]').val() || 0
-							}
-						};
-
-						if (nextLeft && parseInt(nextLeft) < curLeft) {
-							nextLeft = parseInt(nextLeft);
-
-							var selector = [];
-							for (i = nextLeft; i < curLeft; i += 2) {
-								selector.push("li[left=" + i + "]");
-							}
-							
-							var movedItems = $.makeArray($(selector.join(",")));
-
-							$(this).attr('left', $(this).next().attr('left'));
-							$(this).attr('right', $(this).next().attr('right'));
-
-							for (itemIndex in movedItems) {
-								$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) + 2);
-								$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) + 2);
-							}
+					var data = {
+						current: curLeft,
+						next: nextLeft,
+						prev: prevLeft,
+						occurrence: {
+							category: $('select[name="data[categories]"]').val() || 0,
+							subcategory: $('select[name="data[subcategories]"]').val() || 0,
+							location: $('select[name="data[locations]"]').val() || 0
 						}
+					};
 
-						if (prevLeft && parseInt(prevLeft) > curLeft) {
-							prevLeft = parseInt(prevLeft);
+					if (nextLeft && parseInt(nextLeft) < curLeft) {
+						nextLeft = parseInt(nextLeft);
 
-							var selector = [];
-							for (i = (curLeft + 2); i <= prevLeft; i += 2) {
-								selector.push("li[left=" + i + "]");
-							}
-							
-							var movedItems = $.makeArray($(selector.join(",")));
-
-							$(this).attr('left', $(this).prev().attr('left'));
-							$(this).attr('right', $(this).prev().attr('right'));
-
-							for (itemIndex in movedItems) {
-								$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) - 2);
-								$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) - 2);
-							}
+						var selector = [];
+						for (i = nextLeft; i < curLeft; i += 2) {
+							selector.push("li[left=" + i + "]");
 						}
+						
+						var movedItems = $.makeArray($(selector.join(",")));
 
-						$.post(
-							'/admin/item/reordering',
-							{data: JSON.stringify(data)},
-							function (response) {}
-						);
-					}, 
-					dragBetween: false, 
-					placeHolderTemplate: '<li class="placeholder"></li>'
-				}
-			);
+						$(this).attr('left', $(this).next().attr('left'));
+						$(this).attr('right', $(this).next().attr('right'));
+
+						for (itemIndex in movedItems) {
+							$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) + 2);
+							$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) + 2);
+						}
+					}
+
+					if (prevLeft && parseInt(prevLeft) > curLeft) {
+						prevLeft = parseInt(prevLeft);
+
+						var selector = [];
+						for (i = (curLeft + 2); i <= prevLeft; i += 2) {
+							selector.push("li[left=" + i + "]");
+						}
+						
+						var movedItems = $.makeArray($(selector.join(",")));
+
+						$(this).attr('left', $(this).prev().attr('left'));
+						$(this).attr('right', $(this).prev().attr('right'));
+
+						for (itemIndex in movedItems) {
+							$(movedItems[itemIndex]).attr('left', parseInt($(movedItems[itemIndex]).attr('left')) - 2);
+							$(movedItems[itemIndex]).attr('right', parseInt($(movedItems[itemIndex]).attr('right')) - 2);
+						}
+					}
+
+					$.post(
+						'/admin/item/reordering',
+						{data: JSON.stringify(data)},
+						function (response) {}
+					);
+				}, 
+				dragBetween: false, 
+				placeHolderTemplate: '<li class="placeholder"></li>'
+			}
+		);
 		}
-
+		
 		$('#ItemLuccaOriginal').change(function (event) {
 			if ($(this).is(':checked')) {
 				$('dd.little-input input').attr('readonly', true).css('background-color', '#E6E6E6');
@@ -175,21 +175,21 @@
 		});
 		
 		if ($.isFunction($().dialog)) {
-			$('#delete-dialog').dialog({
-							autoOpen: false,
-							width: 400,
-							modal: true,
-							resizable: false,
-							buttons: {
-									"Delete": function() {
-						window.location.href = $.cookie("delete_url");
+		$('#delete-dialog').dialog({
+            autoOpen: false,
+            width: 400,
+            modal: true,
+            resizable: false,
+            buttons: {
+                "Delete": function() {
+					window.location.href = $.cookie("delete_url");
 
-					},
-									"Cancel": function() {
-											$(this).dialog("close");
-									}
-							}
-					});
+				},
+                "Cancel": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
 		}
 		
 		$('.delete-item').click(function(e){
@@ -200,8 +200,7 @@
 				return false;
 			
 		});
-
 		if ($.isFunction($().cookie)) {
-			$.cookie("delete_url", null);
+		$.cookie("delete_url", null);
 		}
 });

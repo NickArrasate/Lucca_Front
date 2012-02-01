@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	class NavigationComponent extends Object {
 
@@ -6,7 +6,7 @@
 
 		Status can either be:
 
-		Hidden, 
+		Hidden,
 		Unsorted,
 		Unpublished
 		Available,
@@ -27,23 +27,23 @@
 
 		*/
 
-		function navigation($status, $item_type_id = '') {
+		function navigation($status, $item_type_id = '', $additional_conditions = array()) {
 
 			$item = new Item();
 
 
 			if ($status == 'Hidden' || $status == 'Available' || $status == 'Sold') {
-			
+
 				switch($status) {
-				
+
 				case 'Available':
-			
+
 					$navigation = array(
-					
+
 						'h3' => 'Available Items',
-						
+
 						'subnavigation' => array(
-						
+
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -63,16 +63,12 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
-							),
-							'Lucca Originals' => array(
-								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
-								'class' => '',
-								'title' => 'Lucca Originals',
 							)
+
 						),
-						
+
 						'navigation' => array(
-						
+
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => 'active',
@@ -88,25 +84,25 @@
 								'class' => '',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-						
+
 						),
-						
+
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-						
+
 						);
-						
+
 						break;
-						
+
 						case 'Hidden':
-						
+
 						$navigation = array(
-						
+
 						'h3' => 'Hidden Items',
-						
+
 						'subnavigation' => array(
-						
+
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -126,17 +122,12 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
-							),
-							'Lucca Originals' => array(
-								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
-								'class' => '',
-								'title' => 'Lucca Originals',
 							)
-							
+
 						),
-						
+
 						'navigation' => array(
-						
+
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => '',
@@ -152,25 +143,25 @@
 								'class' => '',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-						
+
 						),
-						
+
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-						
+
 						);
-						
+
 						break;
-						
+
 						case 'Sold':
-						
+
 						$navigation = array(
-						
+
 						'h3' => 'Sold Items',
-						
+
 						'subnavigation' => array(
-						
+
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -190,17 +181,12 @@
 								'link' => '/admin/autofill/edit',
 								'class' => '',
 								'title' => 'Autofill Text',
-							),
-							'Lucca Originals' => array(
-								'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
-								'class' => '',
-								'title' => 'Lucca Originals',
 							)
-							
+
 						),
-						
+
 						'navigation' => array(
-						
+
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => '',
@@ -216,32 +202,32 @@
 								'class' => 'active',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-						
+
 						),
-						
+
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-						
+
 						);
-						
+
 						break;
 				}
-				
+
 			} else {
-			
+
 			// else it's either Unpublished or Unsorted
-			
+
 			switch($status) {
-			
+
 				case 'Unpublished':
-			
+
 				$navigation = array(
-				
+
 					'h3' => 'Works in Progress',
-					
+
 					'subnavigation' => array(
-					
+
 						'New' => array(
 							'link' => '/admin/item/grid/all/Unpublished/',
 							'class' => 'active',
@@ -261,17 +247,12 @@
 							'link' => '/admin/autofill/edit',
 							'class' => '',
 							'title' => 'Autofill Text',
-						),
-						'Lucca Originals' => array(
-							'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
-							'class' => '',
-							'title' => 'Lucca Originals',
 						)
-						
+
 					),
-					
+
 					'navigation' => array(
-					
+
 						'Create' => array(
 							'link' => '/admin/item/image/create',
 							'class' => '',
@@ -280,33 +261,33 @@
 						'In Progress' => array(
 							'link' => '/admin/item/grid/all/Unpublished',
 							'class' => 'active',
-							'title' => 'Works in Progress', 'count' => $item->get_status_count($item_type_id, 'Unpublished')
+							'title' => 'Works in Progress', 'count' => $item->get_status_count($item_type_id, 'Unpublished', $additional_conditions)
 						),
 						'Unsorted' => array(
 							'link' => '/admin/item/grid/all/Unsorted',
 							'class' => '',
-							'title' => 'Unsorted', 'count' => $item->get_status_count($item_type_id, 'Unsorted')
+							'title' => 'Unsorted', 'count' => $item->get_status_count($item_type_id, 'Unsorted', $additional_conditions)
 						)
-						
+
 					),
-					
+
 					'item_statuses' => array(
-							'Works in Progress', 
+							'Works in Progress',
 							'Unsorted'
 						)
-					
+
 					);
-					
+
 					break;
-					
+
 					case 'Unsorted':
-					
-					$navigation = array( 
-					
+
+					$navigation = array(
+
 					'h3' => 'Unsorted - Images that don\'t have details yet',
-					
+
 					'subnavigation' => array(
-					
+
 						'New' => array(
 							'link' => '/admin/item/grid/all/Unpublished/',
 							'class' => 'active',
@@ -326,17 +307,12 @@
 							'link' => '/admin/autofill/edit',
 							'class' => '',
 							'title' => 'Autofill Text',
-						),
-						'Lucca Originals' => array(
-							'link' => '/admin/item/grid/all/Available/filter:lucca_originals',
-							'class' => '',
-							'title' => 'Lucca Originals',
 						)
-						
+
 					),
-					
+
 					'navigation' => array(
-					
+
 						'Create' => array(
 							'link' => '/admin/item/image/create',
 							'class' => '',
@@ -352,21 +328,21 @@
 							'class' => 'active',
 							'title' => 'Unsorted', 'count' => $item->get_status_count($item_type_id, 'Unsorted')
 						)
-						
+
 					),
-					
+
 					'item_statuses' => array(
-							'Works in Progress', 
+							'Works in Progress',
 							'Unsorted'
 						)
-					
+
 					);
-					
+
 					break;
 				}
 
 			}
-			
+
 			return $navigation;
 
 		}

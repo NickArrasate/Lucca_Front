@@ -2,7 +2,7 @@
 
 class Item extends AppModel {
 
-  var $name = 'Item';
+    var $name = 'Item';
 	var $actsAs = array('Containable');
 	var $hasMany = array(
 		'ItemVariation',
@@ -36,21 +36,21 @@ class Item extends AppModel {
 				'message' => 'Please choose an item subcategory'
 			)
 		),
-		'inventory_location_id' => array(
+/*		'inventory_location_id' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
 				'message' => 'Please choose a location'
 			)
 		)
-
+ */
 	);
 
-	function get_status_count($item_type_id ='', $status) {
+	function get_status_count($item_type_id ='', $status, $additional_conditions = array()) {
 
 		$count = $this->find('count', array(
-			'conditions' => array(
+			'conditions' => array_merge(array(
 				'Item.status' => $status
-			)
+			), $additional_conditions)
 		));
 
 
@@ -124,34 +124,34 @@ class Item extends AppModel {
 						'Item.parent_id' => $row['Item']['id'],
 					),
 					'joins' => array(
-						array(
-							'table' => 'inventory_quantity',
-							'alias' => 'ItemLA',
-							'type' => 'LEFT',
-							'conditions' => array(
-								'ItemLA.item = Item.id AND ItemLA.location = 1',
-							)
-						),
-						array(
-							'table' => 'inventory_quantity',
-							'alias' => 'ItemNY',
-							'type' => 'LEFT',
-							'conditions' => array(
-								'ItemNY.item = Item.id AND ItemNY.location = 2',
-							)
-						),
-						array(
-							'table' => 'inventory_quantity',
-							'alias' => 'ItemWH',
-							'type' => 'LEFT',
-							'conditions' => array(
-								'ItemWH.item = Item.id AND ItemWH.location = 3',
-							)
-						),
+					array(
+						'table' => 'inventory_quantity',
+						'alias' => 'ItemLA',
+						'type' => 'LEFT',
+						'conditions' => array(
+							'ItemLA.item = Item.id AND ItemLA.location = 1',
+						)
 					),
+					array(
+						'table' => 'inventory_quantity',
+						'alias' => 'ItemNY',
+						'type' => 'LEFT',
+						'conditions' => array(
+							'ItemNY.item = Item.id AND ItemNY.location = 2',
+						)
+					),
+					array(
+						'table' => 'inventory_quantity',
+						'alias' => 'ItemWH',
+						'type' => 'LEFT',
+						'conditions' => array(
+							'ItemWH.item = Item.id AND ItemWH.location = 3',
+						)
+					),
+				),
 					'contain' => array()
 				)
-			);
+    		);
 			$row['ChildrenCount'] = count($row['Children']);
 			foreach ($row['Children'] as &$children) {
 				if ($children['Item']['status'] != 'Sold') {

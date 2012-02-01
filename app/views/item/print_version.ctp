@@ -94,6 +94,20 @@ $this->pageTitle = "Lucca Antiques";
 						<span class="button gray-background red-text-border">SOLD</span>
 					<?php } ?>
 			</h3>
+            <?php if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){ 
+                    $item_detail['InventoryLocation']['address'] = "744 North La Cienega Blvd. Los Angeles, CA 90069";
+                    $item_detail['InventoryLocation']['phone'] = "310-657-7800";
+                    $item_detail['InventoryLocation']['email'] = "beth@luccaantiques.com";
+					$email = "beth@luccaantiques.com";
+                }elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
+					$item_detail['InventoryLocation']['address'] = "182 Duane Street New York, NY 10013";
+                    $item_detail['InventoryLocation']['phone'] = "212-343-9005";
+                    $item_detail['InventoryLocation']['email'] = "mark@luccaantiques.com";
+                }else{
+					$item_detail['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Beth at 310-657-7800 for viewing information.";
+                    $item_detail['InventoryLocation']['phone'] = "310-657-7800";
+                    $item_detail['InventoryLocation']['email'] = "beth@luccaantiques.com";
+                }?>
 			<h2 class="ProductTitle">Condition:</h2>
 			<h3 class="details"><?php echo $item_detail['Item']['condition'] ?></h3>
 			<h2 class="ProductTitle">Measurements:</h2>
@@ -171,13 +185,18 @@ $this->pageTitle = "Lucca Antiques";
 				<div style="clear:both;"></div>
 
 				</div>
+                <div style="display:none">
+                <?php print_r($item_details); echo "----";print_r($item_details[0]['InventoryQuantity']);?>
+                </div>
+                
 				<div id="ContentDetailsItem">
 					<h5 class="NoPad">Contact:</h5>
-					<h6 class="DetailTitle">Email: <span class="OfNote"><?php echo $item_detail['InventoryLocation']['email']; ?></span></h6>
+					<h6 class="DetailTitle">Email: <span class="OfNote"><?php echo $email;$item_detail['InventoryLocation']['email']; ?></span></h6>
 					<h6 class="DetailTitle">Phone: <span class="OfNote"><?php echo $item_detail['InventoryLocation']['phone']; ?></span></h6>
 					<h6 class="DetailTitle">Address: <span class="OfNote"><?php echo $item_detail['InventoryLocation']['address']; ?></span></h6>
 				<div style="clear:both;"></div>
 				</div>	
+               
 			</div>
 
 			<div id="ThumbBox">

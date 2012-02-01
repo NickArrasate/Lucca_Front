@@ -13,7 +13,6 @@
 		$('table.stripe>tbody>tr:even').addClass("dark-background");
 
 		$('a.image').fancybox();
-
 		$( "#publish_date" ).datepicker({dateFormat:'yy-mm-dd'});
 	});
 </script>
@@ -234,6 +233,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	</dd>
 	<?php } ?>
 
+
 	<dd class="group-header"><label>Inventory Location</label></dd>
 	<?php foreach ($inventory_location as $id => $shortName): ?>
 		<dd class="little-input">
@@ -321,7 +321,6 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	<dd><input type="text" name="data[Item][country_of_origin]" value="<?php if(isset($data)) { echo $data['Item']['country_of_origin']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['country_of_origin']; } } ?>"/></dd>
 	<dd><label>Period:</label></dd>
 	<dd><input type="text" name="data[Item][period]" value="<?php if(isset($data)) { echo $data['Item']['period']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['period']; } } ?>"/></dd>
-
 	<dd><label>Created Date:</label></dd>
 	<dd><input id="publish_date" type="text" name="data[Item][publish_date]" value="<?php if(isset($data)) { echo $data['Item']['publish_date']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['publish_date']; } } ?>"/></dd>
 	<dd>

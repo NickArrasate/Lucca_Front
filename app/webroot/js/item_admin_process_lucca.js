@@ -17,15 +17,15 @@ $(function () {
 				formRowContainer.fadeIn('slow');
 				formContainer.find('.notes').slideUp('slow');
 				formContainer.find('.notes').data('isDisplay', false);
-				formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
-				formContainer.find('select').val(3);
+				//formContainer.find('input[type=checkbox][value=2]').attr('checked', true);
+				formContainer.find('select').val(2);
 				formContainer.find('textarea').focus();
 			} else {
 				if (formContainer.find('.notes').data('isDisplay')) {
 					formContainer.find('.notes').slideToggle('slow');
 					formContainer.find('.notes').data('isDisplay', false);
-					formContainer.find('input[type=checkbox][value=3]').attr('checked', true);
-					formContainer.find('select').val(3);
+					//formContainer.find('input[type=checkbox][value=2]').attr('checked', true);
+					formContainer.find('select').val(2);
 					formContainer.find('textarea').focus();
 				} else {
 					formRowContainer.fadeOut('slow');
@@ -53,7 +53,7 @@ $(function () {
 				if (formContainer.find('.orders').data('isDisplay')) {
 					formContainer.find('.orders').slideToggle('slow');
 					formContainer.find('.orders').data('isDisplay', false);
-					formContainer.find('input[type=checkbox][value=3]').attr('checked', false);
+					//formContainer.find('input[type=checkbox][value=2]').attr('checked', false);
 					formContainer.find('select').val(1);
 				} else {
 					formRowContainer.fadeOut('slow');
@@ -62,7 +62,6 @@ $(function () {
 			formRowContainer.find('.notes').slideToggle('slow');
 			formRowContainer.find('.notes').data('isDisplay', true);
 		});
-
 		$('td.note-link a.products-block').click(function (event) {
 			event.preventDefault();
 
@@ -72,7 +71,6 @@ $(function () {
 				$('tr[parentItem=' + $(this).attr('itemId') + ']').fadeOut('slow');
 			}
 		});
-
 		$('#filter_item_type').change(function(){
 			selectedItemType = $('#filter_item_type').val();
 			

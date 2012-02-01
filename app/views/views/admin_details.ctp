@@ -301,26 +301,7 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 			<textarea rows="5" cols="20" name="data[Item][contact]"><?php if(isset($data)) { echo $data['Item']['contact']; } else { echo $item_details[0]['Item']['contact']; }?></textarea>
 		</dd>
 		<dd><label>Inventory Location</label></dd>
-		<dd>
-			<?php
-				// TEMP
-				$location = array(
-					'LA Store' => 'LA Store',
-					'NY Store' => 'NY Store',
-					'LA Warehouse' => 'LA Warehouse'
-				);
-			?>
-			
-			<select name="data[Item][inventory_location]">
-				<?php foreach($location as $key => $value) { ?>
-					<?php if ($key == $item_details[0]['Item']['inventory_location']) { ?>
-						<option selected="selected" value="<?php echo $key ?>"><?php echo $value ?></option>
-					<?php } else { ?>
-						<option value="<?php echo $key ?>"><?php echo $value ?></option>
-					<?php } ?>
-				<?php } ?>
-			</select>
-		</dd>
+		<dd><input name="data[Item][inventory_location]" type="textbox" value="<?php if(isset($data)) { echo $data['Item']['inventory_location']; } else { echo $item_details[0]['Item']['inventory_location']; }?>"/></dd>
 	<?php } ?>
 </dl>
 
