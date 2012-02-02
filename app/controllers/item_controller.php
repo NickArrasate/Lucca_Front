@@ -2279,6 +2279,27 @@ App::import('Inflector');
 				exit();
 			}
 		}
+		
+		function admin_movetotop($id) {
+			$this->loadModel('ItemOccurrence');
+			$ItemOccurrenceIdList = $this->ItemOccurrence->find('list', array('fields' => array('occurrence_id', 'left'), 'conditions' => array('ItemOccurrence.item_id' => $id)));
+			foreach ($ItemOccurrenceIdList as $ItemOccurrenceId => $currentLeft) {
+				$firstItemInOccurrence = $this->ItemOccurrence->find('first', array('order' => array('ItemOccurrence.left' => 'asc')));
+				$this->ItemOccurrence->moveRight($ItemOccurrenceId, $firstItemInOccurrence['ItemOccurrence']['left'], $currentLeft);
+
+				$this->ItemOccurrence->updateAll(
+					array(
+						'ItemOccurrence.left' => $firstItemInOccurrence['ItemOccurrence']['left'],
+						'ItemOccurrence.right' => $firstItemInOccurrence['ItemOccurrence']['right']
+					),
+					array(
+						'ItemOccurrence.occurrence_id' => $ItemOccurrenceId,
+						'ItemOccurrence.item_id' => $id
+					)
+				);
+			}
+			$this->redirect($this->referer());
+		}
 	}
 
 ?>

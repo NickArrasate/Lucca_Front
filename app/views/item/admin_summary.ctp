@@ -96,6 +96,7 @@
 <dd><a target="_blank" class="button gray-background black-text" href="/item/details/<?php echo $item_details[0]['Item']['id'] ?>/print/">Print Item</a></dd>
 <dd><a class="button gray-background black-text" href="/admin/item/delete/<?php echo $item_details[0]['Item']['id'] ?>/<?php echo $item_details[0]['Item']['item_type_id'] ?>/">Delete Item</a></dd>
 <dd><a class="button gray-background black-text" href="/admin/item/duplicate/<?php echo $item_details[0]['Item']['id'] ?>">Duplicate Item</a></dd>
+<dd><a class="button gray-background black-text" href="/admin/item/movetotop/<?php echo $item_details[0]['Item']['id'] ?>">Move to Top</a></dd>
 </dl>
 
 <p><em>Date Added : <?php echo $item_details[0]['Item']['publish_date']; ?> </em></p>

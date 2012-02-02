@@ -185,7 +185,8 @@ Email</a></dd>
 					<?php if($status == 'Unsorted') { ?>
 					<dd>-- <a class="delete-item" href="/admin/item/delete/<?php echo $u['Item']['id'] ?>/all/<?php echo $status ?>">Delete</a></dd>
 					<?php } ?>
-				</dl>
+					<dd>-- <a href="/admin/item/movetotop/<?php echo $u['Item']['id'] ?>">Move to Top</a> </dd>
+				</dl> 
 			</li>
 		<?php } ?>
 	<?php } ?>
