@@ -83,13 +83,13 @@
 		<dd style="clear:both;">
 			<?php if($count > 8) { ?>
 			<div class="pagination">
-			<a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/all/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View All</a>
+			<a class="underline" href="<?php echo Router::url(); ?>/<?php echo $type_id ?>/<?php echo $status ?>/all/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View All</a>
 			</div>
 			<?php } ?>
 			<div class="pagination">
 			<dl>
 			<?php
-			$paginator->options(array('url' => $this->passedArgs));
+			$paginator->options(array('url' => array_merge(array('action' => $currentAction), $this->passedArgs)));
 			?>
 			<dd><?php echo $paginator->prev('<< previous'); ?></dd>
 			<?php echo '<dd>' . $paginator->numbers() . '</dd>'; ?>
@@ -186,7 +186,7 @@ Email</a></dd>
 					<dd>-- <a class="delete-item" href="/admin/item/delete/<?php echo $u['Item']['id'] ?>/all/<?php echo $status ?>">Delete</a></dd>
 					<?php } ?>
 					<dd>-- <a href="/admin/item/movetotop/<?php echo $u['Item']['id'] ?>">Move to Top</a> </dd>
-				</dl> 
+				</dl>
 			</li>
 		<?php } ?>
 	<?php } ?>

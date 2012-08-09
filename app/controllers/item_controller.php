@@ -34,6 +34,11 @@ App::import('Inflector');
 			#$this->Security->blackHoleCallback = 'forceSSL';
 			#$this->Security->validatePost = false;
 
+			$searchString = '';
+			if (array_key_exists("search", $this->params['named']) && !empty($this->params['named']['search'])) {
+				$searchString = $this->params['named']['search'];
+			}
+			$this->set('searchString', $searchString);
 		}
 
 		function forceSSL() {
@@ -1082,6 +1087,12 @@ App::import('Inflector');
 			if ($selectedFilter['categories'] != 'all') {
 				$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
 				$categoryId = $selectedFilter['categories'];
+			}
+
+			$this->set('currentAction', 'grid');
+			if (array_key_exists('search', $this->params['named']) && !empty($this->params['named']['search'])) {
+				$itemRetriveConditions['Item.name LIKE'] = '%' . $this->params['named']['search'] . '%';
+				$this->set('currentAction', 'search');
 			}
 
 			switch ($selectedFilter['subcategories']) {
@@ -2279,7 +2290,7 @@ App::import('Inflector');
 				exit();
 			}
 		}
-		
+
 		function admin_movetotop($id) {
 			$this->loadModel('ItemOccurrence');
 			$ItemOccurrenceIdList = $this->ItemOccurrence->find('list', array('fields' => array('occurrence_id', 'left'), 'conditions' => array('ItemOccurrence.item_id' => $id)));
@@ -2301,5 +2312,4 @@ App::import('Inflector');
 			$this->redirect($this->referer());
 		}
 	}
-
 ?>

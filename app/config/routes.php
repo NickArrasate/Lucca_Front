@@ -36,8 +36,11 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-	
+
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 	Router::connect('/admin/logout', array('controller' => 'users', 'action' => 'logout'));
+
+	Router::connect('/admin/item/grid/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
+	Router::connect('/admin/item/search/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
 
 ?>

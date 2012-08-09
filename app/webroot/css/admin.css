@@ -614,3 +614,18 @@ tr.products-rows td.name {
 	padding-left: 20px;
 	width: 180px;
 }
+dl.subnavigation dd.search {
+	float: right;
+}
+dl.subnavigation dd.search label {
+	float: right;
+	color: #858585;
+	padding: 7px 0px 7px 5px;
+}
+dl.subnavigation dd.search input {
+	float: right;
+	border: 0px;
+	height: 18px;
+	margin: 6px 0px 6px 0px;
+	padding: 0px 5px;
+}

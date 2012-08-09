@@ -82,8 +82,85 @@
 				pagination_status = '/all';
 			}
 
-			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			var path = {
+				'profix': '',
+				'controller': '',
+				'action': '',
+				'params': ''
+			};
+
+			var currentPath = window.location;
+			var newPath = currentPath.protocol + '//' + currentPath.host + '/';
+			var parsedPath = currentPath.pathname.replace(/^\/|\/$/g, '').split('/');
+			if (parsedPath[0] == 'admin') {
+				path.prefix = 'admin/';
+				parsedPath.shift();
+			}
+			path.controller = parsedPath.shift() + '/';
+			path.action = parsedPath.shift() + '/';
+			if (!parsedPath.length) {
+				path.params = parsedPath.join('/');
+			}
+
+			var filterParams = category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			var queryString = '';
+			if ($('dl.subnavigation input[name="data[Search][item]"]').val().length) {
+				queryString = '/search:' + $('dl.subnavigation input[name="data[Search][item]"]').val() + '/';
+			}
+
+//			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			window.location.href = newPath + path.prefix + path.controller + path.action + filterParams + queryString;
 		});
+
+		$('dl.subnavigation form').submit(function (event) {
+			event.preventDefault();
+
+			var category = $('select[name="data[categories]"]').val();
+			var subcategory = $('select[name="data[subcategories]"]').val();
+			var location = $('select[name="data[locations]"]').val();
+			var other = $('select[name="data[other]"]').val();
+			
+			item_status = $('#item_statuses .active').text();
+			item_status = item_status.replace(/ \([0-9]+\)/, '');
+			if(item_status == 'Works in Progress'){
+				item_status = 'Unpublished';
+			}
+
+			pagination_status = $('.pagination a.underline').text();
+			if (pagination_status == 'View All' || pagination_status == '') {
+				pagination_status = '';
+			} else {
+				pagination_status = '/all';
+			}
+
+			var path = {
+				'profix': '',
+				'controller': '',
+				'action': '',
+				'params': ''
+			};
+
+			var currentPath = window.location;
+			var newPath = currentPath.protocol + '//' + currentPath.host + '/';
+			var parsedPath = currentPath.pathname.replace(/^\/|\/$/g, '').split('/');
+			if (parsedPath[0] == 'admin') {
+				path.prefix = 'admin/';
+				parsedPath.shift();
+			}
+			path.controller = parsedPath.shift() + '/';
+			path.action = 'search/';
+			parsedPath.shift();
+			if (!parsedPath.length) {
+				path.params = parsedPath.join('/');
+			}
+
+			var filterParams = category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			var queryString = '/search:' + $(this).find('input[type="text"]').val() + '/';
+
+//			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			$(this).get(0).setAttribute('action', newPath + path.prefix + path.controller + path.action + filterParams + queryString);
+			$(this).get(0).submit();
+		}); 
 		
 		$('#noteFilter').change(function () {
 			selectedSortMode = $('#noteFilter').val();
