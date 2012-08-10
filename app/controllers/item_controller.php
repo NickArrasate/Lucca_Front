@@ -34,11 +34,7 @@ App::import('Inflector');
 			#$this->Security->blackHoleCallback = 'forceSSL';
 			#$this->Security->validatePost = false;
 
-			$searchString = '';
-			if (array_key_exists("search", $this->params['named']) && !empty($this->params['named']['search'])) {
-				$searchString = $this->params['named']['search'];
-			}
-			$this->set('searchString', $searchString);
+			parent::beforeFilter();
 		}
 
 		function forceSSL() {
@@ -97,6 +93,13 @@ App::import('Inflector');
 					)
 				)
 			);
+
+			if (array_key_exists("search", $this->params['named']) && !empty($this->params['named']['search'])) {
+				$conditions_array = array_merge($conditions_array, array(
+						'Item.name LIKE' => '%' . $this->params['named']['search'] . '%'
+					)
+				);
+			}
 
 			if ($item_type == '' || $item_type == 'all') {
 				$item_type == 'all';
@@ -224,6 +227,12 @@ App::import('Inflector');
 					)
 				)
 			);
+
+			$this->set('currentAction', 'grid');
+			if (array_key_exists('search', $this->params['named']) && !empty($this->params['named']['search'])) {
+				$itemRetriveConditions['Item.name LIKE'] = '%' . $this->params['named']['search'] . '%';
+				$this->set('currentAction', 'search');
+			}
 
 			$this->set('items', $chunked_items);
 			//$this->set('item_types', $item_types);

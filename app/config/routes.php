@@ -43,4 +43,7 @@
 	Router::connect('/admin/item/grid/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
 	Router::connect('/admin/item/search/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
 
+	Router::connect('/item/grid/*', array('controller' => 'item', 'action' => 'grid'));
+	Router::connect('/item/search/*', array('controller' => 'item', 'action' => 'grid'));
+
 ?>

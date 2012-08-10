@@ -134,7 +134,7 @@
 			}
 
 			var path = {
-				'profix': '',
+				'prefix': '',
 				'controller': '',
 				'action': '',
 				'params': ''
@@ -150,7 +150,7 @@
 			path.controller = parsedPath.shift() + '/';
 			path.action = 'search/';
 			parsedPath.shift();
-			if (!parsedPath.length) {
+			if (parsedPath.length) {
 				path.params = parsedPath.join('/');
 			}
 

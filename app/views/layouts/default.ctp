@@ -8,19 +8,20 @@
 		<meta name="description" content="Lucca Antiques is a constantly changing inventory of fresh and the eclectic antique tables, lamps, wall decor, furniture, seating and more.  Locations in New York and Los Angeles.">
 		<meta name="keywords" content="lucca antiques, furniture, wall decor, pictures, paintings, couch, seating, chair, lamps, mirrors, lights, antiques, antique">
 		<meta name="google-site-verification" content="TRc8B8MLF5on9ePLPX6Rlovh5rAUV3nAQKzE_xccaE8" />
-		<?php 
+		<?php
 			echo $scripts_for_layout;
 			echo $html->css('base');
 			//debug($item_category_id);
 		?>
-		<?php echo $html->css('menus.css'); ?>		
-		<script type="text/javascript" src="/js/jquery.min.js"></script> 
-		<script type="text/javascript" src="/js/jquery.easing-1.3.pack.js"></script> 
-		<script type="text/javascript" src="/js/jquery.fancybox-1.3.0.pack.js"></script> 
-		<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script> 
+		<?php echo $html->css('menus.css'); ?>
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.easing-1.3.pack.js"></script>
+		<script type="text/javascript" src="/js/jquery.fancybox-1.3.0.pack.js"></script>
+		<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script>
 		<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
-		<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" /> 
-		<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" /> 
+		<script type="text/javascript" src="/js/search.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" />
+		<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hp-slideshow.css" />
 	</head>
 
@@ -28,7 +29,7 @@
 		<div class="container">
 		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
-			<?php } ?> 
+			<?php } ?>
 			<dl class="header">
 				<dd><a href="/"><img src="/img/lucca_logo.png" alt="Lucca Antiques logo" /></a></dd>
 				<dd>
@@ -57,10 +58,19 @@
 									<div class="pulldown">
 										<ul class="submenus">
 											<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
-											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li> 
+											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li>
 										</ul>
 									</div>
-								</a>
+								</div>
+							</li>
+							<li class="search">
+									<a href="#"></a>
+									<div class="searchform <?php echo (empty($searchString)) ? "disabled" : "enabled"; ?>">
+										<?php echo $form->create('Search', array('url' => array('controller' => 'item', 'action' => 'search'))); ?>
+											<?php echo $form->text('Search.item', array('value' => $searchString)); ?>
+											<?php echo $form->label('Search.item', 'Search'); ?>
+										<?php echo $form->end(); ?>
+									</div>
 							</li>
 						</ul>
 					</div>
@@ -80,7 +90,7 @@
 			</dl>
 		</div>
 		<!-- <p class="design-credits"><a href="http://www.btrax.com">web design by btrax, Inc.</a></p> -->
-		
+
 		<script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -92,8 +102,8 @@ pageTracker._trackPageview();
 } catch(err) {}</script>
 
 	</body>
-	
-</html> 
+
+</html>
 
 </body>
 </html>
