@@ -10,8 +10,8 @@ $(document).ready(function () {
 
 		var path = {
 			'prefix': '',
-			'controller': '',
-			'action': '',
+			'controller': 'item/',
+			'action': 'search/',
 			'params': ''
 		};
 
@@ -19,8 +19,7 @@ $(document).ready(function () {
 		var newPath = currentPath.protocol + '//' + currentPath.host + '/';
 		var parsedPath = currentPath.pathname.replace(/^\/|\/$/g, '').split('/');
 
-		path.controller = parsedPath.shift() + '/';
-		path.action = 'search/';
+		parsedPath.shift();
 		parsedPath.shift();
 
 		if (parsedPath.length) {
@@ -32,6 +31,8 @@ $(document).ready(function () {
 			}
 
 			path.params = parsedPath.join('/');
+		} else {
+			path.params = ["all", "all", "all"].join('/');
 		}
 
 		var queryString = '/search:' + $(this).find('input[type="text"]').val() + '/';
