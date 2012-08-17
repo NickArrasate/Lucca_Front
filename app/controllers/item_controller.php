@@ -2325,5 +2325,55 @@ App::import('Inflector');
 			}
 			$this->redirect($this->referer());
 		}
+		function rest_index() {
+			$data = $this->data;
+
+			print_r($this->params);
+			print_r($data);
+			exit();
+	}
+
+		function rest_view() {
+			$data = $this->data;
+
+			print_r($this->params);
+			print_r($data);
+			exit();
+		}
+
+		function rest_add() {
+			$data = $this->data->toArray();
+
+//			print_r($this->params);
+			print_r($data);
+			$this->Item->save($data);
+			$errors = $this->Item->validationErrors;
+			$this->set(compact("errors"));
+			//exit();
+		}
+
+		function rest_edit() {
+			$data = $this->data;
+
+			print_r($this->params);
+			print_r($data);
+			exit();
+		}
+
+		function rest_delete() {
+			$data = $this->data;
+
+			print_r($this->params);
+			print_r($data);
+			exit();
+		}
+
+		function rest_delete_photo() {
+			$data = $this->data;
+
+			print_r($this->params);
+			print_r($data);
+			exit();
+		}
 	}
 ?>

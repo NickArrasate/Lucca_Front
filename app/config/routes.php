@@ -46,4 +46,39 @@
 	Router::connect('/item/grid/*', array('controller' => 'item', 'action' => 'grid'));
 	Router::connect('/item/search/*', array('controller' => 'item', 'action' => 'grid'));
 
+	Router::mapResources('item');
+	Router::parseExtensions();
+	Router::connect(
+		"/rest/photo/:id",
+		array("controller" => "item", "action" => "delete_photo", "prefix" => "rest", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/:controller/",
+		array("action" => "index", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml")
+	);
+	Router::connect(
+		"/rest/:controller/:id",
+		array("action" => "view", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/:controller/",
+		array("action" => "add", "prefix" => "rest", "rest" => true, "[method]" => "POST", "ext" => "xml")
+	);
+	Router::connect(
+		"/rest/:controller/:id",
+		array("action" => "edit", "prefix" => "rest", "rest" => true, "[method]" => "POST", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/:controller/:id",
+		array("action" => "edit", "prefix" => "rest", "rest" => true, "[method]" => "PUT", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/:controller/:id",
+		array("action" => "delete", "prefix" => "rest", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
 ?>
