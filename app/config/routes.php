@@ -53,15 +53,17 @@
 		array("controller" => "item", "action" => "delete_photo", "prefix" => "rest", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
-	Router::connect(
+/*	Router::connect(
 		"/rest/:controller/",
 		array("action" => "index", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml")
 	);
-	Router::connect(
+ */
+/*	Router::connect(
 		"/rest/:controller/:id",
 		array("action" => "view", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
+ */
 	Router::connect(
 		"/rest/:controller/",
 		array("action" => "add", "prefix" => "rest", "rest" => true, "[method]" => "POST", "ext" => "xml")

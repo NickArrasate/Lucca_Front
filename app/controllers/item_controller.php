@@ -2325,31 +2325,30 @@ App::import('Inflector');
 			}
 			$this->redirect($this->referer());
 		}
-		function rest_index() {
+/*		function rest_index() {
 			$data = $this->data;
 
-			print_r($this->params);
-			print_r($data);
 			exit();
 	}
-
-		function rest_view() {
+ */
+/*		function rest_view() {
 			$data = $this->data;
 
-			print_r($this->params);
-			print_r($data);
 			exit();
 		}
-
+ */
 		function rest_add() {
+			$this->layout = 'rest';
+
 			$data = $this->data->toArray();
 
-//			print_r($this->params);
-			print_r($data);
-			$this->Item->save($data);
-			$errors = $this->Item->validationErrors;
-			$this->set(compact("errors"));
-			//exit();
+			$this->log($this->params, 'rest_log');
+			$this->log($this->data, 'rest_log');
+
+			if (!$this->Item->save($data)) {
+				$errors = $this->Item->validationErrors;
+				$this->set(compact("errors"));
+			}
 		}
 
 		function rest_edit() {
