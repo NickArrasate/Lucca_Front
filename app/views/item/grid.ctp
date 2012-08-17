@@ -106,7 +106,7 @@
 								<?php foreach($i['ItemImage'] as $o) {?>
 								<?php if($o['primary'] == 1) {?>
 
-								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>666666); ?>
+								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>"#666666"); ?>
 								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
 								<?php } ?>
 								<?php } ?>

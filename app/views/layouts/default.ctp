@@ -4,6 +4,7 @@
 
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<meta name="robots" content="noindex,nofollow,noarchive">
 		<title><?php echo $title_for_layout?></title>
 		<meta name="description" content="Lucca Antiques is a constantly changing inventory of fresh and the eclectic antique tables, lamps, wall decor, furniture, seating and more.  Locations in New York and Los Angeles.">
 		<meta name="keywords" content="lucca antiques, furniture, wall decor, pictures, paintings, couch, seating, chair, lamps, mirrors, lights, antiques, antique">
@@ -64,7 +65,6 @@
 								</div>
 							</li>
 							<li class="search">
-									<a href="#"></a>
 									<div class="searchform <?php echo (empty($searchString)) ? "disabled" : "enabled"; ?>">
 										<?php echo $form->create('Search', array('url' => array('controller' => 'item', 'action' => 'search'))); ?>
 											<?php echo $form->text('Search.item', array('value' => $searchString)); ?>
