@@ -2339,7 +2339,7 @@ App::import('Inflector');
  */
 		function rest_add() {
 			$this->layout = 'rest';
-			configure::write('debug', 0);
+			Configure::write('debug', 0);
 
 			$data = $this->data->toArray();
 
@@ -2356,30 +2356,63 @@ App::import('Inflector');
 					'item' => $this->Item->validationErrors,
 				);
 			} else {
+				$itemQuantities = array(
+					'ItemLAQuantity' => 1,
+					'ItemNYQuantity' => 2,
+					'ItemWHQuantity' => 3,
+				);
+
 				$this->loadModel('ItemImage');
 				$this->loadModel('ItemVariation');
+				$this->loadModel('ItemOccurrence');
+				$this->loadModel('InventoryQuantity');
 
 				$itemId = $this->Item->id;
 
-				if (array_key_exists('ItemImage', $data) && !empty($data['ItemImage']) && is_array($data['ItemImage'])) {
-					foreach ($data['ItemImage'] as $itemImage) {
+				$categoryId = (array_key_exists('item_type_id', $data['Item'])) ? $data['Item']['item_type_id'] : null;
+				$subcategoryId = (array_key_exists('item_category_id', $data['Item'])) ? $data['Item']['item_category_id'] : null;
+				$locationIds = array();
+
+				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $itemId), false, false);
+				foreach ($itemQuantities as $dataField => $locationId) {
+					if (array_key_exists($dataField, $data['Item']) && is_numeric($data['Item'][$dataField])) {
+						$uniqueKey['item'] = $itemId;
+						$uniqueKey['location'] = $locationId;
+
+						$extraFiels['quantity'] = intval($data['Item'][$dataField]);
+
+						$this->InventoryQuantity->create();
+						$this->InventoryQuantity->save(array_merge($extraFiels, $uniqueKey));
+
+						array_push($locationIds, $locationId);
+					}
+				}
+
+				$this->ItemOccurrence->createItemOccurrences($itemId, $categoryId, $subcategoryId, $locationIds);
+
+				if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
+					foreach ($data['Item']['ItemImage'] as $itemImage) {
 						$imageData = base64_decode($itemImage['data']);
 
 						$fileParsedData = pathinfo($itemImage['filename']);
-						$filename = substr(md5($imageData), 0, 8) . $fileParsedData['extension'];
+						$filename = substr(md5($imageData . time() . rand()), 0, 8) . '.' . $fileParsedData['extension'];
 
 						if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
 							$this->ItemImage->create();
-							$this->ItemImage->set('filename', $filename);
-							$this->ItemImage->set('item_id', $item_id);
-							$this->ItemImage->save();
+							$itemImage['filename'] = $filename;
+							$itemImage['item_id'] = $itemId;
+							$this->ItemImage->save($itemImage);
 						}
 					}
 				}
 
-				if (array_key_exists('ItemVariation', $data) && !empty($data['ItemVariation']) && is_array($data['ItemVariation'])) {
-					foreach ($data['ItemVariation'] as $itemVariation) {
+				if (array_key_exists('ItemVariation', $data['Item']) && !empty($data['Item']['ItemVariation']) && is_array($data['Item']['ItemVariation'])) {
+					foreach ($data['Item']['ItemVariation'] as $itemVariation) {
+						$this->ItemVariation->create();
 						$itemVariation['item_id'] = $itemId;
+						if (!array_key_exists('primary', $itemVariation) || !is_numeric($itemVariation['primary'])) {
+							$itemVariation['primary'] = 0;
+						}
 						$this->ItemVariation->save($itemVariation);
 					}
 				}
@@ -2401,7 +2434,7 @@ App::import('Inflector');
 
 		function rest_edit() {
 			$this->layout = 'rest';
-			configure::write('debug', 0);
+			Configure::write('debug', 0);
 
 			$data = $this->data->toArray();
 
@@ -2418,31 +2451,63 @@ App::import('Inflector');
 					'item' => $this->Item->validationErrors,
 				);
 			} else {
+				$itemQuantities = array(
+					'ItemLAQuantity' => 1,
+					'ItemNYQuantity' => 2,
+					'ItemWHQuantity' => 3,
+				);
+
 				$this->loadModel('ItemImage');
 				$this->loadModel('ItemVariation');
+				$this->loadModel('ItemOccurrence');
+				$this->loadModel('InventoryQuantity');
 
 				$itemId = $this->Item->id;
 
-				if (array_key_exists('ItemImage', $data) && !empty($data['ItemImage']) && is_array($data['ItemImage'])) {
-					foreach ($data['ItemImage'] as $itemImage) {
-						$imageData = base64_decode($itemImage['ItemImage']['data']);
+				$categoryId = (array_key_exists('item_type_id', $data['Item'])) ? $data['Item']['item_type_id'] : null;
+				$subcategoryId = (array_key_exists('item_category_id', $data['Item'])) ? $data['Item']['item_category_id'] : null;
+				$locationIds = array();
 
-						$fileParsedData = pathinfo($itemImage['ItemImage']['filename']);
-						$filename = substr(md5($imageData), 0, 8) . $fileParsedData['extension'];
+				$this->InventoryQuantity->deleteAll(array('InventoryQuantity.item' => $itemId), false, false);
+				foreach ($itemQuantities as $dataField => $locationId) {
+					if (array_key_exists($dataField, $data['Item']) && is_numeric($data['Item'][$dataField])) {
+						$uniqueKey['item'] = $itemId;
+						$uniqueKey['location'] = $locationId;
+
+						$extraFiels['quantity'] = intval($data['Item'][$dataField]);
+
+						$this->InventoryQuantity->create();
+						$this->InventoryQuantity->save(array_merge($extraFiels, $uniqueKey));
+
+						array_push($locationIds, $locationId);
+					}
+				}
+
+				$this->ItemOccurrence->createItemOccurrences($itemId, $categoryId, $subcategoryId, $locationIds);
+
+				if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
+					foreach ($data['Item']['ItemImage'] as $itemImage) {
+						$imageData = base64_decode($itemImage['data']);
+
+						$fileParsedData = pathinfo($itemImage['filename']);
+						$filename = substr(md5($imageData . time() . rand()), 0, 8) . '.' . $fileParsedData['extension'];
 
 						if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
 							$this->ItemImage->create();
-							$this->ItemImage->set('id', (array_key_exists('id', $itemImage['ItemImage']) ? $itemImage['ItemImage']['id'] : null));
-							$this->ItemImage->set('filename', $filename);
-							$this->ItemImage->set('item_id', $itemId);
-							$this->ItemImage->save();
+							$itemImage['filename'] = $filename;
+							$itemImage['item_id'] = $itemId;
+							$this->ItemImage->save($itemImage);
 						}
 					}
 				}
 
-				if (array_key_exists('ItemVariation', $data) && !empty($data['ItemVariation']) && is_array($data['ItemVariation'])) {
-					foreach ($data['ItemVariation'] as $itemVariation) {
+				if (array_key_exists('ItemVariation', $data['Item']) && !empty($data['Item']['ItemVariation']) && is_array($data['Item']['ItemVariation'])) {
+					foreach ($data['Item']['ItemVariation'] as $itemVariation) {
+						$this->ItemVariation->create();
 						$itemVariation['item_id'] = $itemId;
+						if (!array_key_exists('primary', $itemVariation) || !is_numeric($itemVariation['primary'])) {
+							$itemVariation['primary'] = 0;
+						}
 						$this->ItemVariation->save($itemVariation);
 					}
 				}
@@ -2464,7 +2529,7 @@ App::import('Inflector');
 
 		function rest_delete() {
 			$this->layout = 'rest';
-			configure::write('debug', 0);
+			Configure::write('debug', 0);
 
 			$data = $this->data;//->toArray();
 
@@ -2513,7 +2578,7 @@ App::import('Inflector');
 					}
 				}
 
-				$this->ItemVariation->deleteAll(array('ItemVariation.item_id' => $id));
+				$this->ItemVariation->deleteAll(array('ItemVariation.item_id' => $id), false, false);
 
 				$response = array(
 					'status' => array(
@@ -2532,7 +2597,7 @@ App::import('Inflector');
 
 		function rest_delete_photo() {
 			$this->layout = 'rest';
-			configure::write('debug', 0);
+			Configure::write('debug', 0);
 
 			$data = $this->data;//->toArray();
 
