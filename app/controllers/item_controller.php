@@ -5,7 +5,7 @@ App::import('Inflector');
 
 		var $name = 'Item';
 
-		var $helpers = array('Form', 'Ajax', 'Html', 'Cropimage', 'Paginator', 'Fieldformatting', 'Resizeimage');
+		var $helpers = array('Form', 'Ajax', 'Html', 'Cropimage', 'Paginator', 'Fieldformatting', 'Resizeimage', 'Xml');
 		//var $components = array('Session', 'Email', 'JqImgcrop', 'RequestHandler', 'Navigation', 'Security');
 		var $components = array('Session', 'Email', 'JqImgcrop', 'RequestHandler', 'Navigation', 'Ssl');
 
@@ -2339,40 +2339,239 @@ App::import('Inflector');
  */
 		function rest_add() {
 			$this->layout = 'rest';
+			configure::write('debug', 0);
 
 			$data = $this->data->toArray();
 
 			$this->log($this->params, 'rest_log');
-			$this->log($this->data, 'rest_log');
+			$this->log($data, 'rest_log');
+
+			$response = array();
 
 			if (!$this->Item->save($data)) {
-				$errors = $this->Item->validationErrors;
-				$this->set(compact("errors"));
+				$response = array(
+					'status' => array(
+						'error' => 'Invalid data',
+					),
+					'item' => $this->Item->validationErrors,
+				);
+			} else {
+				$this->loadModel('ItemImage');
+				$this->loadModel('ItemVariation');
+
+				$itemId = $this->Item->id;
+
+				if (array_key_exists('ItemImage', $data) && !empty($data['ItemImage']) && is_array($data['ItemImage'])) {
+					foreach ($data['ItemImage'] as $itemImage) {
+						$imageData = base64_decode($itemImage['data']);
+
+						$fileParsedData = pathinfo($itemImage['filename']);
+						$filename = substr(md5($imageData), 0, 8) . $fileParsedData['extension'];
+
+						if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
+							$this->ItemImage->create();
+							$this->ItemImage->set('filename', $filename);
+							$this->ItemImage->set('item_id', $item_id);
+							$this->ItemImage->save();
+						}
+					}
+				}
+
+				if (array_key_exists('ItemVariation', $data) && !empty($data['ItemVariation']) && is_array($data['ItemVariation'])) {
+					foreach ($data['ItemVariation'] as $itemVariation) {
+						$itemVariation['item_id'] = $itemId;
+						$this->ItemVariation->save($itemVariation);
+					}
+				}
+
+				$response = array(
+					'status' => array(
+						'success' => 'Item successful added',
+					),
+					'item' => array(
+						'id' => $this->Item->id,
+					)
+				);
 			}
+
+			$this->log($response, 'rest_log');
+
+			$this->set(compact("response"));
 		}
 
 		function rest_edit() {
-			$data = $this->data;
+			$this->layout = 'rest';
+			configure::write('debug', 0);
 
-			print_r($this->params);
-			print_r($data);
-			exit();
+			$data = $this->data->toArray();
+
+			$this->log($this->params, 'rest_log');
+			$this->log($data, 'rest_log');
+
+			$response = array();
+
+			if (!$this->Item->save($data)) {
+				$response = array(
+					'status' => array(
+						'error' => 'Invalid data',
+					),
+					'item' => $this->Item->validationErrors,
+				);
+			} else {
+				$this->loadModel('ItemImage');
+				$this->loadModel('ItemVariation');
+
+				$itemId = $this->Item->id;
+
+				if (array_key_exists('ItemImage', $data) && !empty($data['ItemImage']) && is_array($data['ItemImage'])) {
+					foreach ($data['ItemImage'] as $itemImage) {
+						$imageData = base64_decode($itemImage['ItemImage']['data']);
+
+						$fileParsedData = pathinfo($itemImage['ItemImage']['filename']);
+						$filename = substr(md5($imageData), 0, 8) . $fileParsedData['extension'];
+
+						if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
+							$this->ItemImage->create();
+							$this->ItemImage->set('id', (array_key_exists('id', $itemImage['ItemImage']) ? $itemImage['ItemImage']['id'] : null));
+							$this->ItemImage->set('filename', $filename);
+							$this->ItemImage->set('item_id', $itemId);
+							$this->ItemImage->save();
+						}
+					}
+				}
+
+				if (array_key_exists('ItemVariation', $data) && !empty($data['ItemVariation']) && is_array($data['ItemVariation'])) {
+					foreach ($data['ItemVariation'] as $itemVariation) {
+						$itemVariation['item_id'] = $itemId;
+						$this->ItemVariation->save($itemVariation);
+					}
+				}
+
+				$response = array(
+					'status' => array(
+						'success' => 'Item successful updated',
+					),
+					'item' => array(
+						'id' => $this->Item->id,
+					)
+				);
+			}
+
+			$this->log($response, 'rest_log');
+
+			$this->set(compact("response"));
 		}
 
 		function rest_delete() {
-			$data = $this->data;
+			$this->layout = 'rest';
+			configure::write('debug', 0);
 
-			print_r($this->params);
-			print_r($data);
-			exit();
+			$data = $this->data;//->toArray();
+
+			$this->log($this->params, 'rest_log');
+			$this->log($data, 'rest_log');
+
+			$id = $this->params['id'];
+
+			$response = array();
+
+			if (!$this->Item->delete($id)) {
+				$response = array(
+					'status' => array(
+						'error' => 'Item can not be deleted',
+					),
+					'item' => array(
+						'id' => $id,
+					),
+				);
+			} else {
+				$this->loadModel('ItemImage');
+				$this->loadModel('ItemVariation');
+
+				$itemPhotos = $this->ItemImage->find(
+					'list',
+					array(
+						'conditions' => array(
+							'ItemImage.item_id' => $id
+						),
+						'fields' => array(
+							'ItemImage.id',
+							'ItemImage.filename',
+						)
+					)
+				);
+
+				if ($itemProhotos) {
+					foreach ($itemPhotos as $imageId => $filename) {
+						if (
+							!empty($filename) &&
+							file_exists(WWW_ROOT . '/files/' . $filename) &&
+							$this->ItemImage->delete($imageId)
+						) {
+							unlink(WWW_ROOT . '/files/' . $filename);
+						}
+					}
+				}
+
+				$this->ItemVariation->deleteAll(array('ItemVariation.item_id' => $id));
+
+				$response = array(
+					'status' => array(
+						'success' => 'Item successful deleted',
+					),
+					'item' => array(
+						'id' => $id,
+					)
+				);
+			}
+
+			$this->log($response, 'rest_log');
+
+			$this->set(compact("response"));
 		}
 
 		function rest_delete_photo() {
-			$data = $this->data;
+			$this->layout = 'rest';
+			configure::write('debug', 0);
 
-			print_r($this->params);
-			print_r($data);
-			exit();
+			$data = $this->data;//->toArray();
+
+			$this->log($this->params, 'rest_log');
+			$this->log($data, 'rest_log');
+
+			$id = $this->params['id'];
+
+			$response = array();
+
+			$this->loadModel('ItemImage');
+			$photo = array();
+			if (!($photo = $this->ItemImage->find('first', array('conditions' => array('ItemImage' => $id)))) || !$this->ItemImage->delete($id)) {
+				$response = array(
+					'status' => array(
+						'error' => 'Photo can not be deleted',
+					),
+					'item' => array(
+						'id' => $id,
+					),
+				);
+			} else {
+				if (!empty($photo['ItemImage']['filename']) && file_exists(WWW_ROOT . '/files/' . $photo['ItemImage']['filename'])) {
+					unlink(WWW_ROOT . '/files/' . $photo['ItemImage']['filename']);
+				}
+
+				$response = array(
+					'status' => array(
+						'success' => 'Photo successful deleted',
+					),
+					'item' => array(
+						'id' => $id,
+					)
+				);
+			}
+
+			$this->log($response, 'rest_log');
+
+			$this->set(compact("response"));
 		}
 	}
 ?>
