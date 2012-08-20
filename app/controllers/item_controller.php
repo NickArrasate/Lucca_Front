@@ -97,6 +97,10 @@ App::import('Inflector');
 			);
 
 			if (array_key_exists("search", $this->params['named']) && !empty($this->params['named']['search'])) {
+				if ($item = $this->Item->find('first', array('conditions' => array_merge($conditions_array, array('Item.fid' => $this->params['named']['search']))))) {
+					$this->redirect(array('controller' => 'item', 'action' => 'details', $item['Item']['id']));
+				}
+
 				$conditions_array = array_merge($conditions_array, array(
 						'OR' => array(
 							'Item.name LIKE' => '%' . $this->params['named']['search'] . '%',
@@ -1104,6 +1108,10 @@ App::import('Inflector');
 
 			$this->set('currentAction', 'grid');
 			if (array_key_exists('search', $this->params['named']) && !empty($this->params['named']['search'])) {
+				if ($item = $this->Item->find('first', array('conditions' => array('Item.fid' => $this->params['named']['search'])))) {
+					$this->redirect(array('prefix' => 'admin', 'controller' => 'item', 'action' => 'summary', $item['Item']['id']));
+				}
+
 				$itemRetriveConditions['OR'] = array(
 					'Item.name LIKE' => '%' . $this->params['named']['search'] . '%',
 					'Item.fid' => $this->params['named']['search']
