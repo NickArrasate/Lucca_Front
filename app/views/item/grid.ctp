@@ -54,11 +54,11 @@
 				?>
 				</dd>
 				<?php if (isset($all_items)) { ?>
-				<dd class="pagination">Viewing all <?php ?>| <a class="underline" href="/item/grid/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>">View 8 per page</a></dd>
+				<dd class="pagination">Viewing all <?php ?>| <a class="underline" href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction; ?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View 8 per page</a></dd>
 				<?php } else {  ?>
 				<?php if (isset($count) && $count > 8) { ?>
 				<dd class="pagination">
-				<a class="underline" href="/grid/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View All</a>
+				<a class="underline" href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View All</a>
 				</dd>
 				<?php } ?>
 				<?php } ?>
@@ -137,11 +137,11 @@
 			<dl class="breadcrumbs">
 				<dd>&#160;</dd>
 				<?php if (isset($all_items)) { ?>
-				<dd class="pagination">Viewing all <?php ?> | <a class="underline" href="/item/grid/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>">View 8 per page</a></dd>
+				<dd class="pagination">Viewing all <?php ?>| <a class="underline" href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction; ?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View 8 per page</a></dd>
 				<?php } else {  ?>
 				<?php if (isset($count) && $count > 8) { ?>
 				<dd class="pagination">
-					<a class="underline" href="/item/<?php echo $currentAction; ?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View All</a>
+				<a class="underline" href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $this->params['pass'][2]; ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View All</a>
 				</dd>
 				<?php } ?>
 				<?php } ?>

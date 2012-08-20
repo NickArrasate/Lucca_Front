@@ -83,7 +83,7 @@
 		<dd style="clear:both;">
 			<?php if($count > 8) { ?>
 			<div class="pagination">
-			<a class="underline" href="<?php echo Router::url(); ?>/<?php echo $type_id ?>/<?php echo $status ?>/all/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View All</a>
+			<a class="underline" href="<?php echo Router::url('/', true); ?>admin/item/<?php echo $currentAction; ?>/<?php echo $type_id ?>/<?php echo $status ?>/all/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View All</a>
 			</div>
 			<?php } ?>
 			<div class="pagination">
@@ -99,7 +99,7 @@
 		</dd>
 		<?php } else { ?>
 
-			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo (isset($filterMenu['categories'][$type_id]) ? $filterMenu['categories'][$type_id] : ''); ?></span> <a class="underline" href="/admin/item/grid/<?php echo $type_id ?>/<?php echo $status ?>/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/">View 8 per page</a></div>
+			<div class="pagination"><span>Viewing all <?php echo $status ?> <?php echo (isset($filterMenu['categories'][$type_id]) ? $filterMenu['categories'][$type_id] : ''); ?></span> <a class="underline" href="<?php echo Router::url('/', true); ?>admin/item/<?php echo $currentAction; ?>/<?php echo $type_id ?>/<?php echo $status ?>/subcategory:<?php echo $selectedFilter['subcategories']; ?>/location:<?php echo $selectedFilter['locations']; ?>/other:<?php echo $selectedFilter['other']; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">View 8 per page</a></div>
 
 		<?php } ?>
 

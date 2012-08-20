@@ -83,7 +83,7 @@
 			}
 
 			var path = {
-				'profix': '',
+				'prefix': '',
 				'controller': '',
 				'action': '',
 				'params': ''
@@ -103,30 +103,21 @@
 			}
 
 			var filterParams = category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
-			var queryString = '';
-			if ($('dl.subnavigation input[name="data[Search][item]"]').val().length) {
-				queryString = '/search:' + $('dl.subnavigation input[name="data[Search][item]"]').val() + '/';
-			}
-
+		
 //			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
-			window.location.href = newPath + path.prefix + path.controller + path.action + filterParams + queryString;
+			window.location.href = newPath + path.prefix + path.controller + path.action + filterParams;
 		});
 
 		$('dl.subnavigation form').submit(function (event) {
 			event.preventDefault();
 
-			var category = $('select[name="data[categories]"]').val();
-			var subcategory = $('select[name="data[subcategories]"]').val();
-			var location = $('select[name="data[locations]"]').val();
-			var other = $('select[name="data[other]"]').val();
-			
-			item_status = $('#item_statuses .active').text();
+			var item_status = $('#item_statuses .active').text();
 			item_status = item_status.replace(/ \([0-9]+\)/, '');
 			if(item_status == 'Works in Progress'){
 				item_status = 'Unpublished';
 			}
 
-			pagination_status = $('.pagination a.underline').text();
+			var pagination_status = $('.pagination a.underline').text();
 			if (pagination_status == 'View All' || pagination_status == '') {
 				pagination_status = '';
 			} else {
@@ -154,7 +145,7 @@
 				path.params = parsedPath.join('/');
 			}
 
-			var filterParams = category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
+			var filterParams = 'all/' + item_status + pagination_status + '/subcategory:all/location:all/other:all';
 			var queryString = '/search:' + $(this).find('input[type="text"]').val() + '/';
 
 //			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;

@@ -83,12 +83,14 @@ App::import('Inflector');
 			// Set grid display conditions
 			$conditions_array = array (
 				'Item.not_published' => 0,
-				'OR' => array (
-					'Item.status' => 'Available',
-					array (
-						'AND' => array(
-							'Item.status' => 'Sold',
-							'Item.sold_date >' => date('Y-m-d', strtotime("-7 days"))
+				array(
+					'OR' => array (
+						'Item.status' => 'Available',
+						array (
+							'AND' => array(
+								'Item.status' => 'Sold',
+								'Item.sold_date >' => date('Y-m-d', strtotime("-7 days"))
+							)
 						)
 					)
 				)
