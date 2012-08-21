@@ -64,7 +64,6 @@
 								'class' => '',
 								'title' => 'Autofill Text',
 							)
-
 						),
 
 						'navigation' => array(
