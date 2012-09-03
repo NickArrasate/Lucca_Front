@@ -2400,6 +2400,7 @@ App::import('Inflector');
 
 				$this->ItemOccurrence->createItemOccurrences($itemId, $categoryId, $subcategoryId, $locationIds);
 
+				$imagesList = array();
 				if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
 					foreach ($data['Item']['ItemImage'] as $itemImage) {
 						$imageData = base64_decode($itemImage['data']);
@@ -2411,7 +2412,9 @@ App::import('Inflector');
 							$this->ItemImage->create();
 							$itemImage['filename'] = $filename;
 							$itemImage['item_id'] = $itemId;
-							$this->ItemImage->save($itemImage);
+							if ($this->ItemImage->save($itemImage)) {
+								array_push($imagesList, array('id' => $this->ItemImage->id, 'name' => $filename));
+							}
 						}
 					}
 				}
@@ -2433,7 +2436,10 @@ App::import('Inflector');
 					),
 					'item' => array(
 						'id' => $this->Item->id,
-					)
+					),
+					'images' => array(
+						'image' => $imagesList,
+					),
 				);
 			}
 
@@ -2495,6 +2501,7 @@ App::import('Inflector');
 
 				$this->ItemOccurrence->createItemOccurrences($itemId, $categoryId, $subcategoryId, $locationIds);
 
+				$imagesList = array();
 				if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
 					foreach ($data['Item']['ItemImage'] as $itemImage) {
 						$imageData = base64_decode($itemImage['data']);
@@ -2506,7 +2513,9 @@ App::import('Inflector');
 							$this->ItemImage->create();
 							$itemImage['filename'] = $filename;
 							$itemImage['item_id'] = $itemId;
-							$this->ItemImage->save($itemImage);
+							if ($this->ItemImage->save($itemImage)) {
+								array_push($imagesList, array('id' => $this->ItemImage->id, 'name' => $filename));
+							}
 						}
 					}
 				}
@@ -2528,7 +2537,10 @@ App::import('Inflector');
 					),
 					'item' => array(
 						'id' => $this->Item->id,
-					)
+					),
+					'images' => array(
+						'image' => $imagesList,
+					),
 				);
 			}
 
