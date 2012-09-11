@@ -46,41 +46,80 @@
 	Router::connect('/item/grid/*', array('controller' => 'item', 'action' => 'grid'));
 	Router::connect('/item/search/*', array('controller' => 'item', 'action' => 'grid'));
 
-	Router::mapResources('item');
-	Router::parseExtensions();
+	Router::parseExtensions('xml');
 	Router::connect(
 		"/rest/photo/:id",
-		array("controller" => "item", "action" => "delete_photo", "prefix" => "rest", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		array("controller" => "rest_api", "action" => "image_delete", "prefix" => "item", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
 /*	Router::connect(
-		"/rest/:controller/",
-		array("action" => "index", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml")
+		"/rest/item/",
+		array("controller" => "rest_api", "action" => "index", "prefix" => "item", "rest" => true, "[method]" => "GET", "ext" => "xml")
 	);
  */
 /*	Router::connect(
-		"/rest/:controller/:id",
-		array("action" => "view", "prefix" => "rest", "rest" => true, "[method]" => "GET", "ext" => "xml"),
+		"/rest/item/:id",
+		array("controller" => "rest_api", "action" => "view", "prefix" => "item", "rest" => true, "[method]" => "GET", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
  */
 	Router::connect(
-		"/rest/:controller/",
-		array("action" => "add", "prefix" => "rest", "rest" => true, "[method]" => "POST", "ext" => "xml")
+		"/rest/item/",
+		array("controller" => "rest_api", "action" => "add", "prefix" => "item", "rest" => true, "[method]" => "POST", "ext" => "xml")
 	);
 	Router::connect(
-		"/rest/:controller/:id",
-		array("action" => "edit", "prefix" => "rest", "rest" => true, "[method]" => "POST", "ext" => "xml"),
+		"/rest/item/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "item", "rest" => true, "[method]" => "POST", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
 	Router::connect(
-		"/rest/:controller/:id",
-		array("action" => "edit", "prefix" => "rest", "rest" => true, "[method]" => "PUT", "ext" => "xml"),
+		"/rest/item/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "item", "rest" => true, "[method]" => "PUT", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
 	Router::connect(
-		"/rest/:controller/:id",
-		array("action" => "delete", "prefix" => "rest", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		"/rest/item/:id",
+		array("controller" => "rest_api", "action" => "delete", "prefix" => "item", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+
+	Router::connect(
+		"/rest/category/",
+		array("controller" => "rest_api", "action" => "add", "prefix" => "category", "rest" => true, "[method]" => "POST", "ext" => "xml")
+	);
+	Router::connect(
+		"/rest/category/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "category", "rest" => true, "[method]" => "POST", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/category/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "category", "rest" => true, "[method]" => "PUT", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/category/:id",
+		array("controller" => "rest_api", "action" => "delete", "prefix" => "category", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+
+	Router::connect(
+		"/rest/type/",
+		array("controller" => "rest_api", "action" => "add", "prefix" => "type", "rest" => true, "[method]" => "POST", "ext" => "xml")
+	);
+	Router::connect(
+		"/rest/type/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "type", "rest" => true, "[method]" => "POST", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/type/:id",
+		array("controller" => "rest_api", "action" => "edit", "prefix" => "type", "rest" => true, "[method]" => "PUT", "ext" => "xml"),
+		array("id" => "[0-9]+")
+	);
+	Router::connect(
+		"/rest/type/:id",
+		array("controller" => "rest_api", "action" => "delete", "prefix" => "type", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
 ?>
