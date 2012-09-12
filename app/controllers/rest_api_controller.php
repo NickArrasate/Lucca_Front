@@ -34,8 +34,10 @@ class RestApiController extends AppController {
 
 		$response = array();
 
+		$isDataValid = $this->__checkData($data, 'Item', 'Item');
+
 		$this->loadModel('Item');
-		if (!$this->Item->save($data)) {
+		if (!$isDataValid || !$this->Item->save($data)) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -79,7 +81,7 @@ class RestApiController extends AppController {
 
 			$imagesList = array();
 			if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
-				if (in_array(key($data['Item']['ItemImage']), array('id', 'item_id', 'data', 'filename', 'primary'))) {
+				if (in_array(key($data['Item']['ItemImage']), array('id', 'item_id', 'data', 'filename', 'primary'), true)) {
 					$data['Item']['ItemImage'] = array($data['Item']['ItemImage']);
 				}
 				foreach ($data['Item']['ItemImage'] as $itemImage) {
@@ -100,7 +102,7 @@ class RestApiController extends AppController {
 			}
 
 			if (array_key_exists('ItemVariation', $data['Item']) && !empty($data['Item']['ItemVariation']) && is_array($data['Item']['ItemVariation'])) {
-				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'))) {
+				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'), true)) {
 					$data['Item']['ItemVariation'] = array($data['Item']['ItemVariation']);
 				}
 				foreach ($data['Item']['ItemVariation'] as $itemVariation) {
@@ -145,12 +147,14 @@ class RestApiController extends AppController {
 
 		$response = array();
 
-		if (!array_key_exists('id', $data['Item']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
+		$isDataValid = $this->__checkData($data, 'Item', 'Item');
+
+		if ($isDataValid && !array_key_exists('id', $data['Item']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
 			$data['Item']['id'] = intval($this->params['id']);
 		}
 
 		$this->loadModel('Item');
-		if (!$this->Item->save($data)) {
+		if (!$isDataValid || !$this->Item->save($data)) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -194,7 +198,7 @@ class RestApiController extends AppController {
 
 			$imagesList = array();
 			if (array_key_exists('ItemImage', $data['Item']) && !empty($data['Item']['ItemImage']) && is_array($data['Item']['ItemImage'])) {
-				if (in_array(key($data['Item']['ItemImage']), array('id', 'item_id', 'data', 'filename', 'primary'))) {
+				if (in_array(key($data['Item']['ItemImage']), array('id', 'item_id', 'data', 'filename', 'primary'), true)) {
 					$data['Item']['ItemImage'] = array($data['Item']['ItemImage']);
 				}
 				foreach ($data['Item']['ItemImage'] as $itemImage) {
@@ -223,7 +227,7 @@ class RestApiController extends AppController {
 			}
 
 			if (array_key_exists('ItemVariation', $data['Item']) && !empty($data['Item']['ItemVariation']) && is_array($data['Item']['ItemVariation'])) {
-				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'))) {
+				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'), true)) {
 					$data['Item']['ItemVariation'] = array($data['Item']['ItemVariation']);
 				}
 				foreach ($data['Item']['ItemVariation'] as $itemVariation) {
@@ -379,8 +383,10 @@ class RestApiController extends AppController {
 
 		$response = array();
 
+		$isDataValid = $this->__checkData($data, 'Category', 'ItemCategory');
+
 		$this->loadModel('ItemCategory');
-		if (!$this->ItemCategory->save($data['Category'])) {
+		if (!$isDataValid || !$this->ItemCategory->save($data['Category'])) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -414,12 +420,14 @@ class RestApiController extends AppController {
 
 		$response = array();
 
-		if (!array_key_exists('id', $data['Category']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
+		$isDataValid = $this->__checkData($data, 'Category', 'ItemCategory');
+
+		if ($isDataValid && !array_key_exists('id', $data['Category']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
 			$data['Category']['id'] = intval($this->params['id']);
 		}
 
 		$this->loadModel('ItemCategory');
-		if (!$this->ItemCategory->save($data['Category'])) {
+		if (!$isDataValid || !$this->ItemCategory->save($data['Category'])) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -492,8 +500,10 @@ class RestApiController extends AppController {
 
 		$response = array();
 
+		$isDataValid = $this->__checkData($data, 'Type', 'ItemType');
+
 		$this->loadModel('ItemType');
-		if (!$this->ItemType->save($data['Type'])) {
+		if (!$isDataValid || !$this->ItemType->save($data['Type'])) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -527,12 +537,14 @@ class RestApiController extends AppController {
 
 		$response = array();
 
-		if (!array_key_exists('id', $data['Type']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
+		$isDataValid = $this->__checkData($data, 'Type', 'ItemType');
+
+		if ($isDataValid && !array_key_exists('id', $data['Type']) && array_key_exists('id', $this->params) && intval($this->params['id'])) {
 			$data['Type']['id'] = intval($this->params['id']);
 		}
 
 		$this->loadModel('ItemType');
-		if (!$this->ItemType->save($data['Type'])) {
+		if (!$isDataValid || !$this->ItemType->save($data['Type'])) {
 			$response = array(
 				'status' => array(
 					'error' => 'Invalid data',
@@ -592,6 +604,19 @@ class RestApiController extends AppController {
 		$this->log($response, 'rest_log');
 
 		$this->set(compact("response"));
+	}
+
+	private function __checkData($data, $key, $model) {
+		if (!property_exists($this, $model)) {
+			$this->loadModel($model);
+		}
+
+		if (!array_key_exists($key, $data)) {
+			$this->{$model}->validationErrors = array('XML is invalid or empty');
+			return false;
+		}
+
+		return true;
 	}
 
 	/*
