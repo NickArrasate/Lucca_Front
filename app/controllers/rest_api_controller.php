@@ -236,6 +236,9 @@ class RestApiController extends AppController {
 					if (!array_key_exists('primary', $itemVariation) || !is_numeric($itemVariation['primary'])) {
 						$itemVariation['primary'] = 0;
 					}
+					if (!intval($itemVariation['sku'])) {
+						$itemVariation['sku'] = substr(time(), 4, 6);
+					}
 					$this->ItemVariation->save($itemVariation);
 				}
 			}
