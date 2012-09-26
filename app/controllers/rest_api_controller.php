@@ -222,6 +222,17 @@ class RestApiController extends AppController {
 					$itemImage['item_id'] = $itemId;
 					if ($this->ItemImage->save($itemImage)) {
 						array_push($imagesList, array('id' => $this->ItemImage->id, 'name' => $filename));
+						if (array_key_exists('primary', $itemImage) && intval($itemImage['primary'])) {
+							$this->ItemImage->updateAll(
+								array(
+									'ItemImage.primary' => 0,
+								),
+								array(
+									'ItemImage.item_id' => $itemId,
+									'ItemImage.id <>' => $this->ItemImage->id,
+								)
+							);
+						}
 					}
 				}
 			}
@@ -239,7 +250,19 @@ class RestApiController extends AppController {
 					if (!intval($itemVariation['sku'])) {
 						$itemVariation['sku'] = substr(time(), 4, 6);
 					}
-					$this->ItemVariation->save($itemVariation);
+					if ($this->ItemVariation->save($itemVariation)) {
+						if (array_key_exists('primary', $itemVariation) && intval($itemVariation['primary'])) {
+							$this->ItemVariation->updateAll(
+								array(
+									'ItemVariation.primary' => 0,
+								),
+								array(
+									'ItemVariation.item_id' => $itemId,
+									'ItemVariation.id <>' => $this->ItemVariation->id,
+								)
+							);
+						}
+					}
 				}
 			}
 

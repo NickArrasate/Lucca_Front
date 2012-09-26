@@ -262,19 +262,30 @@ App::import('Inflector');
 					'Item.id' => $item_id
 				),
 				'joins' => array(
-							array(
-								'table' => 'inventory_quantity',
-								'alias' => 'InventoryQuantity',
-								'type' => 'Inner',
-								'conditions' => array('Item.id = InventoryQuantity.item')
-							),
-							array(
-								'table' => 'inventory_locations',
-								'alias' => 'ItemLocation',
-								'type' => 'left',
-								'conditions' => array('InventoryQuantity.location = ItemLocation.id')
-							)
+					array(
+						'table' => 'inventory_quantity',
+						'alias' => 'InventoryQuantity',
+						'type' => 'left',
+						'conditions' => array('Item.id = InventoryQuantity.item')
+					),
+					array(
+						'table' => 'inventory_locations',
+						'alias' => 'ItemLocation',
+						'type' => 'left',
+						'conditions' => array('InventoryQuantity.location = ItemLocation.id')
+					)
+				),
+				'contain' => array(
+					'ItemVariation' => array(
+						'order' => array(
+							'ItemVariation.primary' => 'DESC',
+							'ItemVariation.id' => 'ASC'
 						)
+					),
+					'ItemType',
+					'ItemCategory',
+					'ItemImage',
+				)
 			));
 
 			if ($item_details[0]['Item']['status'] == 'Hidden') {
@@ -353,7 +364,7 @@ App::import('Inflector');
 			$this->set('item_details', $item_details);
 			$this->set('item_category_id', $item_details[0]['Item']['item_category_id']);
 			//$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
-			$this->set('inventory_location_id', $item_details[0]['InventoryQuantity'][0]['location']);
+			$this->set('inventory_location_id', (array_key_exists(0, $item_details[0]['InventoryQuantity'])) ? $item_details[0]['InventoryQuantity'][0]['location'] : null);
 			$this->set('item_type_id', $item_details[0]['Item']['item_type_id']);
 			$this->set('primary_image', $primary_image);
 			$this->set('current_date_time', $current_date_time);
