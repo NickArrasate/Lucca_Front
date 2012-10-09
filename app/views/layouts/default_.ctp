@@ -38,7 +38,7 @@
 						<dd class="third"><a href="/item/grid/3/all/"><span>Tables</span></a></dd>
 						<dd class="fourth"><a href="/item/grid/4/all/"><span>Wall Decor</span></a></dd>
 						<dd class="fifth"><a href="/item/grid/5/all/"><span>Case Goods</span></a></dd>
-						<dd class="sixth"><a href="/item/grid/6/all/"><span>Garden &amp; More</span></a></dd>
+						<dd class="sixth"><a href="/item/grid/6/all/"><span>More</span></a></dd>
 						<dd class="seventh"><a href="/item/grid/all/all/"><span>All Inventory</span></a></dd>
 					</dl>
 				</dd>

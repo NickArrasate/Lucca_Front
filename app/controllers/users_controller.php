@@ -46,8 +46,9 @@ class UsersController extends AppController {
 				}
 			}
 		}
+
 	}
-	
+
 	/**
 	 * Checks User data is valid before allowing access to system
 	 * @param array $data
@@ -68,7 +69,7 @@ class UsersController extends AppController {
 		if(!empty($user)) {
 			$salt = Configure::read('Security.salt');
 			// check password
-			// yea -- i just md5ed my password in the database without the salt. eh. 
+			// yea -- i just md5ed my password in the database without the salt. eh.
 			if($user['User']['password'] == md5($data['User']['password'] . $salt)) {
 				$return = $user;
 			}

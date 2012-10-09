@@ -25,7 +25,7 @@
 
 	<body>
 		<div class="container" style="background:#666">
-		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
+			<?php if($title_for_layout !== "Lucca Antiques"){ ?>
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
 			<?php } ?>
 			<dl class="header">
@@ -40,16 +40,33 @@
 						<dd class="fifth"><a href="/item/grid/5/all/"><span>Case Goods</span></a></dd>
 						<dd class="sixth"><a href="/item/grid/6/all/"><span>Garden &amp; More</span></a></dd>
 						<dd class="seventh"><a href="/item/grid/all/all/"><span>All Inventory</span></a></dd>
-					</dl>
+					</dl>$current_item_type_id
 					-->
 					<div class="menu-block">
 						<ul class="menus">
-							<li class="menu1"><a href="/item/grid/1/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 1) echo 'class="selected"'; ?> title="Lighting">Lighting</a></li>
-							<li class="menu2"><a href="/item/grid/2/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 2) echo 'class="selected"'; ?> title="Seating">Seating</a></li>
-							<li class="menu3"><a href="/item/grid/3/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 3) echo 'class="selected"'; ?> title="Tables">Tables</a></li>
-							<li class="menu4"><a href="/item/grid/4/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 4) echo 'class="selected"'; ?> title="Wall Decor">Wall Decor</a></li>
-							<li class="menu5"><a href="/item/grid/5/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 5) echo 'class="selected"'; ?> title="Case Goods">Case Goods</a></li>
-							<li class="menu6"><a href="/item/grid/6/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 6) echo 'class="selected"'; ?> title="Garden &amp; More">Garden &amp; More</a></li>
+							<?php while ($i<5){
+							$value=each($item_types);
+							$i++;
+							?>
+
+							<li class="menu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $value[0])) echo 'class="selected"'; ?> title=""><?php echo $value[1] ?></a></li>
+
+						<?php }
+						?>
+							<li class="menu6">
+								<div class="locations">
+									<a href="#" title="More">More</a>
+									<div class="pulldown">
+										<ul class="submenus">
+										<?php while (current($item_types)){
+											$value=each($item_types);
+							?>
+											<li class="submenu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" title=""><?php echo $value[1] ?></a></li>
+											<?php }
+							?>
+										</ul>
+									</div>
+								</div></li>
 							<li class="menu7">
 								<div class="locations">
 									<a href="/item/grid/all/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'class="selected"'; ?> title="All Inventory">All Inventory</a>
@@ -57,18 +74,18 @@
 										<ul class="submenus">
 											<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
 											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li>
-										</ul>
+											</ul>
+										</div>
 									</div>
-								</div>
-							</li>
-							<li class="search">
-									<div class="searchform <?php echo (empty($searchString)) ? "disabled" : "enabled"; ?>">
-										<?php echo $form->create('Search', array('url' => array('controller' => 'item', 'action' => 'search'))); ?>
-											<?php echo $form->text('Search.item', array('value' => $searchString)); ?>
-											<?php echo $form->label('Search.item', 'Search'); ?>
-										<?php echo $form->end(); ?>
-									</div>
-							</li>
+								</li>
+								<li class="search">
+										<div class="searchform <?php echo (empty($searchString)) ? "disabled" : "enabled"; ?>">
+											<?php echo $form->create('Search', array('url' => array('controller' => 'item', 'action' => 'search'))); ?>
+												<?php echo $form->text('Search.item', array('value' => $searchString)); ?>
+												<?php echo $form->label('Search.item', 'Search'); ?>
+											<?php echo $form->end(); ?>
+										</div>
+								</li>
 						</ul>
 					</div>
 				</dd>

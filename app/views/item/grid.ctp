@@ -84,8 +84,8 @@
 
 			<dl class="results">
 			<div style="display:none">
-            	<?php print_r($all_items);print_r($items);?>
-            </div>
+			<?php print_r($all_items);print_r($items);?>
+		</div>
 			<?php if (count($items) > 0) {?>
 
 			<?php

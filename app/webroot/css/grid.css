@@ -1,4 +1,4 @@
-.results .sold { 
+.results .sold {
 	border:1px solid #790100;
 	display:block;
 	margin:5px 0 0;
@@ -28,19 +28,20 @@
 			padding:5px 16px 5px 13px;
 			text-align:left;
 			text-decoration: none;
+			word-break: break-all;
 		}
-		
-			.item-category .nav .active a, .item-category .nav a:hover{	
+
+			.item-category .nav .active a, .item-category .nav a:hover{
 				background-color:#C42F33;
 				color: #fff;
-				text-decoration:none; 
+				text-decoration:none;
 			}
-			
+
 body h3.notifications {line-height:30px;
 margin:0;}
 
 .item-category .nav, .item-category .wrapper {float:left}
-	
+
 .results dd ul li {width:142px; font-family:Arial}
 
 .breadcrumbs {margin:0 0 5px 0; overflow:hidden;}
@@ -64,7 +65,7 @@ text-align:left;
 
 		.breadcrumbs .pagination a  {color:#9A9C9B; margin:0 1px;}
 
-		
+
 .item-title a {color:#534741; font-size:12px;}
 
 .results {clear:both; overflow:hidden; min-height:400px; margin:0 0 20px;}
@@ -77,9 +78,9 @@ text-align:left;
 .results .no-margin {margin:0 }
 
 	.results dd ul li, .results dd ul{margin:0 12px 0 0; padding:0; list-style-type:none}
-	
+
 		.results dd ul .item-price, .results .sold {color:#790100;}
-		
+
 .category-results-divider2 {
 	background:url(../img/item-category-divider.png) repeat-x;
 	height:2px;
