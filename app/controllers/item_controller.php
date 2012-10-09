@@ -173,6 +173,17 @@ App::import('Inflector');
 //					'order' => array('Item.publish_date' => 'desc'),
 					'order' => array('ItemOccurrence.left' => 'asc'),
 					'joins' => $joins,
+					'contain' => array(
+						'ItemVariation' => array(
+							'order' => array(
+								'ItemVariation.primary' => 'DESC',
+								'ItemVariation.id' => 'ASC'
+							)
+						),
+						'ItemType',
+						'ItemCategory',
+						'ItemImage',
+					),
 				));
 				$this->set('all_items', 'All');
 
@@ -206,12 +217,22 @@ App::import('Inflector');
 				$this->paginate['Item']['order'] = array(
 					'ItemOccurrence.left' => 'asc'
 				);
+				$this->paginate['Item']['contain'] = array(
+					'ItemVariation' => array(
+						'order' => array(
+							'ItemVariation.primary' => 'DESC',
+							'ItemVariation.id' => 'ASC'
+						)
+					),
+					'ItemType',
+					'ItemCategory',
+					'ItemImage',
+				);
 
 				$items = $this->paginate('Item', array(
 					$conditions_array,
 					)
 				);
-
 			}
 
 			$chunked_items = array_chunk($items, 4);
@@ -257,6 +278,15 @@ App::import('Inflector');
 			$item_id = $this->params['pass'][0];
 
 			$item_details = $this->Item->find('all', array(
+				'fields' => array(
+					'Item.*',
+					'InventoryQuantity.*',
+					'InventoryLocation.*',
+					'ItemVariation.*',
+					'ItemType.*',
+					'ItemCategory.*',
+					'ItemImage.*',
+				),
 				'conditions' => array(
 					'Item.not_published' => 0,
 					'Item.id' => $item_id
@@ -337,6 +367,7 @@ App::import('Inflector');
 				$this->set('options', $addon_options);
 			}
 
+			$primary_image = '';
 			foreach($item_details as $item_detail) {
 				foreach($item_detail['ItemImage'] as $item_image) {
 					if ($item_image['primary'] == 1) {
@@ -364,7 +395,7 @@ App::import('Inflector');
 			$this->set('item_details', $item_details);
 			$this->set('item_category_id', $item_details[0]['Item']['item_category_id']);
 			//$this->set('inventory_location_id', $item_details[0]['Item']['inventory_location_id']);
-			$this->set('inventory_location_id', (array_key_exists(0, $item_details[0]['InventoryQuantity'])) ? $item_details[0]['InventoryQuantity'][0]['location'] : null);
+			$this->set('inventory_location_id', (array_key_exists('InventoryQuantity', $item_details[0]) && array_key_exists(0, $item_details[0]['InventoryQuantity'])) ? $item_details[0]['InventoryQuantity'][0]['location'] : null);
 			$this->set('item_type_id', $item_details[0]['Item']['item_type_id']);
 			$this->set('primary_image', $primary_image);
 			$this->set('current_date_time', $current_date_time);
