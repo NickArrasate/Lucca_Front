@@ -257,14 +257,12 @@ App::import('Inflector');
 					)
 				)
 			);
-
 			$this->set('currentAction', 'grid');
 			if (array_key_exists('search', $this->params['named']) && !empty($this->params['named']['search'])) {
 				$this->set('currentAction', 'search');
 			}
 
 			$this->set('items', $chunked_items);
-			//$this->set('item_types', $item_types);
 			$this->set('item_categories', $item_categories);
 			$this->set('inventory_location', $inventory_location);
 			$this->set('current_item_type_name', $current_item_type);

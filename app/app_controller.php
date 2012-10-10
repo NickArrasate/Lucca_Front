@@ -97,6 +97,12 @@ class AppController extends Controller {
 			// change layout
 			$this->layout = 'admin';
 		}
+		$this->loadModel('ItemType');
+		$item_types = $this->ItemType->find('list', array(
+				'order' => 'ItemType.sort asc',
+				'fields' => array('ItemType.name')
+			));
+		$this->set('item_types',$item_types);
 
 		$searchString = '';
 		if (array_key_exists("search", $this->params['named']) && !empty($this->params['named']['search'])) {

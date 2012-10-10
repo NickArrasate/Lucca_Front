@@ -3878,7 +3878,7 @@ INSERT INTO `item_types` (`id`, `name`) VALUES
 (3, 'Tables'),
 (4, 'Wall Decor'),
 (5, 'Case Goods'),
-(6, 'Garden &amp; More');
+(6, 'Garden &amp;More');
 
 --
 -- Dumping data for table `item_variations`
