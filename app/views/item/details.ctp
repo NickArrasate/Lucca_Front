@@ -470,12 +470,12 @@ $(document).ready(function() {
 					echo $contact;*/
 					// ADDED BY BRIAN
 					//if(empty($item_detail['InventoryLocation']['contact'])){
-						if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){
+						if ($item_details[0]['InventoryQuantity']['location'] == 1){
 							echo "<ul><li>744 North La Cienega Blvd.
 							</li><li>Los Angeles, CA 90069
 							</li><li>Phone:             310-657-7800
 							</li><li>Email: beth@luccaantiques.com</li></ul>";
-						}elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
+						}elseif($item_details[0]['InventoryQuantity']['location'] == 2){
 							echo "<ul><li>182 Duane Street
 							</li><li>New York, NY 10013
 							</li><li>Phone:             212-343-9005
