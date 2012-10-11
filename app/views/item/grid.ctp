@@ -15,13 +15,15 @@
 				</dd>
 
 				<?php
-					$item_categories_count = sizeof($item_categories);
+				foreach ($item_categories as $i => $category) {
 
-					for ($i=0; $i < $item_categories_count; $i++) {
-				?>
-					<dd <?php if(($i + 1) == $current_item_category ) { echo 'class="active"'; } ?>>
-						<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $i + 1 ?>/<?php echo $inventory_location; ?>/"><?php echo $item_categories[$i + 1] ?></a></span>
-					</dd>
+					if(($i + 1) == $current_item_category ) { ?>
+
+						<dd class="active">
+					<?php } else { ?>
+						<dd>
+					<?php } ?>
+				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $i + 1 ?>/"><?php echo $category ?></a></span></dd>
 				<?php } ?>
 
 				<br />

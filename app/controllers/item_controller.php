@@ -246,7 +246,6 @@ App::import('Inflector');
 			$item_categories = $this->ItemCategory->find('list', array(
 				'fields' => array('ItemCategory.id', 'ItemCategory.name',)
 			));
-
 			$inventory_locations = $this->InventoryLocation->find('list', array(
 				'fields' => array('InventoryLocation.id', 'InventoryLocation.name', 'InventoryLocation.contact',)
 			));
