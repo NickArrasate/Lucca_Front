@@ -125,45 +125,14 @@ class AppController extends Controller {
 		}
 		// breadcrumbs
 		if ($this->params['controller'] == 'item' && $this->params['action'] == 'grid') {
-			switch($this->params['pass'][0]) {
-				case '0':
-				case 'all':
-					$type = 'All Inventory';
-					break;
-				case '1':
-					$type = 'Lighting';
-					break;
-				case '2':
-					$type = 'Seating';
-					break;
-				case '3':
-					$type = 'Tables';
-					break;
-				case '4':
-					$type = 'Wall Decor';
-					break;
-				case '5':
-					$type = 'Case Goods';
-					break;
-				case '6':
-					$type = 'Garden &amp; More';
-					break;
-			}
+			$categories = $this->ItemType->find('list', array('fields' => array('ItemType.id', 'ItemType.name')));
+			$categories['all'] = $categories[0] = 'All Inventory';
 
-			switch($this->params['pass'][1]) {
-				case 'all':
-					$category = 'All';
-					break;
-				case '1':
-					$category = 'Antiques';
-					break;
-				case '2':
-					$category = 'Lucca Studio';
-					break;
-				case '3':
-					$category = 'Found';
-					break;
-			}
+			$subcategories = $this->ItemCategory->find('list', array('fields' => array('ItemCategory.id', 'ItemCategory.name')));
+			$subcategories['all'] = $subcategories[0] = 'All';
+
+			$type = array_key_exists($this->params['pass'][0], $categories) ? $categories[$this->params['pass'][0]] : 'Unknown';
+			$category = array_key_exists($this->params['pass'][1], $subcategories) ? $subcategories[$this->params['pass'][1]] : 'Unknown';
 
 			$breadcrumbs = array($type, $category);
 
@@ -173,57 +142,29 @@ class AppController extends Controller {
 		if ($this->params['controller'] == 'item' && $this->params['action'] == 'details') {
 			$this->loadModel('Item');
 
-			$item_type_id = $this->Item->find('list', array(
+			$itemBreadcrumb = $this->Item->find('first', array(
 				'conditions' => array(
 					'Item.id' => $this->params['pass'][0]
 				),
-				'fields' => array('item_type_id')
-			));
-
-			$item_category_id = $this->Item->find('list', array(
-				'conditions' => array(
-					'Item.id' => $this->params['pass'][0]
+				'fields' => array(
+					'Item.id',
+					'Item.item_type_id',
+					'Item.item_category_id',
 				),
-				'fields' => array('item_category_id')
+				'contain' => array(
+					'ItemType' => array(
+						'fields' => array('name')
+					),
+					'ItemCategory' => array(
+						'fields' => array('name')
+					)
+				)
 			));
 
-			switch($item_type_id[$this->params['pass'][0]]) {
-				case '1':
-					$type = 'Lighting';
-					break;
-				case '2':
-					$type = 'Seating';
-					break;
-				case '3':
-					$type = 'Tables';
-					break;
-				case '4':
-					$type = 'Wall Decor';
-					break;
-				case '5':
-					$type = 'Case Goods';
-					break;
-				case '6':
-					$type = 'Garden &amp; More';
-					break;
-			}
-
-			switch($item_category_id[$this->params['pass'][0]]) {
-				case '1':
-					$category = 'Antiques';
-					break;
-				case '2':
-					$category = 'Lucca Studio';
-					break;
-				case '3':
-					$category = 'Found';
-					break;
-			}
-
-			$breadcrumbs = array($type, $category);
+			$breadcrumbs = array($itemBreadcrumb['ItemType']['name'], $itemBreadcrumb['ItemCategory']['name']);
 			$this->set('breadcrumbs', $breadcrumbs);
-			$this->set('item_category_id', $item_category_id[$this->params['pass'][0]]);
-			$this->set('item_type_id', $item_type_id[$this->params['pass'][0]]);
+			$this->set('item_category_id', $itemBreadcrumb['ItemCategory']['id']);
+			$this->set('item_type_id', $itemBreadcrumb['ItemType']['id']);
 		}
 
 	}

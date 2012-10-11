@@ -278,11 +278,7 @@ App::import('Inflector');
 				'fields' => array(
 					'Item.*',
 					'InventoryQuantity.*',
-					'InventoryLocation.*',
-					'ItemVariation.*',
-					'ItemType.*',
-					'ItemCategory.*',
-					'ItemImage.*',
+					'ItemLocation.*',
 				),
 				'conditions' => array(
 					'Item.not_published' => 0,
