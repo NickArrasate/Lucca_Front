@@ -113,6 +113,9 @@
 							</a>
 						</li>
 						<li class="item-title"><a href="/item/details/<?php echo $i['Item']['id']  ?>/"><?php echo $i['Item']['name'] ?></a></li>
+						<?php if (!empty($i['Item']['fid'])): ?>
+							<li class="item-title" style="color: #534741;">Filemaker ID: <?php echo $i['Item']['fid']; ?></li>
+						<?php endif; ?>
 						<?php if($i['Item']['status'] == 'Sold') { ?>
 							<li><span class="small-button gray-background red-text-border">SOLD</span></li>
 						<?php } else { ?>

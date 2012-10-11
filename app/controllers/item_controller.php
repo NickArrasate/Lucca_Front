@@ -11,7 +11,7 @@ App::import('Inflector');
 
 		var $paginate = array(
 			'Item' => array(
-				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original'),
+				'fields' => array('Item.id', 'Item.name', 'Item.publish_date', 'Item.status', 'Item.item_type_id', 'Item.lucca_original', 'Item.fid'),
 				'limit' => 48,
 //			'order' => array(
 //				'Item.publish_date' => 'desc'
@@ -169,7 +169,7 @@ App::import('Inflector');
 
 				$items = $this->Item->find('all', array(
 					'conditions' => $conditions_array,
-					'fields' => array('Item.name', 'Item.status'),
+					'fields' => array('Item.name', 'Item.status', 'Item.fid'),
 //					'order' => array('Item.publish_date' => 'desc'),
 					'order' => array('ItemOccurrence.left' => 'asc'),
 					'joins' => $joins,
