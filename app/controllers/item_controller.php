@@ -1249,6 +1249,18 @@ App::import('Inflector');
 						),
 						'order' => array('ItemOccurrence.left' => 'asc'),
 //						'order' => $itemRetriveOrders
+						'contain' => array(
+							'ItemVariation' => array(
+								'order' => array(
+									'ItemVariation.primary' => 'DESC',
+									'ItemVariation.id' => 'ASC'
+								)
+							),
+							'ItemType',
+							'ItemCategory',
+							'ItemImage',
+							'InventoryQuantity'
+						)
 					)
 				);
 
@@ -1276,6 +1288,18 @@ App::import('Inflector');
 							sprintf('Occurrence.location = %s', $locationId),
 						),
 					)
+				);
+				$this->paginate['Item']['contain'] = array(
+					'ItemVariation' => array(
+						'order' => array(
+							'ItemVariation.primary' => 'DESC',
+							'ItemVariation.id' => 'ASC'
+						)
+					),
+					'ItemType',
+					'ItemCategory',
+					'ItemImage',
+					'InventoryQuantity'
 				);
 				$this->paginate['Item']['order'] = array(
 					'ItemOccurrence.left' => 'asc'
@@ -1326,7 +1350,18 @@ App::import('Inflector');
 							'group' => array(
 								'Item.parent_id'
 							),
-							'recursive' => false
+							'recursive' => false,
+							'contain' => array(
+								'ItemVariation' => array(
+									'order' => array(
+										'ItemVariation.primary' => 'DESC',
+										'ItemVariation.id' => 'ASC'
+									)
+								),
+								'ItemType',
+								'ItemCategory',
+								'ItemImage',
+							)
 						)
 					);
 
@@ -1388,7 +1423,6 @@ App::import('Inflector');
 				);
 			}
 			$this->set('locationsNames', $locationsShortAndDisplayNames);
-
 			$this->set('chunked_items', $chunked_items);
 			$this->set('status', $status);
 			$this->set('settings', array('w'=>142, 'h' => 142, 'crop'=>1));
@@ -1425,6 +1459,17 @@ App::import('Inflector');
 			$item_details = $this->Item->find('all', array(
 					'conditions' => array(
 						'Item.id' => $item_id
+					),
+					'contain' => array(
+						'ItemVariation' => array(
+							'order' => array(
+								'ItemVariation.primary' => 'DESC',
+								'ItemVariation.id' => 'ASC'
+							)
+						),
+						'ItemType',
+						'ItemCategory',
+						'ItemImage',
 					)
 			));
 			if ($item_details[0]['Item']['lucca_original']) {
@@ -1469,7 +1514,18 @@ App::import('Inflector');
 						'group' => array(
 							'Item.parent_id'
 						),
-						'recursive' => false
+						'recursive' => false,
+						'contain' => array(
+							'ItemVariation' => array(
+								'order' => array(
+									'ItemVariation.primary' => 'DESC',
+									'ItemVariation.id' => 'ASC'
+								)
+							),
+							'ItemType',
+							'ItemCategory',
+							'ItemImage',
+						)
 					)
 				);
 
