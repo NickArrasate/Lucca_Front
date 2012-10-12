@@ -47,7 +47,9 @@
 					-->
 					<div class="menu-block">
 						<ul class="menus">
-						<?php while ($i<5){
+						<?php 
+							$i = 0;
+							while ($i<5){
 							$value=each($item_types);
 							$i++;
 							?>

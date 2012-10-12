@@ -62,6 +62,7 @@ App::import('Inflector');
 			$subcategoryId = 0;
 			$locationId = 0;
 
+			$category_summary = '';
 			// Category Summary display
 			switch($item_category) {
 				case 'all':

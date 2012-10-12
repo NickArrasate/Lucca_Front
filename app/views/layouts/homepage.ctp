@@ -40,11 +40,13 @@
 						<dd class="fifth"><a href="/item/grid/5/all/"><span>Case Goods</span></a></dd>
 						<dd class="sixth"><a href="/item/grid/6/all/"><span>Garden &amp; More</span></a></dd>
 						<dd class="seventh"><a href="/item/grid/all/all/"><span>All Inventory</span></a></dd>
-					</dl>$current_item_type_id
+					</dl>
 					-->
 					<div class="menu-block">
 						<ul class="menus">
-							<?php while ($i<5){
+							<?php 
+							$i=0;
+							while ($i<5){
 							$value=each($item_types);
 							$i++;
 							?>

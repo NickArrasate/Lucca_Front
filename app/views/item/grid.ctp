@@ -15,15 +15,15 @@
 				</dd>
 
 				<?php
-				foreach ($item_categories as $i => $category) {
+				foreach ($item_categories as $id => $category) {
 
-					if(($i + 1) == $current_item_category ) { ?>
+					if($current_item_category == $id ) { ?>
 
 						<dd class="active">
 					<?php } else { ?>
 						<dd>
 					<?php } ?>
-				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $i + 1 ?>/"><?php echo $category ?></a></span></dd>
+				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $id ?>/"><?php echo $category ?></a></span></dd>
 				<?php } ?>
 
 				<br />
@@ -108,7 +108,7 @@
 								<?php foreach($i['ItemImage'] as $o) {?>
 								<?php if($o['primary'] == 1) {?>
 
-								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>"#666666"); ?>
+								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>"#ffffff"); ?>
 								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
 								<?php } ?>
 								<?php } ?>
