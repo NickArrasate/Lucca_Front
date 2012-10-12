@@ -14,19 +14,19 @@
 			text-overflow:ellipsis;}
 		.menu a {
 			text-align: center;
-			margin-right: 26px;
-			margin-left: 26px;
+			margin-right: 22px;
+			margin-left: 22px;
 			vertical-align: middle;}
 			.menu a:hover,.menu a.selected {color:#a00;}
 		.menu6 a {
 			text-align: center;
-			margin-right: 26px;
-			margin-left: 26px;}
+			margin-right: 22px;
+			margin-left: 22px;}
 			.menu6 a:hover, .menu a.selected {color:#a00}
 		.menu7 a {
 			text-align: center;
-			margin-right: 26px;
-			margin-left: 26px;}
+			margin-right: 22px;
+			margin-left: 22px;}
 			.menu7 a:hover, .menu7 a.selected {color:#a00}
 		.locations { float: left; height: 38px; position: relative; z-index: 30; }
 			.pulldown { position: absolute; display: none; top: 38px; left: 0px; width: 180px;

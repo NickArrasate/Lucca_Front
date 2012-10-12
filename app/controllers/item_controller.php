@@ -184,6 +184,8 @@ App::import('Inflector');
 						'ItemType',
 						'ItemCategory',
 						'ItemImage',
+						'InventoryQuantity',
+						'InventoryLocation'
 					),
 				));
 				$this->set('all_items', 'All');
@@ -228,6 +230,8 @@ App::import('Inflector');
 					'ItemType',
 					'ItemCategory',
 					'ItemImage',
+					'InventoryLocation',
+					'InventoryQuantity'
 				);
 
 				$items = $this->paginate('Item', array(
@@ -309,6 +313,8 @@ App::import('Inflector');
 					'ItemType',
 					'ItemCategory',
 					'ItemImage',
+					'InventoryQuantity',
+					'InventoryLocation'
 				)
 			));
 
@@ -1259,7 +1265,8 @@ App::import('Inflector');
 							'ItemType',
 							'ItemCategory',
 							'ItemImage',
-							'InventoryQuantity'
+							'InventoryQuantity',
+							'InventoryLocation'
 						)
 					)
 				);
@@ -1299,7 +1306,8 @@ App::import('Inflector');
 					'ItemType',
 					'ItemCategory',
 					'ItemImage',
-					'InventoryQuantity'
+					'InventoryQuantity',
+					'InventoryLocation'
 				);
 				$this->paginate['Item']['order'] = array(
 					'ItemOccurrence.left' => 'asc'
@@ -1361,6 +1369,8 @@ App::import('Inflector');
 								'ItemType',
 								'ItemCategory',
 								'ItemImage',
+								'InventoryLocation',
+								'InventoryQuantity'
 							)
 						)
 					);
@@ -1470,6 +1480,8 @@ App::import('Inflector');
 						'ItemType',
 						'ItemCategory',
 						'ItemImage',
+						'InventoryQuantity',
+						'InventoryLocation'
 					)
 			));
 			if ($item_details[0]['Item']['lucca_original']) {

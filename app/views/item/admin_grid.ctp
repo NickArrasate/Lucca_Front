@@ -131,6 +131,7 @@
 					<?php }?>
 					<?php } ?>
 					<dt><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>"><?php echo $u['Item']['name'] ?></a></dt>
+					<dd class="price"><?php if (!empty($u['Item']['fid'])) { echo 'ID: ' . $u['Item']['fid']; } ?></dd>
 					<dd class="price"><?php if (isset($u['ItemVariation'][0]['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation'][0]['price']); } ?></dd>
 					<dd class="end-info-block">
 						<?php if ($u['Item']['lucca_original']): ?>

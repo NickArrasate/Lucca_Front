@@ -326,7 +326,7 @@ $(document).ready(function() {
 
 			<dl>
 				<?php if (!empty($item_detail['Item']['fid'])): ?>
-					<dd class="item-price">Filemaker ID: <?php echo $item_detail['Item']['fid']; ?></dd>
+					<dd class="item-price">ID: <?php echo $item_detail['Item']['fid']; ?></dd>
 				<?php endif; ?>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
 				<dd class="item-price">Price: <?php echo $price ?></dd>

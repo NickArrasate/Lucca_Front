@@ -200,6 +200,11 @@
 <div class="product-details">
 	<div class="column">
 		<dl>
+		<dt><label>ID:</label></dt>
+		<dd><?php echo $item_details[0]['Item']['fid']; ?></dd>
+		</dl>
+
+		<dl>
 		<dt><label>Status:</label></dt>
 		<dd><?php echo $item_details[0]['Item']['status']; ?></dd>
 		</dl>
