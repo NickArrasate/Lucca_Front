@@ -1,7 +1,5 @@
 <?php
-
 class CropimageHelper extends Helper {
-
     var $helpers = array('Html', 'Javascript', 'Form');
 
     function createJavaScript($imgW, $imgH, $thumbW, $thumbH) {
@@ -61,7 +59,5 @@ class CropimageHelper extends Helper {
 			</div>
 			<br style=\"clear:both;\"/>$x1 $y1 $x2 $y2 $w $h $imgP");
     }
-
 }
-
 ?>

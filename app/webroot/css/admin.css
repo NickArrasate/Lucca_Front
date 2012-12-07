@@ -5,7 +5,7 @@
 	line-height:40px;
 	overflow:hidden;
 }
-
+.hidden{display:none}
 .product-images img, .item-photos img{border:1px solid #ccc}
 
 .grid dd.price {

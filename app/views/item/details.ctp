@@ -363,6 +363,12 @@ $(document).ready(function() {
 		<div class="item-category-border "></div>
 
 		<div class="item-details">
+        	<?php if(!empty($item_detail['Item']['fid'])){ ?>
+			<dl>
+				<dt><span>Item ID<span></dt>
+				<dd class="width300"><?php echo $item_detail['Item']['fid'] ?></dd>
+			</dl>
+            <?php } ?>
 			<dl>
 				<dt><span>Condition<span></dt>
 				<dd class="width300"><?php echo $item_detail['Item']['condition'] ?></dd>
