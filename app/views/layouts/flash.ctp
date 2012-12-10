@@ -26,7 +26,7 @@
 						<dd class="third"><a href="http://s80321.gridserver.com/item/grid/3/all/"><span>Tables</span></a></dd>
 						<dd class="fourth"><a href="http://s80321.gridserver.com/item/grid/4/all/"><span>Wall Decor</span></a></dd>
 						<dd class="fifth"><a href="http://s80321.gridserver.com/item/grid/5/all/"><span>Case Goods</span></a></dd>
-						<dd class="sixth"><a href="http://s80321.gridserver.com/item/grid/6/all/"><span>More</span></a></dd>
+						<dd class="sixth"><a href="http://s80321.gridserver.com/item/grid/6/all/"><span>Garden &amp; More</span></a></dd>
 					</dl>
 				</dd>
 			</dl>

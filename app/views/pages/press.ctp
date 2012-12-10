@@ -20,6 +20,66 @@
 			<div id="CoversBox">
 			<!-- Thumbs 200 x 259 -->
 			<!-- Regular Max Height 500, Max Width 600-->
+                <a href="/press/images/ed_oct12/inside.jpg" class="lightbox" title="Chair & Wood Ring">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ed_oct12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Elle Decor<br />Spring 2012</h5>
+					</div>
+				</a>
+                <a href="/press/images/ad_oct12/inside.jpg" class="lightbox" title="Dining Table">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_oct12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />October 2012</h5>
+					</div>
+				</a>
+                <a href="/press/images/cl_sep12/inside.jpg" class="lightbox" title="Chandelier">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/cl_sep12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Costal Living<br />September 2012</h5>
+					</div>
+				</a>             
+            	<a href="/press/images/sb_mar12/inside.jpg" class="lightbox" title="Chair">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/sb_mar12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Santa Barbara<br />Spring 2012</h5>
+					</div>
+				</a>
+            	<a href="/press/images/ad_apr12/table03.jpg" class="lightbox" title="Table">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_apr12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />April 2012</h5>
+					</div>
+				</a>
+                <a href="/press/images/ad_apr12/coffeetable04.jpg" class="lightbox hidden" title="Coffee Table"></a>
+                <a href="/press/images/ad_apr12/coffeetable05.jpg" class="lightbox hidden" title="Coffee Table"></a>
+                <a href="/press/images/ad_apr12/diningtable07.jpg" class="lightbox hidden" title="Dining Table"></a>
+                <a href="/press/images/ad_apr12/lamp08.jpg" class="lightbox hidden" title="Lamp"></a>
+                <a href="/press/images/vo_mar12/inside.jpg" class="lightbox" title="Chair">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/vo_mar12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Vogue<br />March 2012</h5>
+					</div>
+				</a>
+                 <a href="/press/images/lu_jan12/inside.jpg" class="lightbox" title="Coffee Table">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/lu_jan12/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Luxe<br />January 2012</h5>
+					</div>
+				</a>
             	<a href="/press/images/ad_nov11/inside.jpg" class="lightbox" title="Antique Textile Pillow & <br /> 18th Century Gilt Table Lamp">
 					<div id="CoverObject">
 						<div id="CoverObjectImgWrap">

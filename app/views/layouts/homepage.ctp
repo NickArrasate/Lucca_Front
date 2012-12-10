@@ -46,7 +46,7 @@
 						<ul class="menus">
 							<?php 
 							$i=0;
-							while ($i<5){
+							while ($i<6){
 							$value=each($item_types);
 							$i++;
 							?>
@@ -55,9 +55,9 @@
 
 						<?php }
 						?>
-							<li class="menu6">
+							<li class="menu6" style="display:none">
 								<div class="locations">
-									<a href="#" title="More">More</a>
+									<a href="#" title="Objects">Objects</a>
 									<div class="pulldown">
 										<ul class="submenus">
 										<?php while (current($item_types)){

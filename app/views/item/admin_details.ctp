@@ -183,8 +183,8 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 		</select>
 		<?php } ?>
 	</dd>
-	<dd><label>Lucca Studio Family:</label></dd>
-	<dd>
+	<dd class="hidden"><label>Lucca Studio Family:</label></dd>
+	<dd class="hidden">
 		<select name="data[Item][parent_id]" <?php echo (isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) || (!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) ? 'disabled="disabled"' : '' ; ?>>
 			<option value=''>None</option>
 			<?php foreach($lucca_studio_family as $key => $value):  ?>
@@ -250,8 +250,8 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 
 </dl>
 <dl class="column">
-	<dd><label>Condition:</label></dd>
-	<dd><input type="text" name="data[Item][condition]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
+	<dd class="hidden"><label>Condition:</label></dd>
+	<dd class="hidden"><input type="text" name="data[Item][condition]" value="<?php if(isset($data)) { echo $data['Item']['condition']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['condition']; } } ?>"/></dd>
 
 	<dd><label>Units of Measurement:</label></dd>
 	<dd>
@@ -315,17 +315,17 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 	</dd>
 
 
-	<dd><label>Material and Techniques:</label></dd>
-	<dd><input type="text" name="data[Item][materials_and_techniques]" value="<?php if(isset($data)) { echo $data['Item']['materials_and_techniques']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['materials_and_techniques']; } } ?>"/></dd>
-	<dd><label>Creator:</label></dd>
-	<dd><input type="text" name="data[Item][creator]" value="<?php if(isset($data)) { echo $data['Item']['creator']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['creator']; } } ?>"/></dd>
+	<dd class="hidden"><label>Material and Techniques:</label></dd>
+	<dd class="hidden"><input type="text" name="data[Item][materials_and_techniques]" value="<?php if(isset($data)) { echo $data['Item']['materials_and_techniques']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['materials_and_techniques']; } } ?>"/></dd>
+	<dd class="hidden"><label>Creator:</label></dd>
+	<dd class="hidden"><input type="text" name="data[Item][creator]" value="<?php if(isset($data)) { echo $data['Item']['creator']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['creator']; } } ?>"/></dd>
 	<dd><label>Country of Origin:</label></dd>
 	<dd><input type="text" name="data[Item][country_of_origin]" value="<?php if(isset($data)) { echo $data['Item']['country_of_origin']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['country_of_origin']; } } ?>"/></dd>
 	<dd><label>Period:</label></dd>
 	<dd><input type="text" name="data[Item][period]" value="<?php if(isset($data)) { echo $data['Item']['period']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['period']; } } ?>"/></dd>
 	<dd><label>Created Date:</label></dd>
 	<dd><input id="publish_date" type="text" name="data[Item][publish_date]" value="<?php if(isset($data)) { echo $data['Item']['publish_date']; } else { if(isset($item_details)) { echo $item_details[0]['Item']['publish_date']; } } ?>"/></dd>
-	<dd>
+	<dd class="hidden">
 		<input style="width:25px" type="checkbox" name="data[Item][lucca_original]" value="1" <?php if(isset($data['Item']['lucca_original']) && $data['Item']['lucca_original']) { echo 'checked="checked"'; } else {if(!isset($data) && isset($item_details[0]['Item']['lucca_original']) && $item_details[0]['Item']['lucca_original']) { echo 'checked="checked"'; }} ?> id="ItemLuccaOriginal"/><span style="font-weight:bold">Lucca Studio Inventory</span>
 	</dd>
 </dl>

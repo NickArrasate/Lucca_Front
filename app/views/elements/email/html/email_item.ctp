@@ -80,16 +80,16 @@
 		<?php if ($item_details['InventoryQuantity'][0]['location'] == 1){ 
                     $item_details['InventoryLocation']['address'] = "744 North La Cienega Blvd. Los Angeles, CA 90069";
                     $item_details['InventoryLocation']['phone'] = "310-657-7800";
-                    $item_details['InventoryLocation']['email'] = "beth@luccaantiques.com";
-					$email = "beth@luccaantiques.com";
+                    $item_details['InventoryLocation']['email'] = "phaedra@luccaantiques.com";
+					$email = "phaedra@luccaantiques.com";
                 }elseif($item_details['InventoryQuantity'][0]['location'] == 2){
 					$item_details['InventoryLocation']['address'] = "182 Duane Street New York, NY 10013";
                     $item_details['InventoryLocation']['phone'] = "212-343-9005";
                     $item_details['InventoryLocation']['email'] = "mark@luccaantiques.com";
                 }else{
-					$item_details['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Beth at 310-657-7800 for viewing information.";
+					$item_details['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Phaedra at 310-657-7800 for viewing information.";
                     $item_details['InventoryLocation']['phone'] = "310-657-7800";
-                    $item_details['InventoryLocation']['email'] = "beth@luccaantiques.com";
+                    $item_details['InventoryLocation']['email'] = "phaedra@luccaantiques.com";
                 }?>
 		<tr>
 			<td colspan="2" style="padding-top:20px">&nbsp;</td>

@@ -126,7 +126,7 @@ a img {border:0}
 			display: block;
 		}
 			.header .nav span, .header .nav-1 span , .header .nav-2 span, .header .nav-3 span ,
-			.header .nav-4 span, .header .nav-5 span, .header .nav-6 span, .footer span {
+			.header .nav-4 span, .header .nav-5 span, .header .nav-6 span,  {
 				display:none;
 			}
 			
@@ -396,22 +396,21 @@ a img {border:0}
 .footer {
 	clear:both;
 	width:863px;
-	height:12px;
-	background: url(../img/footer.png);
+	height:22px;
+	background:#9A9B9C;
 	margin:20px 0 0;
+	font-size:12px;
+	padding:15px 0px 5px 0px;
+	color:#fff;
 }
-
-	.footer  a {display:block;height:12px}
-	
-	.footer dd {float:left}
-
-	.footer .first {width:48px}
-	.footer .second {width:61px}
-	.footer .third {width:91px}
-	.footer .fourth {width:81px}
-	.footer .fifth {width:70px}
-	.footer .sixth {width:55px}
-	.footer .seventh {width:462px}
+	.footer  a {display:block;font-size:12px;color:#fff}
+	.footer  a:hover {color:#c42f33}
+	/*
+	.footer  a {display:block;font-size:12px;color:#c42f33}
+	.footer  a:hover {color:#c42f33}
+	*/
+	.footer dd {float:left;padding-left:25px}
+	.footer dd.seventh {float:right;text-align:right;padding-right:20px;color:#fff;}
 	
 
 .maintenance .notice {color: #fff; font-size: 20px}

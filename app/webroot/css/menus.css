@@ -8,13 +8,13 @@
 			color: #e9e7e7;
 			font-size: 15.5px;
 			font-family: Helvetica, sans-serif;
-			max-width: 90px;
+			max-width: 120px;
 			padding-top: 10px;
 			overflow:hidden;
 			text-overflow:ellipsis;}
 		.menu a {
 			text-align: center;
-			margin-right: 22px;
+			margin-right: 10px;
 			margin-left: 22px;
 			vertical-align: middle;}
 			.menu a:hover,.menu a.selected {color:#a00;}

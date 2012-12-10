@@ -1,15 +1,18 @@
 <?php
-	$this->pageTitle = 'Lucca Antiques - Antique and vintage chairs, tables, furniture, paintings, and lamps'; 
+	$this->pageTitle = 'Lucca Antiques'; 
+	$this->homepage = "yes";
 ?>
-<div class="homepage">
-	<dl class="overlay">
+<div class="homepage" style="text-align:center"> <img style="position:relative;width:300px;margin:30px 10px 10px 10px;border:2px solid #f05134;border-right:3px solid #f05134" src="/img/logoboxtop.jpg" alt="Lucca Antiques" class="active"/><img style="display:none;position:relative" src="/img/OptionNew.jpg" alt="Lucca Antiques" class="active"/> 
+	
+    <!-- <dl class="overlay">
 		<dd id="slideshow">
-			<img src="/img/luccafrontpic-star-dine.jpg" alt="Lucca Antiques" class="active"/>
-            <img src="/img/luccafrontpic-circle-lemons.jpg" alt="Lucca Antiques"/>
+        	
+			<img src="/img/Option1.jpg" alt="Lucca Antiques"/>
+			<img src="/img/Option2.jpg" alt="Lucca Antiques"/>
+			<img src="/img/Option3.jpg" alt="Lucca Antiques"/>
+            <img src="/img/Option4.jpg" alt="Lucca Antiques"/>
+         
 		</dd>
-	</dl>
+	</dl> -->
 	<!-- <img src="/img/content/hp_image4.jpg" alt="Lucca Antiques"/> -->
-</div>
-<div class="homepage2">
-<!-- <h1>Lucca Antiques has an ever changing inventory of fresh and the unique antiques, including tables, lamps, wall decor, furniture, seating and more. </h1> -->
 </div>

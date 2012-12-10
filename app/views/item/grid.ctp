@@ -86,7 +86,7 @@
 
 			<dl class="results">
 			<div style="display:none">
-			<?php print_r($all_items);print_r($items);?>
+            	<?php //print_r($all_items);print_r($items);?>
 		</div>
 			<?php if (count($items) > 0) {?>
 
@@ -110,6 +110,7 @@
 
 								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>"#ffffff"); ?>
 								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
+                  <!-- <img src="<? echo '/files/'.$o['filename']?>" width="142" /> -->
 								<?php } ?>
 								<?php } ?>
 							</a>

@@ -33,12 +33,12 @@ You may pick up your purchase from the shop or the warehouse. Please contact us 
 			</dl>
 			<dl>
 				<dt>New York Store Hours:</dt>
-				<dd>Monday - Saturday: 10:00am - 6:00pm</dd>
+				<dd>Monday - Friday: 10:00am - 6:00pm</dd>
 			</dl>
 			</div>
 			<dl>
 				<dt>Los Angeles Warehouse: </dt>
-				<dd class="mailtoLink">For shipping & delivery information please contact: <a href="mailto:elizabeth@luccaantiques.com">elizabeth@luccaantiques.com</a></dd>
+				<dd class="mailtoLink">For shipping & delivery information please contact: <a href="mailto:nirvan@luccaantiques.com">nirvan@luccaantiques.com</a></dd>
 			</dl>
 		</div>
 	</div>

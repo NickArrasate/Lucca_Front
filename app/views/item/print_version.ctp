@@ -97,17 +97,21 @@ $this->pageTitle = "Lucca Antiques";
             <?php if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){ 
                     $item_detail['InventoryLocation']['address'] = "744 North La Cienega Blvd. Los Angeles, CA 90069";
                     $item_detail['InventoryLocation']['phone'] = "310-657-7800";
-                    $item_detail['InventoryLocation']['email'] = "beth@luccaantiques.com";
-					$email = "beth@luccaantiques.com";
+                    $item_detail['InventoryLocation']['email'] = "phaedra@luccaantiques.com";
+					$email = "phaedra@luccaantiques.com";
                 }elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
-					$item_detail['InventoryLocation']['address'] = "182 Duane Street New York, NY 10013";
+					$item_detail['InventoryLocation']['address'] = "306 East 61st Street 4th Floor New York, NY 10065";
                     $item_detail['InventoryLocation']['phone'] = "212-343-9005";
-                    $item_detail['InventoryLocation']['email'] = "mark@luccaantiques.com";
+                    $item_detail['InventoryLocation']['email'] = "norman@luccaaantiques.com";
                 }else{
-					$item_detail['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Beth at 310-657-7800 for viewing information.";
+					$item_detail['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Phaedra at 310-657-7800 for viewing information.";
                     $item_detail['InventoryLocation']['phone'] = "310-657-7800";
-                    $item_detail['InventoryLocation']['email'] = "beth@luccaantiques.com";
+                    $item_detail['InventoryLocation']['email'] = "phaedra@luccaantiques.com";
                 }?>
+                <?php if(!empty($item_detail['Item']['fid'])){ ?>
+			<h2 class="ProductTitle">Item ID:</h2>
+			<h3 class="details"><?php echo $item_detail['Item']['fid'] ?></h3>
+            <?php } ?>
 			<h2 class="ProductTitle">Condition:</h2>
 			<h3 class="details"><?php echo $item_detail['Item']['condition'] ?></h3>
 			<h2 class="ProductTitle">Measurements:</h2>

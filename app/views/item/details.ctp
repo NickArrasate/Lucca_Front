@@ -245,7 +245,7 @@ $(document).ready(function() {
 						$variation = '';
 						if($variation_count > 1) {
 							// if there are variations, list the ids
-							$variation .= '<dd><ul><li>'. $form->label('Variations') .'</li><li>';
+							$variation .= '<dd class="hidden"><ul><li>'. $form->label('Variations') .'</li><li>';
 
 							foreach($item_detail['ItemVariation'] as $v) {
 								$keys_variation[] = $v['id'];
@@ -325,9 +325,6 @@ $(document).ready(function() {
 			?>
 
 			<dl>
-				<?php if (!empty($item_detail['Item']['fid'])): ?>
-					<dd class="item-price">ID: <?php echo $item_detail['Item']['fid']; ?></dd>
-				<?php endif; ?>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
 				<dd class="item-price">Price: <?php echo $price ?></dd>
 				<?php echo $variation ?>
@@ -369,7 +366,7 @@ $(document).ready(function() {
 				<dd class="width300"><?php echo $item_detail['Item']['fid'] ?></dd>
 			</dl>
             <?php } ?>
-			<dl>
+            <dl class="hidden">
 				<dt><span>Condition<span></dt>
 				<dd class="width300"><?php echo $item_detail['Item']['condition'] ?></dd>
 			</dl>
@@ -479,19 +476,19 @@ $(document).ready(function() {
 					echo $contact;*/
 					// ADDED BY BRIAN
 					//if(empty($item_detail['InventoryLocation']['contact'])){
-						if ($item_details[0]['InventoryQuantity']['location'] == 1){
+						if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){ 
 							echo "<ul><li>744 North La Cienega Blvd.
 							</li><li>Los Angeles, CA 90069
 							</li><li>Phone:             310-657-7800
-							</li><li>Email: beth@luccaantiques.com</li></ul>";
-						}elseif($item_details[0]['InventoryQuantity']['location'] == 2){
-							echo "<ul><li>182 Duane Street
-							</li><li>New York, NY 10013
+							</li><li>Email: <a href='mailto:phaedra@luccaantiques.com'>phaedra@luccaantiques.com</a></li></ul>";
+						}elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
+							echo "<ul><li>306 East 61st Street 4th Floor 
+							</li><li>New York, NY 10065
 							</li><li>Phone:             212-343-9005
-							</li><li>Email:  mark@luccaantiques.com</li></ul>";
+							</li><li>Email:  <a href='mailto:norman@luccaaantiques.com'>norman@luccaaantiques.com</a></li></ul>";
 						}else{
 							echo "<ul><li>This item is located in our LA Warehouse.
-								<br />Please contact Beth at 310-657-7800 for viewing information.</li></ul>";
+								<br />Please contact Phaedra at 310-657-7800 for viewing information.</li></ul>";
 						}
 
 					//}
