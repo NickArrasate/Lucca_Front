@@ -17,9 +17,6 @@ class UsersController extends AppController {
 	 * Logs in a User
 	 */
 	function login() {
-		//$salt = Configure::read('Security.salt');
-		//echo md5('password'.$salt);
-
 		// redirect user if already logged in
 		if( $this->Session->check('User') ) {
 			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
@@ -89,4 +86,3 @@ class UsersController extends AppController {
 		$this->redirect(array('action'=>'login'));
 	}
 }
-?>

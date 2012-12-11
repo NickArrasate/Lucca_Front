@@ -98,10 +98,7 @@ class AppController extends Controller {
 			$this->layout = 'admin';
 		}
 		$this->loadModel('ItemType');
-		$item_types = $this->ItemType->find('list', array(
-				'order' => 'ItemType.sort asc',
-				'fields' => array('ItemType.name')
-			));
+		$item_types = $this->ItemType->get_menu_items();
 		$this->set('item_types',$item_types);
 
 		$searchString = '';
@@ -111,7 +108,6 @@ class AppController extends Controller {
 
 		$this->set('searchString', $searchString);
 	}
-
 
 	function beforeRender() {
 
@@ -166,11 +162,5 @@ class AppController extends Controller {
 			$this->set('item_category_id', $itemBreadcrumb['ItemCategory']['id']);
 			$this->set('item_type_id', $itemBreadcrumb['ItemType']['id']);
 		}
-
 	}
-
 }
-
-
-
-?>

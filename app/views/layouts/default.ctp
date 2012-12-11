@@ -47,28 +47,30 @@
 					-->
 					<div class="menu-block">
 						<ul class="menus">
-						<?php 
-							$i = 0;
-							while ($i<6){
-							$value=each($item_types);
-							$i++;
+							<?php 
+								/*$i = 0;
+								while ($i<6){
+								$value=each($item_types);
+								$i++;*/
 							?>
-
-							<li class="menu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $value[0])) echo 'class="selected"'; ?> title=""><?php echo $value[1] ?></a></li>
-
-						<?php }
-						?>
+							<?php foreach($item_types['base_types'] as $item):?>
+							<li class="menu">
+								<a href="/item/grid/<?php echo ($item['id']) ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $item['id'])) echo 'class="selected"'; ?> title="<?php echo $item['name'];?>"><?php echo $item['name'] ?></a>
+							</li>
+							<?php endforeach;?>
 							<li class="menu6" style="display:none">
 								<div class="locations">
 									<a href="#" title="Objects">Objects</a>
 									<div class="pulldown">
 										<ul class="submenus">
-										<?php while (current($item_types)){
-											$value=each($item_types);
-							?>
-											<li class="submenu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" title=""><?php echo $value[1] ?></a></li>
-											<?php }
-							?>
+										<?php /*while (current($item_types)){
+											$value=each($item_types);*/
+										?>
+											<?php foreach($item_types['over_base_types'] as $item):?>
+											<li class="submenu">
+												<a href="/item/grid/<?php echo ($item['id']) ?>/all/all" title="<?php echo $item['name'];?>"><?php echo $item['name']; ?></a>
+											</li>
+											<?php endforeach;?>
 										</ul>
 									</div>
 								</div></li>

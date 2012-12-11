@@ -1,7 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<meta name="robots" content="noindex,nofollow,noarchive">
@@ -22,7 +21,6 @@
 		<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hp-slideshow.css" />
 	</head>
-
 	<body>
 		<div class="container" style="background:#666">
 			<?php if($title_for_layout !== "Lucca Antiques"){ ?>
@@ -42,54 +40,7 @@
 						<dd class="seventh"><a href="/item/grid/all/all/"><span>All Inventory</span></a></dd>
 					</dl>
 					-->
-					<div class="menu-block">
-						<ul class="menus">
-							<?php 
-							$i=0;
-							while ($i<6){
-							$value=each($item_types);
-							$i++;
-							?>
-
-							<li class="menu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $value[0])) echo 'class="selected"'; ?> title=""><?php echo $value[1] ?></a></li>
-
-						<?php }
-						?>
-							<li class="menu6" style="display:none">
-								<div class="locations">
-									<a href="#" title="Objects">Objects</a>
-									<div class="pulldown">
-										<ul class="submenus">
-										<?php while (current($item_types)){
-											$value=each($item_types);
-							?>
-											<li class="submenu"><a href="/item/grid/<?php echo ($value[0]) ?>/all/all" title=""><?php echo $value[1] ?></a></li>
-											<?php }
-							?>
-										</ul>
-									</div>
-								</div></li>
-							<li class="menu7">
-								<div class="locations">
-									<a href="/item/grid/all/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'class="selected"'; ?> title="All Inventory">All Inventory</a>
-									<div class="pulldown">
-										<ul class="submenus">
-											<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
-											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="search">
-										<div class="searchform <?php echo (empty($searchString)) ? "disabled" : "enabled"; ?>">
-											<?php echo $form->create('Search', array('url' => array('controller' => 'item', 'action' => 'search'))); ?>
-												<?php echo $form->text('Search.item', array('value' => $searchString)); ?>
-												<?php echo $form->label('Search.item', 'Search'); ?>
-											<?php echo $form->end(); ?>
-										</div>
-								</li>
-						</ul>
-					</div>
+					<?php echo $this->element('main_menu', array('item_types' => $item_types));?>
 				</dd>
 			</dl>
 
