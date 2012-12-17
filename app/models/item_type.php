@@ -14,7 +14,7 @@ class ItemType extends AppModel {
 		),
 	);
 	
-	private $main_menu_limit = 6;
+	private $main_menu_limit = 5;
 
 	function get_name($item_type_id) {
 		$type = $this->find('all', array(
@@ -31,14 +31,21 @@ class ItemType extends AppModel {
 		$base_types = array();
 		$over_base_types = array();
 		$i = 0;
-		foreach($all_types as $type){
-			if($i < $this->main_menu_limit){
+		if(count($all_types) <= $this->main_menu_limit + 1){
+			foreach($all_types as $type){
 				$base_types[] = $type['ItemType'];
 			}
-			else{
-				$over_base_types[] = $type['ItemType'];
+		}
+		else{
+			foreach($all_types as $type){
+				if($i < $this->main_menu_limit){
+					$base_types[] = $type['ItemType'];
+				}
+				else{
+					$over_base_types[] = $type['ItemType'];
+				}
+				$i++;
 			}
-			$i++;
 		}
 
 		return array('base_types' => $base_types, 'over_base_types' => $over_base_types);

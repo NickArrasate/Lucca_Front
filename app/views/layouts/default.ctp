@@ -58,7 +58,8 @@
 								<a href="/item/grid/<?php echo ($item['id']) ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $item['id'])) echo 'class="selected"'; ?> title="<?php echo $item['name'];?>"><?php echo $item['name'] ?></a>
 							</li>
 							<?php endforeach;?>
-							<li class="menu6" style="display:none">
+							<?php if(!empty($item_types['over_base_types'])):?>
+							<li class="menu6">
 								<div class="locations">
 									<a href="#" title="Objects">Objects</a>
 									<div class="pulldown">
@@ -73,7 +74,9 @@
 											<?php endforeach;?>
 										</ul>
 									</div>
-								</div></li>
+								</div>
+							</li>
+							<?php endif;?>
 							<li class="menu7">
 								<div class="locations">
 									<a href="/item/grid/all/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'class="selected"'; ?> title="All Inventory">All Inventory</a>

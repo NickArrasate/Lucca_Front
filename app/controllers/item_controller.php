@@ -272,7 +272,6 @@ App::import('Inflector');
 			$this->set('current_item_type_name', $current_item_type);
 			$this->set('current_item_type_id', $item_type);
 			$this->set('current_item_category', $item_category);
-
 		}
 
 		function details() {
