@@ -27,7 +27,14 @@ class ItemType extends AppModel {
 	}
 
 	function get_menu_items(){
-		$all_types = $this->find('all', array('order' => 'ItemType.sort asc', 'fields' => array('ItemType.id', 'ItemType.name'), 'recursive' => 0));
+		$all_types = $this->find('all', array('order' => 'ItemType.sort asc', 'fields' => array('ItemType.id', 'ItemType.name'))); 
+		foreach($all_types as $k => $type){
+			if(empty($type['Item'])){
+				unset($all_types[$k]);
+			}
+			unset($all_types[$k]['Item']);
+		}
+
 		$base_types = array();
 		$over_base_types = array();
 		$i = 0;
