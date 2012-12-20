@@ -37,6 +37,17 @@ class RestApiController extends AppController {
 		$isDataValid = $this->__checkData($data, 'Item', 'Item');
 
 		$this->loadModel('Item');
+
+		// additional check to exists FID and send successful response. By requirement from client
+		if ($fidResponse = $this->__fidCheckForAddRequest($data)) {
+			$response = $fidResponse;
+			$this->log($response, 'rest_log');
+
+			$this->set(compact("response"));
+
+			return true;
+		}
+
 		if (!$isDataValid || !$this->Item->save($data)) {
 			$response = array(
 				'status' => array(
@@ -645,6 +656,39 @@ class RestApiController extends AppController {
 		return true;
 	}
 
+	private function __fidCheckForAddRequest($data) {
+		$this->loadModel('Item');
+
+		if (!array_key_exists('fid', $data['Item']) || empty($data['Item']['fid'])) {
+			return false;
+		}
+
+		$item = $this->Item->find(
+			'first',
+			array(
+				'conditions' => array(
+					'Item.fid' => $data['Item']['fid']
+				),
+				'recursive' => -1
+			)
+		);
+
+		if (!$item) {
+			return false;
+		}
+
+		return array(
+			'status' => array(
+				'success' => 'Item successful added',
+			),
+			'item' => array(
+				'id' => $item['Item']['id'],
+			),
+			'images' => array(
+				'image' => array(),
+			),
+		);
+	}
 	/*
 	 * generate XML for testing tool
 	 */
