@@ -20,6 +20,22 @@
 			<div id="CoversBox">
 			<!-- Thumbs 200 x 259 -->
 			<!-- Regular Max Height 500, Max Width 600-->
+            	<a href="/press/images/cs_mar13/inside.jpg" class="lightbox" title="Chair">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/cs_mar13/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">California Style<br />March 2013</h5>
+					</div>
+				</a>
+            	<a href="/press/images/ad_feb13/inside.jpg" class="lightbox" title="Tall Lamp">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_feb13/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />February 2013</h5>
+					</div>
+				</a>
                 <a href="/press/images/ed_oct12/inside.jpg" class="lightbox" title="Chair & Wood Ring">
 					<div id="CoverObject">
 						<div id="CoverObjectImgWrap">

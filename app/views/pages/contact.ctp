@@ -38,7 +38,7 @@
 				<dd><a target="_blank" href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=306+E+61st+Street+New+York,+NY">Click for Map</a></dd>
 				<dd>Phone: 212-343-9005</dd>
 				<dd>Fax:   212-343-9006</dd>
-				<dd>Email: <a href="mailto:norman@luccaaantiques.com">norman@luccaaantiques.com</a></dd>
+				<!-- <dd>Email: <a href="mailto:norman@luccaantiques.com"></a></dd> -->
 			</dl>
 			<dl>
 				<dt>New York Store Hours:</dt>
@@ -50,7 +50,7 @@
 				<dd>Warehouse hours: Monday - Friday 8:00am - 5:00pm (Closed 1:00pm - 2:00pm)</dd>
 				<dd>Phone: 310-839-1392</dd>
 				<dd>Fax: 310-839-3550</dd>
-				<dd>Email: <a href="mailto:nirvan@luccaantiques.com">nirvan@luccaantiques.com</a></dd>
+				<dd>Email: <a href="mailto:rosie@luccaantiques.com">rosie@luccaantiques.com</a></dd>
 			</dl>
 			</div>
 		</div>

@@ -28,8 +28,8 @@ You may pick up your purchase from the shop or the warehouse. Please contact us 
 			<dl>
 				<dt>New York Address:</dt>
 				<dd>Lucca Antiques</dd>
-				<dd>182 Duane Street</dd>
-				<dd>New York, NY 10013</dd>
+				<dd>306 E. 61st Street (between 1st and 2nd Avenue) - 4th Floor</dd>
+				<dd>New York, NY 10065</dd>
 			</dl>
 			<dl>
 				<dt>New York Store Hours:</dt>
@@ -38,7 +38,7 @@ You may pick up your purchase from the shop or the warehouse. Please contact us 
 			</div>
 			<dl>
 				<dt>Los Angeles Warehouse: </dt>
-				<dd class="mailtoLink">For shipping & delivery information please contact: <a href="mailto:nirvan@luccaantiques.com">nirvan@luccaantiques.com</a></dd>
+				<dd class="mailtoLink">For shipping & delivery information please contact: <a href="mailto:rosie@luccaantiques.com">rosie@luccaantiques.com</a></dd>
 			</dl>
 		</div>
 	</div>

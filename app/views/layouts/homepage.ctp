@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<meta name="robots" content="noindex,nofollow,noarchive">
+		<meta name="description" content="Lucca Antiques provides a valuable resource for designers and celebrity clients seeking pieces that are unique in scale, composition and origin. A constantly changing inventory assures that the merchandise is always fresh and the eclectic mix of elements makes shopping at Lucca exciting.">
+        <meta name="keywords" content="antiques, lucca, tables, chairs, vintage, hollywood, designer, custom, unique" />
 		<title><?php echo $title_for_layout?></title>
 		<?php
 			echo $scripts_for_layout;

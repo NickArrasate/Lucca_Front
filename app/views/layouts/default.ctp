@@ -4,11 +4,9 @@
 
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<meta name="robots" content="noindex,nofollow,noarchive">
+		<meta name="description" content="Lucca Antiques provides a valuable resource for designers and celebrity clients seeking pieces that are unique in scale, composition and origin. A constantly changing inventory assures that the merchandise is always fresh and the eclectic mix of elements makes shopping at Lucca exciting.">
+        <meta name="keywords" content="antiques, lucca, tables, chairs, vintage, hollywood, designer, custom, unique" />
 		<title><?php echo $title_for_layout?></title>
-		<meta name="description" content="Lucca Antiques is a constantly changing inventory of fresh and the eclectic antique tables, lamps, wall decor, furniture, seating and more.  Locations in New York and Los Angeles.">
-		<meta name="keywords" content="lucca antiques, furniture, wall decor, pictures, paintings, couch, seating, chair, lamps, mirrors, lights, antiques, antique">
-		<meta name="google-site-verification" content="TRc8B8MLF5on9ePLPX6Rlovh5rAUV3nAQKzE_xccaE8" />
 		<?php
 			echo $scripts_for_layout;
 			echo $html->css('base');

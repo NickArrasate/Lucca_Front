@@ -102,7 +102,7 @@ $this->pageTitle = "Lucca Antiques";
                 }elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
 					$item_detail['InventoryLocation']['address'] = "306 East 61st Street 4th Floor New York, NY 10065";
                     $item_detail['InventoryLocation']['phone'] = "212-343-9005";
-                    $item_detail['InventoryLocation']['email'] = "norman@luccaaantiques.com";
+                    //$item_detail['InventoryLocation']['email'] = "norman@luccaaantiques.com";
                 }else{
 					$item_detail['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact Phaedra at 310-657-7800 for viewing information.";
                     $item_detail['InventoryLocation']['phone'] = "310-657-7800";
