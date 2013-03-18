@@ -164,6 +164,15 @@ class RestApiController extends AppController {
 			$data['Item']['id'] = intval($this->params['id']);
 		}
 
+		if (
+			$isDataValid &&
+			array_key_exists('status', $data['Item']) &&
+			$data['Item']['status'] == 'Sold' &&
+			(!array_key_exists('sold_date', $data['Item']) || empty($data['Item']['sold_date']))
+		) {
+			$data['Item']['sold_date'] = date('Y-m-d');
+		}
+
 		$this->loadModel('Item');
 		if (!$isDataValid || !$this->Item->save($data)) {
 			$response = array(
