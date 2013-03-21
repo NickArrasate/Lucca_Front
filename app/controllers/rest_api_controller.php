@@ -11,6 +11,16 @@ class RestApiController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
+
+		$this->layout = 'rest';
+		Configure::write('debug', 0);
+
+		$this->requestId = date('Y-m-d_His');
+	}
+
+	function afterFilter() {
+		$this->log($this->output, 'response');
+		parent::afterFilter();
 	}
 
 /*	function item_index() {
@@ -23,14 +33,85 @@ class RestApiController extends AppController {
 
 		exit();
 	} */
+
+	function loggingRequest() {
+		if ($this->params['[method]'] != 'DELETE') {
+			$this->log($this->data->toString(), 'request');
+		}
+
+		$this->log('RequestID: ' . $this->requestId, 'daily');
+		$this->log($this->params, 'daily');
+	}
+
+	function log($data, $type = 'rest_log') {
+		$loggingMethod = '__logging' . ucfirst(strtolower($type));
+
+		if (!method_exists($this, $loggingMethod)) {
+			return parent::log($data, $type);
+		}
+
+		return $this->{$loggingMethod}($data);
+	}
+
+	function __formatXml($data) {
+		if (!class_exists('DOMDocument')) {
+			return $data;
+		}
+
+		$dom = new DOMDocument();
+		$dom->preserveWhiteSpace = false;
+		$dom->loadXML($data);
+		$dom->formatOutput = true;
+
+		return $dom->saveXml();
+	}
+
+	function __checkPath($path) {
+		$fullPath = LOGS . $path;
+		if (!file_exists($fullPath) || !is_dir($fullPath)) {
+			return mkdir($fullPath, 0777, true);
+		}
+
+		return true;
+	}
+
+	function __loggingResponse($data) {
+		$path = 'responses' . DS . date('Y-m-d') . DS;
+
+		if (!$this->__checkPath($path)) {
+			return false;
+		}
+
+		$fileName = LOGS . $path . $this->requestId . '.xml';
+		return (boolean) file_put_contents($fileName, $this->__formatXml($data));
+	}
+
+	function __loggingRequest($data) {
+		$path = 'requests' . DS . date('Y-m-d') . DS;
+
+		if (!$this->__checkPath($path)) {
+			return false;
+		}
+
+		$fileName = LOGS . $path . $this->requestId . '.xml';
+		return (boolean) file_put_contents($fileName, $this->__formatXml($data));
+	}
+
+	function __loggingDaily($data) {
+		$path = 'rest_log_daily' . DS ;
+
+		if (!$this->__checkPath($path)) {
+			return false;
+		}
+
+		$fileName = $path . 'rest_log_' . date('Y-m-d');
+		return parent::log($data, $fileName);
+	}
+
 	function item_add() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -41,7 +122,6 @@ class RestApiController extends AppController {
 		// additional check to exists FID and send successful response. By requirement from client
 		if ($fidResponse = $this->__fidCheckForAddRequest($data)) {
 			$response = $fidResponse;
-			$this->log($response, 'rest_log');
 
 			$this->set(compact("response"));
 
@@ -99,7 +179,7 @@ class RestApiController extends AppController {
 					$imageData = base64_decode($itemImage['data']);
 
 					$fileParsedData = pathinfo($itemImage['filename']);
-					$filename = substr(md5($imageData . time() . rand()), 0, 8) . '.' . $fileParsedData['extension'];
+					$filename = substr(md5($imageData . time() . rand()), 0, 8) . time() . '.' . $fileParsedData['extension'];
 
 					if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
 						$this->ItemImage->create();
@@ -142,19 +222,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function item_edit() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -227,7 +301,7 @@ class RestApiController extends AppController {
 						$imageData = base64_decode($itemImage['data']);
 
 						$fileParsedData = pathinfo($itemImage['filename']);
-						$filename = substr(md5($imageData . time() . rand()), 0, 8) . '.' . $fileParsedData['extension'];
+						$filename = substr(md5($imageData . time() . rand()), 0, 8) . time() . '.' . $fileParsedData['extension'];
 
 						if (file_put_contents(WWW_ROOT . '/files/' . $filename, $imageData)) {
 							$itemImage['filename'] = $filename;
@@ -299,19 +373,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function item_delete() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data;//->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$id = $this->params['id'];
 
@@ -368,19 +436,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function item_image_delete() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data;//->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$id = $this->params['id'];
 
@@ -413,19 +475,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function category_add() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -450,19 +506,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function category_edit() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -491,19 +541,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function category_delete() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data;//->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$id = $this->params['id'];
 
@@ -530,19 +574,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function type_add() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -567,19 +605,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function type_edit() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$response = array();
 
@@ -608,19 +640,13 @@ class RestApiController extends AppController {
 			);
 		}
 
-		$this->log($response, 'rest_log');
-
 		$this->set(compact("response"));
 	}
 
 	function type_delete() {
-		$this->layout = 'rest';
-		Configure::write('debug', 0);
+		$this->loggingRequest();
 
 		$data = $this->data;//->toArray();
-
-		$this->log($this->params, 'rest_log');
-		$this->log($data, 'rest_log');
 
 		$id = $this->params['id'];
 
@@ -646,8 +672,6 @@ class RestApiController extends AppController {
 				)
 			);
 		}
-
-		$this->log($response, 'rest_log');
 
 		$this->set(compact("response"));
 	}
