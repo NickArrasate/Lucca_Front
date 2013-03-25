@@ -53,7 +53,7 @@ class RestApiController extends AppController {
 		return $this->{$loggingMethod}($data);
 	}
 
-	function __formatXml($data) {
+	private function __formatXml($data) {
 		if (!class_exists('DOMDocument')) {
 			return $data;
 		}
@@ -66,7 +66,7 @@ class RestApiController extends AppController {
 		return $dom->saveXml();
 	}
 
-	function __checkPath($path) {
+	private function __checkPath($path) {
 		$fullPath = LOGS . $path;
 		if (!file_exists($fullPath) || !is_dir($fullPath)) {
 			return mkdir($fullPath, 0777, true);
@@ -75,7 +75,7 @@ class RestApiController extends AppController {
 		return true;
 	}
 
-	function __loggingResponse($data) {
+	private function __loggingResponse($data) {
 		$path = 'responses' . DS . date('Y-m-d') . DS;
 
 		if (!$this->__checkPath($path)) {
@@ -86,7 +86,7 @@ class RestApiController extends AppController {
 		return (boolean) file_put_contents($fileName, $this->__formatXml($data));
 	}
 
-	function __loggingRequest($data) {
+	private function __loggingRequest($data) {
 		$path = 'requests' . DS . date('Y-m-d') . DS;
 
 		if (!$this->__checkPath($path)) {
@@ -97,7 +97,7 @@ class RestApiController extends AppController {
 		return (boolean) file_put_contents($fileName, $this->__formatXml($data));
 	}
 
-	function __loggingDaily($data) {
+	private function __loggingDaily($data) {
 		$path = 'rest_log_daily' . DS ;
 
 		if (!$this->__checkPath($path)) {
@@ -196,6 +196,10 @@ class RestApiController extends AppController {
 				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'), true)) {
 					$data['Item']['ItemVariation'] = array($data['Item']['ItemVariation']);
 				}
+
+				$possibleSku = $this->__calculatePossibleSku();
+				$sku = current($possibleSku);
+
 				foreach ($data['Item']['ItemVariation'] as $itemVariation) {
 					$this->ItemVariation->create();
 					$itemVariation['item_id'] = $itemId;
@@ -203,9 +207,19 @@ class RestApiController extends AppController {
 						$itemVariation['primary'] = 0;
 					}
 					if (!intval($itemVariation['sku'])) {
-						$itemVariation['sku'] = substr(time(), 4, 6);
+						$itemVariation['sku'] = $sku;
 					}
-					$this->ItemVariation->save($itemVariation);
+
+					while (!$successSave = $this->ItemVariation->save($itemVariation)) {
+						if (!$successSave && !array_key_exists('sku', $this->ItemVariation->validationErrors)) {
+							$this->log($itemVariation, 'daily');
+							$this->log($this->ItemVariation->validationErrors, 'daily');
+							break;
+						}
+
+						$itemVariation['sku'] = next($possibleSku);
+					}
+					$sku = next($possibleSku);
 				}
 			}
 
@@ -335,6 +349,10 @@ class RestApiController extends AppController {
 				if (in_array(key($data['Item']['ItemVariation']), array('id', 'item_id', 'sku', 'price', 'name', 'quantity', 'primary'), true)) {
 					$data['Item']['ItemVariation'] = array($data['Item']['ItemVariation']);
 				}
+
+				$possibleSku = $this->__calculatePossibleSku();
+				$sku = current($possibleSku);
+
 				foreach ($data['Item']['ItemVariation'] as $itemVariation) {
 					$this->ItemVariation->create();
 					$itemVariation['item_id'] = $itemId;
@@ -342,21 +360,33 @@ class RestApiController extends AppController {
 						$itemVariation['primary'] = 0;
 					}
 					if (!intval($itemVariation['sku'])) {
-						$itemVariation['sku'] = substr(time(), 4, 6);
+						$itemVariation['sku'] = $sku;
 					}
-					if ($this->ItemVariation->save($itemVariation)) {
-						if (array_key_exists('primary', $itemVariation) && intval($itemVariation['primary'])) {
-							$this->ItemVariation->updateAll(
-								array(
-									'ItemVariation.primary' => 0,
-								),
-								array(
-									'ItemVariation.item_id' => $itemId,
-									'ItemVariation.id <>' => $this->ItemVariation->id,
-								)
-							);
+
+					$successSave = false;
+					while (!($successSave = $this->ItemVariation->save($itemVariation))) {
+						if (!$successSave && !array_key_exists('sku', $this->ItemVariation->validationErrors)) {
+							$this->log($itemVariation, 'daily');
+							$this->log($this->ItemVariation->validationErrors, 'daily');
+							break;
 						}
+
+						$itemVariation['sku'] = next($possibleSku);
 					}
+
+					if ($successSave && array_key_exists('primary', $itemVariation) && intval($itemVariation['primary'])) {
+						$this->ItemVariation->updateAll(
+							array(
+								'ItemVariation.primary' => 0,
+							),
+							array(
+								'ItemVariation.item_id' => $itemId,
+								'ItemVariation.id <>' => $this->ItemVariation->id,
+							)
+						);
+					}
+
+					$sku = next($possibleSku);
 				}
 			}
 
@@ -722,6 +752,30 @@ class RestApiController extends AppController {
 			),
 		);
 	}
+
+	private function __calculatePossibleSku() {
+		$this->loadModel('ItemVariation');
+
+		$startSku = substr(time(), 6, 4) * 100;
+		$existsSku = $this->ItemVariation->find(
+			'list',
+			array(
+				'fields' => array(
+					'ItemVariation.id',
+					'ItemVariation.sku',
+				),
+				'conditions' => array(
+					'ItemVariation.sku >=' => $startSku,
+					'ItemVariation.sku <' => $startSku + 100,
+				)
+			)
+		);
+
+		$possibleSku = array_diff(range($startSku, $startSku + 100), $existsSku);
+
+		return $possibleSku;
+	}
+
 	/*
 	 * generate XML for testing tool
 	 */
