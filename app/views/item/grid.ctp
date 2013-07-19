@@ -31,16 +31,16 @@
 			<?php } ?>
 
 			<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
-				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/all/">All Locations</a>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
 			</dd>
 			<dd <?php if ($inventory_location == '1') { echo 'class="active"'; } ?>>
-				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/1/">Los Angeles</a>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/1/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Los Angeles</a>
 			</dd>
 			<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
-				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/2/">New York</a>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/2/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">New York</a>
 			</dd>
 			<dd style="display:none" <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
-				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $current_item_category; ?>/3/">Warehouse</a>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/3/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Warehouse</a>
 			</dd>
 
 		</dl>
