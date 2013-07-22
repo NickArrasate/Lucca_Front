@@ -111,14 +111,13 @@
 		<?php foreach($unpublished_items as $u) { ?>
 		<li class="item" left="<?php echo $u['ItemOccurrence']['left']; ?>" right="<?php echo $u['ItemOccurrence']['right']; ?>">
 				<dl id="<?php echo $u['Item']['id'] ?>">
-
-					<?php foreach ($u['ItemImage'] as $i) { ?>
+					
+					<?php $i = $u['ItemImage']; ?>
 					<?php if($i['primary'] == '1') { ?>
 						<?php if(isset($all_items)) { ?>
 							<dd><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>">
-
+							
 							<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $i['filename'], $settings)?>" />
-
 
 							</a></dd>
 						<?php } else { ?>
@@ -129,10 +128,10 @@
 							</a></dd>
 						<?php } ?>
 					<?php }?>
-					<?php } ?>
+					
 					<dt><a href="/admin/item/summary/<?php echo $u['Item']['id'] ?>"><?php echo $u['Item']['name'] ?></a></dt>
 					<dd class="price"><?php if (!empty($u['Item']['fid'])) { echo 'ID: ' . $u['Item']['fid']; } ?></dd>
-					<dd class="price"><?php if (isset($u['ItemVariation'][0]['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation'][0]['price']); } ?></dd>
+					<dd class="price"><?php if (isset($u['ItemVariation']['price'])) { echo '$' . $fieldformatting->price_formatting($u['ItemVariation']['price']); } ?></dd>
 					<dd class="end-info-block">
 						<?php if ($u['Item']['lucca_original']): ?>
 							<?php

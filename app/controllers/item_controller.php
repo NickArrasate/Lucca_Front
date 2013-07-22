@@ -42,7 +42,6 @@ App::import('Inflector');
 		}
 
 		function grid() {
-
 			// once the user starts viewing items - set the session id
 
 			$session_details = $this->Session->read();
@@ -1117,13 +1116,12 @@ App::import('Inflector');
 
 		function admin_grid() {
 			$this->Ssl->force();
-
 			$this->loadModel('InventoryLocation');
 			$this->loadModel('ItemCategory');
 			//
 			// will return a list/grid of unpublished items
 			$this->layout = 'admin_product_management';
-
+			
 			$selectedFilter['categories'] = (isset($this->params['pass'][0]) && !empty($this->params['pass'][0]) ? $this->params['pass'][0] : 'all' );
 			$selectedFilter['subcategories'] = (isset($this->params['named']['subcategory']) && !empty($this->params['named']['subcategory']) ? $this->params['named']['subcategory'] : 'all');
 			$selectedFilter['locations'] = (isset($this->params['named']['location']) && !empty($this->params['named']['location']) ? $this->params['named']['location'] : 'all');
@@ -1146,7 +1144,7 @@ App::import('Inflector');
 				$itemRetriveConditions['Item.item_type_id'] = $selectedFilter['categories'];
 				$categoryId = $selectedFilter['categories'];
 			}
-
+			
 			$this->set('currentAction', 'grid');
 			if (array_key_exists('search', $this->params['named']) && !empty($this->params['named']['search'])) {
 				if ($item = $this->Item->find('first', array('conditions' => array('Item.fid' => $this->params['named']['search'])))) {
@@ -1175,7 +1173,7 @@ App::import('Inflector');
 				default:
 					break;
 			}
-
+			
 			if ($selectedFilter['locations'] != 'all') {
 				$this->loadModel('InventoryLocation');
 				$this->loadModel('InventoryQuantity');
@@ -1194,7 +1192,7 @@ App::import('Inflector');
 					$itemRetriveConditions['Item.id'] = $filteredItems;
 				}
 			}
-
+			
 			switch ($selectedFilter['other']) {
 				case "newest_notes":
 					$this->paginate['Item']['joins'] = array(
@@ -1225,51 +1223,62 @@ App::import('Inflector');
 			$this->loadModel('ItemType');
 
 			if(isset($this->params['pass'][2]) && ($this->params['pass'][2] == 'all')) {
+				$this->loadModel('Occurrence');
+				$occurrence = $this->Occurrence->find('first', array(
+					'conditions' => array(
+						sprintf('Occurrence.category = %s', $categoryId),
+						sprintf('Occurrence.subcategory = %s', $subcategoryId),
+						sprintf('Occurrence.location = %s', $locationId),
+					)
+				));
 				$items = $this->Item->find(
 					'all',
 					array(
-						'fields' => array(
-							'Item.*',
-							'ItemOccurrence.*'
-						),
-						'conditions' => $itemRetriveConditions,
 						'joins' => array(
 							array(
 								'table' => 'item_occurrences',
 								'alias' => 'ItemOccurrence',
 								'type' => 'Inner',
-								'conditions' => array('Item.id = ItemOccurrence.item_id'),
+								'conditions' => array(
+									'ItemOccurrence.item_id = Item.id',
+									sprintf('ItemOccurrence.occurrence_id = %s', $occurrence['Occurrence']['id'])
+								),
 							),
 							array(
-								'table' => 'occurrences',
-								'alias' => 'Occurrence',
-								'type' => 'Inner',
+								'table' => 'item_variations',
+								'alias' => 'ItemVariation',
+								'type' => 'Left',
 								'conditions' => array(
-									'Occurrence.id = ItemOccurrence.occurrence_id',
-									sprintf('Occurrence.category = %s', $categoryId),
-									sprintf('Occurrence.subcategory = %s', $subcategoryId),
-									sprintf('Occurrence.location = %s', $locationId),
+									'ItemVariation.item_id = Item.id',
+									'ItemVariation.primary = 1'
 								),
-							)
-						),
-						'order' => array('ItemOccurrence.left' => 'asc'),
-//						'order' => $itemRetriveOrders
-						'contain' => array(
-							'ItemVariation' => array(
-								'order' => array(
-									'ItemVariation.primary' => 'DESC',
-									'ItemVariation.id' => 'ASC'
-								)
 							),
-							'ItemType',
-							'ItemCategory',
-							'ItemImage',
-							'InventoryQuantity',
-							'InventoryLocation'
-						)
+							array(
+								'table' => 'item_images',
+								'alias' => 'ItemImage',
+								'type' => 'Left',
+								'conditions' => array(
+									'ItemImage.item_id = Item.id',
+									'ItemImage.primary = 1'
+								),
+							),
+						),
+						'conditions' => $itemRetriveConditions,
+						'fields' => array(
+							'Item.*',
+							'ItemOccurrence.*',
+							'ItemVariation.*',
+							'ItemImage.*',							
+						),
+						'recursive' => -1,
+						'order' => array(
+							'ItemOccurrence.left' => 'asc',
+						),						
+						'group' => array(
+							'Item.id'
+						),
 					)
 				);
-
 				$this->set('all_items','all_items');
 			} else {
 				$this->paginate['Item']['fields'] = array(
@@ -1314,7 +1323,17 @@ App::import('Inflector');
 				$items = $this->paginate('Item', $itemRetriveConditions);
 			}
 
-			foreach ($items as &$item) {
+			$this->loadModel('InventoryQuantity');
+			foreach ($items as &$item) {				
+				$inventory_quantity = $this->InventoryQuantity->find('first', array(
+					'conditions' => array(
+						'InventoryQuantity.item' => $item['Item']['id'],
+						'InventoryQuantity.quantity >= 0 AND InventoryQuantity.quantity IS NOT NULL'
+					),
+					'recursuve' => -1
+				));
+				$item['InventoryQuantity'][0] = $inventory_quantity['InventoryQuantity'];
+				
 				if ($item['Item']['lucca_original']) {
 					$childrens = $this->Item->find(
 						'first',
