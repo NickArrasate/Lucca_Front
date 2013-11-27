@@ -2327,6 +2327,7 @@ App::import('Inflector');
 		}
 
 		function make_default_ordering($occurrence_id = 1) {
+			$this->redirect('/');
 			$this->loadModel('Item');
 			$this->loadModel('Occurrence'); // occurrence
 			$this->loadModel('ItemOccurrence'); // item occurrence
@@ -2411,6 +2412,99 @@ App::import('Inflector');
 			}
 		}
 
+		function fix_all_location_ordering() {
+			$this->redirect('/');
+			set_time_limit(9000);
+			$this->loadModel('Occurrence');
+			$this->loadModel('ItemOccurrence');
+
+			$occurrences = $this->Occurrence->find(
+				'all',
+				array(
+					'recursive' => -1,
+				)
+			);
+
+			$occurrenceIds = array();
+			$occurrenceItems = array();
+			foreach ($occurrences as $occurrence) {
+				$occurrencesIds[$occurrence['Occurrence']['category'] . $occurrence['Occurrence']['subcategory'] . $occurrence['Occurrence']['location']] = $occurrence['Occurrence']['id'];
+
+				$occurrenceItems[$occurrence['Occurrence']['category']][$occurrence['Occurrence']['subcategory']][$occurrence['Occurrence']['location']] = $this->ItemOccurrence->find(
+					'list',
+					array(
+						'fields' => array(
+							'ItemOccurrence.id',
+							'ItemOccurrence.item_id',
+						),
+						'conditions' => array(
+							'ItemOccurrence.occurrence_id' => $occurrence['Occurrence']['id']
+						),
+						'recursive' => -1,
+						'order' => array(
+							'ItemOccurrence.item_id' => 'ASC'
+						)
+					)
+				);
+			}
+
+			$newOccurrences = array();
+			foreach ($occurrenceItems as $categoryId => $categoryOccurrence) {
+				foreach ($categoryOccurrence as $subcategoryId => $subcategoryOccurrence) {
+					$totalList = array_merge(
+						$subcategoryOccurrence[1], // LA
+						$subcategoryOccurrence[2], // NY
+						$subcategoryOccurrence[3]  // WH
+					);
+
+					$notInAllLocation = array_unique(array_diff($totalList, $subcategoryOccurrence[0])); // get all ids not in all locaiton and clean from duplicates
+					sort($notInAllLocation); // ASC sort for insert newest at top
+
+					$newOccurrences[$categoryId][$subcategoryId] = $notInAllLocation;
+
+					$occurrenceId = $occurrencesIds[$categoryId . $subcategoryId . '0']; // id of all location for category-subcategory pair
+
+					echo "Starting for " . $categoryId . $subcategoryId . '0' . " count: " . count($notInAllLocation) . "<br/>";
+
+					foreach ($notInAllLocation as $itemId) {
+						$maxItemOccurrence = $this->ItemOccurrence->find(
+							'first',
+							array(
+								'conditions' => array(
+									'ItemOccurrence.occurrence_id' => $occurrenceId
+								),
+								'order' => array(
+									'ItemOccurrence.left' => 'desc'
+								)
+							)
+						);
+						$itemOccurrenceLeft = $maxItemOccurrence['ItemOccurrence']['left'] + 2;
+						$itemOccurrenceRight= $maxItemOccurrence['ItemOccurrence']['right'] + 2;
+						$this->ItemOccurrence->create();
+						$this->ItemOccurrence->set('item_id', $itemId);
+						$this->ItemOccurrence->set('occurrence_id', $occurrenceId);
+						$this->ItemOccurrence->set('left', $itemOccurrenceLeft);
+						$this->ItemOccurrence->set('right', $itemOccurrenceRight);
+						$this->ItemOccurrence->save();
+						$this->ItemOccurrence->moveRight($occurrenceId, 1, $itemOccurrenceLeft);
+
+						$this->ItemOccurrence->updateAll(
+							array(
+								'ItemOccurrence.left' =>  1,
+								'ItemOccurrence.right' =>  2,
+							),
+							array(
+								'ItemOccurrence.id' => $this->ItemOccurrence->getInsertID(),
+							)
+						);
+					}
+
+					echo "end<br/>";
+				}
+			}
+
+			exit();
+		}
 		function admin_movetotop($id) {
 			$this->loadModel('ItemOccurrence');
 			$ItemOccurrenceIdList = $this->ItemOccurrence->find('list', array('fields' => array('occurrence_id', 'left'), 'conditions' => array('ItemOccurrence.item_id' => $id)));
