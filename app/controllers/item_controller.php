@@ -139,34 +139,31 @@ App::import('Inflector');
 					'type' => 'Inner',
 					'conditions' => array('Item.id = InventoryQuantity.item', 'InventoryQuantity.location' => intval($inventory_location))
 				);
-				$this->paginate['Item']['joins'][] = $item_quantity_join;
 			}
 
-			if ($pager == 'all') {
-
-				$joins = array(
+			$this->loadModel('Occurrence');
+			$occurrence = $this->Occurrence->find('first', array(
+				'conditions' => array(
+					sprintf('Occurrence.category = %s', $categoryId),
+					sprintf('Occurrence.subcategory = %s', $subcategoryId),
+					sprintf('Occurrence.location = %s', $locationId),
+				)
+			));
+			$joins = array(
 						array(
 							'table' => 'item_occurrences',
 							'alias' => 'ItemOccurrence',
 							'type' => 'Inner',
-							'conditions' => array('Item.id = ItemOccurrence.item_id'),
-						),
-						array(
-							'table' => 'occurrences',
-							'alias' => 'Occurrence',
-							'type' => 'Inner',
 							'conditions' => array(
-								'Occurrence.id = ItemOccurrence.occurrence_id',
-								sprintf('Occurrence.category = %s', $categoryId),
-								sprintf('Occurrence.subcategory = %s', $subcategoryId),
-								sprintf('Occurrence.location = %s', $locationId),
+								'Item.id = ItemOccurrence.item_id',
+								sprintf('ItemOccurrence.occurrence_id = %s', $occurrence['Occurrence']['id'])
 							),
-					)
+						)
 				);
-				if (is_array($item_quantity_join)) {
-					array_push($joins, $item_quantity_join);
-				}
-
+			if (is_array($item_quantity_join)) {
+				array_push($joins, $item_quantity_join);
+			}
+			if ($pager == 'all') {
 				$items = $this->Item->find('all', array(
 					'conditions' => $conditions_array,
 					'fields' => array('Item.name', 'Item.status', 'Item.fid'),
@@ -180,11 +177,7 @@ App::import('Inflector');
 								'ItemVariation.id' => 'ASC'
 							)
 						),
-						'ItemType',
-						'ItemCategory',
-						'ItemImage',
-						'InventoryQuantity',
-						'InventoryLocation'
+						'ItemImage'
 					),
 				));
 				$this->set('all_items', 'All');
@@ -198,24 +191,9 @@ App::import('Inflector');
 				);
 
 				$this->set('count', $count);
-
-				$this->paginate['Item']['joins'][] = array(
-							'table' => 'item_occurrences',
-							'alias' => 'ItemOccurrence',
-							'type' => 'Inner',
-							'conditions' => array('Item.id = ItemOccurrence.item_id'),
-						);
-				$this->paginate['Item']['joins'][] = array(
-							'table' => 'occurrences',
-							'alias' => 'Occurrence',
-							'type' => 'Inner',
-							'conditions' => array(
-								'Occurrence.id = ItemOccurrence.occurrence_id',
-								sprintf('Occurrence.category = %s', $categoryId),
-								sprintf('Occurrence.subcategory = %s', $subcategoryId),
-								sprintf('Occurrence.location = %s', $locationId),
-							),
-						);
+				
+				$this->paginate['Item']['joins'] = $joins;
+				
 				$this->paginate['Item']['order'] = array(
 					'ItemOccurrence.left' => 'asc'
 				);
@@ -226,11 +204,7 @@ App::import('Inflector');
 							'ItemVariation.id' => 'ASC'
 						)
 					),
-					'ItemType',
-					'ItemCategory',
-					'ItemImage',
-					'InventoryLocation',
-					'InventoryQuantity'
+					'ItemImage'
 				);
 
 				$items = $this->paginate('Item', array(
