@@ -416,7 +416,19 @@ class RestApiController extends AppController {
 		$response = array();
 
 		$this->loadModel('Item');
-		if (!$this->Item->delete($id)) {
+
+		$this->Item->id = intval($id);
+
+		if (!$this->Item->exists($id)) {
+			$response = array(
+				'status' => array(
+					'error' => "Item doesn't exist"
+				),
+				'item' => array(
+					'id' => $id
+				)
+			);
+		} else if (!$this->Item->delete($id)) {
 			$response = array(
 				'status' => array(
 					'error' => 'Item can not be deleted',
@@ -442,7 +454,7 @@ class RestApiController extends AppController {
 				)
 			);
 
-			if ($itemProhotos) {
+			if ($itemPhotos) {
 				foreach ($itemPhotos as $imageId => $filename) {
 					if (
 						!empty($filename) &&
@@ -479,9 +491,19 @@ class RestApiController extends AppController {
 		$response = array();
 
 		$this->loadModel('ItemImage');
-		$photo = $this->ItemImage->find('first', array('conditions' => array('ItemImage.id' => $id)));
 
-		if (!$photo || !($deletionStatus = $this->ItemImage->delete($id))) {
+		$this->ItemImage->id = intval($id);
+
+		if (!$this->ItemImage->exists($id)) {
+			$response = array(
+				'status' => array(
+					'error' => "Photo doesn't exist"
+				),
+				'item' => array(
+					'id' => $id
+				)
+			);
+		} else if (!$this->ItemImage->delete($id)) {
 			$response = array(
 				'status' => array(
 					'error' => 'Photo can not be deleted',
@@ -491,6 +513,8 @@ class RestApiController extends AppController {
 				),
 			);
 		} else {
+			$photo = $this->ItemImage->find('first', array('conditions' => array('ItemImage.id' => $id)));
+
 			if (!empty($photo['ItemImage']['filename']) && file_exists(WWW_ROOT . '/files/' . $photo['ItemImage']['filename'])) {
 				unlink(WWW_ROOT . '/files/' . $photo['ItemImage']['filename']);
 			}
