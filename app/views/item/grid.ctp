@@ -16,7 +16,9 @@
 
 				<?php
 				foreach ($item_categories as $id => $category) {
-
+					# Skip if it's the "CUSTOM" category
+					$skip = json_decode(SKIP_CATS,true);
+					if(in_array($id,$skip)){continue;};
 					if($current_item_category == $id ) { ?>
 
 						<dd class="active">
@@ -87,7 +89,7 @@
 			<dl class="results">
 			<div style="display:none">
             	<?php //print_r($all_items);print_r($items);?>
-		</div>
+            </div>
 			<?php if (count($items) > 0) {?>
 
 			<?php
@@ -109,7 +111,7 @@
 								<?php if($o['primary'] == 1) {?>
 
 								<?php $settings = array('w'=>142,'h'=>142,'canvas-color'=>"#ffffff"); ?>
-								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
+									<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
                   <!-- <img src="<? echo '/files/'.$o['filename']?>" width="142" /> -->
 								<?php } ?>
 								<?php } ?>

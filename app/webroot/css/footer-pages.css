@@ -31,8 +31,10 @@ h2, h3 {
 		
 		.press .overlay .wrapper .nav {float:left}
 		
-		.contactLeft {float:left; width: 250px;}
+		.contactLeft {float:left; width: 300px;}
+		.contactLeft img{float:left !important;margin-bottom:10px}
 		.contactRight {float:left; width:500px}
+		.contactRight img{float:left !important;margin-bottom:10px}
 		.press .overlay .wrapper .details {float:right;margin:0 0 20px;}
 		
 		.press .overlay .wrapper .nav {width:250px; }

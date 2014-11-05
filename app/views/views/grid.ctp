@@ -1,26 +1,26 @@
 <?php
 	echo $html->css('grid');
-	$this->pageTitle = 'Lucca Antiques - '. $current_item_type_name[$current_item_type_id];
+	$this->pageTitle = 'Lucca Antiques - '. $current_item_type_name[$current_item_type_id]; 
 //	debug($count);
 ?>
 <div class="sgrid8">
 	<div class="item-category">
-
+	
 		<dl class="nav">
-
+			
 			<?php if ($current_item_category == 'all') { ?>
 				<dd class="active">
 			<?php } else { ?>
 				<dd>
 			<?php } ?>
-
+			
 			<span><a href="/item/grid/<?php echo $current_item_type_id ?>/all/">All <?php echo $current_item_type_name[$current_item_type_id] ?></a></dd>
-
+			
 			<?php
 				foreach ($item_categories as $i => $category) {
-
+				
 					if(($i + 1) == $current_item_category ) { ?>
-
+					
 						<dd class="active">
 					<?php } else { ?>
 						<dd>
@@ -28,13 +28,13 @@
 				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/<?php echo $i + 1 ?>/"><?php echo $category ?></a></span></dd>
 			<?php } ?>
 		</dl>
-
-
+		
+		
 		<div class="wrapper">
 			<dl class="breadcrumbs">
 				<dd>
-				<a href="/">Home</a> >
-				<?php
+				<a href="/">Home</a> > 
+				<?php 
 					echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/all/">'. $breadcrumbs[0] .'</a> > </span>';
 					echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/'. $this->params['pass'][1] . '">'. $breadcrumbs[1] .' </a></span>';
 				?>
@@ -52,7 +52,7 @@
 				<dd class="pagination">
 					<dl>
 					<dd>
-					<?php
+					<?php 
 					$paginator->options(array('url' => $this->passedArgs));
 					?>
 					<span><?php echo $paginator->prev('<< '); ?></span>
@@ -61,33 +61,33 @@
 					</dd>
 					</dl>
 				</dd>
-				<?php } ?>
+				<?php } ?>				
 			</dl>
-
+			
 			<p class="category-summary"><?php echo $category_summary ?></p>
-
+			
 			<div class="item-category-border"></div>
-
+			
 			<dl class="results">
-
+			
 			<?php if (count($items) > 0) {?>
-
+			
 			<?php
 				$last_item = end($items);
 			?>
-
+			
 			<?php foreach($items as $item) { ?>
-
-
-
+			
+			
+			
 				<?php foreach ($item as $i) { ?>
 				<dd>
 					<ul>
 						<li>
 							<a href="/item/details/<?php echo $i['Item']['id']  ?>/">
 								<?php foreach($i['ItemImage'] as $o) {?>
-								<?php if($o['primary'] == 1) {?>
-
+								<?php if($o['primary'] == 1) {?> 
+								
 								<?php $settings = array('w'=>142,'h'=>142,'crop'=>1); ?>
 								<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'.$o['filename'], $settings)?>" />
 								<?php } ?>
@@ -103,17 +103,17 @@
 					</ul>
 				</dd>
 				<?php } ?>
-
-
-
+				
+			
+			
 				<?php if ( $item != $last_item) { ?>
 					<dd class="no-margin"><div class="category-results-divider2"></div></dd>
 				<?php }  ?>
-
+			
 			<?php } ?>
 			<?php } else {?>
 			<h3 class="notifications">No items found</h3>
-
+			
 			<?php } ?>
 			</dl>
 			<dl class="breadcrumbs">
@@ -131,7 +131,7 @@
 				<dd class="pagination">
 					<dl>
 					<dd>
-					<?php
+					<?php 
 					$paginator->options(array('url' => $this->passedArgs));
 					?>
 					<span><?php echo $paginator->prev('<< '); ?></span>
@@ -140,9 +140,9 @@
 					</dd>
 					</dl>
 				</dd>
-				<?php } ?>
+				<?php } ?>	
 			</dl>
-
+			
 		</div>
 	</div>
 </div>

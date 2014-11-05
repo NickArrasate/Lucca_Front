@@ -103,7 +103,7 @@
 			}
 
 			var filterParams = category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
-		
+
 //			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
 			window.location.href = newPath + path.prefix + path.controller + path.action + filterParams;
 		});
@@ -151,7 +151,7 @@
 //			window.location.href = '/admin/item/grid/' + category + '/' + item_status + pagination_status + '/subcategory:' + subcategory + '/location:' + location + '/other:' + other;
 			$(this).get(0).setAttribute('action', newPath + path.prefix + path.controller + path.action + filterParams + queryString);
 			$(this).get(0).submit();
-		}); 
+		});
 		
 		$('#noteFilter').change(function () {
 			selectedSortMode = $('#noteFilter').val();

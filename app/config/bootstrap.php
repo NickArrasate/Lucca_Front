@@ -41,4 +41,13 @@
  *
  */
 //EOF
+
+define('LA_NAME','Kim');
+define('LA_EMAIL','kim@luccaantiques.com');
+define('NY_NAME','Suzette');
+define('NY_EMAIL','suzette@luccaantiques.com');
+define('WH_NAME','Katie');
+define('WH_EMAIL','katie@luccaantiques.com');
+define('SKIP_CATS',json_encode(array('3')));
+
 ?>

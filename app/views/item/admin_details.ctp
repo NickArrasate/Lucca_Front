@@ -139,9 +139,9 @@ foreach ($item_details[0]['ItemImage'] as $i) {
 		</select>
 	</dd>
 	<?php } ?>
-    <dd><label>Filemaker ID: </label></dd>
+	<dd><label>Filemaker ID:</label></dd>
 	<dd><input type="text" name="data[Item][fid]" value="<?php if(isset($data)) { echo $data['Item']['fid']; } else {if(isset($item_details)) { echo $item_details[0]['Item']['fid']; }} ?>"/></dd>
-	<dd><label>Item Name: *</label></dd>
+    <dd><label>Item Name: *</label></dd>
 	<dd><input type="text" name="data[Item][name]" value="<?php if(isset($data)) { echo $data['Item']['name']; } else {if(isset($item_details)) { echo $item_details[0]['Item']['name']; }} ?>"/></dd>
 	<dd><label>Category: *</label></dd>
 	<dd>

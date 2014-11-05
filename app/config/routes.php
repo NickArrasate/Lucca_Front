@@ -36,7 +36,7 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
+	
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 	Router::connect('/admin/logout', array('controller' => 'users', 'action' => 'logout'));
 
@@ -52,17 +52,6 @@
 		array("controller" => "rest_api", "action" => "image_delete", "prefix" => "item", "rest" => true, "[method]" => "DELETE", "ext" => "xml"),
 		array("id" => "[0-9]+")
 	);
-/*	Router::connect(
-		"/rest/item/",
-		array("controller" => "rest_api", "action" => "index", "prefix" => "item", "rest" => true, "[method]" => "GET", "ext" => "xml")
-	);
- */
-/*	Router::connect(
-		"/rest/item/:id",
-		array("controller" => "rest_api", "action" => "view", "prefix" => "item", "rest" => true, "[method]" => "GET", "ext" => "xml"),
-		array("id" => "[0-9]+")
-	);
- */
 	Router::connect(
 		"/rest/item/",
 		array("controller" => "rest_api", "action" => "add", "prefix" => "item", "rest" => true, "[method]" => "POST", "ext" => "xml")

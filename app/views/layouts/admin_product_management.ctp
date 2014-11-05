@@ -5,17 +5,17 @@
 	<head>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<title><?php echo $title_for_layout?></title>
-
+		
 		<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 		<link rel="stylesheet" type="text/css" href="/css/jquery.ui.css" />
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="/js/jquery.min.js"></script> 
+		<script type="text/javascript" src="/js/jquery.cookie.js"></script> 
+		<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script> 		
 		<script type="text/javascript" src="/js/json2.js"></script>
 		<script type="text/javascript" src="/js/jquery.dragsort-0.4.2.min.js"></script>
 		<script type="text/javascript" src="/js/item_admin_grid.js"></script>
 		<script type="text/javascript" src="/js/jquery.ui.js"></script>
-		<?php
+		<?php 
 			echo $scripts_for_layout;
 			//echo $html->css('admin');
 			//echo $html->css('jquery.ui');
@@ -33,12 +33,12 @@
 						<dd class="active"><a href="/admin/item/grid/all/Unpublished/"><span>Product Management</span></a></dd>
 					</dl>
 				</dd>
-
+				
 				<dd class="floatRight logout">
 					<a class="button white-background black-text" href="/users/logout/" />Logout</a>
 				</dd>
 			</dl>
-
+			
 			<!--<h2>Product Management</h2>-->
 
 			<dl class="subnavigation">
@@ -51,15 +51,15 @@
 					<?php echo $form->end(); ?>
 				</dd>
 			</dl>
-
+			
 			<div class="content">
 
 			<?php echo $content_for_layout ?>
-
+			
 			</div>
 
 		</div>
-
+		
 		<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -71,8 +71,8 @@
 		} catch(err) {}</script>
 
 	</body>
-
-</html>
+	
+</html> 
 
 </body>
 </html>

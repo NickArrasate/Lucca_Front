@@ -1,4 +1,4 @@
-<?php
+ <?php
 	echo $html->css('details');
 	#$javascript->link('item_details', false);
 	$this->pageTitle = 'Lucca Antiques - '. $breadcrumbs[0] . ': ' . $item_details[0]['Item']['name'] ;
@@ -9,24 +9,26 @@
 
 $(document).ready(function() {
 
-	$('a.image').fancybox();
-
+	$('#zoom-image').CloudZoom({
+	   zoomImage:'<?php echo '/files/'.$primary_image?>',
+	   zoomPosition:3,
+	   zoomWidth:200,
+	   zoomHeight:200
+	});      
+	
 	$('.product-visuals dl dd').click(function(){
-
+		var cz_object = $('#zoom-image').data('CloudZoom');
+		var m_image_file = $(this).children('#medium-image').attr('src');
 		var l_image_file = $(this).children('#large-image').attr('src');
 
-		var m_image_file = $(this).children('#medium-image').attr('src');
-
-		$('.product-visuals .image img').attr('src', m_image_file);
-
-		$('.product-visuals .image').attr('href', l_image_file);
-
+		cz_object.loadImage(m_image_file,l_image_file);
+		
 		$('.product-visuals dl dd').attr('class','');
-
 		$(this).attr('class','active');
 
 	});
 
+	/*
 	$(".btn-email").fancybox({
 		'scrolling'		: 'no',
 		'titleShow'		: false,
@@ -45,18 +47,18 @@ $(document).ready(function() {
 
 		if (email_to.length == 0) {
 			is_form_valid = false;
-			$('#email_error').text('Please enter in an email');
+			$('#email_error').text('Please enter an email address');
 		} else if (!email_pattern.test(email_to)) {
 			is_form_valid = false;
-			$('#email_error').text('Email To is invalid. Please enter valid email address');
+			$('#email_error').text('To: email is invalid. Please enter a valid email address');
 		}
 
 		if (email_from.length == 0) {
 			is_form_valid = false;
-			$('#email_error').text('Please enter in an your email');
+			$('#email_error').text('Please enter a From: email address');
 		} else if (!email_pattern.test(email_from)) {
 			is_form_valid = false;
-			$('#email_error').text('Your Email is invalid. Please enter valid email address');
+			$('#email_error').text('Your Email is invalid. Please enter a valid email address');
 		}
 
 		if (is_form_valid) {
@@ -82,7 +84,7 @@ $(document).ready(function() {
 
 		return false;
 	});
-
+	*/
 });
 
 </script>
@@ -92,15 +94,15 @@ $(document).ready(function() {
 </div>
 <div style="display:none">
 	<form id="email-item" method="post" action="">
-		<p>Send this page to your email:</p>
+		<p>Send this page to an email address:</p>
 		<div style="width:267px;margin-bottom:8px;">
-			<label for="email_to" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">*To:&nbsp;</label><input type="text" id="email_to" name="data[EmailMessage][address_to]" size="20" />
+			<label for="email_to" style="text-align: right; float:left; dispaly: block; width: 80px; padding-top: 4px;">*To Email:&nbsp;</label><input type="text" id="email_to" name="data[EmailMessage][address_to]" size="20" />
 		</div>
 		<div style="width:267px;margin-bottom:8px;">
-		<label for="email_from" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">*Your Email:&nbsp;</label><input type="text" id="email_from" name="data[EmailMessage][address_from]" size="20" value="<?php echo $item_details[0]['ItemLocation']['email']; ?>"/>
+		<label for="email_from" style="text-align: right; float:left; dispaly: block; width: 80px; padding-top: 4px;">*From Email:&nbsp;</label><input type="text" id="email_from" name="data[EmailMessage][address_from]" size="20" value="<?php echo $item_details[0]['ItemLocation']['email']; ?>"/>
 		</div>
 		<div style="width:267px;margin-bottom:8px;">
-			<label for="email_from_name" style="text-align: right; float:left; dispaly: block; width: 70px; padding-top: 4px;">Your Name:&nbsp;</label><input type="text" id="email_from_name" name="data[EmailMessage][address_from_name]" size="20" value="Lucca Antiques"/>
+			<label for="email_from_name" style="text-align: right; float:left; dispaly: block; width: 80px; padding-top: 4px;">From Name:&nbsp;</label><input type="text" id="email_from_name" name="data[EmailMessage][address_from_name]" size="20" value="Lucca Antiques"/>
 		</div>
 		<div style="width:267px;margin-bottom:5px;">
 			Message: <br />
@@ -133,11 +135,10 @@ $(document).ready(function() {
 			$large_settings = array('w'=>600,'crop'=>1);
 		?>
 
-			<a href="../../../files/<?php echo $primary_image ?>" class="image">
-			<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>" />
-			</a>
+			<img id="zoom-image" src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>" />
 
 			<dl>
+
 				<?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
 					<?php if($item_image['filename'] !== '' ) {?>
 					<?php if ($item_image['filename'] == $primary_image) { ?>
@@ -145,19 +146,22 @@ $(document).ready(function() {
 					<dd class="active">
 
 						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
+                        <!-- These are here to preload images -->
 						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
 
-						<img id="large-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>" alt=""/>
+						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
 
 					</dd>
 
 					<?php } else { ?>
 					<dd>
 
-						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
+						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" 
+                            
+                            />
+                        <!-- These are here to preload images -->
 						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-
-						<img id="large-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>" alt=""/>
+						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
 
 					</dd>
 					<?php } ?>
@@ -179,10 +183,6 @@ $(document).ready(function() {
 				<a style="display:none" target="_blank" href="/item/details/<?php echo $item_detail['Item']['id'] ?>/print/">Print</a>
 				<br />
 				<a style="display:none" href="#email-item" class="btn-email"/>Email</a>
-
-
-
-
 			</dd>
 		</dl>
 		<h2><?php echo $item_detail['Item']['name'] ?></h2>
@@ -349,7 +349,7 @@ $(document).ready(function() {
 					-->
 					<dd class="email">
 					<a href="/item/details/<?php echo $item_detail['Item']['id'] ?>/print/" class="button gray-background gray-text"/>Print</a>
-					<a href="#email-item" class="button gray-background gray-text btn-email" />Email</a>
+					<a href="#email-item" class="button gray-background gray-text btn-email hidden" />Email</a>
 					</dd>
 				<?php } else { ?>
 					<dd class="sold"><span class="button gray-background red-text-border">SOLD</span></dd>
@@ -465,34 +465,20 @@ $(document).ready(function() {
 				<dt><span>Location</span></dt>
 				<dd class="width300">
 					<?php
-					/* modify the data, replace new lines with code. or do this when displaying the data
-					$contact = preg_split('/\n/',$item_detail['InventoryLocation']['contact']);
-					$search = array("anne@luccaantiques.com","lori@luccaantiques.com", "Please contact Anne");
-					$replace = array("beth@luccaantiques.com","mark@luccaantiques.com", "Please contact Beth");
-					foreach($contact as $c) {
-						$formatted_contact[] = '<li>'. str_replace($search,$replace,$c) .'</li>';
-					}
-					$contact = '<ul>' . implode($formatted_contact) . '</ul>';
-					echo $contact;*/
-					// ADDED BY BRIAN
-					//if(empty($item_detail['InventoryLocation']['contact'])){
-						if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){ 
+						if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){
 							echo "<ul><li>744 North La Cienega Blvd.
 							</li><li>Los Angeles, CA 90069
 							</li><li>Phone:             310-657-7800
-							</li><li>Email: <a href='mailto:phaedra@luccaantiques.com'>phaedra@luccaantiques.com</a></li></ul>";
+							</li><li>Email: <a href='mailto:".LA_EMAIL."'>".LA_EMAIL."</a></li></ul>";
 						}elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
-							echo "<ul><li>306 East 61st Street 4th Floor 
+							echo "<ul><li>306 East 61st Street 4th Floor
 							</li><li>New York, NY 10065
 							</li><li>Phone:             212-343-9005
-							</li><li>Email:  <a href='mailto:norman@luccaaantiques.com'>norman@luccaaantiques.com</a></li></ul>";
+							</li><li>Email:  <a href='mailto:".NY_EMAIL."'>".NY_EMAIL."</a></li></ul>";
 						}else{
 							echo "<ul><li>This item is located in our LA Warehouse.
-								<br />Please contact Phaedra at 310-657-7800 for viewing information.</li></ul>";
+								<br />Please contact ".LA_NAME." at 310-657-7800 or <a href='mailto:".LA_EMAIL."'>".LA_EMAIL."</a> for viewing information.</li></ul>";
 						}
-
-					//}
-					// END BRIAN ADDITIONS
 					?>
 				</dd>
 			</dl>

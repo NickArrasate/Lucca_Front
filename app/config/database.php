@@ -81,10 +81,10 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'lucca',
-		'password' => 'lucca',
-		'database' => 'lucca',
+		'host' => 'internal-db.s78390.gridserver.com',
+		'login' => 'db78390',
+		'password' => 'kmSAI3iso',
+		'database' => 'db78390_lucca',
 		'prefix' => '',
 	);
 

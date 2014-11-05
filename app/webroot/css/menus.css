@@ -1,6 +1,6 @@
 
 .menu-block { width: 862px; height: 38px; margin-top: 17px; background: #9A9B9C; }
-	ul.menus { margin: 0px; padding: 0px; height: 38px; list-style: none;}
+	ul.menus { margin: 0px; padding: 0px; height: 38px; list-style: none; }
 		ul.menus li { margin: 0px; padding: 0px; display: inline; }
 		ul.menus li a {
 			float: left;height: 28px;
@@ -32,7 +32,7 @@
 			.pulldown { position: absolute; display: none; top: 38px; left: 0px; width: 180px;
 				background: #9A9B9C; text-indent: 0px; z-index: 20; }
 			.locations:hover .pulldown { display: block; }
-
+			
 			ul.submenus { margin: 0px; padding: 0px; list-style: none; }
 				ul.submenus li {
 					margin: 0px;
@@ -88,9 +88,9 @@
 }
 .menu-block .menus .search .searchform {
 	height: 28px;
-	width: 235px;
+	width: 230px;
 	position: relative;
-	right: 195px;
+	right: 190px;
 	top: -36px;
 	background: #9a9b9c;
 	padding: 5px;
@@ -110,6 +110,13 @@
 }
 .menu-block .menus .search .searchform label {
 	font-family: Helvetica;
-	font-size: 15px;
+	font-size: 15px; 
 	color: #e9e7e7;
 }
+#homepage .search{
+	display:none
+}
+#SearchAddForm label:hover {
+	cursor:pointer;
+}
+

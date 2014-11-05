@@ -43,6 +43,7 @@ width:50px;}
 
 .s_product3 .print {float: right}
 
+.product-visuals{position:relative}
 .product-visuals, .product-written-details {margin:0 0 20px; float:left; width:50%;}
 	
 	.product-visuals dl {margin:35px 0 0 0}

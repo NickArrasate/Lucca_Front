@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 	class NavigationComponent extends Object {
 
@@ -6,7 +6,7 @@
 
 		Status can either be:
 
-		Hidden,
+		Hidden, 
 		Unsorted,
 		Unpublished
 		Available,
@@ -33,17 +33,17 @@
 
 
 			if ($status == 'Hidden' || $status == 'Available' || $status == 'Sold') {
-
+			
 				switch($status) {
-
+				
 				case 'Available':
-
+			
 					$navigation = array(
-
+					
 						'h3' => 'Available Items',
-
+						
 						'subnavigation' => array(
-
+						
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -65,9 +65,9 @@
 								'title' => 'Autofill Text',
 							)
 						),
-
+						
 						'navigation' => array(
-
+						
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => 'active',
@@ -83,25 +83,25 @@
 								'class' => '',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-
+						
 						),
-
+						
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-
+						
 						);
-
+						
 						break;
-
+						
 						case 'Hidden':
-
+						
 						$navigation = array(
-
+						
 						'h3' => 'Hidden Items',
-
+						
 						'subnavigation' => array(
-
+						
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -122,11 +122,11 @@
 								'class' => '',
 								'title' => 'Autofill Text',
 							)
-
+							
 						),
-
+						
 						'navigation' => array(
-
+						
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => '',
@@ -142,25 +142,25 @@
 								'class' => '',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-
+						
 						),
-
+						
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-
+						
 						);
-
+						
 						break;
-
+						
 						case 'Sold':
-
+						
 						$navigation = array(
-
+						
 						'h3' => 'Sold Items',
-
+						
 						'subnavigation' => array(
-
+						
 							'New' => array(
 								'link' => '/admin/item/grid/all/Unpublished/',
 								'class' => '',
@@ -181,11 +181,11 @@
 								'class' => '',
 								'title' => 'Autofill Text',
 							)
-
+							
 						),
-
+						
 						'navigation' => array(
-
+						
 							'Available' => array(
 									'link' => '/admin/item/grid/'. $item_type_id  .'/Available/',
 									'class' => '',
@@ -201,32 +201,32 @@
 								'class' => 'active',
 								'title' => 'Sold', 'count' => $item->get_status_count($item_type_id, 'Sold')
 							)
-
+						
 						),
-
+						
 						'item_statuses' => array(
 							'Available', 'Hidden', 'Sold'
 						)
-
+						
 						);
-
+						
 						break;
 				}
-
+				
 			} else {
-
+			
 			// else it's either Unpublished or Unsorted
-
+			
 			switch($status) {
-
+			
 				case 'Unpublished':
-
+			
 				$navigation = array(
-
+				
 					'h3' => 'Works in Progress',
-
+					
 					'subnavigation' => array(
-
+					
 						'New' => array(
 							'link' => '/admin/item/grid/all/Unpublished/',
 							'class' => 'active',
@@ -247,11 +247,11 @@
 							'class' => '',
 							'title' => 'Autofill Text',
 						)
-
+						
 					),
-
+					
 					'navigation' => array(
-
+					
 						'Create' => array(
 							'link' => '/admin/item/image/create',
 							'class' => '',
@@ -267,26 +267,26 @@
 							'class' => '',
 							'title' => 'Unsorted', 'count' => $item->get_status_count($item_type_id, 'Unsorted', $additional_conditions)
 						)
-
+						
 					),
-
+					
 					'item_statuses' => array(
-							'Works in Progress',
+							'Works in Progress', 
 							'Unsorted'
 						)
-
+					
 					);
-
+					
 					break;
-
+					
 					case 'Unsorted':
-
-					$navigation = array(
-
+					
+					$navigation = array( 
+					
 					'h3' => 'Unsorted - Images that don\'t have details yet',
-
+					
 					'subnavigation' => array(
-
+					
 						'New' => array(
 							'link' => '/admin/item/grid/all/Unpublished/',
 							'class' => 'active',
@@ -307,11 +307,11 @@
 							'class' => '',
 							'title' => 'Autofill Text',
 						)
-
+						
 					),
-
+					
 					'navigation' => array(
-
+					
 						'Create' => array(
 							'link' => '/admin/item/image/create',
 							'class' => '',
@@ -327,21 +327,21 @@
 							'class' => 'active',
 							'title' => 'Unsorted', 'count' => $item->get_status_count($item_type_id, 'Unsorted')
 						)
-
+						
 					),
-
+					
 					'item_statuses' => array(
-							'Works in Progress',
+							'Works in Progress', 
 							'Unsorted'
 						)
-
+					
 					);
-
+					
 					break;
 				}
 
 			}
-
+			
 			return $navigation;
 
 		}

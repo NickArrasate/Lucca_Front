@@ -2,31 +2,36 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+        <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
+        <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+        <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+
 		<meta name="description" content="Lucca Antiques provides a valuable resource for designers and celebrity clients seeking pieces that are unique in scale, composition and origin. A constantly changing inventory assures that the merchandise is always fresh and the eclectic mix of elements makes shopping at Lucca exciting.">
         <meta name="keywords" content="antiques, lucca, tables, chairs, vintage, hollywood, designer, custom, unique" />
 		<title><?php echo $title_for_layout?></title>
-		<?php
+		<?php 
 			echo $scripts_for_layout;
 			echo $html->css('base');
 			//debug($item_category_id);
 		?>
-		<?php echo $html->css('menus.css'); ?>
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.easing-1.3.pack.js"></script>
-		<script type="text/javascript" src="/js/jquery.fancybox-1.3.0.pack.js"></script>
-		<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script>
+		<?php echo $html->css('menus.css'); ?>		
+		<script type="text/javascript" src="/js/jquery.min.js"></script> 
+		<script type="text/javascript" src="/js/jquery.easing-1.3.pack.js"></script> 
+		<script type="text/javascript" src="/js/jquery.fancybox-1.3.0.pack.js"></script> 
+		<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script> 
 		<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
 		<script type="text/javascript" src="/js/search.js"></script>
-		<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" />
-		<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" />
+		<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" /> 
+		<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" /> 
 		<link rel="stylesheet" type="text/css" href="/css/hp-slideshow.css" />
 	</head>
-	<body>
+	<body id="homepage">
 		<div class="container" style="background:#666">
-			<?php if($title_for_layout !== "Lucca Antiques"){ ?>
+		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
-			<?php } ?>
+			<?php } ?> 
 			<dl class="header">
 				<dd><a href="/"><img src="/img/logoboxtop.jpg" style="width:100px;display:none" alt="Lucca Antiques" class="active"/></a></dd>
 				<dd>
@@ -47,18 +52,17 @@
 
 			<?php echo $content_for_layout ?>
 
-			<dl class="footer">
+			<dl class="footer" style="margin-top:0px !important">
 				<dd class="first"><a href="/"><span>home</span></a></dd>
 				<dd class="second"><a href="/pages/about/"><span>about</span></a></dd>
-				<dd class="third"><a href="/pages/order-policy/"><span>order policy</span></a></dd>
 				<dd class="fourth"><a href="/pages/disclosure/"><span>disclosure</span></a></dd>
 				<dd class="fifth"><a href="/pages/contact/"><span>contact</span></a></dd>
 				<dd class="sixth"><a href="/pages/press/"><span>press</span></a></dd>
-				<dd class="seventh"><span> &#169; 2012 Lucca Antiques</span></dd>
+				<dd class="seventh"><span> &#169; <?php echo date('Y')?> Lucca Antiques</span></dd>
 			</dl>
 		</div>
 		<!-- <p class="design-credits"><a href="http://www.btrax.com">web design by btrax, Inc.</a></p> -->
-
+		
 		<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -70,8 +74,8 @@
 		} catch(err) {}</script>
 
 	</body>
-
-</html>
+	
+</html> 
 
 </body>
 </html>

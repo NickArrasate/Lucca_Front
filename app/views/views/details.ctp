@@ -1,36 +1,93 @@
 <?php
 	echo $html->css('details');
-	echo $html->css('jquery.fancybox');
-	$javascript->link('jquery', false);
-	$javascript->link('jquery.easing.1.3.js', false);
-	$javascript->link('jquery.fancybox-1.2.1.pack.js', false);
-	#$javascript->link('item_details', false);
-	
 	$this->pageTitle = 'Lucca Antiques - '. $breadcrumbs[0] . ': ' . $item_details[0]['Item']['name'] ; 
-	//debug($options);
+	
 ?>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
 
+	$('#zoom-image').CloudZoom({
+	   zoomImage:'<?php echo '/files/'.$primary_image?>',
+	   zoomPosition:3,
+	   zoomWidth:200,
+	   zoomHeight:200
+	});      
+	
 	$('a.image').fancybox();
-	
-	$('.product-visuals dl dd').click(function(){
-	
-		var l_image_file = $(this).children('#large-image').attr('src');
-		
-		var m_image_file = $(this).children('#medium-image').attr('src');
 
-		$('.product-visuals .image img').attr('src', m_image_file);
-		
-		$('.product-visuals .image').attr('href', l_image_file);
+	$('.product-visuals dl dd').click(function(){
+		var cz_object = $('#zoom-image').data('CloudZoom');
+		var m_image_file = $(this).children('#medium-image').attr('src');
+		var l_image_file = $(this).children('#large-image').attr('src');
+
+		cz_object.loadImage(m_image_file,l_image_file);
 		
 		$('.product-visuals dl dd').attr('class','');
-		
 		$(this).attr('class','active');
-		
+
 	});
+	
+	/*
+	$(".btn-email").fancybox({
+		'scrolling'		: 'no',
+		'titleShow'		: false,
+		'onClosed'		: function() {
+			$("#email_error").hide();
+		}
+	});
+
+	$("#email-item").bind("submit", function() {
+		var email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		var email_from = $('#email_from').val();
+		var email_from_name = $('#email_from_name').val();
+		var	email_to = $('#email_to').val();
+
+		var is_form_valid = true;
+
+		if (email_to.length == 0) {
+			is_form_valid = false;
+			$('#email_error').text('Please enter an email address');
+		} else if (!email_pattern.test(email_to)) {
+			is_form_valid = false;
+			$('#email_error').text('To: email is invalid. Please enter a valid email address');
+		}
+
+		if (email_from.length == 0) {
+			is_form_valid = false;
+			$('#email_error').text('Please enter a From: email address');
+		} else if (!email_pattern.test(email_from)) {
+			is_form_valid = false;
+			$('#email_error').text('Your Email is invalid. Please enter a valid email address');
+		}
+
+		if (is_form_valid) {
+		$.fancybox.showActivity();
+
+		$.ajax({
+			type	: "POST",
+			cache	: false,
+			url		: "/item/email_item/<?php echo $this->params['pass'][0]; ?>",
+			data	: $(this).serializeArray(),
+			success	: function(data) {
+					$('#email_from').val('<?php echo $item_details[0]['ItemLocation']['email']; ?>');
+					$('#email_from_name').val('Lucca Antiques');
+					$('#email_to').val('');
+					$('#email_message').val('');
+				$.fancybox(data);
+			}
+		});
+		} else {
+			$("#email_error").show();
+			$.fancybox.resize();
+		}
+
+		return false;
+	});
+	*/
+});
+
 	
 });
 
@@ -49,39 +106,41 @@ $(document).ready(function() {
 			$main_settings = array('w'=>400,'crop'=>1); 
 			$large_settings = array('w'=>600,'crop'=>1); 
 		?>
-		
-			<a href="../../../files/<?php echo $primary_image ?>" class="image">
-			<img src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings)?>" />
-			</a>
 			
+			<img id="zoom-image" src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>" />
+
 			<dl>
+
 				<?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
 					<?php if($item_image['filename'] !== '' ) {?>
 					<?php if ($item_image['filename'] == $primary_image) { ?>
-								
+
 					<dd class="active">
 
-						<img src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
-						<img id="medium-image" class="hidden" src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-						
-						<img id="large-image" class="hidden" src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>" alt=""/>
-						
+						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
+                        <!-- These are here to preload images -->
+						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
+
+						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
+
 					</dd>
-					
+
 					<?php } else { ?>
 					<dd>
-					
-						<img src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
-						<img id="medium-image" class="hidden" src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-						
-						<img id="large-image" class="hidden" src="<? echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>" alt=""/>
-						
+
+						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" 
+                            
+                            />
+                        <!-- These are here to preload images -->
+						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
+						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
+
 					</dd>
 					<?php } ?>
 					<?php } ?>
 				<?php } ?>
 			</dl>
-			
+
 		</div>
 		<div class="product-written-details">
 		<dl class="top-details-wrapper">

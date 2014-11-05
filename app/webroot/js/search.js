@@ -23,4 +23,10 @@ $(document).ready(function () {
 		$(this).get(0).setAttribute('action', newPath + path.prefix + path.controller + path.action + path.params + queryString);
 		$(this).get(0).submit();
 	}); 
+	
+	$('.searchform label').click(function(){
+		$('#searchAddForm').submit();
+	});
+	
+
 });

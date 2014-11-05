@@ -13,7 +13,7 @@ class ItemCategory extends AppModel {
 			),
 		),
 	);
-
+	
 	function get_category_name($id) {
 		$this->id = $id;
 		return $this->field('name');

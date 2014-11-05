@@ -17,6 +17,9 @@ class UsersController extends AppController {
 	 * Logs in a User
 	 */
 	function login() {
+		//$salt = Configure::read('Security.salt');
+		//echo md5('password'.$salt);
+
 		// redirect user if already logged in
 		if( $this->Session->check('User') ) {
 			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
@@ -44,7 +47,7 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
+	
 	/**
 	 * Checks User data is valid before allowing access to system
 	 * @param array $data
@@ -65,7 +68,7 @@ class UsersController extends AppController {
 		if(!empty($user)) {
 			$salt = Configure::read('Security.salt');
 			// check password
-			// yea -- i just md5ed my password in the database without the salt. eh.
+			// yea -- i just md5ed my password in the database without the salt. eh. 
 			if($user['User']['password'] == md5($data['User']['password'] . $salt)) {
 				$return = $user;
 			}
