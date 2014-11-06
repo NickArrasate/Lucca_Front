@@ -6,7 +6,7 @@
 }
 .container {
 	padding: 24px 48px 45px;
-	width: 862px;
+	max-width: 958px;
 	margin: 30px auto 10px auto;
 	background-color: #fff;
 	overflow:hidden;
@@ -66,7 +66,7 @@ body .gray-text, body .gray-text:hover {color: #534741;}
 
 .uppercase { text-transform: uppercase}
 
-.overlay {position:relative;width:862px;overflow:hidden; background: #fff url(../img/footer_pages_content_overlay.png) repeat-x scroll 0 0}
+.overlay {position:relative;overflow:hidden; background: #fff url(../img/footer_pages_content_overlay.png) repeat-x scroll 0 0}
 
 .item-category-border {
 	background:url(../img/item-category-border.png) repeat-x;
@@ -86,7 +86,7 @@ a img {border:0}
 
 	.header .nav, .header .nav-1, .header .nav-2, .header .nav-3, .header .nav-4, .header .nav-5, .header .nav-6 {
 		height: 38px;
-		width:862px;
+		/*width:862px;*/
 		margin:17px 0 0;
 	}
 	.header .nav {
@@ -395,8 +395,7 @@ a img {border:0}
 				
 .footer {
 	clear:both;
-	width:863px;
-	height:22px;
+	height:42px;
 	background:#9A9B9C;
 	margin:20px 0 0;
 	font-size:12px;

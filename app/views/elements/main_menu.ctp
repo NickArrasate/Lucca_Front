@@ -21,7 +21,7 @@
 			</div>
 		</li>
 		<?php endif;?>
-		<li class="menu7">
+		<li class="menu">
 			<div class="locations">
 				<a href="/item/grid/all/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'class="selected"'; ?> title="All Inventory">All Inventory</a>
 				<div class="pulldown">

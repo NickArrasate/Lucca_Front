@@ -3,23 +3,14 @@
 	$this->homepage = "yes";
 ?>
 <div class="homepage" style="text-align:center;position:relative">
-    <div style="background:#eee;
-                position:absolute;
-                width:305px;
-                height:370px;
-                top:5%;
-                left:30%;
-                z-index:9998;
-                opacity:0.6">
-
-    </div>
     <img style="position:absolute;
-                width:300px;
+                width:305px;
                 top:5%;
                 left:30%;
                 border:2px solid #f05134;
                 border-right:3px solid #f05134;
-                z-index:9999"
+                z-index:9999;
+		background: rgba(238, 238, 238, 0.6)"
          src="/img/logoboxtop-transparent.png" alt="Lucca Antiques" class="active"/>
     <img style="position:relative;display:none" src="/img/OptionNew.jpg" alt="Lucca Antiques" class="active"/>
 	
