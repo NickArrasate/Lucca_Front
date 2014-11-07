@@ -6,7 +6,6 @@
 }
 .container {
 	padding: 24px 48px 45px;
-	max-width: 958px;
 	margin: 30px auto 10px auto;
 	background-color: #fff;
 	overflow:hidden;
@@ -85,11 +84,11 @@ a img {border:0}
 }
 
 	.header .nav, .header .nav-1, .header .nav-2, .header .nav-3, .header .nav-4, .header .nav-5, .header .nav-6 {
-		height: 38px;
+		/*height: 38px;*/
 		/*width:862px;*/
-		margin:17px 0 0;
+		/*margin:17px 0 0;*/
 	}
-	.header .nav {
+	/*.header .nav {
 		background: #9a9c9b url(../img/nav.png) 0px -1px no-repeat;
 	}
 	.header .nav-1 {
@@ -109,7 +108,7 @@ a img {border:0}
 	}
 	.header .nav-6 {
 		background: #9a9c9b url(../img/nav.png)  0px -455px no-repeat;
-	}
+	}*/
 		.cart a {
 			float:right;
 			color:#77787b;
@@ -410,6 +409,18 @@ a img {border:0}
 	*/
 	.footer dd {float:left;padding-left:25px}
 	.footer dd.seventh {float:right;text-align:right;padding-right:20px;color:#fff;}
+
+@media (max-width: 767px) {
+	.footer dd {
+		float: none;
+	}
+	.footer {
+		height: auto;
+	}
+	.footer a {
+		font-size: 16px;
+	}
+}
 	
 
 .maintenance .notice {color: #fff; font-size: 20px}
@@ -563,6 +574,10 @@ caption     { background: #eee; }
 	height: 40px;
 	background-color: white;
 	opacity: 0.8;
+}
+
+.navbar-collapse {
+	padding: 0;
 }
 
 

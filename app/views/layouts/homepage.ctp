@@ -2,7 +2,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<meta charset="utf-8"></meta>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
         <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
         <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
@@ -24,6 +25,7 @@
 	<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script> 
 	<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
 	<script type="text/javascript" src="/js/search.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" /> 
 	<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" /> 
 	<link rel="stylesheet" type="text/css" href="/css/hp-slideshow.css" />

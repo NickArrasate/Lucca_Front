@@ -1,5 +1,14 @@
-<div class="menu-block">
-	<ul class="menus">
+<div class="menu-block navbar navbar-default">
+	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navbar">
+        		<span class="sr-only">Toggle navigation</span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+      		</button>
+    	</div>
+	<div class="collapse navbar-collapse" id="menu-navbar">
+	<ul class="menus nav navbar-nav">
 		<?php foreach($item_types['base_types'] as $item):?>
 			<li class="menu">
 				<a href="/item/grid/<?php echo $item['id']; ?>/all/all" <?php if (isset($current_item_type_id)&&($current_item_type_id == $item['id'])) echo 'class="selected"'; ?> title="<?php echo $item['name'];?>"><?php echo $item['name']; ?></a>
@@ -41,4 +50,5 @@
 					</div>
 			</li>
 	</ul>
+	</div>
 </div>

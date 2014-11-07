@@ -1,8 +1,12 @@
 
-.menu-block { margin-top: 17px; background: #9A9B9C; }
+.menu-block { margin-top: 17px; background: #9A9B9C; border:0; border-radius: 0; min-height: 38px; margin-bottom: 0;}
 	ul.menus { margin: 0px; padding: 0px; list-style: none; }
-		ul.menus li { margin: 0px; padding: 0px; display: inline-block; }
-		ul.menus li a {
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff;
+	}
+		.menus li { margin: 0px; padding: 0px; display: inline-block; }
+		.menus.nav li { display:block; }
+		.menus.nav li a {
 			height: 38px;
 			text-indent: 0px;
 			color: #e9e7e7;
@@ -13,12 +17,17 @@
 			overflow:hidden;
 			display: inline-block;
 			text-overflow:ellipsis;}
+		.menus.nav li a {
+			height:auto;
+			padding:0;
+			padding-top: 10px;
+		}
 		.menu a {
 			text-align: center;
 			margin-right: 10px;
 			margin-left: 22px;
 			vertical-align: middle;}
-			.menu a:hover,.menu a.selected {color:#a00;}
+		.nav .menu a:hover,.nav .menu a.selected {color:#a00;}
 		.menu6 a {
 			text-align: center;
 			margin-right: 22px;
