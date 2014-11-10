@@ -11,6 +11,12 @@
 	overflow:hidden;
 }
 
+@media (max-width: 460px) {
+	.container {
+		padding: 0px 15px 15px;
+	}
+}
+
 .design-credits {width:950px; margin:0 auto}
 .design-credits a:link, .design-credits a:active, .design-credits a:hover, .design-credits a:visited    {color:#7f7f7f; font-size: 11px}
 
