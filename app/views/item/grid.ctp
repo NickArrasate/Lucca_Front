@@ -136,7 +136,7 @@
 
 		<?php } ?>
 		<?php } else {?>
-		<h3 class="notifications">No items found</h3>
+		<h3 class="notifications col-lg-12">No items found</h3>
 
 		<?php } ?>
 		</dl>
