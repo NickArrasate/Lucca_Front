@@ -20,11 +20,6 @@ h2, h3 {
 		
 		.overlay .wrapper  img {float:right}
 		
-		.about .overlay .wrapper  dd {
-			float:left;
-			width: 50%;
-		}
-		
 		.press .overlay a {color: #534741}
 		
 		.press .overlay .current-press-item {color: #790100; font-weight: bold}
@@ -54,5 +49,11 @@ dl {margin: 0 0 15px 0}
 
 dd {line-height: 21px;}
 
-	.disclosure h3{color:#534741; margin:0 0 5px; padding:0; text-decoration: underline; font-size:12px; font-weight: bold;}
+.disclosure h3{color:#534741; margin:0 0 5px; padding:0; text-decoration: underline; font-size:12px; font-weight: bold;}
+
+@media (max-width: 991px) {
+	.overlay .wrapper  img {
+		float: none;
+	}
+}
 		

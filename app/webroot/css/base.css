@@ -72,6 +72,9 @@ body .gray-text, body .gray-text:hover {color: #534741;}
 .uppercase { text-transform: uppercase}
 
 .overlay {position:absolute;overflow:hidden; background: #fff url(../img/footer_pages_content_overlay.png) repeat-x scroll 0 0; width: 100%}
+.footerpage .overlay {
+	position: relative;
+}
 
 .item-category-border {
 	background:url(../img/item-category-border.png) repeat-x;
