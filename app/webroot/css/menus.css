@@ -18,7 +18,7 @@
 			display: inline-block;
 			text-overflow:ellipsis;}
 		.menus.nav li a {
-			height:auto;
+			height:38px;
 			padding:0;
 			padding-top: 10px;
 		}
@@ -29,7 +29,7 @@
 			vertical-align: middle;}
 
 
-		.nav .menu a:hover,.nav .menu a.selected {color:#a00;}
+		.nav .menu a:hover,.nav .menu a.selected {color:#a00 !important;}
 		.menu6 a {
 			text-align: center;
 			margin-right: 22px;
