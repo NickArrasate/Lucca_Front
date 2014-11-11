@@ -553,11 +553,16 @@ caption     { background: #eee; }
 #CoversBox a:hover{
 	border-bottom: 1px solid silver;
 }
+#CoversBox a {
+	display: inline-block;
+}
+
 #CoverObject{
 	float: left;
 	width: 110px;
 	height: 240px;
 	padding: 10px;
+	margin: 10px;
 }
 #CoverObjectImgWrap{
 	height: 160px;
