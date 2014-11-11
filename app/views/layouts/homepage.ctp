@@ -4,6 +4,7 @@
 	<head>
 	<meta charset="utf-8"></meta>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
         <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
         <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
