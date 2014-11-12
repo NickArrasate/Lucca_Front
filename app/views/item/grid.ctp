@@ -6,6 +6,7 @@
 <div class="item-category row">
 	<dl class="menu-nav col-xs-2">
 		<!-- Shown only if not All Inventory -->
+		<div style="float: left;">
 		<?php if ($current_item_type_id != 'all') { ?>
 			<dd <?php if ($current_item_category == 'all') { echo 'class="active"'; } ?>>
 				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/all/<?php echo $inventory_location; ?>/">All <?php echo $current_item_type_name[$current_item_type_id] ?></a>
@@ -28,33 +29,36 @@
 			<br />
 			<div style="border-top:1px dashed #ccc; width:130px;">&nbsp;</div>
 		<?php } ?>
+		</div>
 
-		<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
-			<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
-		</dd>
-		<dd <?php if ($inventory_location == '1') { echo 'class="active"'; } ?>>
-			<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/1/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Los Angeles</a>
-		</dd>
-		<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
-			<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/2/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">New York</a>
-		</dd>
-		<dd style="display:none" <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
-			<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/3/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Warehouse</a>
-		</dd>
+		<div style="float: left;">
+			<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
+			</dd>
+			<dd <?php if ($inventory_location == '1') { echo 'class="active"'; } ?>>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/1/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Los Angeles</a>
+			</dd>
+			<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/2/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">New York</a>
+			</dd>
+			<dd style="display:none" <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
+				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/3/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Warehouse</a>
+			</dd>
+		</div>
 
 	</dl>
 
 
 	<div class="wrapper col-xs-10">
 		<dl class="breadcrumbs">
-			<dd style="float:left">
-			<a href="/">Home</a> >
-			<?php
-				echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/all/all">'. $breadcrumbs[0] .'</a> > </span>';
-				echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/'. $this->params['pass'][1] . '/all">'. $breadcrumbs[1] .' </a></span>';
-			?>
+			<dd class="breadcrumb-nav">
+				<a href="/">Home</a> >
+				<?php
+					echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/all/all">'. $breadcrumbs[0] .'</a> > </span>';
+					echo '<span><a href="/item/grid/'. $this->params['pass'][0] .'/'. $this->params['pass'][1] . '/all">'. $breadcrumbs[1] .' </a></span>';
+				?>
 			</dd>
-			<div style="float: right;">
+			<div class="breadcrumb-pagination">
 				<?php if(!isset($all_items)) {?>
 				<dd class="pagination">
 					<dl>
@@ -79,7 +83,6 @@
 				</dd>
 				<?php } ?>
 				<?php } ?>
-				
 			</div>
 		</dl>
 
@@ -142,7 +145,7 @@
 		</dl>
 		<dl class="breadcrumbs">
 			<dd>&#160;</dd>
-			<div style="float: right;">
+			<div class="breadcrumb-pagination">
 				<?php if(!isset($all_items)) {?>
 				<dd class="pagination">
 					<dl>
