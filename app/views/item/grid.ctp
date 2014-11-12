@@ -1,7 +1,6 @@
 <?php
 	echo $html->css('grid');
 	$this->pageTitle = 'Lucca Antiques - '. (isset($current_item_type_name[$current_item_type_id]) ? $current_item_type_name[$current_item_type_id] : $current_item_type_id);
-//	debug($count);
 ?>
 <div class="item-category row">
 	<dl class="menu-nav col-xs-2">
