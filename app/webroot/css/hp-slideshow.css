@@ -19,3 +19,9 @@
 #slideshow img.last-active {
     z-index:9;
 }
+
+@media (min-width: 991px) {
+    #slideshow img {
+        width: 100%;
+    }
+}
