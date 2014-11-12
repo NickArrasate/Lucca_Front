@@ -104,15 +104,13 @@
 									</div>
 								</li>
 								<?php endif;?>
-								<li class="menu">
+								<li class="menu dropdown">
 									<div class="locations">
-										<a href="/item/grid/all/all/all" <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'class="selected"'; ?> title="All Inventory">All Inventory</a>
-										<div class="pulldown">
-											<ul class="submenus">
-												<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
-												<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li> 
-											</ul>
-										</div>
+										<a href="/item/grid/all/all/all" class="dropdown-toggle <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'selected'; ?>" data-toggle="dropdown" title="All Inventory">All Inventory <span class="caret"></span></a>
+										<ul class="submenus dropdown-menu" role="menu">
+											<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
+											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li>
+										</ul>
 									</div>
 								</li>
 								<li class="search">
