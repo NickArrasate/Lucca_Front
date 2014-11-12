@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="/js/jquery.lightbox-0.5.js"></script> 
 	<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
 	<script type="text/javascript" src="/js/search.js"></script>
+	<script type="text/javascript" src="/js/menus.js"></script>
 	<script type="text/javascript" src="/js/cloudzoom/cloudzoom.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" /> 
