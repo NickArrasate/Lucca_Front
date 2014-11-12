@@ -65,17 +65,20 @@ App::import('Inflector');
 			// Category Summary display
 			switch($item_category) {
 				case 'all':
-				$category_summary = 'All items including Antiques, Lucca Studio, and Found';
-				break;
+					$category_summary = 'All items including Antiques, Lucca Studio, and Limited Edition';
+					break;
 				case '1':
-				$category_summary = 'Furniture, decorative arts and lighting ranging from the 17th to mid 20th Century';
-				break;
+					$category_summary = 'Unique and of a kind items spanning a period from the 17th thru the 20th century. Each piece is hand selected by the owners, with more weight given to design and style than to period and provenance. Each piece is restored in our California workshop. Every attempt is made to accurately indicate age, condition and any restoration.';
+					break;
 				case '2':
-				$category_summary = 'Furniture and lighting line designed, manufactured and sold exclusively by Lucca Antiques';
-				break;
+					$category_summary = 'Designed by Lucca Studio and hand made in our California workshop and sold exclusively through our stores and on our website. While primarily composed of new materials, these designs more often incorporate old elements such as patinated vintage leather, stone, or wood.';
+					break;
 				case '3':
-				$category_summary = 'Unique old elements incorporated into original, limited edition Lucca designed pieces';
-				break;
+					$category_summary = 'Designed and crafted by Lucca Studio in our California workshop and sold exclusively through our stores and on our website. These pieces incorporate unique, limited or rare materials in a series edition of between one and ten pieces.';
+					break;
+				case '4':
+					$category_summary = 'Designed and crafted by Lucca Studio in our California workshop and sold exclusively through our stores and on our website. These pieces incorporate unique, limited or rare materials in a series edition of between one and ten pieces.';
+					break;
 			}
 
 			$this->set('category_summary', $category_summary);

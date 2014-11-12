@@ -89,10 +89,6 @@ $(document).ready(function() {
 
 </script>
 <div style="display:none">
-	<?php print_r($item_details); echo " ---- "; print_r($inventory_location); echo "------"; print_r($inventory_location_id); echo "----";
-	echo $item_details[0]['InventoryQuantity'][0]['location']?>
-</div>
-<div style="display:none">
 	<form id="email-item" method="post" action="">
 		<p>Send this page to an email address:</p>
 		<div style="width:267px;margin-bottom:8px;">
@@ -300,6 +296,42 @@ $(document).ready(function() {
 
 
 						break;
+					case 4:
+						// Limited Edition *************************************************************/
+						// is a lucca studio make a select list of 10
+						$quantity = '<ul><li>' . $form->label('Quantity');
+
+						$keys_quantity = range(1,10);
+						$values_quantity = range(1,10);
+						$range_quantity = array_combine($keys_quantity, $values_quantity);
+
+						$quantity .= $form->select($fieldName = '', $range_quantity, $selected ='', $attributes = array('name' => 'data[OrderedItem][quantity]', 'id' => null), $showEmpty = false);
+
+						$quantity .= '</li></ul>';
+						// the price for the main variation
+						$price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
+						$variation = '';
+						if($variation_count > 1) {
+							// if there are variations, list the ids
+							$variation .= '<dd class="hidden"><ul><li>'. $form->label('Variations') .'</li><li>';
+
+							foreach($item_detail['ItemVariation'] as $v) {
+								$keys_variation[] = $v['id'];
+								$values_variation[] = $v['name'] .' ($' . $fieldformatting->price_formatting($v['price']) .')';
+							}
+
+							$range_variation = array_combine($keys_variation, $values_variation);
+
+
+							$variation .= $form->select($fieldName = '', $range_variation, $selected ='', $attributes = array('name' => 'data[OrderedItem][item_variation_id]', 'id' => null), $showEmpty = false);
+
+							$variation .= '</li></ul></dd>';
+						} else {
+							// else variation count is equal to 0 and i still need the id for the main variation
+							$variation .=
+							$variation .= $form->hidden('id', array('id' => null,  'name' => 'data[OrderedItem][item_variation_id]', 'value' => $item_detail['ItemVariation'][0]['id'] ));
+						}
+						break;
 				}
 
 				if(isset($options)) {
@@ -326,13 +358,13 @@ $(document).ready(function() {
 
 			<dl>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
-				<dd class="item-price">Price: <?php echo $price ?></dd>
-				<?php echo $variation ?>
+                    <dd class="item-price">Price: <?php echo $price ?></dd>
+					<?php echo $variation ?>
 				<?php } // end if its not sold ?>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
-				<dd style="display:none">
-					<?php echo $quantity ?>
-				</dd>
+                    <dd style="display:none">
+                        <?php echo $quantity ?>
+                    </dd>
 				<?php } ?>
 				<?php echo $option ?>
 
@@ -352,6 +384,7 @@ $(document).ready(function() {
 					<a href="#email-item" class="button gray-background gray-text btn-email hidden" />Email</a>
 					</dd>
 				<?php } else { ?>
+                
 					<dd class="sold"><span class="button gray-background red-text-border">SOLD</span></dd>
 
 				<?php } ?>
