@@ -5,7 +5,7 @@
 ?>
 <div class="footerpage">
 	<div class="overlay">
-		<div class="wrapper">
+		<div class="wrapper col-xs-12">
 			<h2>Contact Lucca Antiques</h2>
 			<p>Thank you for visiting the Lucca Antiques web site. If you require additional information please contact us directly. </p>
 						

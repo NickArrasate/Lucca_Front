@@ -14,8 +14,6 @@ h2, h3 {
 	padding:0 0 45px;
 }
 
-	 .overlay .wrapper {padding:0 25px}
-
 		 .overlay .wrapper  p {color:#534741; line-height: 21px; clear: both}
 		
 		.overlay .wrapper  img {float:right}
@@ -56,4 +54,9 @@ dd {line-height: 21px;}
 		float: none;
 	}
 }
-		
+
+@media (max-width: 360px) {
+	.about .overlay .wrapper img {
+		width: 100%;
+	}
+}

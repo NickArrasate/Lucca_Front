@@ -5,7 +5,7 @@
 
 <div class="footerpage about">
 	<div class="overlay">
-		<div class="wrapper">
+		<div class="wrapper col-xs-12">
 			<h2>About Lucca Antiques</h2>
 			<dl class="row">
 				<dd class="col-md-6 col-xs-12">

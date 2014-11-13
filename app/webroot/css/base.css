@@ -550,9 +550,6 @@ caption     { background: #eee; }
 
 /* @group Article Grid CSS */
 
-#CoversBox a:hover{
-	border-bottom: 1px solid silver;
-}
 #CoversBox a {
 	display: inline-block;
 }

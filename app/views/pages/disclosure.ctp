@@ -4,7 +4,7 @@
 ?>
 <div class="footerpage disclosure">
 	<div class="overlay">
-		<div class="wrapper">
+		<div class="wrapper col-xs-12">
 			<h2>Disclosure</h2>
 			<p>Thank you for visiting <span class="red-text">LUCCA ANTIQUES</span>. The Terms of Use listed in this document apply to the luccaantiques.com website (the Site). The Site is the property of <span class="red-text">LUCCA ANTIQUES</span>. By using this Site, you agree to these Terms of Use. If you do not agree with everything in this document, please do not use this Site.</p> 
 			<p><span class="red-text">LUCCA ANTIQUES</span> reserves the right, at its sole discretion, to change any portions of these Terms of Use at any time. It is your responsibility to check these Terms of Use periodically for changes. Your continued use of the Site following the posting of changes will mean that you accept and agree to the changes. As long as you comply with these Terms of Use, <span class="red-text">LUCCA ANTIQUES</span> grants you a non-exclusive, non-transferable, limited privilege to enter and use the Site.</p>
