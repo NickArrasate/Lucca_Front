@@ -5,7 +5,7 @@
 .s_product3 .wrapper {
 	background:transparent url(../img/item-category-divider.png) repeat-x scroll center bottom;
 	display:block;
-	margin:25px 0 0;
+	margin-top: 25px;
 	overflow:hidden;
 }
 
@@ -44,12 +44,12 @@ width:50px;}
 .s_product3 .print {float: right}
 
 .product-visuals{position:relative}
-.product-visuals, .product-written-details {margin:0 0 20px; float:left; width:50%;}
+.product-visuals, .product-written-details {margin:0 0 20px;}
 	
 	.product-visuals dl {margin:35px 0 0 0}
 	.product-visuals dl dd img {height:74px; width:74px; float:left;}
 	.product-visuals dl dd {border:2px solid #fff; float:left}
-	.product-visuals dl dd.active {border:2px solid #7C1E1C; height:74px;}
+	.product-visuals dl dd.active {border:2px solid #7C1E1C; height:78px;}
 		
 .product-written-details dt, .product-written-details dd {float:left}
 .product-written-details p {color:#534741; line-height:17px;}

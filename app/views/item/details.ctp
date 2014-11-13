@@ -119,11 +119,11 @@ $(document).ready(function() {
 
 <div class="s_product3">
 
-	<div class="wrapper">
+	<div class="wrapper row">
 
 		<?php foreach($item_details as $item_detail) { ?>
 
-		<div class="product-visuals">
+		<div class="product-visuals col-xs-4 col-md-6">
 
 		<?php
 			$thumb_settings = array('w'=>74,'h'=>74,'crop'=>1);
@@ -166,7 +166,7 @@ $(document).ready(function() {
 			</dl>
 
 		</div>
-		<div class="product-written-details">
+		<div class="product-written-details col-xs-8 col-md-6">
 		<dl class="top-details-wrapper">
 			<dd class="breadcrumbs">
 			<a href="/">Home</a> >
@@ -406,7 +406,7 @@ $(document).ready(function() {
 
 			<dl>
 			<dt><span>Measurements</span></dt>
-			<dd>
+			<dd class="width300">
 			<?php if ($item_detail['Item']['height'] !== null && $item_detail['Item']['height'] !== '') { ?>
 				<strong>Height: </strong>
 
