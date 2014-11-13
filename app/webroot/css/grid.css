@@ -10,7 +10,7 @@
 
 .item-category .menu-nav dd {
 	margin:10px 0 0;
-	width: 160px;
+	width: 140px;
 }
 
 
@@ -20,7 +20,7 @@
 	/*.item-category .menu-nav {margin:0 10px 0 0}*/
 
 		.item-category .menu-nav a  {
-			margin:0 20px 0 0;
+			margin:0 15px 0 0;
 			color:#754842;
 			display:block;
 			font-size:13px;
