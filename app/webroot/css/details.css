@@ -3,7 +3,6 @@
 .width300 {width:300px;}
 
 .s_product3 .wrapper {
-	background:transparent url(../img/item-category-divider.png) repeat-x scroll center bottom;
 	display:block;
 	margin-top: 25px;
 	overflow:hidden;
@@ -92,4 +91,9 @@ width:50px;}
 	
 
 	.product-written-details form dl dd {overflow:hidden; float: none; margin:0 0 12px;}
+
+.category-results-divider-bottom {
+	background:url(../img/item-category-divider.png) repeat-x;
+	height:2px;
+}
 	

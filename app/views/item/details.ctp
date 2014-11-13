@@ -517,6 +517,7 @@ $(document).ready(function() {
 			</dl>
 		</div>
 		</div>
+		<dd class="no-margin col-xs-12"><div class="category-results-divider-bottom"></div></dd>
 		<?php } ?>
 
 	</div>
