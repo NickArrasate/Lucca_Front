@@ -218,8 +218,10 @@
 					___pause(100);	
 				}
 			} 
+			$('#lightbox-container-image-box').css('max-width', intImageWidth);
+			$('#lightbox-container-image-data-box').css('max-width', intImageWidth);
 			$('#lightbox-container-image-data-box').css({ width: intImageWidth });
-			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (settings.containerBorderSize * 2) });
+			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: '100%' });
 		};
 		/**
 		 * Show the prepared image
