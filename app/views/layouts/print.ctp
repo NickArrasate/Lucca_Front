@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<title><?php echo $title_for_layout?></title>
-		<?php 
+		<?php
 			echo $html->css('details');
 			echo $html->css('print');
 		?>
@@ -27,8 +28,8 @@ var pageTracker = _gat._getTracker("UA-15786570-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 	</body>
-	
-</html> 
+
+</html>
 
 </body>
 </html>
