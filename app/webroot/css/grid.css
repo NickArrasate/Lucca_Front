@@ -107,6 +107,10 @@ text-align:left;
 	overflow:hidden;
 }
 
+.first-menu-nav, .second-menu-nav {
+	float: left;
+}
+
 @media (max-width: 767px) {
 	.item-category .menu-nav, .item-category .wrapper {
 		float: none;
@@ -135,6 +139,15 @@ text-align:left;
 	}
 	.item-category .menu-nav dd {
 		width: auto;
+	}
+	.item-category .second-menu-nav a {
+		margin: 0;
+	}
+}
+
+@media (max-width: 310px) {
+	.item-category .second-menu-nav a {
+		margin-right: 15px;
 	}
 }
 

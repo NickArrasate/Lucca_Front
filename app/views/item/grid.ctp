@@ -5,7 +5,7 @@
 <div class="item-category row">
 	<dl class="menu-nav col-xs-2">
 		<!-- Shown only if not All Inventory -->
-		<div style="float: left;">
+		<div class="first-menu-nav">
 		<?php if ($current_item_type_id != 'all') { ?>
 			<dd <?php if ($current_item_category == 'all') { echo 'class="active"'; } ?>>
 				<span><a href="/item/grid/<?php echo $current_item_type_id ?>/all/<?php echo $inventory_location; ?>/">All <?php echo $current_item_type_name[$current_item_type_id] ?></a>
@@ -30,7 +30,7 @@
 		<?php } ?>
 		</div>
 
-		<div style="float: left;">
+		<div class="second-menu-nav">
 			<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
 				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
 			</dd>
@@ -49,7 +49,7 @@
 
 
 	<div class="wrapper col-xs-10">
-		<dl class="breadcrumbs">
+		<dl class="breadcrumbs hidden-xs">
 			<dd class="breadcrumb-nav">
 				<a href="/">Home</a> >
 				<?php
