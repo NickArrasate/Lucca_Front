@@ -121,12 +121,20 @@ text-align:left;
 		margin-bottom: 15px;
 	}
 
+	.menu-nav > div {
+		width: 50%;
+		min-width: 140px;
+	}
+
 	.breadcrumb-nav {
 		margin: 8px 0;
 	}
 
 	.breadcrumb-pagination {
 		margin: 8px 0;
+	}
+	.item-category .menu-nav dd {
+		width: auto;
 	}
 }
 
