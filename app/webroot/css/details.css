@@ -96,4 +96,7 @@ width:50px;}
 	background:url(../img/item-category-divider.png) repeat-x;
 	height:2px;
 }
-	
+
+.product-visuals #zoom-image {
+	width: 100%;
+}
