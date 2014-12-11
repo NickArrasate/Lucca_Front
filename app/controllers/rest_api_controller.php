@@ -550,6 +550,41 @@ class RestApiController extends AppController {
 				'category' => $this->ItemCategory->validationErrors,
 			);
 		} else {
+			/*
+			 * Update the "occurences" table with all the different options.
+			 */
+			$saved_category_id = $this->ItemCategory->getLastInsertID();
+			$this->loadModel('InventoryLocation');
+			$this->loadModel('Occurrence');
+
+			$categories = $this->ItemCategory->find('list');
+			$locations = $this->InventoryLocation->find('list');
+			$occurrences = $this->Occurrence->find('count');
+			$sub_categories = $categories;
+			
+			foreach ($categories as $key_category => $val_category) {
+				foreach ($locations as $key_location => $val_location) {
+					$this->Occurrence->create();
+					$this->Occurrence->save(array(
+						'Occurrence' => array(
+							'category' => $key_category,
+							'subcategory' => $saved_category_id,
+							'location' => $key_location
+						)
+					));
+					if ($key_category != $saved_category_id) {
+						$this->Occurrence->create();
+						$this->Occurrence->save(array(
+							'Occurrence' => array(
+								'category' => $saved_category_id,
+								'subcategory' => $key_category,
+								'location' => $key_location
+							)
+						));
+					}
+				}
+			}
+			
 			$response = array(
 				'status' => array(
 					'success' => 'Category successful added',
