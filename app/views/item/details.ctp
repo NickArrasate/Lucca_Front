@@ -9,24 +9,46 @@
 
 $(document).ready(function() {
 
-	$('#zoom-image').CloudZoom({
-	   zoomImage:'<?php echo '/files/'.$primary_image?>',
-	   zoomPosition:3,
-	   zoomWidth:200,
-	   zoomHeight:200
-	});      
-	
-	$('.product-visuals dl dd').click(function(){
-		var cz_object = $('#zoom-image').data('CloudZoom');
-		var m_image_file = $(this).children('#medium-image').attr('src');
-		var l_image_file = $(this).children('#large-image').attr('src');
+    $('#zoom-image').click(function(){
+        var l_image_file = $(this).data('large-image');
+        $('#zoom-image').CloudZoom({
+            zoomImage:l_image_file,
+            zoomPosition:3,
+            zoomWidth:200,
+            zoomHeight:200
+        });
+        $zoomInit = true;
+    });
 
-		cz_object.loadImage(m_image_file,l_image_file);
-		
-		$('.product-visuals dl dd').attr('class','');
-		$(this).attr('class','active');
+    $('.product-visuals dl dd').click(function(){
 
-	});
+        if($('#zoom-image').data('CloudZoom')){
+            var cz_object = $('#zoom-image').data('CloudZoom');
+            cz_object.destroy();
+        }
+        var m_image_file = $(this).children('#medium-image').attr('src');
+        var l_image_file = $(this).children('#large-image').attr('src');
+
+        $('#zoom-image').attr('src',m_image_file);
+        $('#zoom-image').data('medium-image',m_image_file);
+        $('#zoom-image').data('large-image',l_image_file);
+
+        $('.product-visuals dl dd').attr('class','');
+        $(this).attr('class','active');
+
+
+        $('#zoom-image').click(function(){
+            var l_image_file = $(this).data('large-image');
+            $('#zoom-image').CloudZoom({
+                zoomImage:l_image_file,
+                zoomPosition:3,
+                zoomWidth:200,
+                zoomHeight:200
+            });
+            $zoomInit = true;
+        });
+
+    });
 
 	/*
 	$(".btn-email").fancybox({
@@ -131,9 +153,12 @@ $(document).ready(function() {
 			$large_settings = array('w'=>600,'crop'=>1);
 		?>
 
-			<img id="zoom-image" src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>" />
+            <img id="zoom-image"
+                 src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>"
+                 data-medium-image="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>"
+                 data-large-image="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>"/>
 
-			<dl>
+            <dl>
 
 				<?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
 					<?php if($item_image['filename'] !== '' ) {?>
