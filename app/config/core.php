@@ -86,6 +86,11 @@
  * differentiating error logging and debugging. Currently PHP supports LOG_DEBUG.
  */
 	define('LOG_ERROR', 2);
+//    Configure::write('Error', array(
+//        'handler' => 'ErrorHandler::handleError',
+//        'level' => E_ALL & ~E_STRICT & ~E_DEPRECATED,
+//        'trace' => true
+//    ));
 /**
  * The preferred session handling method. Valid values:
  *

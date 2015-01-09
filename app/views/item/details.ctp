@@ -20,35 +20,35 @@ $(document).ready(function() {
         $zoomInit = true;
     });
 
-    $('.product-visuals dl dd').click(function(){
-
-        if($('#zoom-image').data('CloudZoom')){
-            var cz_object = $('#zoom-image').data('CloudZoom');
-            cz_object.destroy();
-        }
-        var m_image_file = $(this).children('#medium-image').attr('src');
-        var l_image_file = $(this).children('#large-image').attr('src');
-
-        $('#zoom-image').attr('src',m_image_file);
-        $('#zoom-image').data('medium-image',m_image_file);
-        $('#zoom-image').data('large-image',l_image_file);
-
-        $('.product-visuals dl dd').attr('class','');
-        $(this).attr('class','active');
-
-
-        $('#zoom-image').click(function(){
-            var l_image_file = $(this).data('large-image');
-            $('#zoom-image').CloudZoom({
-                zoomImage:l_image_file,
-                zoomPosition:3,
-                zoomWidth:200,
-                zoomHeight:200
-            });
-            $zoomInit = true;
-        });
-
-    });
+//    $('.product-visuals dl dd').click(function(){
+//
+//        if($('#zoom-image').data('CloudZoom')){
+//            var cz_object = $('#zoom-image').data('CloudZoom');
+//            cz_object.destroy();
+//        }
+//        var m_image_file = $(this).children('#medium-image').attr('src');
+//        var l_image_file = $(this).children('#large-image').attr('src');
+//
+//        $('#zoom-image').attr('src',m_image_file);
+//        $('#zoom-image').data('medium-image',m_image_file);
+//        $('#zoom-image').data('large-image',l_image_file);
+//
+//        $('.product-visuals dl dd').attr('class','');
+//        $(this).attr('class','active');
+//
+//
+//        $('#zoom-image').click(function(){
+//            var l_image_file = $(this).data('large-image');
+//            $('#zoom-image').CloudZoom({
+//                zoomImage:l_image_file,
+//                zoomPosition:3,
+//                zoomWidth:200,
+//                zoomHeight:200
+//            });
+//            $zoomInit = true;
+//        });
+//
+//    });
 
 	/*
 	$(".btn-email").fancybox({
@@ -164,27 +164,29 @@ $(document).ready(function() {
 					<?php if($item_image['filename'] !== '' ) {?>
 					<?php if ($item_image['filename'] == $primary_image) { ?>
 
-					<dd class="active">
+                            <!-- <dd class="active"> -->
+                            <dd>
+                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>">
+                                    <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
+                                </a>
+                                <!-- These are here to preload images -->
+                                <img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
 
-						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
-                        <!-- These are here to preload images -->
-						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
+                                <img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
 
-						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
-
-					</dd>
+                            </dd>
 
 					<?php } else { ?>
-					<dd>
+                            <dd>
+                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>">
+                                    <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>"  />
+                                </a>
 
-						<img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" 
-                            
-                            />
-                        <!-- These are here to preload images -->
-						<img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-						<img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
+                                <!-- These are here to preload images -->
+                                <img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
+                                <img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
 
-					</dd>
+                            </dd>
 					<?php } ?>
 					<?php } ?>
 				<?php } ?>

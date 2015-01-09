@@ -1,3 +1,15 @@
+@font-face{
+    font-family: 'vinchandregular';
+    src: url('/fonts/vinchand-webfont.eot');
+    src: url('/fonts/vinchand-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/vinchand-webfont.woff2') format('woff2'),
+    url('/fonts/vinchand-webfont.woff') format('woff'),
+    url('/fonts/vinchand-webfont.ttf') format('truetype'),
+    url('/fonts/vinchand-webfont.svg#vinchandregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .homepage2 h1{
 	font-size:14px;
 	color: #000;

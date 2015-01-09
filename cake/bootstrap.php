@@ -19,7 +19,6 @@
  * @package       cake
  * @subpackage    cake.cake
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
  * @modifiedby    $LastChangedBy$
  * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
@@ -30,7 +29,7 @@ if (!defined('PHP5')) {
 if (!defined('E_DEPRECATED')) {
 	define('E_DEPRECATED', 8192);
 }
-error_reporting(E_ALL & ~E_DEPRECATED);
+error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
 /**
  * Configuration, directory layout and standard libraries
  */

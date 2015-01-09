@@ -53,11 +53,19 @@ margin:0;}
 }
 
 p.category-summary {
-color:#352F2F;
-font-family:Helvetica;
-font-size:14px;
-margin:5px 0;
-text-align:left;
+    color:#352F2F;
+    font-family:vinchandregular;
+    font-size:26px;
+    margin:5px 0;
+    text-align:left;
+}
+
+p.category-title {
+    color:#a8ad00;
+    font-family:vinchandregular;
+    font-size:56px;
+    margin:5px 0;
+    text-align:left;
 }
 
 .small-button {line-height:25px;}
