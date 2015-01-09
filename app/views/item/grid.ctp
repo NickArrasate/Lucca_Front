@@ -3,7 +3,7 @@
 	$this->pageTitle = 'Lucca Antiques - '. (isset($current_item_type_name[$current_item_type_id]) ? $current_item_type_name[$current_item_type_id] : $current_item_type_id);
 ?>
 <div class="item-category row">
-	<dl class="menu-nav col-xs-2">
+	<dl class="menu-nav col-xs-3 col-md-2">
 		<!-- Shown only if not All Inventory -->
 		<div class="first-menu-nav">
 		<?php if ($current_item_type_id != 'all') { ?>
@@ -48,7 +48,7 @@
 	</dl>
 
 
-	<div class="wrapper col-xs-10">
+	<div class="wrapper col-xs-9 col-md-10">
 		<dl class="breadcrumbs hidden-xs">
 			<dd class="breadcrumb-nav">
 				<a href="/">Home</a> >
