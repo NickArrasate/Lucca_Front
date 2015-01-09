@@ -235,4 +235,5 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
-?>
+
+	require_once(dirname(__FILE__).'/internal_constants.php');
