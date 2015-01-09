@@ -91,6 +91,7 @@ p.category-title {
 
 .results .item {
 	min-height: 202px;
+	max-height: 202px;
 }
 
 .results .no-margin {margin:0 }
