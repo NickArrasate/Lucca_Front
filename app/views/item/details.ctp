@@ -1,5 +1,5 @@
  <?php
-	echo $html->css('details');
+	echo $this->element('versioned_css', array('files' => 'details'));
 	#$javascript->link('item_details', false);
 	$this->pageTitle = 'Lucca Antiques - '. $breadcrumbs[0] . ': ' . $item_details[0]['Item']['name'] ;
 	//debug($options);

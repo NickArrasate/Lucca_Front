@@ -1,5 +1,5 @@
 <?php
-	echo $html->css('footer-pages');
+	echo $this->element('versioned_css', array('files' => 'footer-pages'));
 	$this->pageTitle = 'Lucca Antiques - About';
 ?>
 

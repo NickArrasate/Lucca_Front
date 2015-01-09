@@ -6,10 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<title><?php echo $title_for_layout?></title>
-		<?php
-			echo $html->css('details');
-			echo $html->css('print');
-		?>
+		<?php echo $this->element('versioned_css', array('files' => array('details', 'print'))); ?>
 	</head>
 
 	<body>

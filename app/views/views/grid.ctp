@@ -1,5 +1,5 @@
 <?php
-	echo $html->css('grid');
+	echo $this->element('versioned_css', array('files' => 'grid'));
 	$this->pageTitle = 'Lucca Antiques - '. $current_item_type_name[$current_item_type_id]; 
 //	debug($count);
 ?>

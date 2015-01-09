@@ -1,7 +1,5 @@
 
-<?php
-	echo $html->css('order');
-?>
+<?php echo $this->element('versioned_css', array('files' => 'order')); ?>
 <?php $this->pageTitle = 'Lucca Antiques | Page not found'; ?>
 
 <div class="wrapper">

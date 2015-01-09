@@ -7,7 +7,7 @@
 		<title><?php echo $title_for_layout?></title>
 		<?php 
 			echo $scripts_for_layout;
-			echo $html->css('base');
+			echo $this->element('versioned_css', array('files' => 'base'));
 			//debug($item_category_id);
 		?>
 	</head>

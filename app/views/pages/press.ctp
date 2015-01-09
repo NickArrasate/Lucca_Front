@@ -5,11 +5,9 @@
 	$javascript->link('jquery.fancybox-1.2.1.pack', false);
 	$javascript->link('jquery.lightbox-0.5', false);
 	
-	
-	echo $html->css('footer-pages');
-	echo $html->css('jquery.fancybox');
-	echo $html->css('easy-tabs');
-	echo $html->css('jquery.lightbox-0.5');
+	echo $this->element('versioned_css', array('files' => array(
+		'footer-pages', 'jquery.fancybox', 'easy-tabs', 'jquery.lightbox-0.5'
+		)));
 	
 	$this->pageTitle = 'Lucca Antiques - Press';
 ?>

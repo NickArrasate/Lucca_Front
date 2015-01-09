@@ -13,13 +13,8 @@
 		<meta name="description" content="Lucca Antiques provides a valuable resource for designers and celebrity clients seeking pieces that are unique in scale, composition and origin. A constantly changing inventory assures that the merchandise is always fresh and the eclectic mix of elements makes shopping at Lucca exciting.">
         <meta name="keywords" content="antiques, lucca, tables, chairs, vintage, hollywood, designer, custom, unique" />
 	<title><?php echo $title_for_layout?></title>
-	<?php 
-		echo $html->css('bootstrap.min.css');
-		echo $scripts_for_layout;
-		echo $html->css('base');
-		//debug($item_category_id);
-	?>
-	<?php echo $html->css('menus.css'); ?>		
+	<?php echo $scripts_for_layout; ?>
+
 	<script type="text/javascript" src="/js/jquery.min.js"></script> 
 	<script type="text/javascript" src="/js/jquery.easing-1.3.pack.js"></script> 
 	<script type="text/javascript" src="/js/jquery.fancybox-1.3.0.pack.js"></script> 
@@ -29,10 +24,11 @@
 	<script type="text/javascript" src="/js/menus.js"></script>
 	<script type="text/javascript" src="/js/cloudzoom/cloudzoom.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css" /> 
-	<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox-1.3.0.css" /> 
-	<link rel="stylesheet" type="text/css" href="/css/hp-slideshow.css" />
-	<link rel="stylesheet" type="text/css" href="/js/cloudzoom/cloudzoom.css" />
+	<?php
+		echo $this->element('versioned_css', array(
+			'files' => array('bootstrap.min', 'base', 'menus', 'jquery.lightbox-0.5', 'jquery.fancybox-1.3.0', 'hp-slideshow', 'cloudzoom')
+			));
+	?>
 
 	<!-- Include Cloud Zoom script. -->
 

@@ -1,6 +1,6 @@
 
 <?php
-	echo $html->css('footer-pages');
+	echo $this->element('versioned_css', array('files' => 'footer-pages'));
 	$this->pageTitle = 'Lucca Antiques - Contact Hollywood and New York Locations';
 ?>
 <div class="footerpage">
