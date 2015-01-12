@@ -127,8 +127,8 @@
 					<?php } ?>
 				</ul>
 			</dd>
-			
-			<?php if ($items_count % 6 == 0): ?>
+
+			<?php if ($items_count % 6 == 0 && $item != $last_item): ?>
 				<dd class="no-margin col-xs-12 visible-sm"><div class="category-results-divider2"></div></dd>
 			<?php endif; ?>
 			<?php } ?>
