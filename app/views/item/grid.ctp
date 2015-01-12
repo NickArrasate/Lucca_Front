@@ -90,19 +90,18 @@
 		<div class="item-category-border"></div>
 
 		<dl class="results row">
-		<div style="display:none">
-        	<?php //print_r($all_items);print_r($items);?>
-        </div>
 		<?php if (count($items) > 0) {?>
 
 		<?php
 			$last_item = end($items);
+			$items_count = 0;
 		?>
 
 		<?php
 
 		foreach($items as $item) { ?>
 			<?php foreach ($item as $i) { ?>
+			<?php $items_count++; ?>
 			<dd class="col-xs-6 col-sm-4 col-md-3 item">
 				<ul>
 					<li>
@@ -128,14 +127,15 @@
 					<?php } ?>
 				</ul>
 			</dd>
+			
+			<?php if ($items_count % 6 == 0): ?>
+				<dd class="no-margin col-xs-12 visible-sm"><div class="category-results-divider2"></div></dd>
+			<?php endif; ?>
 			<?php } ?>
 
-
-
 			<?php if ( $item != $last_item) { ?>
-				<dd class="no-margin col-xs-12"><div class="category-results-divider2"></div></dd>
-			<?php }  ?>
-
+				<dd class="no-margin col-xs-12 hidden-sm"><div class="category-results-divider2"></div></dd>
+			<?php } ?>
 		<?php } ?>
 		<?php } else {?>
 		<h3 class="notifications col-lg-12">No items found</h3>
