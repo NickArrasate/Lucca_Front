@@ -20,6 +20,8 @@ $(document).ready(function() {
         $zoomInit = true;
     });
 
+    $('.lightbox').lightBox();
+
 //    $('.product-visuals dl dd').click(function(){
 //
 //        if($('#zoom-image').data('CloudZoom')){
@@ -160,13 +162,13 @@ $(document).ready(function() {
 
             <dl>
 
-				<?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
-					<?php if($item_image['filename'] !== '' ) {?>
-					<?php if ($item_image['filename'] == $primary_image) { ?>
+                <?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
+                    <?php if($item_image['filename'] !== '' ) {?>
+                        <?php if ($item_image['filename'] == $primary_image) { ?>
 
                             <!-- <dd class="active"> -->
                             <dd>
-                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>">
+                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>">
                                     <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
                                 </a>
                                 <!-- These are here to preload images -->
@@ -176,7 +178,7 @@ $(document).ready(function() {
 
                             </dd>
 
-					<?php } else { ?>
+                        <?php } else { ?>
                             <dd>
                                 <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>">
                                     <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>"  />
@@ -187,9 +189,9 @@ $(document).ready(function() {
                                 <img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
 
                             </dd>
-					<?php } ?>
-					<?php } ?>
-				<?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
 			</dl>
 
 		</div>
