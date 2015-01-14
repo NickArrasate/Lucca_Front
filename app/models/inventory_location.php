@@ -10,4 +10,11 @@ class InventoryLocation extends AppModel {
 		return $this->field('email');
 	}
 
+	function get_all() {
+		$locations = $this->find('list');
+		$locations[0] = 'All';
+
+		return $locations;
+	}
+
 }

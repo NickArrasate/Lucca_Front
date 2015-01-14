@@ -558,7 +558,8 @@ class RestApiController extends AppController {
 			$this->loadModel('Occurrence');
 
 			$categories = $this->ItemCategory->find('list');
-			$locations = $this->InventoryLocation->find('list');
+			$locations = $this->InventoryLocation->get_all();
+
 			$occurrences = $this->Occurrence->find('count');
 			$sub_categories = $categories;
 			
