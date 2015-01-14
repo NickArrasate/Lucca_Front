@@ -45,7 +45,7 @@ class ItemOccurrence extends AppModel {
 			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => 0, 'location' => 0));
 		}
 
-		if ($subcategory) {
+		if ($subcategoryId) {
 			array_push($occurrencesList, array('category' => 0, 'subcategory' => $subcategoryId, 'location' => 0));
 			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => $subcategoryId, 'location' => 0));
 		}
