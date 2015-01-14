@@ -12,7 +12,7 @@
 	<body>
 		<h2 class="ProductTitle"><?php echo $item_detail['Item']['name'] ?></h2>
 		<div style="text-align: center;">
-			<img style="width:200px; padding-bottom:10px;" src="http://www.luccaantiques.com/img/logoboxtop.png" alt="Lucca Antiques logo" />
+			<img style="max-height:180px; padding-bottom:10px;" src="http://www.luccaantiques.com/img/logoboxtop.png" alt="Lucca Antiques logo" />
 		</div>
 			<?php echo $content_for_layout ?>
 			<script type="text/javascript">

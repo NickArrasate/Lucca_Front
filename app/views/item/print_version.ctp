@@ -14,7 +14,7 @@ $this->pageTitle = "Lucca Antiques";
 			<?php $settings = array('w'=>500,'crop'=>1); ?>
 		<div id="PrintSheetContent">
 			<div id="BigImageBox">
-				<img style="max-height:600px" src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $primary_image, $settings)?>"></img>
+				<img style="max-height:360px" src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $primary_image, $settings)?>"></img>
 			</div>
 			<div style="clear:both;"></div>
 			<h2 class="ProductTitle"><?php echo $item_detail['Item']['name'] ?></h2>
@@ -151,7 +151,7 @@ $this->pageTitle = "Lucca Antiques";
                 <?php } ?>
             </div>
             <div style="clear:both"></div>
-            <p style="text-align:center; padding-top:50px;"><?php echo $item_detail['InventoryLocation']['address']; ?> | <?php echo $item_detail['InventoryLocation']['phone']; ?> | <?php echo $item_detail['InventoryLocation']['email']; ?></p>
+            <p style="text-align:center; padding-top:10px;"><?php echo $item_detail['InventoryLocation']['address']; ?> | <?php echo $item_detail['InventoryLocation']['phone']; ?> | <?php echo $item_detail['InventoryLocation']['email']; ?></p>
             
 <!--		<div id="ContentDetailsBox">
 				<div id="ContentDetailsItem">
