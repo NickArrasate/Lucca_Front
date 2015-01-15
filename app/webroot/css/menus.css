@@ -40,7 +40,7 @@
 			margin-right: 22px;
 			margin-left: 22px;}
 			.menu7 a:hover, .menu7 a.selected {color:#a00}
-		.locations { position: relative; z-index: 30; }
+		.locations { position: relative; }
 
 .menu .dropdown-menu {
 	top: 38px;
@@ -48,6 +48,8 @@
 	background: #9A9B9C;
 	border-radius: 0;
 	border: none;
+	position: absolute;
+	z-index: 60;
 }
 
 .menu .dropdown-menu > li > a:hover {

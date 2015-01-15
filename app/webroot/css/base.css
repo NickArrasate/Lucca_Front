@@ -609,7 +609,7 @@ caption     { background: #eee; }
 	top: 20px;
 	border:2px solid #f05134;
 	border-right:3px solid #f05134;
-	z-index:9999;
+	z-index:50;
 	background: rgba(238, 238, 238, 0.6);
 	margin-bottom: 47px;
 }
