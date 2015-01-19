@@ -90,8 +90,8 @@ p.category-title {
 }
 
 .results .item {
-	min-height: 202px;
-	max-height: 202px;
+	min-height: 250px;
+	max-height: 250px;
 }
 
 .results .no-margin {margin:0 }
