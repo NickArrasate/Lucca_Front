@@ -9,39 +9,56 @@
 
 $(document).ready(function() {
 
+	$(function() {
+		if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
+			isTouch = true;
+		} else {
+			isTouch = false;
+		}	
+
+		$('#modal_gallery').css({
+			'display' : 'block',
+			'height' : '0px'
+		});
+		var $fotoramaDiv = $('.fotorama').fotorama();
+		fotorama = $fotoramaDiv.data('fotorama');
+		$('#modal_gallery').css({
+			'display' : 'none',
+			'height' : ''
+		});
+	});
+	
     $('#zoom-image').click(function(){
-        var l_image_file = $(this).data('large-image');
-        $('#zoom-image').CloudZoom({
-            zoomImage:l_image_file,
-            zoomPosition:3,
-            zoomWidth:200,
-            zoomHeight:200
-        });
-        $zoomInit = true;
+		if(!isTouch) {
+			var l_image_file = $(this).data('large-image');
+			$('#zoom-image').CloudZoom({
+				zoomImage:l_image_file,
+				zoomPosition:3,
+				zoomWidth:200,
+				zoomHeight:200
+			});
+			$zoomInit = true;
+		}
     });
 
     //$('.lightbox').lightBox();
 	
-	$('#modal_gallery').on('shown.bs.modal', function (event) {
-		var frame = $(event.relatedTarget).data('frame');
-		var $fotoramaDiv = $('.fotorama').fotorama();
-		fotorama = $fotoramaDiv.data('fotorama');
-		fotorama.show(frame);
-	}); 
-
-	$('#modal_gallery').on('hide.bs.modal', function (event) {
-		fotorama.destroy();
+	$('.fotorama').on('click', '.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img', function(){
+		if (!isTouch) {
+			var l_image_file = $(this).attr('src');
+			$('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').CloudZoom({
+				zoomImage:l_image_file,
+				zoomPosition:3,
+				zoomWidth:200,
+				zoomHeight:200
+			});
+			$zoomInit = true;
+		}
 	});
 	
-	$('.fotorama').on('click', '.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img', function(){
-		var l_image_file = $(this).attr('src');
-        $('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').CloudZoom({
-            zoomImage:l_image_file,
-            zoomPosition:3,
-            zoomWidth:200,
-            zoomHeight:200
-        });
-        $zoomInit = true;
+	$('.thumb-gallary').click(function(){
+		var frame = $(this).data('frame');
+		fotorama.show(frame);
 	});
 	
 	
@@ -198,7 +215,9 @@ $(document).ready(function() {
 		?>
 			<dl>
 				<?php foreach($gallery as $frame => $image) { ?>
-					<img data-toggle="modal" data-target="#modal_gallery" data-frame="<?php echo $frame; ?>" src="<?php echo $image['thumb-image']; ?>" />
+					<dd>
+						<img class="thumb-gallary" data-toggle="modal" data-target=".bs-example-modal-lg" data-frame="<?php echo $frame; ?>" src="<?php echo $image['thumb-image']; ?>" />
+					</dd>	
 				<?php } ?>
 			</dl>
 		</div>
@@ -560,41 +579,45 @@ $(document).ready(function() {
 	</div>
 </div>
 
-<div class="modal fade bs-example-modal-lg" id="modal_gallery" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<span>&nbsp;</span>
-      </div>
-      <div class="modal-body">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" id="modal_gallery" >
+	<div class="container">
+		<div class="col-md-12 col-xs-12">
 
-		<div class="fotorama" data-auto="false" 
-			 data-nav="thumbs" 
-			 data-allowfullscreen="false" 
-			 data-loop="false"
-			 data-click="false"
-			 data-arrows="true"
-			 data-swipe="true" 
-			 data-maxwidth="400"
-		>
-			<?php foreach ($gallery as $frame => $image) { ?>
-				<a href="<?php echo $image['large-image']; ?>">
-					<img 
-						data-frame="<?php echo $frame; ?>" 
-						id="zoom-image" 
-						data-large-image="<?php echo $image['large-image']; ?>"
-						src="<?php echo $image['thumb-image']; ?>" 
-					/>
-				</a>
-			<?php } ?>
-		</div>
+			
+			
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<span>&nbsp;</span>
+				  </div>
+				  <div class="modal-body">
+
+					<div class="fotorama" data-auto="false" 
+						 data-nav="thumbs" 
+						 data-allowfullscreen="false" 
+						 data-loop="false"
+						 data-click="false"
+						 data-arrows="true"
+						 data-swipe="true" 
+					>
+						<?php foreach ($gallery as $frame => $image) { ?>
+							<a href="<?php echo $image['large-image']; ?>">
+								<img src="<?php echo $image['thumb-image']; ?>" />
+							</a>
+						<?php } ?>
+					</div>
+
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			  </div>
 		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+		
+		
+		
+		</div>
+	</div>
 </div>
-
