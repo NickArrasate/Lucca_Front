@@ -34,6 +34,55 @@ class ItemOccurrence extends AppModel {
 		);
 	}
 
+	function fixOccurrences() {
+		$this->Item = ClassRegistry::init('Item');
+		$this->Occurrence = ClassRegistry::init('Occurrence');
+
+		# fetch ids of all items
+		$itemIds = $this->Item->find('all', array(
+			'fields' => array('id', 'item_category_id', 'item_type_id'),
+			'recursive' => 0
+			));
+
+		foreach ($itemIds as $item) {
+			$id = $item['Item']['id'];
+			$type_id = $item['Item']['item_type_id'];
+			$category_id = $item['Item']['item_category_id'];
+			$locations = array();
+
+			# fetch all occurrences for current item
+			$occ = $this->Occurrence->find('all', array(
+				'joins' => array(
+					array(
+						'table' => 'item_occurrences',
+						'alias' => 'ItemOccurrence',
+						'type' => 'INNER',
+						'conditions' => array(
+							'ItemOccurrence.occurrence_id = Occurrence.id'
+							)
+						)
+					),
+				'conditions' => array(
+					'ItemOccurrence.item_id' => $id
+					)
+				));
+
+			# prepare locations for current item
+			foreach ($occ as $occurrence) {
+				$location = $occurrence['Occurrence']['location'];
+
+				if (!in_array($location, $locations)) {
+					array_push($locations, $location);
+				}
+			}
+
+
+
+			# create missing item occurrences
+			$this->createItemOccurrences($id, $type_id, $category_id, $locations);			
+		}
+	}
+
 	function createItemOccurrences($itemId, $categoryId = 0, $subcategoryId = 0, $locationId = array()) {
 		$this->Occurrence = ClassRegistry::init('Occurrence');
 

@@ -48,6 +48,8 @@ class AppController extends Controller {
 	}
 	
 	function beforeFilter() {
+		// $this->loadModel('ItemOccurrence');
+		// $this->ItemOccurrence->fixOccurrences();
 	
 		/*
 		11-26-2009 10:13pm
