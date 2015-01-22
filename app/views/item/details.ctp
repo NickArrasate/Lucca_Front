@@ -2,9 +2,9 @@
 	echo $this->element('versioned_css', array('files' => 'details'));
 	#$javascript->link('item_details', false);
 	$this->pageTitle = 'Lucca Antiques - '. $breadcrumbs[0] . ': ' . $item_details[0]['Item']['name'] ;
-	//debug($options);
+	echo $html->css('fotorama');
 ?>
-
+<script type="text/javascript" src="/js/fotorama.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -20,7 +20,31 @@ $(document).ready(function() {
         $zoomInit = true;
     });
 
-    $('.lightbox').lightBox();
+    //$('.lightbox').lightBox();
+	
+	$('#modal_gallery').on('shown.bs.modal', function (event) {
+		var frame = $(event.relatedTarget).data('frame');
+		var $fotoramaDiv = $('.fotorama').fotorama();
+		fotorama = $fotoramaDiv.data('fotorama');
+		fotorama.show(frame);
+	}); 
+
+	$('#modal_gallery').on('hide.bs.modal', function (event) {
+		fotorama.destroy();
+	});
+	
+	$('.fotorama').on('click', '.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img', function(){
+		var l_image_file = $(this).attr('src');
+        $('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').CloudZoom({
+            zoomImage:l_image_file,
+            zoomPosition:3,
+            zoomWidth:200,
+            zoomHeight:200
+        });
+        $zoomInit = true;
+	});
+	
+	
 
 //    $('.product-visuals dl dd').click(function(){
 //
@@ -153,48 +177,32 @@ $(document).ready(function() {
 			$thumb_settings = array('w'=>74,'h'=>74,'crop'=>1);
 			$main_settings = array('w'=>400,'crop'=>1);
 			$large_settings = array('w'=>600,'crop'=>1);
+			
 		?>
 
             <img id="zoom-image"
-                 src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings);?>"
-                 data-medium-image="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>"
-                 data-large-image="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>"/>
+                 src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/' . $primary_image, $main_settings);?>"
+                 data-medium-image="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings)?>"
+                 data-large-image="<?php echo Router::url('/', true).'files/'.$primary_image?>"/>
 
-            <dl>
-
-                <?php foreach( $item_detail['ItemImage'] as $item_image)  { ?>
-                    <?php if($item_image['filename'] !== '' ) {?>
-                        <?php if ($item_image['filename'] == $primary_image) { ?>
-
-                            <!-- <dd class="active"> -->
-                            <dd>
-                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $large_settings)?>">
-                                    <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>" />
-                                </a>
-                                <!-- These are here to preload images -->
-                                <img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-
-                                <img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
-
-                            </dd>
-
-                        <?php } else { ?>
-                            <dd>
-                                <a class="lightbox" href="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>">
-                                    <img src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings)?>"  />
-                                </a>
-
-                                <!-- These are here to preload images -->
-                                <img id="medium-image" class="hidden" src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings)?>" alt=""/>
-                                <img id="large-image" class="hidden" src="<?php echo Router::url('/', true).'files/'.$item_image['filename']?>" alt=""/>
-
-                            </dd>
-                        <?php } ?>
-                    <?php } ?>
-                <?php } ?>
+		<?php
+			$frame = 0;
+			foreach( $item_detail['ItemImage'] as $item_image) {
+				if($item_image['filename'] !== '' ) {
+					$gallery[$frame]['large-image'] = Router::url('/', true) . 'files/' . $item_image['filename'];
+					$gallery[$frame]['medium-image'] = $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $main_settings);
+					$gallery[$frame]['thumb-image'] = $resizeimage->resize(WWW_ROOT . '/files/'.$item_image['filename'], $thumb_settings);
+					$frame ++;
+				}
+			}
+		?>
+			<dl>
+				<?php foreach($gallery as $frame => $image) { ?>
+					<img data-toggle="modal" data-target="#modal_gallery" data-frame="<?php echo $frame; ?>" src="<?php echo $image['thumb-image']; ?>" />
+				<?php } ?>
 			</dl>
-
 		</div>
+
 		<div class="product-written-details col-xs-8 col-md-6">
 		<dl class="top-details-wrapper">
 			<dd class="breadcrumbs">
@@ -551,3 +559,42 @@ $(document).ready(function() {
 
 	</div>
 </div>
+
+<div class="modal fade bs-example-modal-lg" id="modal_gallery" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<span>&nbsp;</span>
+      </div>
+      <div class="modal-body">
+
+		<div class="fotorama" data-auto="false" 
+			 data-nav="thumbs" 
+			 data-allowfullscreen="false" 
+			 data-loop="false"
+			 data-click="false"
+			 data-arrows="true"
+			 data-swipe="true" 
+			 data-maxwidth="400"
+		>
+			<?php foreach ($gallery as $frame => $image) { ?>
+				<a href="<?php echo $image['large-image']; ?>">
+					<img 
+						data-frame="<?php echo $frame; ?>" 
+						id="zoom-image" 
+						data-large-image="<?php echo $image['large-image']; ?>"
+						src="<?php echo $image['thumb-image']; ?>" 
+					/>
+				</a>
+			<?php } ?>
+		</div>
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

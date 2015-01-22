@@ -9,7 +9,7 @@
     height:100px;
     box-shadow: -0px -0px 10px rgba(0,0,0,0.40);
     cursor:crosshair;
-    z-index: 10;
+    z-index: 1050;
 }
 /* CSS for zoom window. */
 .cloudzoom-zoom {
@@ -17,7 +17,7 @@
     width:500px;
     height:200px;
     box-shadow: -0px -0px 10px rgba(0,0,0,0.40);
-	z-index:999;
+	z-index:1050;
 }
 /* CSS for zoom window in 'inside' mode. */
 .cloudzoom-zoom-inside {
@@ -41,6 +41,7 @@
 /* A blank image */
 .cloudzoom-blank {
     background-image:url(blank.png);
+	z-index: 1050;
 }
 
 /* The animated ajax loading image */
