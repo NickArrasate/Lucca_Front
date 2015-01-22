@@ -20,8 +20,10 @@ $(document).ready(function() {
 			'display' : 'block',
 			'height' : '0px'
 		});
+		
 		var $fotoramaDiv = $('.fotorama').fotorama();
 		fotorama = $fotoramaDiv.data('fotorama');
+		
 		$('#modal_gallery').css({
 			'display' : 'none',
 			'height' : ''
@@ -59,6 +61,7 @@ $(document).ready(function() {
 	$('.thumb-gallary').click(function(){
 		var frame = $(this).data('frame');
 		fotorama.show(frame);
+		$('div.fotorama__wrap').css({'width' : ''});
 	});
 	
 	
@@ -216,7 +219,7 @@ $(document).ready(function() {
 			<dl>
 				<?php foreach($gallery as $frame => $image) { ?>
 					<dd>
-						<img class="thumb-gallary" data-toggle="modal" data-target=".bs-example-modal-lg" data-frame="<?php echo $frame; ?>" src="<?php echo $image['thumb-image']; ?>" />
+						<img class="thumb-gallary" data-toggle="modal" data-target="#modal_gallery" data-frame="<?php echo $frame; ?>" src="<?php echo $image['thumb-image']; ?>" />
 					</dd>	
 				<?php } ?>
 			</dl>
@@ -600,6 +603,7 @@ $(document).ready(function() {
 						 data-click="false"
 						 data-arrows="true"
 						 data-swipe="true" 
+						 data-maxwidth="400"
 					>
 						<?php foreach ($gallery as $frame => $image) { ?>
 							<a href="<?php echo $image['large-image']; ?>">
