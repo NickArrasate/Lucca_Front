@@ -61,7 +61,7 @@ $(document).ready(function() {
 	$('.thumb-gallary').click(function(){
 		var frame = $(this).data('frame');
 		fotorama.show(frame);
-		$('div.fotorama__wrap').css({'width' : ''});
+		$('div.fotorama__wrap').css({'margin' : '0 auto'});
 	});
 	
 	
@@ -582,12 +582,7 @@ $(document).ready(function() {
 	</div>
 </div>
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" id="modal_gallery" >
-	<div class="container">
-		<div class="col-md-12 col-xs-12">
-
-			
-			
+<div class="modal fade" id="modal_gallery" >
 			<div class="modal-dialog">
 				<div class="modal-content">
 				  <div class="modal-header">
@@ -598,15 +593,12 @@ $(document).ready(function() {
 
 					<div class="fotorama" data-auto="false" 
 						 data-nav="thumbs" 
-						 data-allowfullscreen="false" 
-						 data-loop="false"
 						 data-click="false"
 						 data-arrows="true"
 						 data-swipe="true" 
-						 data-maxwidth="400"
 					>
 						<?php foreach ($gallery as $frame => $image) { ?>
-							<a href="<?php echo $image['large-image']; ?>">
+							<a href="<?php echo $image['medium-image']; ?>">
 								<img src="<?php echo $image['thumb-image']; ?>" />
 							</a>
 						<?php } ?>
@@ -618,10 +610,4 @@ $(document).ready(function() {
 				  </div>
 				</div>
 			  </div>
-		
-		
-		
-		
-		</div>
-	</div>
 </div>
