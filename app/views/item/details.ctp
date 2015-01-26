@@ -12,10 +12,13 @@ $(document).ready(function() {
 	$(function() {
 		if ("ontouchstart" in window || navigator.msMaxTouchPoints) {
 			isTouch = true;
+			$('.fotorama').attr('data-swipe', 'true');			
 		} else {
 			isTouch = false;
 		}	
-
+		
+		zoomInit = false;
+		
 		$('#modal_gallery').css({
 			'display' : 'block',
 			'height' : '0px'
@@ -23,38 +26,23 @@ $(document).ready(function() {
 		
 		var $fotoramaDiv = $('.fotorama').fotorama();
 		fotorama = $fotoramaDiv.data('fotorama');
-		
-		$('#modal_gallery').css({
-			'display' : 'none',
-			'height' : ''
-		});
 	});
 	
-    $('#zoom-image').click(function(){
-		if(!isTouch) {
-			var l_image_file = $(this).data('large-image');
-			$('#zoom-image').CloudZoom({
-				zoomImage:l_image_file,
-				zoomPosition:3,
-				zoomWidth:200,
-				zoomHeight:200
-			});
-			$zoomInit = true;
-		}
-    });
-
     //$('.lightbox').lightBox();
 	
 	$('.fotorama').on('click', '.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img', function(){
 		if (!isTouch) {
-			var l_image_file = $(this).attr('src');
-			$('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').CloudZoom({
-				zoomImage:l_image_file,
-				zoomPosition:3,
-				zoomWidth:200,
-				zoomHeight:200
-			});
-			$zoomInit = true;
+			if(!zoomInit) {
+				var l_image_file = $(this).data('large_image');
+				$options = {
+					zoomImage:l_image_file,
+					zoomPosition:3,
+					zoomWidth:200,
+					zoomHeight:200
+				};
+				cloud_zoom = new CloudZoom($('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img'), $options);
+				zoomInit = true;
+			}
 		}
 	});
 	
@@ -62,10 +50,28 @@ $(document).ready(function() {
 		var frame = $(this).data('frame');
 		fotorama.show(frame);
 		$('div.fotorama__wrap').css({'margin' : '0 auto'});
+		$('#modal_gallery').css({'height' : 'auto'});
 	});
 	
-	
+	$('.fotorama').on('fotorama:load ' + 'fotorama:showend', function(e, fotorama) {
+		var active_frame = fotorama.activeFrame;
+		var qaz = $('div.fotorama__stage__frame.fotorama__active.fotorama__loaded.fotorama__loaded--img').find("img[src='" + active_frame.img + "']");
+		qaz.attr('data-large_image', active_frame.large_image);
+		zoomInit = false;
+		if(typeof cloud_zoom != 'undefined') {
+			cloud_zoom.closeZoom();
+			cloud_zoom.destroy();
+		}
+	});		
 
+	$('body').on('click', 'div.cloudzoom-lens', function(){
+		if(zoomInit) {
+			zoomInit = false;
+			cloud_zoom.closeZoom();
+			cloud_zoom.destroy();
+		}
+	});
+	
 //    $('.product-visuals dl dd').click(function(){
 //
 //        if($('#zoom-image').data('CloudZoom')){
@@ -200,11 +206,13 @@ $(document).ready(function() {
 			
 		?>
 
-            <img id="zoom-image"
-                 src = "<?php echo $resizeimage->resize(WWW_ROOT . '/files/' . $primary_image, $main_settings);?>"
-                 data-medium-image="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings)?>"
-                 data-large-image="<?php echo Router::url('/', true).'files/'.$primary_image?>"/>
-
+            <img id="zoom-image" class="thumb-gallary" 
+				 data-toggle="modal" 
+				 data-target="#modal_gallery" 
+				 data-frame="0"
+                 src="<?php echo $resizeimage->resize(WWW_ROOT . '/files/'.$primary_image, $main_settings)?>" 
+			/>
+			
 		<?php
 			$frame = 0;
 			foreach( $item_detail['ItemImage'] as $item_image) {
@@ -594,12 +602,12 @@ $(document).ready(function() {
 					<div class="fotorama" data-auto="false" 
 						 data-nav="thumbs" 
 						 data-click="false"
-						 data-arrows="true"
-						 data-swipe="true" 
+						 data-arrows="always"
+						 data-swipe="false" 
 					>
 						<?php foreach ($gallery as $frame => $image) { ?>
-							<a href="<?php echo $image['medium-image']; ?>">
-								<img src="<?php echo $image['thumb-image']; ?>" />
+							<a data-large_image="<?php echo $image['large-image']; ?>" href="<?php echo $image['medium-image']; ?>">
+								<img data-qaz="1" src="<?php echo $image['thumb-image']; ?>" />
 							</a>
 						<?php } ?>
 					</div>
