@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="/js/search.js"></script>
 	<script type="text/javascript" src="/js/menus.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
 	<?php
 		echo $this->element('versioned_css', array(
 			'files' => array('bootstrap.min', 'base', 'menus', 'jquery.lightbox-0.5', 'jquery.fancybox-1.3.0', 'hp-slideshow')

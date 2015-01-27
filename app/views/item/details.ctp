@@ -42,6 +42,7 @@ $(document).ready(function() {
 				};
 				cloud_zoom = new CloudZoom($('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img'), $options);
 				zoomInit = true;
+                $('#zoom-button .text').html('hover over image to zoom');
 			}
 		}
 	});
@@ -61,14 +62,21 @@ $(document).ready(function() {
 		if(typeof cloud_zoom != 'undefined') {
 			cloud_zoom.closeZoom();
 			cloud_zoom.destroy();
+            $('#zoom-button .text').html('click to zoom');
 		}
-	});		
+	});
+
+    $('#zoom-button').click(function(){
+        $('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').trigger('click');
+        return false;
+    });
 
 	$('body').on('click', 'div.cloudzoom-lens', function(){
 		if(zoomInit) {
 			zoomInit = false;
 			cloud_zoom.closeZoom();
 			cloud_zoom.destroy();
+            $('#zoom-button .text').html('click to zoom');
 		}
 	});
 	
@@ -611,10 +619,13 @@ $(document).ready(function() {
 							</a>
 						<?php } ?>
 					</div>
-
+                      <a href="#" id="zoom-button" class="hidden-xs">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                          <span class="text">click to zoom</span>
+                      </a>
 				  </div>
 				  <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default hidden" data-dismiss="modal">Close</button>
 				  </div>
 				</div>
 			  </div>
