@@ -123,7 +123,7 @@
 					<?php if($i['Item']['status'] == 'Sold') { ?>
 						<li><span class="small-button gray-background red-text-border">SOLD</span></li>
 					<?php } else { ?>
-						<li class="item-price">$<?php echo $fieldformatting->price_formatting($i['ItemVariation'][0]['price']) ?></li>
+						<li class="item-price hidden">$<?php echo $fieldformatting->price_formatting($i['ItemVariation'][0]['price']) ?></li>
 					<?php } ?>
 				</ul>
 			</dd>

@@ -14,7 +14,7 @@ $this->pageTitle = "Lucca Antiques";
 			<?php $settings = array('w'=>500,'crop'=>1); ?>
 		<div id="PrintSheetContent">
 			<div id="BigImageBox">
-				<img style="max-height:360px" src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $primary_image, $settings)?>"></img>
+				<img style="max-height:330px" src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $primary_image, $settings)?>"></img>
 			</div>
 			<div style="clear:both;"></div>
 			<h2 class="ProductTitle"><?php echo $item_detail['Item']['name'] ?></h2>
@@ -24,7 +24,7 @@ $this->pageTitle = "Lucca Antiques";
                 <h3 class="details">
                     <?php
                             $variation_count = sizeof($item_detail['ItemVariation']);
-    
+                            $price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
                             switch ($item_category_id) {
                                 case 1:
                                     // ANTIQUE **************************************************************************************8
@@ -38,7 +38,6 @@ $this->pageTitle = "Lucca Antiques";
                                         $quantity .= '';
                                     }
                                     $quantity .= '</dl>';
-                                    $price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
                                     // there are no variations for antiques, but i still need the id of the main variation
                                     $variation = '';
                                     break;
@@ -47,7 +46,6 @@ $this->pageTitle = "Lucca Antiques";
                                     // is a lucca studio make a select list of 10
                                     $quantity = '';
                                     // the price for the main variation
-                                    $price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
                                     $variation = '<dl>';
                                     if($variation_count > 1) {
                                         // if there are variations, list the ids
@@ -69,12 +67,28 @@ $this->pageTitle = "Lucca Antiques";
                                         $quantity .= '';
                                     }
                                     $quantity .= '</dl>';
-                                    $price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
                                     $variation = '';
                                     // for found items,  there are NO variations except for the main variation
                                     $variation = '';
                         
                                     break;
+                                case 4:
+                                    // LIMITED EDITION **********************************************
+                                    $quantity = '<dl>';
+                                    if((int)$item_detail['ItemVariation'][0]['quantity'] > 1){
+                                        $quantity .= '<dt><dd>' . $item_detail['ItemVariation'][0]['quantity'] .' Available</dd>';
+                                    }elseif((int)$item_detail['ItemVariation'][0]['quantity'] == 1)  {
+                                        $quantity .= '<dd><strong>1 Available</strong></dd>';
+                                    } else {
+                                        $quantity .= '';
+                                    }
+                                    $quantity .= '</dl>';
+                                    $variation = '';
+                                    // for found items,  there are NO variations except for the main variation
+                                    $variation = '';
+
+                                    break;
+
                             }
                 
                             if(isset($options)) {
@@ -91,6 +105,7 @@ $this->pageTitle = "Lucca Antiques";
                         ?>
                         <?php if(isset($price)) {echo '' . $price; } ?>
                         <?php if($item_detail['Item']['status'] !== 'Sold') { ?>
+
                         <?php } else { ?>
                             <span class="button gray-background red-text-border">SOLD</span>
                         <?php } ?>

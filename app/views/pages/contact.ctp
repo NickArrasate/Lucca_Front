@@ -28,12 +28,13 @@
                 </dl>
 			</div>
             
-			<div class="contactRight">
+			<div class="contactLeft">
                 <img src="/img/NY-opt.jpg" height="200" />
                 <dl>
                     <dt>New York Store:</dt>
                     <dd>Lucca Antiques</dd>
-                    <dd>306 E. 61st Street (between 1st and 2nd Avenue) - 4th Floor</dd>
+                    <dd>306 E. 61st Street (between 1st and 2nd Avenue)</dd>
+                    <dd>4th Floor</dd>
                     <dd>New York, NY 10065</dd>
                     <dd><a target="_blank" href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=306+E+61st+Street+New+York,+NY">Click for Map</a></dd>
                     <dd>Phone: 212-343-9005</dd>
@@ -45,6 +46,22 @@
                     <dd>Monday - Friday: 10:00am - 6:00pm</dd>
                 </dl>
 			</div>
+
+            <div class="contactLeft">
+                <img src="/img/img_sanfran-opt.jpg" height="200" />
+                <dl>
+                    <dt>San Francisco Store: - OPENING SOON!</dt>
+                    <dd>Lucca Antiques</dd>
+                    <dd>Showplace East<dd>
+                    <dd>111 Rhode Island Street, Suite F</dd>
+                    <dd>San Francisco, CA 94103</dd>
+                    <dd><a target="_blank" href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=111 Rhode Island Street, San Francisco, CA">Click for Map</a></dd>
+                </dl>
+                <dl>
+                    <dt>San Francisco Store Hours:</dt>
+                    <dd>Monday - Friday: 10:00am - 6:00pm</dd>
+                </dl>
+            </div>
             
             <div class="contactBottom">
                 <dl>
@@ -52,7 +69,7 @@
                     <dd>Warehouse hours: Monday - Friday 8:00am - 5:00pm (Closed 1:00pm - 2:00pm)</dd>
                     <dd>Phone: 310-839-1392</dd>
                     <dd>Fax: 310-839-3550</dd>
-                    <dd style="display:none">Email: <a href="mailto:<?php echo WH_EMAIL?>"><?php echo WH_EMAIL?></a></dd>
+                    <dd>Email: <a href="mailto:<?php echo WH_EMAIL?>"><?php echo WH_EMAIL?></a></dd>
                 </dl>
             </div>
 		</div>
