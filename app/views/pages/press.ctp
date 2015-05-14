@@ -19,7 +19,50 @@
 			<!-- Thumbs 200 x 259 -->
             <!-- Big Thumb 500 x 650 -->
 			<!-- Regular Max Height 500, Max Width 600-->
-            
+
+                <a class="hidden lightbox" href="/press/images/va_jun15/cover-big.jpg" title="Veranda June 2015"></a>
+                <a href="/press/images/va_jun15/chandelier-table-lamps.jpg" class="lightbox" title="Chandelier + Table Lamps">
+                    <div id="CoverObject">
+                        <div id="CoverObjectImgWrap">
+                            <img src="/press/images/va_jun15/cover.jpg" alt=""></img>
+                        </div>
+                        <h5 class="MagTitle">Veranda<br />June 2015</h5>
+                    </div>
+                </a>
+                <a class="hidden lightbox" href="/press/images/va_jun15/table.jpg" title="Table"></a>
+
+                <a class="hidden lightbox" href="/press/images/ed_may15/cover-big.jpg" title="Elle Decor May 2015"></a>
+                <a href="/press/images/ed_may15/inside.jpg" class="lightbox" title="Lamp">
+                    <div id="CoverObject">
+                        <div id="CoverObjectImgWrap">
+                            <img src="/press/images/ed_may15/cover.jpg" alt=""></img>
+                        </div>
+                        <h5 class="MagTitle">Elle Decor<br />May 2015</h5>
+                    </div>
+                </a>
+
+
+                <a class="hidden lightbox" href="/press/images/ad_mar15/cover-big.jpg" title="Architectural Digest March 2015"></a>
+            	<a href="/press/images/ad_mar15/inside.jpg" class="lightbox" title="Chairs">
+					<div id="CoverObject">
+						<div id="CoverObjectImgWrap">
+							<img src="/press/images/ad_mar15/cover.jpg" alt=""></img>
+						</div>
+						<h5 class="MagTitle">Architectural Digest<br />March 2015</h5>
+					</div>
+				</a>
+
+                <a class="hidden lightbox" href="/press/images/va_feb15/cover-big.jpg" title="Veranda February 2015"></a>
+                <a href="/press/images/va_feb15/chandelier.jpg" class="lightbox" title="Chandelier">
+                    <div id="CoverObject">
+                        <div id="CoverObjectImgWrap">
+                            <img src="/press/images/va_feb15/cover.jpg" alt=""></img>
+                        </div>
+                        <h5 class="MagTitle">Veranda<br />February 2015</h5>
+                    </div>
+                </a>
+                <a href="/press/images/va_feb15/chandelier-chairs.jpg" class="lightbox" title="Chandlier + Chairs">
+                
                 <a class="hidden lightbox" href="/press/images/ad_nov14/cover-big.jpg" title="Architectural Digest November 2014"></a>
             	<a href="/press/images/ad_nov14/lamps.jpg" class="lightbox" title="Floor Lamp + Table Lamp">
 					<div id="CoverObject">

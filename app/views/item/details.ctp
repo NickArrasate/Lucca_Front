@@ -3,6 +3,7 @@
 	#$javascript->link('item_details', false);
 	$this->pageTitle = 'Lucca Antiques - '. $breadcrumbs[0] . ': ' . $item_details[0]['Item']['name'] ;
 	echo $html->css('fotorama');
+    echo $html->css('cloudzoom');
 ?>
 <script type="text/javascript" src="/js/fotorama.js"></script>
 <script type="text/javascript">
@@ -42,6 +43,7 @@ $(document).ready(function() {
 				};
 				cloud_zoom = new CloudZoom($('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img'), $options);
 				zoomInit = true;
+                $('#zoom-button .text').html('hover over image to zoom');
 			}
 		}
 	});
@@ -61,14 +63,21 @@ $(document).ready(function() {
 		if(typeof cloud_zoom != 'undefined') {
 			cloud_zoom.closeZoom();
 			cloud_zoom.destroy();
+            $('#zoom-button .text').html('click to zoom');
 		}
-	});		
+	});
+
+    $('#zoom-button').click(function(){
+        $('.fotorama__stage__frame.fotorama__loaded.fotorama__loaded--img.fotorama__active img').trigger('click');
+        return false;
+    });
 
 	$('body').on('click', 'div.cloudzoom-lens', function(){
 		if(zoomInit) {
 			zoomInit = false;
 			cloud_zoom.closeZoom();
 			cloud_zoom.destroy();
+            $('#zoom-button .text').html('click to zoom');
 		}
 	});
 	
@@ -425,7 +434,7 @@ $(document).ready(function() {
 
 			<dl>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
-                    <dd class="item-price">Price: <?php echo $price ?></dd>
+                    <dd class="item-price hidden">Price: <?php echo $price ?></dd>
 					<?php echo $variation ?>
 				<?php } // end if its not sold ?>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
@@ -591,31 +600,35 @@ $(document).ready(function() {
 </div>
 
 <div class="modal fade" id="modal_gallery" >
-			<div class="modal-dialog">
-				<div class="modal-content">
-				  <div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<span>&nbsp;</span>
-				  </div>
-				  <div class="modal-body">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <a href="#" id="zoom-button" class="hidden-xs pull-left">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  <span class="text">click to zoom</span>
+              </a>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span>&nbsp;</span>
+          </div>
+          <div class="modal-body">
 
-					<div class="fotorama" data-auto="false" 
-						 data-nav="thumbs" 
-						 data-click="false"
-						 data-arrows="always"
-						 data-swipe="false" 
-					>
-						<?php foreach ($gallery as $frame => $image) { ?>
-							<a data-large_image="<?php echo $image['large-image']; ?>" href="<?php echo $image['medium-image']; ?>">
-								<img data-qaz="1" src="<?php echo $image['thumb-image']; ?>" />
-							</a>
-						<?php } ?>
-					</div>
+            <div class="fotorama" data-auto="false"
+                 data-nav="thumbs"
+                 data-click="false"
+                 data-arrows="always"
+                 data-swipe="false"
+            >
+                <?php foreach ($gallery as $frame => $image) { ?>
+                    <a data-large_image="<?php echo $image['large-image']; ?>" href="<?php echo $image['medium-image']; ?>">
+                        <img data-qaz="1" src="<?php echo $image['thumb-image']; ?>" />
+                    </a>
+                <?php } ?>
+            </div>
 
-				  </div>
-				  <div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  </div>
-				</div>
-			  </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default hidden" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
 </div>
