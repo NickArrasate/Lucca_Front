@@ -17,4 +17,19 @@ class InventoryLocation extends AppModel {
 		return $locations;
 	}
 
+	function item_quantities_tags() {
+		$short_locations = $this->find('all', array(
+				'recursive' => 0,
+				'fields' => array('InventoryLocation.short')
+			)
+		);
+
+		$list_tags = array();
+		foreach ($short_locations as $short) {
+			$list_tags['Item' . $short['InventoryLocation']['short'] . 'Quantity'] = $short['InventoryLocation']['id'];
+		}
+
+		return $list_tags;
+	}
+
 }

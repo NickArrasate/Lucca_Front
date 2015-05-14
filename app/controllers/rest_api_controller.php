@@ -136,11 +136,8 @@ class RestApiController extends AppController {
 				'item' => $this->Item->validationErrors,
 			);
 		} else {
-			$itemQuantities = array(
-				'ItemLAQuantity' => 1,
-				'ItemNYQuantity' => 2,
-				'ItemWHQuantity' => 3,
-			);
+			$this->loadModel('InventoryLocation');
+			$itemQuantities = $this->InventoryLocation->item_quantities_tags();
 
 			$this->loadModel('ItemImage');
 			$this->loadModel('ItemVariation');
@@ -270,11 +267,8 @@ class RestApiController extends AppController {
 				'item' => $this->Item->validationErrors,
 			);
 		} else {
-			$itemQuantities = array(
-				'ItemLAQuantity' => 1,
-				'ItemNYQuantity' => 2,
-				'ItemWHQuantity' => 3,
-			);
+			$this->loadModel('InventoryLocation');
+			$itemQuantities = $this->InventoryLocation->item_quantities_tags();
 
 			$this->loadModel('ItemImage');
 			$this->loadModel('ItemVariation');
