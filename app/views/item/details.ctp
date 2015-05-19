@@ -574,19 +574,17 @@ $(document).ready(function() {
 				<dt><span>Location</span></dt>
 				<dd class="width300">
 					<?php
-						if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){
-							echo "<ul><li>744 North La Cienega Blvd.
-							</li><li>Los Angeles, CA 90069
-							</li><li>Phone:             310-657-7800
-							</li><li>Email: <a href='mailto:".LA_EMAIL."'>".LA_EMAIL."</a></li></ul>";
-						}elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
-							echo "<ul><li>306 East 61st Street 4th Floor
-							</li><li>New York, NY 10065
-							</li><li>Phone:             212-343-9005
-							</li><li>Email:  <a href='mailto:".NY_EMAIL."'>".NY_EMAIL."</a></li></ul>";
-						}else{
+						if ($item_detail['InventoryQuantity']['location'] == 3){
 							echo "<ul><li>This item is located in our LA Warehouse.
-								<br />Please contact ".LA_NAME." at 310-657-7800 or <a href='mailto:".LA_EMAIL."'>".LA_EMAIL."</a> for viewing information.</li></ul>";
+								<br />Please contact ".LA_NAME." at ". $item_detail['ItemLocation']['phone'] . 
+								" or <a href='mailto:" . $item_detail['ItemLocation']['email'] . "'>" . $item_detail['ItemLocation']['email'] .
+								"</a> for viewing information.</li></ul>";
+						} else {
+							echo "<ul>
+								<li>" . $item_detail['ItemLocation']['address'] . "</li>
+								<li>Phone: " . $item_detail['ItemLocation']['phone'] . "</li>
+								<li>Email: <a href='mailto:" . $item_detail['ItemLocation']['email'] . "'>" . $item_detail['ItemLocation']['email'] . "</a></li>
+							</ul>";
 						}
 					?>
 				</dd>
