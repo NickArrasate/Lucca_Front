@@ -635,6 +635,18 @@ caption     { background: #eee; }
 	height: auto !important;
 }
 
+.btn-lucca{
+    color: #fff;
+    background-color: #790100;
+    border-color: #790100;
+}
+
+.btn-lucca-link{
+    color: #790100;
+    background-color: transparent;
+    border: none;
+}
+
 
 /* @end */
 
