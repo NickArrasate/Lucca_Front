@@ -60,6 +60,8 @@
 				<dd class="fourth"><a href="/pages/disclosure/"><span>disclosure</span></a></dd>
 				<dd class="fifth"><a href="/pages/contact/"><span>contact</span></a></dd>
 				<dd class="sixth"><a href="/pages/press/"><span>press</span></a></dd>
+                <dd class="sixth"><a href="/pages/careers/"><span>careers</span></a></dd>
+                <dd class="sixth"><a href="/trade/login"><span>trade partners</span></a></dd>
 				<dd class="seventh"><span> &#169; <?php echo date('Y')?> Lucca Antiques</span></dd>
 			</dl>
 		</div>

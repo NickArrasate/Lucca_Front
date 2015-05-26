@@ -43,6 +43,10 @@
 	Router::connect('/admin/item/grid/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
 	Router::connect('/admin/item/search/*', array('controller' => 'item', 'action' => 'grid', 'prefix' => 'admin', 'admin' => true));
 
+    Router::connect('/trade/register', array('controller' => 'trade', 'action' => 'register'));
+    Router::connect('/trade/login', array('controller' => 'trade', 'action' => 'login'));
+    Router::connect('/trade/custom', array('controller' => 'trade', 'action' => 'custom'));
+
 	Router::connect('/item/grid/*', array('controller' => 'item', 'action' => 'grid'));
 	Router::connect('/item/search/*', array('controller' => 'item', 'action' => 'grid'));
 

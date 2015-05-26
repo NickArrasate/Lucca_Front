@@ -46,7 +46,9 @@ define('LA_NAME','Kim');
 define('LA_EMAIL','kim@luccaantiques.com');
 define('NY_NAME','Suzette');
 define('NY_EMAIL','suzette@luccaantiques.com');
-define('WH_NAME','Kim');
-define('WH_EMAIL','kim@luccaantiques.com');
+define('SF_NAME','Kim');
+define('SF_EMAIL','kim@luccaantiques.com');
+define('WH_NAME','Anna');
+define('WH_EMAIL','anna@luccaantiques.com');
 define('SKIP_CATS',json_encode(array('3')));
 
