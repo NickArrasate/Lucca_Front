@@ -22,12 +22,12 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                 </div>
                 <div class="col-sm-6">
                     <form name="trade-register" class="form" style="border-left:1px solid #ccc;padding:0px 50px;margin-top:60px" method="post">
-                        <h4>Login to Trade Account</h4>
+                        <h4>Login to Trade Account or <a class="btn-lucca-link" href="/trade/register">sign UP</a></h4>
                         <div class="form-group">
                             <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lucca">Submit</button>

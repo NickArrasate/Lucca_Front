@@ -8,9 +8,17 @@ class TradeController extends AppController {
      * @var array
      * @access public
      */
-    var $uses = array();
+    var $uses = array('Trade');
 	var $name = 'Trade';
 	var $helpers = array('Html', 'Form');
+	var $components = array('RequestHandler');
+
+	/**
+	 * Before any Controller Action
+	 */
+	function beforeFilter() {
+		parent::beforeFilter();
+	}
 
 	/**
 	 * Logs in a User
@@ -49,6 +57,30 @@ class TradeController extends AppController {
 
     function register() {
         # Nothing yet
+		// redirect user if already logged in
+		if( $this->Session->check('User') ) {
+			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
+		}
+
+		if ($this->RequestHandler->isPost()) {
+			if(!empty($this->data)) {
+				$salt = Configure::read('Security.salt');
+				if (!empty($this->data['Trade']['password'])) {
+					$this->data['Trade']['password'] = md5($this->data['Trade']['password'] . $salt);
+				}
+				if (!empty($this->data['Trade']['password'])) {
+					$this->data['Trade']['password_confirm'] = md5($this->data['Trade']['password_confirm'] . $salt);
+				}
+
+				if($this->Trade->save($this->data)) {
+					$this->Session->setFlash("Trade Saved!");
+					$this->redirect(array('controller'=>'trade','action'=>'login'));
+				} else {
+					$this->Session->setFlash("Trade not Saved!");
+				}
+
+			}
+		}
     }
 
     function custom() {

@@ -19,37 +19,83 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 
                 </div>
                 <div class="col-sm-6">
-                    <form name="trade-register" class="form" style="border-left:1px solid #ccc;padding:0px 50px;margin-top:60px" method="post">
+						<?php echo $form->create('Trade', array(
+							'type' => 'post',
+							'url' => array('controller' => 'trade', 'action' => 'register'),
+							'class' => 'form',
+							'style' => "border-left:1px solid #ccc;padding:0px 50px;margin-top:60px"
+						));
+						?>
                         <h4>Please fill out the form below to join the Lucca Trade program</h4>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="company_name" placeholder="Company Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="address" placeholder="Address">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="phone" placeholder="Phone #">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="resale" placeholder="Resale #">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="email" placeholder="Email Address">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="password_confirm" placeholder="Password Confirm">
-                        </div>
+						<?php echo $form->input('name', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Name",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('company_name', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Company Name",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('address', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Address",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('phone', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Phone #",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('resale', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Resale #",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('email', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Email Address",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('password', array(
+								'type' => 'password',
+								'class' => 'form-control',
+								'placeholder' => "Password",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('password_confirm', array(
+								'type' => 'password',
+								'class' => 'form-control',
+								'placeholder' => "Password Confirm",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lucca">Submit</button>
                             <a href="/trade/login" class="btn btn-lucca-link pull-right">Already have an account?</a>
                         </div>
-                    </form>
+                    <?php echo $form->end(); ?>
                 </div>
             </div>
 
