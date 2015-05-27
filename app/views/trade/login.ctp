@@ -16,13 +16,11 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                         <li>Career opportunities</li>
                         <li><a class="btn-lucca-link" href="/trade/custom">Custom request form for Lucca Studio products</a></li>
                     </ul>
-
                     <a class="btn btn-lucca" style="margin-left:20px" href="/trade/register">Register for a Trade Account</a>
-
                 </div>
                 <div class="col-sm-6">
                     <form name="trade-register" class="form" style="border-left:1px solid #ccc;padding:0px 50px;margin-top:60px" method="post">
-                        <h4>Login to Trade Account or <a class="btn-lucca-link" href="/trade/register">sign UP</a></h4>
+                        <h4>Login to Trade Account</h4>
                         <div class="form-group">
                             <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
@@ -33,7 +31,6 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                             <button type="submit" class="btn btn-lucca">Submit</button>
                         </div>
                     </form>
-
                 </div>
             </div>
 

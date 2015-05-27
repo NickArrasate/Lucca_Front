@@ -58,12 +58,12 @@ class Trade extends AppModel {
 			'message' => 'Please enter address'
 		),
 		'phone' => array(
-			'rule' => array('phone', null, 'us'),
-		),
-		'resale' => array(
-			'rule' => 'notEmpty',
-			'message' => 'Please enter resale #'
+			'rule' => array('phone'),
 		)
+//		'resale' => array(
+//			'rule' => 'notEmpty',
+//			'message' => 'Please enter resale #'
+//		)
 	);
 
 	public function isConfirmed($check) {

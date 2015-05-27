@@ -73,7 +73,7 @@ class TradeController extends AppController {
 				}
 
 				if($this->Trade->save($this->data)) {
-					$this->Session->setFlash("Trade Saved!");
+					$this->Session->setFlash("New Account Created.  Login below.");
 					$this->redirect(array('controller'=>'trade','action'=>'login'));
 				} else {
 					$this->Session->setFlash("Trade not Saved!");
