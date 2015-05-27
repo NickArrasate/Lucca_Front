@@ -52,6 +52,16 @@
 				</dd>
 			</dl>
 
+			<div id="flash_message" style="text-align: center">
+				<h2>
+					<?php 
+						if($session->check('Message.flash')): 
+							$session->flash();
+						endif;  
+					?>
+				</h2>
+			</div>
+
 			<?php echo $content_for_layout ?>
 
 			<dl class="footer" style="margin-top:0px !important">
@@ -60,6 +70,7 @@
 				<dd class="fourth"><a href="/pages/disclosure/"><span>disclosure</span></a></dd>
 				<dd class="fifth"><a href="/pages/contact/"><span>contact</span></a></dd>
 				<dd class="sixth"><a href="/pages/press/"><span>press</span></a></dd>
+                <dd class="sixth"><a href="/pages/careers/"><span>careers</span></a></dd>
 				<dd class="seventh"><span> &#169; <?php echo date('Y')?> Lucca Antiques</span></dd>
 			</dl>
 		</div>
@@ -81,3 +92,5 @@
 
 </body>
 </html>
+
+

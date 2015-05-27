@@ -13,7 +13,6 @@
                 <p>Send your resume to <a href="jobs@luccaantiques.com">jobs@luccaantiques.com</a> and we'll keep it on file for any openings.</p>
 				</dd>
 			</dl>
-            
             <h4>Showroom/Store Manager San Francisco and Santa Barbara</h4>
 
             <p>Lucca Antiques is a well-established and successful antiques and design business with expansive locations in Los Angeles and New York City, now opening in San Francisco and Santa Barbara.</p>
@@ -29,7 +28,7 @@
                     staff to coordinate/manage inventory
                 </li>
                 <li>
-                    Manage store inventory, assuring store inventory represents the merchandise “mix”
+                    Manage store inventory, assuring store inventory represents the merchandise "mix"
                     established by the owners and store always reflects Lucca Antiques design aesthetic
                 </li>
                 <li>
@@ -57,7 +56,7 @@
                     Impeccable phone manner and written communication skills
                 </li>
                 <li>
-                    Well-groomed and attention to appearance “presentation”
+                    Well-groomed and attention to appearance "presentation"
                 </li>
                 <li>
                     Exemplary computer skills -- including Microsoft Office, Excel and

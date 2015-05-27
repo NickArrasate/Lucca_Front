@@ -27,6 +27,13 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 						));
 						?>
                         <h4>Please fill out the form below to join the Lucca Trade program</h4>
+						<?php 
+							if($session->check('Message.flash')) {
+								echo "<p>";
+								$session->flash();
+								echo "</p>";
+							}
+						?>
 						<?php echo $form->input('name', array(
 								'type' => 'text',
 								'class' => 'form-control',
@@ -80,7 +87,8 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 								'class' => 'form-control',
 								'placeholder' => "Password",
 								'div' => 'form-group',
-								'label' => false
+								'label' => false,
+								'value' => ''
 							));
 						?>
 						<?php echo $form->input('password_confirm', array(
@@ -88,7 +96,8 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 								'class' => 'form-control',
 								'placeholder' => "Password Confirm",
 								'div' => 'form-group',
-								'label' => false
+								'label' => false,
+								'value' => ''
 							));
 						?>
                         <div class="form-group">

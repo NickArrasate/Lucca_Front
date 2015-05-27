@@ -19,18 +19,42 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                     <a class="btn btn-lucca" style="margin-left:20px" href="/trade/register">Register for a Trade Account</a>
                 </div>
                 <div class="col-sm-6">
-                    <form name="trade-register" class="form" style="border-left:1px solid #ccc;padding:0px 50px;margin-top:60px" method="post">
-                        <h4>Login to Trade Account or <a class="btn-lucca-link" href="/trade/register">Sign Up</a></h4>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
+						<?php echo $form->create('Trade', array(
+							'type' => 'post',
+							'url' => array('controller' => 'trade', 'action' => 'login'),
+							'class' => 'form',
+							'style' => "border-left:1px solid #ccc;padding:0px 50px;margin-top:60px"
+						));
+						?>
+                        <h4>Login to Trade Account</h4>
+						<?php 
+							if($session->check('Message.flash')) {
+								echo "<p>";
+								$session->flash();
+								echo "</p>";
+							}
+						?>
+						<?php echo $form->input('email', array(
+								'type' => 'text',
+								'class' => 'form-control',
+								'placeholder' => "Email",
+								'div' => 'form-group',
+								'label' => false
+							));
+						?>
+						<?php echo $form->input('password', array(
+								'type' => 'password',
+								'class' => 'form-control',
+								'placeholder' => "Password",
+								'div' => 'form-group',
+								'label' => false,
+								'value' => ''
+							));
+						?>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lucca">Submit</button>
                         </div>
-                    </form>
+                    <?php echo $form->end(); ?>
                 </div>
             </div>
 
