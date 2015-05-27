@@ -52,6 +52,16 @@
 				</dd>
 			</dl>
 
+			<div id="flash_message" style="text-align: center">
+				<h2>
+					<?php 
+						if($session->check('Message.flash')): 
+							$session->flash();
+						endif;  
+					?>
+				</h2>
+			</div>
+
 			<?php echo $content_for_layout ?>
 
 			<dl class="footer" style="margin-top:0px !important">

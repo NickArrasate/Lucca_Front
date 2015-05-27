@@ -57,9 +57,6 @@ class Trade extends AppModel {
 			'rule' => 'notEmpty',
 			'message' => 'Please enter address'
 		),
-		'phone' => array(
-			'rule' => array('phone'),
-		)
 //		'resale' => array(
 //			'rule' => 'notEmpty',
 //			'message' => 'Please enter resale #'

@@ -24,32 +24,25 @@ class TradeController extends AppController {
 	 * Logs in a User
 	 */
 	function login() {
-		//$salt = Configure::read('Security.salt');
-		//echo md5('password'.$salt);
-
 		// redirect user if already logged in
-		if( $this->Session->check('User') ) {
-			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
+		if( $this->Session->check('Trade') ) {
+			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 		}
 
-		if(!empty($this->data)) {
-			// set the form data to enable validation
-			$this->User->set( $this->data );
-			// see if the data validates
-			if($this->User->validates()) {
-				// check user is valid
-				$result = $this->check_user_data($this->data);
+		if ($this->RequestHandler->isPost()) {
+			if(!empty($this->data)) {
+				$result = $this->check_trader_data($this->data);
 
 				if( $result !== FALSE ) {
 					// update login time
-					$this->User->id = $result['User']['id'];
-					$this->User->saveField('last_login',date("Y-m-d H:i:s"));
+					$this->Trade->id = $result['Trade']['id'];
+					$this->Trade->saveField('last_login', date("Y-m-d H:i:s"));
 					// save to session
-					$this->Session->write('User',$result);
-					$this->Session->setFlash('You have successfully logged in');
-					$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
+					$this->Session->write('Trade', $result);
+					$this->Session->setFlash('Successfully logged in');
+					$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 				} else {
-					$this->Session->setFlash('Either your Username of Password is incorrect');
+					$this->Session->setFlash('Either your Email or Password is incorrect');
 				}
 			}
 		}
@@ -58,8 +51,8 @@ class TradeController extends AppController {
     function register() {
         # Nothing yet
 		// redirect user if already logged in
-		if( $this->Session->check('User') ) {
-			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
+		if( $this->Session->check('Trade') ) {
+			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 		}
 
 		if ($this->RequestHandler->isPost()) {
@@ -73,12 +66,12 @@ class TradeController extends AppController {
 				}
 
 				if($this->Trade->save($this->data)) {
-					$this->Session->setFlash("New Account Created.  Login below.");
-					$this->redirect(array('controller'=>'trade','action'=>'login'));
+					$this->Session->setFlash("Successfully logged in");
+					$this->Session->write('Trade', $this->data);
+					$this->redirect(array('controller'=>'trade', 'action'=>'login'));
 				} else {
-					$this->Session->setFlash("Trade not Saved!");
+					$this->Session->setFlash("Error while registration");
 				}
-
 			}
 		}
     }
@@ -92,24 +85,23 @@ class TradeController extends AppController {
 	 * @param array $data
 	 * @return boolean|array
 	 */
-	function check_user_data($data) {
+	function check_trader_data($data) {
 		// init
 		$return = FALSE;
 
 		// find user with passed username
 		$conditions = array(
-			'User.username'=>$data['User']['username'],
-			'User.status'=>'1'
+			'Trade.email' => $data['Trade']['email']
 		);
-		$user = $this->User->find('first',array('conditions'=>$conditions));
+		$trader = $this->Trade->find('first', array('conditions' => $conditions));
 
 		// not found
-		if(!empty($user)) {
+		if(!empty($trader)) {
 			$salt = Configure::read('Security.salt');
 			// check password
 			// yea -- i just md5ed my password in the database without the salt. eh. 
-			if($user['User']['password'] == md5($data['User']['password'] . $salt)) {
-				$return = $user;
+			if($trader['Trade']['password'] == md5($data['Trade']['password'] . $salt)) {
+				$return = $trader;
 			}
 		}
 
@@ -121,9 +113,9 @@ class TradeController extends AppController {
 	 * Logs out a User
 	 */
 	function logout() {
-		if($this->Session->check('User')) {
-			$this->Session->delete('User');
-			$this->Session->setFlash('You have successfully logged out','flash_good');
+		if($this->Session->check('Trade')) {
+			$this->Session->delete('Trade');
+			$this->Session->setFlash('You have successfully logged out');
 		}
 		$this->redirect(array('action'=>'login'));
 	}
