@@ -119,4 +119,39 @@ class TradeController extends AppController {
 		}
 		$this->redirect(array('action'=>'login'));
 	}
+	
+	function request_reset_pwd() {
+		if ($this->RequestHandler->isAjax() && isset($this->data['Trade']['email'])) {
+			$this->layout = 'ajax';
+			$trader = $this->Trade->findByEmail($this->data['Trade']['email']);
+			if ($trader) {
+				$restore_key = md5(time());
+				$link_restore = Router::url(
+					array(
+						'controller' => 'users', 
+						'action' => 'restoring_password', 
+						'id' => $trader['Trade']['id'], 
+						'restore_key' => $restore_key
+					), true
+				);
+				$this->Trade->id = $trader['Trade']['id'];
+				if(!$this->Trade->saveField('restore_key', $restore_key)){
+					$this->set('status', 'error');
+					$this->set('message', 'Password reset error');
+				} else {
+					// sending email
+					// ......
+					$this->set('status', 'success');
+					$this->set('message', 'Password reset email sent');
+				}
+			} else {
+				$this->set('status', 'error');
+				$this->set('message', 'Trader with the email does not exist');
+			}
+		} else {
+			$this->set('status', 'error');
+			$this->set('message', 'Password reset error');
+		}
+		$this->render('request_reset_pwd');
+	}
 }
