@@ -12,6 +12,12 @@ $(document).ready(function() {
 					}
 				}   
 			},
+			beforeSend: function() {
+				if ($('#email').val() == '') {
+					$('#forgot_form_message').text('Please enter your email');
+					return false;
+				}
+			},
 			success: function(result) {
 				$('#forgot_form_message').text(result.message);
 			},

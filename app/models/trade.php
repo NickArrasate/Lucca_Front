@@ -7,7 +7,7 @@ class Trade extends AppModel {
 			'rule' => 'alphaNumeric',
 			'required'=>true,
 			'allowEmpty'=>false,
-			'message'=>'Please enter your Username'
+			'message'=>'Please enter your name'
 		),
 		'password' => array(
 			'notempty' => array(
@@ -70,6 +70,27 @@ class Trade extends AppModel {
 			return true;
 		}
 		return false;
+	}
+	
+	public function changePassword($traderData) {
+		$trader = $this->findById($traderData['Trade']['trader_id']);
+		
+		if(($trader['Trade']['restore_key'] == $traderData['Trade']['restore_key']) && 
+			(time() - strtotime(LIFETIME_RECOVERY_LINK, 0) - 
+				strtotime($trader['Trade']['modified']) <= 0))
+		{
+			$salt = Configure::read('Security.salt');
+			
+			$this->id = $trader['Trade']['id'];
+			if ($this->save(array(
+				'password' => md5($traderData['Trade']['password'] . $salt),
+				'password_confirm' => md5($traderData['Trade']['password_confirm'] . $salt),
+				'restore_key' => '',
+				'name' => $trader['Trade']['name']
+			))) {
+				return true;
+			}
+		}
 	}
 
 }

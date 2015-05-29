@@ -11,7 +11,7 @@ class TradeController extends AppController {
     var $uses = array('Trade');
 	var $name = 'Trade';
 	var $helpers = array('Html', 'Form');
-	var $components = array('RequestHandler');
+	var $components = array('RequestHandler', 'Email');
 
 	/**
 	 * Before any Controller Action
@@ -49,7 +49,6 @@ class TradeController extends AppController {
 	}
 
     function register() {
-        # Nothing yet
 		// redirect user if already logged in
 		if( $this->Session->check('Trade') ) {
 			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
@@ -122,27 +121,33 @@ class TradeController extends AppController {
 	
 	function request_reset_pwd() {
 		if ($this->RequestHandler->isAjax() && isset($this->data['Trade']['email'])) {
+			Configure::write('debug', 0);
 			$this->layout = 'ajax';
 			$trader = $this->Trade->findByEmail($this->data['Trade']['email']);
 			if ($trader) {
 				$restore_key = md5(time());
-				$link_restore = Router::url(
+				$reset_link = Router::url(
 					array(
-						'controller' => 'users', 
-						'action' => 'restoring_password', 
-						'id' => $trader['Trade']['id'], 
+						'controller' => 'trade', 
+						'action' => 'reset_password', 
+						'trader_id' => $trader['Trade']['id'], 
 						'restore_key' => $restore_key
 					), true
 				);
 				$this->Trade->id = $trader['Trade']['id'];
-				if(!$this->Trade->saveField('restore_key', $restore_key)){
+				if($this->Trade->saveField('restore_key', $restore_key, false)){
+					// sending email
+					$send_result = $this->password_reset_email_send($trader, $reset_link);
+					if ($send_result) {
+						$this->set('status', 'success');
+						$this->set('message', 'Password reset email sent');
+					} else {
+						$this->set('status', 'error');
+						$this->set('message', 'Password reset email not sent');
+					}
+				} else {
 					$this->set('status', 'error');
 					$this->set('message', 'Password reset error');
-				} else {
-					// sending email
-					// ......
-					$this->set('status', 'success');
-					$this->set('message', 'Password reset email sent');
 				}
 			} else {
 				$this->set('status', 'error');
@@ -154,4 +159,64 @@ class TradeController extends AppController {
 		}
 		$this->render('request_reset_pwd');
 	}
+
+	public function reset_password() {
+		// redirect user if already logged in
+		if( $this->Session->check('Trade') ) {
+			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
+		}
+
+		if($this->RequestHandler->isGet() 
+			&& array_key_exists('restore_key', $this->params['named']) 
+			&& array_key_exists('trader_id', $this->params['named'])
+		) {
+			$trader = $this->Trade->findByRestore_key($this->params['named']['restore_key']);
+			if(!$trader || $trader['Trade']['id'] != $this->params['named']['trader_id']) {
+				$this->Session->setFlash("Sorry, invalid link");
+			} else {
+				$this->set('trader_id', $trader['Trade']['id']);
+				$this->set('restore_key', $trader['Trade']['restore_key']);
+			}
+		} elseif($this->RequestHandler->isPost() && !empty($this->data['Trade'])) {
+			$this->set('trader_id', $this->data['Trade']['trader_id']);
+			$this->set('restore_key', $this->data['Trade']['restore_key']);
+			$trader = $this->Trade->findById($this->data['Trade']['trader_id']);
+			if ($trader) {
+				$this->data['Trade']['name'] = $trader['Trade']['name'];
+				$this->Trade->set($this->data);
+				if ($this->Trade->validates(array('fieldList' => array('password', 'password_confirm'))) 
+					&& $this->Trade->changePassword($this->data)) {
+					$this->Session->setFlash('Password has been changed');
+					$this->Session->write('Trade', $this->data);
+					$this->redirect(array('controller' => 'trade', 'action' => 'login'));
+				}
+			} else {
+				$this->Session->setFlash("Sorry, invalid request");
+			}
+		} else {
+			$this->Session->setFlash("Sorry, invalid request");
+			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
+		}
+	}
+
+	private function password_reset_email_send($trader, $reset_link) {
+
+		$this->Email->smtpOptions = array(
+			'port' => '25',
+			'timeout' => '30',
+			'host' => 'mail.office.e2e4gu.ru',
+			'username' => 'postman',
+			'password' => 'GhzFk8iSMhsP'
+		);
+		$this->Email->delivery = 'smtp';
+		$this->Email->sendAs= 'html';
+		$this->Email->template = 'password_reset_email';
+		$this->Email->to = $trader['Trade']['email'];
+		$this->Email->from = NOREPLY_EMAIL;
+		$this->Email->subject = 'Lucca Trade Password Reset';
+		$this->set('email', $trader['Trade']['email']);
+		$this->set('reset_link', $reset_link);
+		return $this->Email->send();
+	}
+
 }
