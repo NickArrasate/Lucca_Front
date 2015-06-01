@@ -649,7 +649,7 @@ caption     { background: #eee; }
 
 /* for spiner */
 
-.fa-spin-custom, .glyphicon-spin {
+.glyphicon-spin {
     -webkit-animation: spin 1000ms infinite linear;
     animation: spin 1000ms infinite linear;
 }
