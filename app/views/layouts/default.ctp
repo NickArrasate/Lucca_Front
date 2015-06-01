@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
 	<script type="text/javascript" src="/js/search.js"></script>
 	<script type="text/javascript" src="/js/menus.js"></script>
+	<script type="text/javascript" src="/js/flash_message.js"></script>
 	<script type="text/javascript" src="/js/cloudzoom/cloudzoom.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
