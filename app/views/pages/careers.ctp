@@ -8,9 +8,9 @@
 		<div class="wrapper col-xs-12">
 			<h2>Careers at Lucca Antiques</h2>
 			<dl class="row">
-				<dd class="col-md-12 col-xs-12">
-	            <p>Interested in a career with Lucca Antiques?</p>
-                <p>Send your resume to <a href="jobs@luccaantiques.com">jobs@luccaantiques.com</a> and we'll keep it on file for any openings.</p>
+				<dd class="col-md-12 col-xs-12" style="font-family:vinchandregular;font-size:30px">
+                    <p>Interested in a career with Lucca Antiques?</p>
+                    <p>Send your resume to <a style="font-family:vinchandregular;font-size:30px" href="jobs@luccaantiques.com">jobs@luccaantiques.com</a> and we'll keep it on file for any openings.</p>
 				</dd>
 			</dl>
             <h4>Showroom/Store Manager San Francisco and Santa Barbara</h4>

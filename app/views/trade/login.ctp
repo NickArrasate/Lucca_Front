@@ -73,12 +73,12 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 				</div>
 
 				<div class="modal-body">
-					<p id="forgot_form_message"></p>
+					<p id="forgot_form_message">Enter your email address below to reset your password.  </p>
 					<?php 
 						echo $form->create('Trade', array(
 							'type' => 'post',
 							'class' => 'form',
-							'style' => "border-left:1px solid #ccc;padding:0px 50px;margin-top:60px"
+							'style' => "margin-top:20px"
 						));
 						echo $form->input('email', array(
 							'id' => 'email',
@@ -94,7 +94,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-lucca" id="send_email">Send email</button>
+					<button type="button" class="btn btn-lucca" id="send_email">Send Reset Email</button>
 				</div>
 			</div>
 		</div>
