@@ -6,10 +6,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
         <div class="wrapper col-xs-12">
             <div class="row" id="trade">
                 <div class="col-sm-6">
-                    <h2>LUCCA TRADE RESET PASSWORD</h2>
-
-                </div>
-                <div class="col-sm-6">
+                        <h2>LUCCA TRADE RESET PASSWORD</h2>
 						<?php echo $form->create('Trade', array(
 							'type' => 'post',
 							'url' => array('controller' => 'trade', 'action' => 'reset_password'),
