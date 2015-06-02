@@ -8,7 +8,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
             <div class="row" id="trade">
                 <div class="col-sm-6">
                     <h2>LUCCA TRADE ACCOUNT</h2>
-                    <p>Lucca trade/wholesale account gives access to:</p>
+                    <p style="font-family: vinchandregular; font-size:30px">Lucca trade/wholesale account gives access to:</p>
                     <ul>
                         <li>Trade pricing on tear sheets</li>
                         <li>Online access to inventory for immediate in-stock ordering</li>
@@ -94,7 +94,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-lucca" id="send_email">Send Reset Email</button>
+					<button type="button" class="btn btn-lucca" id="send_email"><span id="spiner" class="hidden glyphicon glyphicon-refresh glyphicon-spin"></span> Send Reset Email</button>
 				</div>
 			</div>
 		</div>

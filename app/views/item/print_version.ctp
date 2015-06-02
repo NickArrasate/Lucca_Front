@@ -103,7 +103,7 @@ $this->pageTitle = "Lucca Antiques";
                             }
                         } 
                         ?>
-                        <?php if(isset($price)) {echo '' . $price; } ?>
+                        <?php if(isset($price) && $session->check('Trade')) {echo '' . $price; } ?>
                         <?php if($item_detail['Item']['status'] !== 'Sold') { ?>
 
                         <?php } else { ?>

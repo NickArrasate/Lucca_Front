@@ -7,7 +7,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
             <div class="row" id="trade">
                 <div class="col-sm-6">
                     <h2>LUCCA TRADE ACCOUNT REGISTRATION</h2>
-                    <p>Apply for a Lucca trade/wholesale account and receive:</p>
+                    <p style="font-family: vinchandregular; font-size:30px">Apply for a Lucca trade/wholesale account and receive:</p>
                     <ul>
                         <li>Access to trade pricing on tear sheets</li>
                         <li>Online access to inventory for immediate in-stock ordering</li>

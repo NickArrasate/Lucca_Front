@@ -640,13 +640,60 @@ caption     { background: #eee; }
     background-color: #790100;
     border-color: #790100;
 }
+.btn-lucca:hover{
+    color: #fff;
+}
 
 .btn-lucca-link{
     color: #790100;
     background-color: transparent;
     border: none;
 }
+.btn-lucca-link:hover {
+    text-decoration: underline;
+}
 
+/* for spiner */
+
+.glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+div#flash_message > h2 > div#flashMessage{
+    text-align: center;
+    background-color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#flashMessage{
+    background:#fff;
+    padding:10px 0px;
+    text-align:center;
+    font-size:24px;
+    color:#790100;
+}
 
 /* @end */
 

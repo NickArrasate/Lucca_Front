@@ -22,6 +22,7 @@
 	<script type="text/javascript" src="/js/jquery.hp-slideshow.js"></script>
 	<script type="text/javascript" src="/js/search.js"></script>
 	<script type="text/javascript" src="/js/menus.js"></script>
+	<script type="text/javascript" src="/js/flash_message.js"></script>
 	<script type="text/javascript" src="/js/cloudzoom/cloudzoom.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
@@ -48,7 +49,16 @@
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
 			<?php } ?> 
 			<dl class="header">
-				<dd style="text-align:center"><a href="/"><img src="/img/logoboxtop.png" style="width:175px" alt="Lucca Antiques" class="active"/></a></dd>
+				<dd style="text-align:center">
+                    <a href="/"><img src="/img/logoboxtop.png" style="width:175px" alt="Lucca Antiques" class="active"/></a>
+                </dd>
+                <dd>
+                    <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+                        <a href="/trade/login" class="pull-right" style="color: #9A9B9C;">Trade Sign In</a>
+                    <?php } elseif($session->check('Trade')) { ?>
+                        <a href="/trade/logout" class="pull-right" style="color: #9A9B9C;">Logout</a>
+                    <?php } ?>
+                </dd>
 				<dd>
 					<!--
 					<dl class="nav<?php if(isset($current_item_type_id)) { echo '-'. $current_item_type_id;} if(isset($item_type_id)) { echo '-'. ($item_type_id);} ?>">

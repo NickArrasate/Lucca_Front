@@ -200,15 +200,6 @@ class TradeController extends AppController {
 	}
 
 	private function password_reset_email_send($trader, $reset_link) {
-
-		$this->Email->smtpOptions = array(
-			'port' => '25',
-			'timeout' => '30',
-			'host' => 'mail.office.e2e4gu.ru',
-			'username' => 'postman',
-			'password' => 'GhzFk8iSMhsP'
-		);
-		$this->Email->delivery = 'smtp';
 		$this->Email->sendAs= 'html';
 		$this->Email->template = 'password_reset_email';
 		$this->Email->to = $trader['Trade']['email'];

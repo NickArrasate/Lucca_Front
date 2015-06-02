@@ -434,7 +434,9 @@ $(document).ready(function() {
 
 			<dl>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
-                    <dd class="item-price hidden">Price: <?php echo $price ?></dd>
+					<?php if($session->check('Trade')) { ?>
+						<dd class="item-price">Price: <?php echo $price ?></dd>
+					<?php } ?>
 					<?php echo $variation ?>
 				<?php } // end if its not sold ?>
 				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
