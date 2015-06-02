@@ -8,7 +8,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
             <div class="row" id="trade">
                 <div class="col-sm-6">
                     <h2>LUCCA TRADE ACCOUNT</h2>
-                    <p>Lucca trade/wholesale account gives access to:</p>
+                    <p style="font-family: vinchandregular; font-size:30px">Lucca trade/wholesale account gives access to:</p>
                     <ul>
                         <li>Trade pricing on tear sheets</li>
                         <li>Online access to inventory for immediate in-stock ordering</li>

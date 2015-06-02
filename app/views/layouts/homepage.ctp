@@ -53,7 +53,7 @@
 				</dd>
 			</dl>
 
-			<div id="flash_message" style="text-align: center">
+			<div id="flash_message">
 				<h2>
 					<?php 
 						if($session->check('Message.flash')): 

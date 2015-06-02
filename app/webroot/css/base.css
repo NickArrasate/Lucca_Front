@@ -674,5 +674,12 @@ caption     { background: #eee; }
     }
 }
 
+div#flash_message > h2 > div#flashMessage{
+    text-align: center;
+    background-color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
 /* @end */
 
