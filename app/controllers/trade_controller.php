@@ -65,7 +65,7 @@ class TradeController extends AppController {
 				}
 
 				if($this->Trade->save($this->data)) {
-					$this->Session->setFlash("Successfully logged in");
+					$this->Session->setFlash("Welcome to Lucca Antiques");
 					$this->Session->write('Trade', $this->data);
 					$this->redirect(array('controller'=>'trade', 'action'=>'login'));
 				} else {
