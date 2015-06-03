@@ -79,8 +79,9 @@ ul.submenus { margin: 0px; padding: 0px; list-style: none; }
 					margin: 0px;
 					padding: 0px;
 					display: inline;
+					border-top: 1px solid #e9e7e7;
 				}
-				.menus .submenus li a { height: 41px; text-indent: 10px;max-width: 180px;border-top:1px solid  #e9e7e7; margin: 0;}
+				.menus .submenus li a { height: 41px; text-indent: 10px;max-width: 180px; margin: 0;}
 				.submenu a {
 					width: 180px;
 					margin-right: 10px;
