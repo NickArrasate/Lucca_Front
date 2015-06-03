@@ -686,7 +686,10 @@ div#flash_message > h2 > div#flashMessage{
     padding-bottom: 10px;
     padding-top: 10px;
 }
-
+#homepage #flashMessage{
+    font-family:vinchandregular;
+    font-size:30px
+}
 #flashMessage{
     background:#fff;
     padding:10px 0px;

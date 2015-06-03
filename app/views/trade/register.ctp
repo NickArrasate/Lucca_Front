@@ -14,7 +14,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                         <li>New product updates</li>
                         <li>New store openings and events</li>
                         <li>Career opportunities</li>
-                        <li><a href="/trade/custom">Custom request form for Lucca Studio products</a></li>
+                        <li><a style="color:#790100" href="/trade/custom">Custom request form for Lucca Studio products</a></li>
                     </ul>
 
                 </div>
@@ -26,7 +26,9 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 							'style' => "border-left:1px solid #ccc;padding:0px 50px;margin-top:60px"
 						));
 						?>
-                        <h4>Please fill out the form below to join the Lucca Trade program</h4>
+                        <p style="font-family: vinchandregular; font-size:30px;padding-top:10px">
+                            Fill out the form below to join Lucca Trade
+                        </p>
 						<?php 
 							if($session->check('Message.flash')) {
 								echo "<p>";
