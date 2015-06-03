@@ -116,8 +116,9 @@
 									<div class="locations">
 										<a href="/item/grid/all/all/all" class="dropdown-toggle <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'selected'; ?>" data-toggle="dropdown" title="All Inventory">All Inventory <span class="caret"></span></a>
 										<ul class="submenus dropdown-menu" role="menu">
-											<li class="submenu1"><a href="/item/grid/all/all/1" title="">Los Angeles</a></li>
-											<li class="submenu2"><a href="/item/grid/all/all/2" title="">New York</a></li>
+											<?php foreach($list_location_menu as $location_id => $display_name) { 
+													echo $html->tag('li', $html->link($display_name, "/item/grid/all/all/" . $location_id, array('title' => "")), array('class' => "submenu" . $location_id));
+											} ?>
 										</ul>
 									</div>
 								</li>

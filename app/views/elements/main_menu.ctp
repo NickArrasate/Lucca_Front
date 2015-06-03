@@ -35,19 +35,8 @@
 				<a href="/item/grid/all/all/all" class="dropdown-toggle <?php if (isset($current_item_type_id) && $current_item_type_id == 0) echo 'selected'; ?>" data-toggle="dropdown" title="All Inventory">All Inventory <span class="caret"></span></a>
 				<ul class="submenus dropdown-menu" role="menu">
 					<?php foreach($list_location_menu as $location_id => $display_name) { 
-							echo $html->tag(
-								'li', 
-								$html->link(
-										$display_name, 
-										"/item/grid/all/all/" . $location_id,
-										array('title' => "")
-									), 
-								array(
-									'class' => "submenu" . $location_id
-								)
-							);
-						}
-					?>
+						echo $html->tag('li', $html->link($display_name, "/item/grid/all/all/" . $location_id, array('title' => "")), array('class' => "submenu" . $location_id));
+					} ?>
 				</ul>
 			</div>
 		</li>

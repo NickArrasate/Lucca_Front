@@ -34,17 +34,11 @@
 			<dd <?php if ($inventory_location == 'all') { echo 'class="active"'; } ?>>
 				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
 			</dd>
-			<dd <?php if ($inventory_location == '1') { echo 'class="active"'; } ?>>
-				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/1/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Los Angeles</a>
-			</dd>
-			<dd <?php if ($inventory_location == '2') { echo 'class="active"'; } ?>>
-				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/2/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">New York</a>
-			</dd>
-			<dd style="display:none" <?php if ($inventory_location == '3') { echo 'class="active"'; } ?>>
-				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/3/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">Warehouse</a>
-			</dd>
-		</div>
-
+			<?php foreach($list_location_menu as $location_id => $display_name) { ?>
+				<dd <?php if ($inventory_location == $location_id) { echo 'class="active"'; } ?>>
+					<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $location_id; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>"><?php echo $display_name; ?></a>
+				</dd>
+			<?php } ?>
 	</dl>
 
 
