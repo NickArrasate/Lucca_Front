@@ -32,4 +32,13 @@ class InventoryLocation extends AppModel {
 		return $list_tags;
 	}
 
+	function get_location_menu() {
+		return $this->find('list', array(
+			'fields' => array(
+				'id',
+				'display_name'
+			)
+		));
+	}
+
 }

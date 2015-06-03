@@ -110,21 +110,11 @@ $this->pageTitle = "Lucca Antiques";
                             <span class="button gray-background red-text-border">SOLD</span>
                         <?php } ?>
                 </h3>
-                <?php if ($item_details[0]['InventoryQuantity'][0]['location'] == 1){ 
-                        $item_detail['InventoryLocation']['address'] = "744 North La Cienega Blvd. Los Angeles, CA 90069";
-                        $item_detail['InventoryLocation']['phone'] = "310-657-7800";
-                        $item_detail['InventoryLocation']['email'] = LA_EMAIL;
-                        $email = "phaedra@luccaantiques.com";
-                    }elseif($item_details[0]['InventoryQuantity'][0]['location'] == 2){
-                        $item_detail['InventoryLocation']['address'] = "306 East 61st Street 4th Floor New York, NY 10065";
-                        $item_detail['InventoryLocation']['phone'] = "212-343-9005";
-                        $item_detail['InventoryLocation']['email'] = NY_EMAIL;
-                    }else{
-                        $item_detail['InventoryLocation']['address'] = "This item is located in our LA Warehouse.  Please contact 
-                        ".LA_NAME." for viewing information.";
-                        $item_detail['InventoryLocation']['phone'] = "310-657-7800";
-                        $item_detail['InventoryLocation']['email'] = LA_EMAIL;
-                    }?>
+				<?php 
+					$item_detail['InventoryLocation']['address'] = $item_details[0]['ItemLocation']['address'];
+					$item_detail['InventoryLocation']['phone'] = $item_details[0]['ItemLocation']['phone'];
+					$item_detail['InventoryLocation']['email'] = $item_details[0]['ItemLocation']['email'];
+				?>
                     <?php if(!empty($item_detail['Item']['fid'])){ ?>
                 <h2 class="ProductTitle">Item ID:</h2>
                 <h3 class="details"><?php echo $item_detail['Item']['fid'] ?></h3>

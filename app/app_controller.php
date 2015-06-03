@@ -109,6 +109,11 @@ class AppController extends Controller {
 		}
 
 		$this->set('searchString', $searchString);
+
+		$this->loadModel('InventoryLocation');
+		$list_location_menu = $this->InventoryLocation->get_location_menu();
+		$this->set('list_location_menu', $list_location_menu);
+
 	}
 	
 	function beforeRender() {
