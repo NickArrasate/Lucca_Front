@@ -27,7 +27,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 							'style' => "border-left:1px solid #ccc;padding:0px 50px;margin-top:60px"
 						));
 						?>
-                        <h4>Login to Trade Account</h4>
+                        <p style="font-family: vinchandregular; font-size:30px;padding-top:10px">Login to Trade Account</p>
 						<?php 
 							if($session->check('Message.flash')) {
 								echo "<p>";
@@ -69,7 +69,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel">Forgot your password?</h4>
+					<span style="font-family: vinchandregular; font-size:30px;padding-top:10px">Forgot password?</span>
 				</div>
 
 				<div class="modal-body">
