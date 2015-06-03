@@ -4,7 +4,7 @@ class Trade extends AppModel {
 	var $name = 'Trade';
 	var $validate = array(
 		'name'=>array(
-			'rule' => 'alphaNumeric',
+			'rule' => 'notEmpty',
 			'required'=>true,
 			'allowEmpty'=>false,
 			'message'=>'Please enter your name'
