@@ -31,21 +31,19 @@
 	?>
 	</head>
 	<body id="homepage">
-		<?php if(!$session->check('Trade') && !$session->check('User')) {?>
-			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
-				<a href="/trade/login" class="pull-right" style="color: #e9e7e7;">Trade Sign In</a>
-			</div>
-		<?php } elseif($session->check('Trade')) { ?>
-			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
-				<a href="/trade/logout" class="pull-right" style="color: #e9e7e7;">Logout</a>
-			</div>
-		<?php } ?>
 		<div class="container" style="background:#666">
 		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
-			<?php } ?> 
+			<?php } ?>
 			<dl class="header">
-				<dd><a href="/"><img src="/img/logoboxtop.jpg" style="width:100px;display:none" alt="Lucca Antiques" class="active"/></a></dd>
+				<dd>
+                    <a href="/"><img src="/img/logoboxtop.jpg" style="width:100px;display:none" alt="Lucca Antiques" class="active"/></a>
+                    <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+                        <a href="/trade/login" class="pull-right" style="color: #e9e7e7; margin-top:-20px">Trade Sign In</a>
+                    <?php } elseif($session->check('Trade')) { ?>
+                        <a href="/trade/logout" class="pull-right" style="color: #e9e7e7;margin-top:-20px">Logout</a>
+                    <?php } ?>
+                </dd>
 				<dd>
 					<!--
 					<dl class="nav<?php if(isset($current_item_type_id)) { echo '-'. $current_item_type_id;} if(isset($item_type_id)) { echo '-'. ($item_type_id);} ?>">
@@ -62,15 +60,10 @@
 				</dd>
 			</dl>
 
-			<div id="flash_message">
-				<h2>
-					<?php 
-						if($session->check('Message.flash')): 
-							$session->flash();
-						endif;  
-					?>
-				</h2>
-			</div>
+            <?php
+            if($session->check('Message.flash')): ?>
+                <?php $session->flash(); ?>
+            <?php endif; ?>
 
 			<?php echo $content_for_layout ?>
 
