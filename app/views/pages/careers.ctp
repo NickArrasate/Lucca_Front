@@ -10,9 +10,13 @@
 			<dl class="row">
 				<dd class="col-md-12 col-xs-12" style="font-family:vinchandregular;font-size:30px">
                     <p>Interested in a career with Lucca Antiques?</p>
-                    <p>Send your resume to <a style="font-family:vinchandregular;font-size:30px" href="jobs@luccaantiques.com">jobs@luccaantiques.com</a> and we'll keep it on file for any openings.</p>
+                    <p>We are always seeking smart and creative people to join our growing company </p>
 				</dd>
 			</dl>
+            <p style="display:none">Send your resume to
+                <a href="andrea_trent@hrbizpartner.net ">andrea_trent@hrbizpartner.net</a>
+                and we'll keep it on file for any openings.</p>
+
             <h4>Showroom/Store Manager San Francisco and Santa Barbara</h4>
 
             <p>Lucca Antiques is a well-established and successful antiques and design business with expansive locations in Los Angeles and New York City, now opening in San Francisco and Santa Barbara.</p>
