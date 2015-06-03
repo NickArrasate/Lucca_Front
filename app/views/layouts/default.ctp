@@ -44,21 +44,21 @@
 	</head>
 
 	<body>
-		<?php if(!$session->check('Trade') && !$session->check('User')) {?>
-			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
-				<a href="/trade/login" class="pull-right" style="color: #e9e7e7;">Trade Sign In</a>
-			</div>
-		<?php } elseif($session->check('Trade')) { ?>
-			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
-				<a href="/trade/logout" class="pull-right" style="color: #e9e7e7;">Logout</a>
-			</div>
-		<?php } ?>
 		<div class="container">
 		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
 			<!-- <dl><dd class="cart"><a href="/orders/view/">View Cart (<?php if(isset($cart_count)) { echo $cart_count; } else { echo '0';} ?>)</a></dd></dl> -->
 			<?php } ?> 
 			<dl class="header">
-				<dd style="text-align:center"><a href="/"><img src="/img/logoboxtop.png" style="width:175px" alt="Lucca Antiques" class="active"/></a></dd>
+				<dd style="text-align:center">
+                    <a href="/"><img src="/img/logoboxtop.png" style="width:175px" alt="Lucca Antiques" class="active"/></a>
+                </dd>
+                <dd>
+                    <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+                        <a href="/trade/login" class="pull-right" style="color: #9A9B9C;">Trade Sign In</a>
+                    <?php } elseif($session->check('Trade')) { ?>
+                        <a href="/trade/logout" class="pull-right" style="color: #9A9B9C;">Logout</a>
+                    <?php } ?>
+                </dd>
 				<dd>
 					<!--
 					<dl class="nav<?php if(isset($current_item_type_id)) { echo '-'. $current_item_type_id;} if(isset($item_type_id)) { echo '-'. ($item_type_id);} ?>">
