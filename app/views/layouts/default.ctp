@@ -48,6 +48,10 @@
 			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
 				<a href="/trade/login" class="pull-right" style="color: #e9e7e7;">Trade Sign In</a>
 			</div>
+		<?php } elseif($session->check('Trade')) { ?>
+			<div class="container" style="background: #352f2f; margin-top: 0px; margin-bottom: -70px; padding-top: 5px">
+				<a href="/trade/logout" class="pull-right" style="color: #e9e7e7;">Logout</a>
+			</div>
 		<?php } ?>
 		<div class="container">
 		    <?php if($title_for_layout !== "Lucca Antiques"){ ?>
