@@ -16,7 +16,6 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
                         <li>Career opportunities</li>
                         <li><a style="color:#790100" href="/trade/custom">Custom request form for Lucca Studio products</a></li>
                     </ul>
-
                 </div>
                 <div class="col-sm-6">
 						<?php echo $form->create('Trade', array(

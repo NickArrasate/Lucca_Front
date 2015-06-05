@@ -39,7 +39,7 @@ class TradeController extends AppController {
 					$this->Trade->saveField('last_login', date("Y-m-d H:i:s"));
 					// save to session
 					$this->Session->write('Trade', $result);
-					$this->Session->setFlash('Successfully logged in');
+					$this->Session->setFlash('Welcome to Lucca Antiques');
 					$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 				} else {
 					$this->Session->setFlash('Either your Email or Password is incorrect');

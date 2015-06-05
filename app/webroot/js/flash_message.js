@@ -1,5 +1,5 @@
 $(document).ready(function() {
     
-	$('#flashMessage').delay(5000).fadeOut(800);
+	$('#flashMessage').delay(5000).slideUp(800);
     
 });
