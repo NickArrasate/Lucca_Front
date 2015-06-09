@@ -35,6 +35,7 @@
 				<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/all/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>">All Locations</a>
 			</dd>
 			<?php foreach($list_location_menu as $location_id => $display_name) { ?>
+                <?php if($location_id == "3"){ continue; } ?>
 				<dd <?php if ($inventory_location == $location_id) { echo 'class="active"'; } ?>>
 					<span><a href="<?php echo Router::url('/', true); ?>item/<?php echo $currentAction?>/<?php echo $this->params['pass'][0] ?>/<?php echo $this->params['pass'][1] ?>/<?php echo $location_id; ?>/<?php echo (empty($searchString)) ? "" : "search:" . $searchString . '/' ;?>"><?php echo $display_name; ?></a>
 				</dd>

@@ -50,12 +50,15 @@
             <div class="contactLeft">
                 <img src="/img/img_sanfran-opt.jpg" height="200" />
                 <dl>
-                    <dt>San Francisco Store: - OPENING SOON!</dt>
+                    <dt>San Francisco Store:</dt>
                     <dd>Lucca Antiques</dd>
                     <dd>Showplace East<dd>
                     <dd>111 Rhode Island Street, Suite F</dd>
                     <dd>San Francisco, CA 94103</dd>
                     <dd><a target="_blank" href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=111 Rhode Island Street, San Francisco, CA">Click for Map</a></dd>
+                    <dd>Phone: 415-872-9858</dd>
+                    <dd>Fax: 415-872-9859</dd>
+                    <dd>Email: <a href="mailto:<?php echo SF_EMAIL?>"><?php echo SF_EMAIL?></a></dd>
                 </dl>
                 <dl>
                     <dt>San Francisco Store Hours:</dt>
