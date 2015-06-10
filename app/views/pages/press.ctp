@@ -31,6 +31,17 @@
                 </a>
                 <a class="hidden lightbox" href="/press/images/va_jun15/table.jpg" title="Table"></a>
 
+                <a class="hidden lightbox" href="/press/images/va_jun15/cover-big.jpg" title="Veranda June 2015"></a>
+                <a href="/press/images/va_jun15/chandelier-table-lamps.jpg" class="lightbox" title="Chandelier + Table Lamps">
+                    <div id="CoverObject">
+                        <div id="CoverObjectImgWrap">
+                            <img src="/press/images/va_jun15/cover.jpg" alt=""></img>
+                        </div>
+                        <h5 class="MagTitle">Veranda<br />June 2015</h5>
+                    </div>
+                </a>
+                <a class="hidden lightbox" href="/press/images/va_jun15/table.jpg" title="Table"></a>
+
                 <a class="hidden lightbox" href="/press/images/ed_may15/cover-big.jpg" title="Elle Decor May 2015"></a>
                 <a href="/press/images/ed_may15/inside.jpg" class="lightbox" title="Lamp">
                     <div id="CoverObject">
