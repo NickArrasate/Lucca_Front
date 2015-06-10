@@ -20,7 +20,11 @@ $(document).ready(function() {
 				$('#spiner').toggleClass('hidden');
 			},
 			success: function(result) {
-				$('#forgot_form_message').text(result.message);
+				if (result.status == 'success') {
+					$('#forgot_form_message').html("<span style='color: #790100'>" + result.message + "</span>");
+				} else {
+					$('#forgot_form_message').text(result.message);
+				}
 				$('#spiner').toggleClass('hidden');
 			},
 			error: function(event) {
