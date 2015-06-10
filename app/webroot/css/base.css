@@ -698,5 +698,24 @@ div#flash_message > h2 > div#flashMessage{
     color:#790100;
 }
 
+.home-img {
+	position: relative;
+	width: 100%;
+	padding-bottom: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.row1 {
+	height: 460px;
+}
+
+.row2 {
+	height: 320px;
+}
+
 /* @end */
 
