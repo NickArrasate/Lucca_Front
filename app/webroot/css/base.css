@@ -698,5 +698,44 @@ div#flash_message > h2 > div#flashMessage{
     color:#790100;
 }
 
+.home-img {
+	position: relative;
+	width: 100%;
+	padding-bottom: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* lg */
+@media (min-width: 1170px) {
+	.row1 { height: 430px; }
+	.row2 { height: 320px; }
+	.bottom-logo-img { display: none; }
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1169px) {
+	.row1 { height: 370px; }
+	.row2 { height: 270px; }
+	.bottom-logo-img { display: none; }
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+	.row1 { height: 300px; }
+	.row2 { height: 200px; }
+	.bottom-logo-img { display:none; }
+}
+
+/* xs */
+@media (max-width: 767px) {
+	.row1 { height: 300px; }
+	.row2 { height: 300px; }
+	.bottom-logo-img { display: none; }
+}
+
 /* @end */
 
