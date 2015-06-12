@@ -711,22 +711,22 @@ div#flash_message > h2 > div#flashMessage{
 
 /* lg */
 @media (min-width: 1170px) {
-	.row1 { height: 430px; }
-	.row2 { height: 320px; }
+	.row1 { height: 500px; }
+	.row2 { height: 500px; }
 	.bottom-logo-img { display: none; }
 }
 
 /* md */
 @media (min-width: 992px) and (max-width: 1169px) {
-	.row1 { height: 370px; }
-	.row2 { height: 270px; }
+	.row1 { height: 500px; }
+	.row2 { height: 500px; }
 	.bottom-logo-img { display: none; }
 }
 
 /* sm */
 @media (min-width: 768px) and (max-width: 991px) {
-	.row1 { height: 300px; }
-	.row2 { height: 200px; }
+	.row1 { height: 500px; }
+	.row2 { height: 500px; }
 	.bottom-logo-img { display:none; }
 }
 

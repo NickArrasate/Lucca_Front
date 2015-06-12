@@ -53,14 +53,14 @@ class Trade extends AppModel {
 			'rule' => 'notEmpty',
 			'message' => 'Please enter company name'
 		),
-		'address' => array(
-			'rule' => 'notEmpty',
-			'message' => 'Please enter address'
-		),
-//		'resale' => array(
+//		'address' => array(
 //			'rule' => 'notEmpty',
-//			'message' => 'Please enter resale #'
-//		)
+//			'message' => 'Please enter address'
+//		),
+		'resale' => array(
+			'rule' => 'notEmpty',
+			'message' => 'Please enter resale #'
+		)
 	);
 
 	public function isConfirmed($check) {

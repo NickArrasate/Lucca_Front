@@ -69,7 +69,7 @@ class TradeController extends AppController {
 					$this->Session->write('Trade', $this->data);
 					$this->redirect(array('controller'=>'trade', 'action'=>'login'));
 				} else {
-					$this->Session->setFlash("Error while registration");
+					$this->Session->setFlash("Error, please check below");
 				}
 			}
 		}
@@ -151,7 +151,7 @@ class TradeController extends AppController {
 				}
 			} else {
 				$this->set('status', 'error');
-				$this->set('message', 'Trader with the email does not exist');
+				$this->set('message', 'Email does not exist');
 			}
 		} else {
 			$this->set('status', 'error');

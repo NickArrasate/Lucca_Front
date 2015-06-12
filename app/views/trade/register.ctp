@@ -54,7 +54,7 @@ echo $this->element('versioned_css', array('files' => array('trade','footer-page
 						<?php echo $form->input('address', array(
 								'type' => 'text',
 								'class' => 'form-control',
-								'placeholder' => "Address",
+								'placeholder' => "Resale #",
 								'div' => 'form-group',
 								'label' => false
 							));
