@@ -1,33 +1,18 @@
 <?php
-	$this->pageTitle = 'Lucca Antiques';
-	$this->homepage = "yes";
+$this->pageTitle = 'Lucca Antiques';
+$this->homepage = "yes";
 ?>
-
-<div class="row" style="margin-top:15px">
-
-	<div class="col-sm-4 col-md-4 col-xs-12">
-		<div class="home-img row1" style="background-image:url('/img/01-home.jpg');background-size: cover;text-align:center">
-            <img src="/img/logoboxtop-transparent.png" alt="Lucca Antiques"
-                 class="active homepage-banner visible-xs"
-                 style="margin:20px auto;width:200px"/>
-        </div>
-	</div>
-	<div class="col-sm-4 col-md-4 col-xs-12">
-		<div class="home-img row1" style="background-image:url('/img/home2-opt-slim.jpg');background-size: cover;text-align:center">
-            <img src="/img/logoboxtop-transparent.png" alt="Lucca Antiques"
-                 class="active homepage-banner hidden-xs"
-                 style="margin:20px auto;width:240px"/>
-        </div>
-    </div>
-	<div class="col-sm-4 col-md-4 col-xs-12">
-		<div class="home-img row1" style="background-image:url('/img/02-home.jpg');background-size:cover"></div>
-	</div>
-</div>
-<div class="row" style="margin-top:10px;margin-bottom:15px">
-	<div class="col-sm-6 col-md-6 col-xs-12">
-		<div class="home-img row2" style="background-image:url('/img/03-home.jpg')"></div>
-	</div>
-	<div class="col-sm-6 col-md-6 col-xs-12">
-		<div class="home-img row2" style="background-image:url('/img/04-home.jpg')"></div>
-	</div>
+<div class="homepage" style="text-align:center;position:relative">
+    <dl class="overlay">
+        <dd id="slideshow">
+            <img src="/img/home6.jpg" class="active" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home7.jpg" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home6-opt.jpg" class="hidden" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home1-opt.jpg" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home2-opt.jpg" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home3-opt.jpg" height="420" alt="Lucca Antiques"/>
+            <img src="/img/home4-opt.jpg" height="420" alt="Lucca Antiques"/>
+        </dd>
+    </dl>
+    <img src="/img/logoboxtop-transparent.png" alt="Lucca Antiques" class="active homepage-banner"/>
 </div>

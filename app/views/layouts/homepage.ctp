@@ -154,11 +154,9 @@
         <?php if(!$session->check('Trade') && !$session->check('User')) {?>
         <script type="text/javascript">
             $(document).ready(function(){
-//                var cook = $.cookie('splash');
-//                if(_.isEmpty(cook)) {
-//                    $.cookie('splash','shown',{ expires: 365, path: '/' });
+                  setTimeout(function(){
                     $('#login-modal').modal('show');
-//                }
+                  },4000)
             });
         </script>
         <?php } ?>

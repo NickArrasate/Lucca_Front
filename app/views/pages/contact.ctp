@@ -62,7 +62,7 @@
                 </dl>
                 <dl>
                     <dt>San Francisco Store Hours:</dt>
-                    <dd>Monday - Friday: 10:00am - 6:00pm</dd>
+                    <dd>Monday - Friday: 9:00am - 5:00pm</dd>
                 </dl>
             </div>
             
