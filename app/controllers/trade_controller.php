@@ -65,11 +65,12 @@ class TradeController extends AppController {
 				}
 
 				if($this->Trade->save($this->data)) {
+					$this->message_for_inform_registration($this->data['Trade']);
 					$this->Session->setFlash("Welcome to Lucca Antiques");
 					$this->Session->write('Trade', $this->data);
 					$this->redirect(array('controller'=>'trade', 'action'=>'login'));
 				} else {
-					$this->Session->setFlash("Error while registration");
+					$this->Session->setFlash("Error, please check below");
 				}
 			}
 		}
@@ -151,7 +152,7 @@ class TradeController extends AppController {
 				}
 			} else {
 				$this->set('status', 'error');
-				$this->set('message', 'Trader with the email does not exist');
+				$this->set('message', 'Email does not exist');
 			}
 		} else {
 			$this->set('status', 'error');
@@ -207,6 +208,16 @@ class TradeController extends AppController {
 		$this->Email->subject = 'Lucca Trade Password Reset';
 		$this->set('email', $trader['Trade']['email']);
 		$this->set('reset_link', $reset_link);
+		return $this->Email->send();
+	}
+
+	private function message_for_inform_registration($trader) {
+		$this->Email->sendAs= 'html';
+		$this->Email->template = 'message_for_inform_registration';
+		$this->Email->to = EMAIL_FOR_INFORM_REGISTRATION;
+		$this->Email->from = NOREPLY_EMAIL;
+		$this->Email->subject = 'Information about the new registration trader on Lucca';
+		$this->set('trader', $trader);
 		return $this->Email->send();
 	}
 
