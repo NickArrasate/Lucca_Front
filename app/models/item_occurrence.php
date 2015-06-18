@@ -101,14 +101,27 @@ class ItemOccurrence extends AppModel {
 
 		foreach ($locationId as $location) {
 			array_push($occurrencesList, array('category' => 0, 'subcategory' => 0, 'location' => $location));
-			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => 0, 'location' => $locationId));
-			array_push($occurrencesList, array('category' => 0, 'subcategory' => $subcategoryId, 'location' => $locationId));
-			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => $subcategoryId, 'location' => $locationId));
+			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => 0, 'location' => $location));
+			array_push($occurrencesList, array('category' => 0, 'subcategory' => $subcategoryId, 'location' => $location));
+			array_push($occurrencesList, array('category' => $categoryId, 'subcategory' => $subcategoryId, 'location' => $location));
 		}
 
 		$occurrencesIdList = array();
 		foreach ($occurrencesList as $occurrenceCondition) {
 			$occurrence = $this->Occurrence->find('first', array('conditions' => $occurrenceCondition));
+			if (!$occurrence) {
+				$this->Occurrence->create();
+				$this->Occurrence->set(array(
+					'Occurrence' => array(
+							'category' => $occurrenceCondition['category'],
+							'subcategory' => $occurrenceCondition['subcategory'],
+							'location' => $occurrenceCondition['location']
+						)
+					)
+				);
+				$this->Occurrence->save();
+				$occurrence['Occurrence']['id'] = $this->Occurrence->getInsertID();
+			}
 			array_push($occurrencesIdList, $occurrence['Occurrence']['id']);
 		}
 
