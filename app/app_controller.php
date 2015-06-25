@@ -41,6 +41,10 @@ class AppController extends Controller {
 	var $helpers = array('Javascript', 'Html'); 
 	var $_User = array();
 	var $persistModel = true;
+	var $components = array('Cookie' => array(
+		'key' => SECURITY_COOKIES_KEY,
+		'time' => LIFETIME_AUTHORIZATION_COOKIES
+	));
 	
 	# goes with line 67 and 68
 	function forceSSL() {
@@ -84,17 +88,18 @@ class AppController extends Controller {
 		
 
 		// if admin url requested
-		
+
 		if(isset($this->params['admin']) && $this->params['admin']) {
 			// check user is logged in
-			if( !$this->Session->check('User') ) {
+			if( !$this->Cookie->read('User') ) {
 				$this->Session->setFlash('You must be logged in for that action.','flash_bad');
 				$this->redirect('/login');
 			}
 
 			// save user data
-			$this->_User = $this->Session->read('User');
-			$this->set('user',$this->_User);
+			$user = array('User' => $this->Cookie->read('User'));
+			$this->_User = $user;
+			$this->set('user', $this->_User);
 
 			// change layout
 			$this->layout = 'admin';
@@ -113,6 +118,18 @@ class AppController extends Controller {
 		$this->loadModel('InventoryLocation');
 		$list_location_menu = $this->InventoryLocation->get_location_menu();
 		$this->set('list_location_menu', $list_location_menu);
+
+		$isTrader = false;
+		if ($this->Cookie->read('Trade')) {
+			$isTrader = true;
+		}
+		$this->set('isTrader', $isTrader);
+
+		$isUser = false;
+		if ($this->Cookie->read('User')) {
+			$isUser = true;
+		}
+		$this->set('isUser', $isUser);
 
 	}
 	

@@ -21,7 +21,7 @@ class UsersController extends AppController {
 		//echo md5('password'.$salt);
 
 		// redirect user if already logged in
-		if( $this->Session->check('User') ) {
+		if( $this->Cookie->read('User') ) {
 			$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
 		}
 
@@ -37,8 +37,7 @@ class UsersController extends AppController {
 					// update login time
 					$this->User->id = $result['User']['id'];
 					$this->User->saveField('last_login',date("Y-m-d H:i:s"));
-					// save to session
-					$this->Session->write('User',$result);
+					$this->Cookie->write(array('User' => $result['User']));
 					$this->Session->setFlash('You have successfully logged in');
 					$this->redirect(array('controller'=>'item','action'=>'index','admin'=>true));
 				} else {
@@ -82,8 +81,8 @@ class UsersController extends AppController {
 	 * Logs out a User
 	 */
 	function logout() {
-		if($this->Session->check('User')) {
-			$this->Session->delete('User');
+		if($this->Cookie->read('User')) {
+			$this->Cookie->del('User');
 			$this->Session->setFlash('You have successfully logged out','flash_good');
 		}
 		$this->redirect(array('action'=>'login'));

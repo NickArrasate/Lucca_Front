@@ -40,9 +40,9 @@
 			<dl class="header">
 				<dd>
                     <a href="/"><img src="/img/logoboxtop.jpg" style="width:100px;display:none" alt="Lucca Antiques" class="active"/></a>
-                    <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+                    <?php if(!$isTrader && !$isUser) {?>
                         <a href="/trade/login" class="pull-right" style="color: #e9e7e7; margin-top:-20px">Trade Sign In</a>
-                    <?php } elseif($session->check('Trade')) { ?>
+                    <?php } elseif($isTrader) { ?>
                         <a href="/trade/logout" class="pull-right" style="color: #e9e7e7;margin-top:-20px">Logout</a>
                     <?php } ?>
                 </dd>
@@ -151,7 +151,7 @@
             </div>
         </div>
 
-        <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+        <?php if(!$isTrader && !$isUser) {?>
         <script type="text/javascript">
             $(document).ready(function(){
                   setTimeout(function(){

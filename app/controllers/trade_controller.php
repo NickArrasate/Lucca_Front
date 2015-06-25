@@ -25,7 +25,7 @@ class TradeController extends AppController {
 	 */
 	function login() {
 		// redirect user if already logged in
-		if( $this->Session->check('Trade') ) {
+		if( $this->Cookie->read('Trade') ) {
 			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 		}
 
@@ -38,7 +38,7 @@ class TradeController extends AppController {
 					$this->Trade->id = $result['Trade']['id'];
 					$this->Trade->saveField('last_login', date("Y-m-d H:i:s"));
 					// save to session
-					$this->Session->write('Trade', $result);
+					$this->Cookie->write(array('Trade' => $result['Trade']));
 					$this->Session->setFlash('Welcome to Lucca Antiques');
 					$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 				} else {
@@ -50,7 +50,7 @@ class TradeController extends AppController {
 
     function register() {
 		// redirect user if already logged in
-		if( $this->Session->check('Trade') ) {
+		if( $this->Cookie->read('Trade') ) {
 			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 		}
 
@@ -67,7 +67,7 @@ class TradeController extends AppController {
 				if($this->Trade->save($this->data)) {
 					$this->message_for_inform_registration($this->data['Trade']);
 					$this->Session->setFlash("Welcome to Lucca Antiques");
-					$this->Session->write('Trade', $this->data);
+					$this->Cookie->write(array('Trade' => $this->data['Trade']));
 					$this->redirect(array('controller'=>'trade', 'action'=>'login'));
 				} else {
 					$this->Session->setFlash("Error, please check below");
@@ -113,8 +113,8 @@ class TradeController extends AppController {
 	 * Logs out a User
 	 */
 	function logout() {
-		if($this->Session->check('Trade')) {
-			$this->Session->delete('Trade');
+		if($this->Cookie->read('Trade')) {
+			$this->Cookie->del('Trade');
 			$this->Session->setFlash('You have successfully logged out');
 		}
 		$this->redirect(array('action'=>'login'));
@@ -163,7 +163,7 @@ class TradeController extends AppController {
 
 	public function reset_password() {
 		// redirect user if already logged in
-		if( $this->Session->check('Trade') ) {
+		if( $this->Cookie->read('Trade') ) {
 			$this->redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
 		}
 
@@ -188,7 +188,7 @@ class TradeController extends AppController {
 				if ($this->Trade->validates(array('fieldList' => array('password', 'password_confirm'))) 
 					&& $this->Trade->changePassword($this->data)) {
 					$this->Session->setFlash('Password has been changed');
-					$this->Session->write('Trade', $this->data);
+					$this->Cookie->write(array('Trade' => $this->data['Trade']));
 					$this->redirect(array('controller' => 'trade', 'action' => 'login'));
 				}
 			} else {

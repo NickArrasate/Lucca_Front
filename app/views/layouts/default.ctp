@@ -55,9 +55,9 @@
                     <a href="/"><img src="/img/logoboxtop.png" style="width:175px" alt="Lucca Antiques" class="active"/></a>
                 </dd>
                 <dd>
-                    <?php if(!$session->check('Trade') && !$session->check('User')) {?>
+                    <?php if(!$isTrader && !$isUser) {?>
                         <a href="/trade/login" class="pull-right" style="color: #9A9B9C">Trade Sign In</a>
-                    <?php } elseif($session->check('Trade')) { ?>
+                    <?php } elseif($isTrader) { ?>
                         <a href="/trade/logout" class="pull-right" style="color: #9A9B9C">Logout</a>
                     <?php } ?>
                 </dd>
