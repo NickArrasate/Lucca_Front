@@ -46,33 +46,12 @@
                     <dd>Monday - Friday: 10:00am - 6:00pm</dd>
                 </dl>
 			</div>
-
-            <div class="contactLeft">
-                <img src="/img/img_sanfran-opt.jpg" height="200" />
-                <dl>
-                    <dt>San Francisco Store:</dt>
-                    <dd>Lucca Antiques</dd>
-                    <dd>Showplace East<dd>
-                    <dd>111 Rhode Island Street, Suite F</dd>
-                    <dd>San Francisco, CA 94103</dd>
-                    <dd><a target="_blank" href="http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=111 Rhode Island Street, San Francisco, CA">Click for Map</a></dd>
-                    <dd>Phone: 415-872-9858</dd>
-                    <dd>Fax: 415-872-9859</dd>
-                    <dd>Email: <a href="mailto:<?php echo SF_EMAIL?>"><?php echo SF_EMAIL?></a></dd>
-                </dl>
-                <dl>
-                    <dt>San Francisco Store Hours:</dt>
-                    <dd>Monday - Friday: 9:00am - 5:00pm</dd>
-                    <dd>Saturday by appointment</dd>
-                </dl>
-            </div>
             
-            <div class="contactBottom">
+            <div class="contactBottom" style="display:none">
                 <dl>
-                    <dt>Los Angeles Warehouse: </dt>
-                    <dd>Warehouse hours: Monday - Friday 8:00am - 5:00pm (Closed 1:00pm - 2:00pm)</dd>
-                    <dd>Phone: 310-839-1392</dd>
-                    <dd>Fax: 310-839-3550</dd>
+                    <dt>Santa Barbara Store: </dt>
+                    <dd>By Appointment</dd>
+                    <dd>Phone: <?php echo WH_PHONE?></dd>
                     <dd>Email: <a href="mailto:<?php echo WH_EMAIL?>"><?php echo WH_EMAIL?></a></dd>
                 </dl>
             </div>

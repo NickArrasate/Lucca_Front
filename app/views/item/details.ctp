@@ -577,13 +577,14 @@ $(document).ready(function() {
 				<dd class="width300">
 					<?php
 						if ($item_detail['InventoryQuantity']['location'] == 3){
-							echo "<ul><li>This item is located in our LA Warehouse.
-								<br />Please contact ".LA_NAME." at ". $item_detail['ItemLocation']['phone'] . 
+							echo "<ul><li>This item is located in our Santa Barbara facility.
+								<br />Please contact ".WH_NAME." at ". $item_detail['ItemLocation']['phone'] .
 								" or <a href='mailto:" . $item_detail['ItemLocation']['email'] . "'>" . $item_detail['ItemLocation']['email'] .
 								"</a> for viewing information.</li></ul>";
 						} else {
 							echo "<ul>
-								<li>" . $item_detail['ItemLocation']['address'] . "</li>
+								<li>" . $item_detail['ItemLocation']['address1'] . "</li>
+								<li>" . $item_detail['ItemLocation']['address2'] . "</li>
 								<li>Phone: " . $item_detail['ItemLocation']['phone'] . "</li>
 								<li>Email: <a href='mailto:" . $item_detail['ItemLocation']['email'] . "'>" . $item_detail['ItemLocation']['email'] . "</a></li>
 							</ul>";

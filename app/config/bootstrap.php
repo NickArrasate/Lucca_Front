@@ -42,13 +42,14 @@
  */
 //EOF
 
-define('LA_NAME','Kim');
-define('LA_EMAIL','kim@luccaantiques.com');
-define('NY_NAME','Suzette');
-define('NY_EMAIL','suzette@luccaantiques.com');
-define('SF_NAME','Dana');
-define('SF_EMAIL','dana@luccaantiques.com');
-define('WH_NAME','Anna');
-define('WH_EMAIL','anna@luccaantiques.com');
+define('LA_NAME','Polly');
+define('LA_EMAIL','polly@luccaantiques.com');
+define('NY_NAME','Gundi');
+define('NY_EMAIL','gundi@luccaantiques.com');
+define('SF_NAME','Rush');
+define('SF_EMAIL','rush@luccaantiques.com');
+define('WH_PHONE','805-220-6511');
+define('WH_NAME','Susanne');
+define('WH_EMAIL','luccasb@luccaantiques.com');
 define('SKIP_CATS',json_encode(array('3')));
 

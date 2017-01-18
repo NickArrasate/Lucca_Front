@@ -20,16 +20,29 @@
             <!-- Big Thumb 500 x 650 -->
 			<!-- Regular Max Height 500, Max Width 600-->
 
-                <a class="hidden lightbox" href="/press/images/va_jun15/cover-big.jpg" title="Veranda June 2015"></a>
-                <a href="/press/images/va_jun15/chandelier-table-lamps.jpg" class="lightbox" title="Chandelier + Table Lamps">
+                <a class="hidden lightbox" href="/press/images/th_aug15/cover-big.jpg" title="Traditional Home August 2015"></a>
+                <a href="/press/images/th_aug15/lampandchandelier2.jpg" class="lightbox" title="Chandelier + Lamp">
                     <div id="CoverObject">
                         <div id="CoverObjectImgWrap">
-                            <img src="/press/images/va_jun15/cover.jpg" alt=""></img>
+                            <img src="/press/images/th_aug15/cover.jpg" alt=""/>
                         </div>
-                        <h5 class="MagTitle">Veranda<br />June 2015</h5>
+                        <h5 class="MagTitle">Traditional Home<br />August 2015</h5>
                     </div>
                 </a>
-                <a class="hidden lightbox" href="/press/images/va_jun15/table.jpg" title="Table"></a>
+                <a class="hidden lightbox" href="/press/images/th_aug15/lampandchandelier.jpg" title="Chandelier + Lamp"></a>
+                <a class="hidden lightbox" href="/press/images/th_aug15/chandelier.jpg" title="Chandelier"></a>
+
+
+
+                <a class="hidden lightbox" href="/press/images/ed_aug15/cover-big.jpg" title="Elle Decor August 2015"></a>
+                <a href="/press/images/ed_aug15/inside.jpg" class="lightbox" title="Chandelier + Side Table">
+                    <div id="CoverObject">
+                        <div id="CoverObjectImgWrap">
+                            <img src="/press/images/ed_aug15/cover.jpg" alt=""></img>
+                        </div>
+                        <h5 class="MagTitle">Elle Decor<br />August 2015</h5>
+                    </div>
+                </a>
 
                 <a class="hidden lightbox" href="/press/images/va_jun15/cover-big.jpg" title="Veranda June 2015"></a>
                 <a href="/press/images/va_jun15/chandelier-table-lamps.jpg" class="lightbox" title="Chandelier + Table Lamps">
