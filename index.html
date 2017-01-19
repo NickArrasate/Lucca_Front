@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Lucca Home</title>
+  <meta name="description" content="Lucca Home">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="info-bar">
+    <div class="wrapper">
+      <div class="info-bar-account-link">
+        <span class='glyphicon glyphicon-user' ></span>
+      </div>
+      <div class="info-bar-search-wrapper">
+        <div class="info-bar-search">
+          <form class="search" action="/search" method="get" role="search">
+            <input type="search-bar" id="search-input" name="q" type="search">
+            <button type="submit" id="search-btn" class="glyphicon glyphicon-search"></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-header" role="banner">
+    <img src="./img/logoboxtop-transparent.png" alt="">
+    <ul class="nav nav-pills" id="main-nav">
+      <li role="presentation"><a href="#">HOME</a></li>
+      <li role="presentation"><a href="/prodcuts/all">PRODUCTS</a></li>
+      <li role="presentation"><a href="/pages/about">ABOUT</a></li>
+      <li role="presentation"><a href="/pages/contact">CONTACT</a></li>
+      <li role="presentation"><a href="/pages/locations">LOCATIONS</a></li>
+      <li role="presentation"><a href="/cart">CART</a></li>
+    </ul>
+  </div>
+  <div class="main-content" role='main'>
+    <div class="image-overlay">
+    <div class="homepage-image">
+      <div class="hero-content">
+        <div class="content-text">
+          <h1>WELCOME TO LUCCA ANTIQUES</h1>
+          <p>Discover a curated selection of European antiques, Lucca Studio designs and found objects</p>
+          <a href="collections/all" class="btn btn-large"><span class='cta-span'>VIEW PRODUCTS</span></a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
