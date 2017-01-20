@@ -1,0 +1,46 @@
+.footer{
+  padding-top: 10em;
+//Footer side by side sections
+  .footer-support, .footer-about{
+    text-align: left;
+    width: 48%;
+    display: inline-block;
+  }
+  .footer-support{
+    float: left;
+    margin-right: 2%;
+  }
+  p:first-of-type {
+    padding-bottom: 6px;
+    border-bottom: 1px solid black;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    li{
+      margin-top: 12px;
+      a{
+        @include link(9pt);
+      }
+    }
+  }
+  a{
+    @include link(12pt);
+  }
+  
+//Footer copyright section
+  .copyright{
+    width: 100%;
+    margin-top: 10em;
+    text-align: center;
+    font-size: 9pt;
+  }
+  .insta-icon{
+    height: 35px;
+    width: 35px;
+    margin: 1em auto 6em;
+    background-image: url('../img/IG-icon.png');
+    background-position: center;
+    background-size: cover;
+  }
+}

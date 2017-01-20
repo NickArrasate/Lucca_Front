@@ -1,0 +1,36 @@
+.instagram-slider{
+  width: 100%;
+  .title{
+    margin: 5em 0 2em 0;
+    text-align: center;
+    font-size: 12pt;
+    font-family: $main-font-face;
+    p{
+      color: $light-font-color;
+    }
+  }
+  .deco {
+    content: "";
+    margin: auto;
+    width: 30px;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0.2;
+  }
+  .image-row{
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    .img-wrapper{
+      display: inline-block;
+      width: 16.2%;
+      height: 16vw;
+      overflow: hidden;
+      padding: 1px;
+
+    }
+  }
+}

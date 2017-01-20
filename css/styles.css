@@ -1,19 +1,39 @@
 html, body {
   height: 100%; }
 
-a, span, li, p {
+.wrapper {
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto; }
+
+h1, h2, h3, h4, h5 {
   font-family: "Nunito", sans-serif;
   color: black;
   letter-spacing: 1px; }
 
-.info-bar .wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+a, span, li, p {
+  font-family: "Nunito", sans-serif;
+  color: black;
+  letter-spacing: 1px;
+  background: none; }
+
+.clearfix {
+  display: table;
+  content: '';
+  clear: both; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.info-bar {
   width: 100%;
   height: 30px;
-  background-color: #615455;
-  padding: 0 60px; }
+  background-color: #615455; }
+  .info-bar .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px; }
 
 .info-bar-account-link span {
   color: white;
@@ -34,27 +54,28 @@ a, span, li, p {
   height: 30px;
   width: 30px; }
 
-.site-header {
+.site-header .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 60px; }
-  .site-header img {
+  .site-header .wrapper img {
     height: 230px; }
 
 #main-nav {
   padding: 0 60px; }
-  #main-nav a {
-    color: #1a1a1a;
-    font-family: "Nunito", sans-serif;
-    letter-spacing: 1px;
-    font-size: 12pt;
-    font-weight: 300; }
-  #main-nav a:hover {
-    background: none; }
   #main-nav li {
-    background: none;
     text-align: center; }
+    #main-nav li a {
+      color: #1a1a1a;
+      font-family: "Nunito", sans-serif;
+      letter-spacing: 1px;
+      font-size: 14pt;
+      font-weight: 300;
+      color: #666666; }
+    #main-nav li a:hover {
+      background: none;
+      color: black; }
 
 .main-content {
   background-image: url("../img/05-home.jpg");
@@ -66,43 +87,111 @@ a, span, li, p {
 .image-overlay {
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.4);
-  padding-top: 16vh;
-  display: flex;
-  justify-content: center; }
-  .image-overlay h1 {
-    font-family: "Cinzel", serif;
-    letter-spacing: 3px;
-    margin-bottom: 30px; }
-  .image-overlay p {
-    font-family: "Nunito", sans-serif;
-    font-size: 15pt;
-    margin-bottom: 30px; }
-  .image-overlay a {
-    background-color: white;
-    border-radius: 0;
-    height: 60px;
-    width: 200px;
-    padding: 12px;
-    margin-left: auto;
-    margin-right: auto;
+  background-color: rgba(255, 255, 255, 0.4); }
+  .image-overlay .wrapper {
+    padding-top: 16vh;
     display: flex;
-    justify-content: center;
-    align-items: center; }
-    .image-overlay a span {
-      border: 1px solid black;
-      height: 40px;
-      width: 180px;
-      color: #999999;
+    justify-content: center; }
+    .image-overlay .wrapper h1 {
+      font-family: "Cinzel", serif;
+      letter-spacing: 3px;
+      margin-bottom: 30px; }
+    .image-overlay .wrapper p {
+      font-family: "Nunito", sans-serif;
+      font-size: 15pt;
+      margin-bottom: 30px; }
+    .image-overlay .wrapper a {
+      background-color: white;
+      border-radius: 0;
+      height: 60px;
+      width: 200px;
+      padding: 12px;
+      margin-left: auto;
+      margin-right: auto;
       display: flex;
       justify-content: center;
       align-items: center; }
-    .image-overlay a span:hover {
-      color: black; }
+      .image-overlay .wrapper a span {
+        border: 1px solid black;
+        height: 40px;
+        width: 180px;
+        color: #999999;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .image-overlay .wrapper a span:hover {
+        color: black; }
 
-.clearfix {
-  display: table;
-  content: '';
-  clear: both; }
+.instagram-slider {
+  width: 100%; }
+  .instagram-slider .title {
+    margin: 5em 0 2em 0;
+    text-align: center;
+    font-size: 12pt;
+    font-family: "Nunito", sans-serif; }
+    .instagram-slider .title p {
+      color: #666666; }
+  .instagram-slider .deco {
+    content: "";
+    margin: auto;
+    width: 30px;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0.2; }
+  .instagram-slider .image-row {
+    width: 100%;
+    height: 80%;
+    text-align: center; }
+    .instagram-slider .image-row .img-wrapper {
+      display: inline-block;
+      width: 16.2%;
+      height: 16vw;
+      overflow: hidden;
+      padding: 1px; }
+
+.footer {
+  padding-top: 10em; }
+  .footer .footer-support, .footer .footer-about {
+    text-align: left;
+    width: 48%;
+    display: inline-block; }
+  .footer .footer-support {
+    float: left;
+    margin-right: 2%; }
+  .footer p:first-of-type {
+    padding-bottom: 6px;
+    border-bottom: 1px solid black; }
+  .footer ul {
+    list-style: none;
+    padding: 0; }
+    .footer ul li {
+      margin-top: 12px; }
+      .footer ul li a {
+        color: #1a1a1a;
+        font-family: "Nunito", sans-serif;
+        letter-spacing: 1px;
+        font-size: 9pt;
+        font-weight: 300; }
+  .footer a {
+    color: #1a1a1a;
+    font-family: "Nunito", sans-serif;
+    letter-spacing: 1px;
+    font-size: 12pt;
+    font-weight: 300; }
+  .footer .copyright {
+    width: 100%;
+    margin-top: 10em;
+    text-align: center;
+    font-size: 9pt; }
+  .footer .insta-icon {
+    height: 35px;
+    width: 35px;
+    margin: 1em auto 6em;
+    background-image: url("../img/IG-icon.png");
+    background-position: center;
+    background-size: cover; }
 
 /*# sourceMappingURL=styles.css.map */

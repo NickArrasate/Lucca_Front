@@ -1,0 +1,7 @@
+@mixin link($font-size){
+  color: $medium-font-color;
+  font-family: $main-font-face;
+  letter-spacing: $letter-spacing;
+  font-size: $font-size;
+  font-weight: 300;
+}

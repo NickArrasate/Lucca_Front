@@ -1,0 +1,52 @@
+//HERO IMAGE AND CTA ******************
+.main-content {
+  background-image: url("../img/05-home.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+  text-align: center;
+}
+.image-overlay{
+  height: 100%;
+  width: 100%;
+  background-color: $overlay-color;
+  .wrapper{
+    padding-top: 16vh;
+    display: flex;
+    justify-content: center;
+    h1{
+      font-family: $hero-font-face;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+    p{
+      font-family: $main-font-face;
+      font-size: 15pt;
+      margin-bottom: 30px;
+    }
+    a{
+      background-color: $white-color;
+      border-radius: 0;
+      height: 60px;
+      width: 200px;
+      padding: 12px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        border: 1px solid black;
+        height: 40px;
+        width: 180px;
+        color: lighten($dark-font-color, 60%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      span:hover{
+        color: $dark-font-color;
+      }
+    }
+  }
+}
