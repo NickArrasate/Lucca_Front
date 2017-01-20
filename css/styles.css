@@ -60,12 +60,16 @@ a, span, li, p {
   align-items: center;
   padding: 0 60px; }
   .site-header .wrapper img {
-    height: 230px; }
+    height: 230px;
+    margin-right: 0;
+    padding-right: 0; }
 
 #main-nav {
-  padding: 0 60px; }
+  padding: 0 60px;
+  margin-right: 0;
+  padding-right: 0; }
   #main-nav li {
-    text-align: center; }
+    text-align: left; }
     #main-nav li a {
       color: #1a1a1a;
       font-family: "Nunito", sans-serif;
@@ -76,6 +80,30 @@ a, span, li, p {
     #main-nav li a:hover {
       background: none;
       color: black; }
+
+.dropdown-menu1, .dropdown-menu2 {
+  display: none;
+  width: 100%;
+  position: absolute;
+  text-decoration: none;
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  text-align: left; }
+  .dropdown-menu1 li, .dropdown-menu2 li {
+    margin: 6px 0 6px 15px; }
+  .dropdown-menu1 a:hover, .dropdown-menu2 a:hover {
+    text-decoration: none; }
+
+.dropdown1:hover .dropdown-menu1 {
+  display: block;
+  padding: none; }
+
+.dropdown2:hover .dropdown-menu2 {
+  display: block;
+  padding: none; }
 
 .main-content {
   background-image: url("../img/05-home.jpg");
