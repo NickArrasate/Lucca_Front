@@ -1,0 +1,85 @@
+
+.sort-menu {
+  margin-top: 2em;
+  padding: 15px;
+  h4{
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12pt;
+    font-family: $hero-font-face;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $light-font-color;
+  }
+}
+.collection-info{
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  a {
+    width: 100%;
+    height: 100%;
+    text-transform: capitalize;
+    font-size: 8pt;
+    display: inline-block;
+    text-decoration: none;
+    color: $dark-font-color;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+  .checkbox{
+    height: 15px;
+    width: 15px;
+    background-image: url('../img/checkbox.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    margin: auto 6px auto 6px;
+    vertical-align: text-top;
+    color: black;
+  }
+  span{
+    font-size: 10pt;
+  }
+}
+
+
+.product-card{
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 25px;
+  img{
+    max-width: 100%;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+  .product-info{
+    text-transform: uppercase;
+  }
+}
+.product-pagination{
+  border-top: 1px solid $dark-font-color;
+  margin-top: 3em;
+  margin-bottom: 6em;
+  padding-top: 2em;
+  text-align: center;
+}
+.pagination-buttons{
+  button{
+    border: 1px solid $dark-font-color;
+    background-color: transparent;
+  }
+  button:first-child, button:last-child{
+    width: 50px;
+  }
+}
+.product-row {
+  height: 350px;
+}

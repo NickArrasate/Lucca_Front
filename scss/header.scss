@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $content-padding;
+
   }
 }
 .info-bar-account-link{
@@ -34,11 +34,11 @@
 
 //HEADER********
 .site-header{
+  border-bottom: 1px solid $dark-font-color;
   .wrapper{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $content-padding;
     img {
       height: 230px;
       margin-right: 0;
@@ -50,14 +50,21 @@
 //NAV*************
 
 #main-nav{
-  padding: $content-padding;
   margin-right: 0;
   padding-right: 0;
+  height: 230px;
+  .menu-opt{
+    padding: 20px;
+  }
   li {
     text-align: left;
+    height: 100%;
+    display: flex;
+    align-items: center;
     a {
       @include link(14pt);
       color: $light-font-color;
+      padding: 0;
     }
     a:hover{
       background: none;
@@ -66,19 +73,21 @@
   }
 }
 
+//Dropdown Menu Functionality
 .dropdown-menu1, .dropdown-menu2 {
   display: none;
   width: 100%;
   position: absolute;
+  top: 230px;
+  left: 0px;
   text-decoration: none;
   list-style: none;
   list-style-type: none;
-  margin:0;
-  padding:0;
+  margin: 0;
   background-color: white;
   text-align: left;
   li{
-    margin: 6px 0 6px 15px;
+    margin: 6px 0 6px 0;
   }
   a:hover{
     text-decoration: none;
@@ -86,9 +95,13 @@
 }
 .dropdown1:hover .dropdown-menu1{
   display: block;
-  padding: none;
+  padding: 0 0 0 20px;
+  border: 1px solid $dark-font-color;
+  border-top: none;
 }
 .dropdown2:hover .dropdown-menu2{
   display: block;
-  padding: none;
+  padding: 0 0 0 20px;
+  border: 1px solid $dark-font-color;
+  border-top: none;
 }

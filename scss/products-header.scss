@@ -1,0 +1,40 @@
+.products-header{
+  .wrapper{
+    border-bottom: 1px solid $dark-font-color;
+    padding-top: 2em;
+    padding-bottom: .2em;
+  }
+  h2{
+    font-family: $hero-font-face;
+    font-size: 26pt;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .sort{
+    width: 100%;
+    text-align: right;
+    label{
+      font-family: $main-font-face;
+      font-size: 8pt;
+    }
+  }
+}
+#sortBy {
+  font-size: 9pt;
+  border: 1px solid $dark-font-color;
+  border-radius: 0;
+  -webkit-appearance: none;
+  background-size: 10px;
+  background-image: url('../img/sort-icon.svg');
+  background-position: right 10px center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  padding: 5px;
+  margin-bottom: .5em;
+  height: 30px;
+  width: 140px;
+}
+#sortBy:focus{
+  outline: 0;
+}
