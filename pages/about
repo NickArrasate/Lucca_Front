@@ -8,7 +8,7 @@
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
@@ -39,11 +39,11 @@
   </div>
   <div class="site-header" role="banner">
     <div class="wrapper">
-      <img src="./img/logoboxtop-transparent.png" alt="">
+      <img src="../img/logoboxtop-transparent.png" alt="">
       <ul class="nav nav-pills" id="main-nav">
-        <li class="menu-opt" role="presentation"><a href="index.html">HOME</a></li>
+        <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
         <li role="presentation" class="dropdown1 menu-opt">
-          <a href="./pages/products">PRODUCTS</a>
+          <a href="./products">PRODUCTS</a>
           <ul class="dropdown-menu1">
             <li ><a href="#">All Products</a></li>
             <li><a href="#">Textiles</a></li>
@@ -51,9 +51,8 @@
             <li><a href="#">Wall Decor</a></li>
           </ul>
         </li>
-
-        <li class="menu-opt" role="presentation"><a href="./pages/about">ABOUT</a></li>
-        <li class="menu-opt" role="presentation"><a href="./pages/contact">CONTACT</a></li>
+        <li class="menu-opt" role="presentation"><a href="#">ABOUT</a></li>
+        <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
         <li role="presentation" class="dropdown2 menu-opt">
           <a href="#">LOCATIONS</a>
           <ul class="dropdown-menu2">
@@ -65,49 +64,14 @@
       </ul>
     </div>
   </div>
-  <div class="main-content" role='main'>
-    <div class="image-overlay">
-      <div class="homepage-image">
-        <div class="hero-content">
-          <div class="wrapper">
-            <div class="content-text">
-              <h1>WELCOME TO LUCCA ANTIQUES</h1>
-              <p>Discover a curated selection of European antiques, Lucca Studio designs and found objects</p>
-              <a href="collections/all" class="btn btn-large"><span class='cta-span'>VIEW PRODUCTS</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="instagram-slider">
+  <div class="about-content">
     <div class="wrapper">
-      <div class="title">
-        <p>INSTAGRAM</p>
-        <div class="deco"></div>
-      </div>
-    </div>
-    <div class="image-row">
-      <div class="img-wrapper">
-        <img src="img/home1.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home2.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home3.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home1.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home2.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home3.jpg" alt="">
-      </div>
-    </div>
+    <h2>about us</h2>
+    <p>Lucca Antiques is a business that showcases the owners appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
+    <p>For more than a decade, Lucca Antiques has operated expansive retail store locations in design districts. Lucca Antiques locations include Los Angeles and New York.</p>
+    <p>Lucca Antiques provides a valuable resource for designers and celebrity clients seeking pieces that are unique in scale, composition and origin. A constantly changing inventory assures that the merchandise is always fresh and the eclectic mix of elements makes shopping at Lucca exciting.</p>
   </div>
+</div>
   <div class="footer">
     <div class="wrapper">
       <div class="footer-support">

@@ -1,0 +1,22 @@
+.about-content{
+  .wrapper{
+    width: 60%;
+    max-width: 750px;
+  }
+  h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    font-family: $hero-font-face;
+  }
+  p{
+    font-family: $main-font-face;
+    margin-bottom: 1em;
+    font-size: 10pt;
+    line-height: 20px;
+  }
+  p:last-child{
+    margin-bottom: 6em;
+  }
+}

@@ -1,0 +1,61 @@
+.contact-content{
+  padding-bottom: 3em;
+  .wrapper{
+    width: 60%;
+    max-width: 750px;
+  }
+  h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5em;
+    margin-top: 2.5em;
+    font-family: $hero-font-face;
+  }
+  p{
+    font-family: $main-font-face;
+    font-size: 10pt;
+    line-height: 20px;
+    margin-bottom: 1em;
+  }
+  .contact-input, .contact-message{
+    color: lighten($light-font-color, 35%);
+    font-family: $main-font-face;
+    font-size: 10pt;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 8px;
+    border: 1px solid $light-font-color;
+  }
+  .contact-message{
+    height: 200px;
+    text-indent: 0;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    flex-direction: column;
+    resize: auto;
+    cursor: auto;
+    word-wrap: break-word;
+  }
+  .contact-send {
+    -webkit-appearance: none;
+    height: auto;
+    width: auto;
+    float: right;
+    border-radius: 2px;
+    border: none;
+    background-color: #293944;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 0;
+    line-height: 1.42;
+    font-weight: 300;
+    font-size: 10pt;
+    letter-spacing: 2px;
+    font-family: $main-font-face;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

@@ -8,7 +8,7 @@
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
@@ -39,11 +39,11 @@
   </div>
   <div class="site-header" role="banner">
     <div class="wrapper">
-      <img src="./img/logoboxtop-transparent.png" alt="">
+      <img src="../img/logoboxtop-transparent.png" alt="">
       <ul class="nav nav-pills" id="main-nav">
-        <li class="menu-opt" role="presentation"><a href="index.html">HOME</a></li>
+        <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
         <li role="presentation" class="dropdown1 menu-opt">
-          <a href="products.html">PRODUCTS</a>
+          <a href="#">PRODUCTS</a>
           <ul class="dropdown-menu1">
             <li ><a href="#">All Products</a></li>
             <li><a href="#">Textiles</a></li>
@@ -51,8 +51,8 @@
             <li><a href="#">Wall Decor</a></li>
           </ul>
         </li>
-        <li class="menu-opt" role="presentation"><a href="/pages/about">ABOUT</a></li>
-        <li class="menu-opt" role="presentation"><a href="/pages/contact">CONTACT</a></li>
+        <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+        <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
         <li role="presentation" class="dropdown2 menu-opt">
           <a href="#">LOCATIONS</a>
           <ul class="dropdown-menu2">
@@ -60,7 +60,7 @@
             <li><a href="#">New York</a></li>
           </ul>
         </li>
-        <li class="menu-opt" role="presentation"><a href="/cart">CART</a></li>
+        <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
       </ul>
     </div>
   </div>
@@ -97,28 +97,28 @@
         <div class="col-sm-9 product-display">
           <div class="row product-row">
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-1.jpg" alt="" class="product-image">
+              <img src="../img/products/product-1.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Tray</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-2.jpg" alt="" class="product-image">
+              <img src="../img/products/product-2.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Object</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-3.jpg" alt="" class="product-image">
+              <img src="../img/products/product-3.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Clay Vase</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-4.jpg" alt="" class="product-image">
+              <img src="../img/products/product-4.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Contemporary Abstract Painting</p>
                 <p class="product-price">$1200</p>
@@ -127,28 +127,28 @@
           </div>
           <div class="row product-row">
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-5.jpg" alt="" class="product-image">
+              <img src="../img/products/product-5.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Dresser</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-6.jpg" alt="" class="product-image">
+              <img src="../img/products/product-6.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">mid-century pottery</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-7.jpg" alt="" class="product-image">
+              <img src="../img/products/product-7.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Custom Design Leather Chair</p>
                 <p class="product-price">$1200</p>
               </div>
             </div>
             <div class="col-sm-3 product-card">
-              <img src="img/products/product-8.jpg" alt="" class="product-image">
+              <img src="../img/products/product-8.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Coffee Table</p>
                 <p class="product-price">$1200</p>
