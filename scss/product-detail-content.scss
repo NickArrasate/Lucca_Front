@@ -1,0 +1,102 @@
+.product-detail-content {
+  .product-breadcrumb {
+    padding: 15px 0;
+    font-family: $main-font-face;
+    text-transform: uppercase;
+    a, span{
+      margin: 0 10px;
+      color: $dark-font-color;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+  .main-display {
+    padding-top: 3em;
+    img{
+      width: 100%;
+      max-height: 600px;
+    }
+  }
+  .product-detail-info{
+    height: 400px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .detail-price{
+    font-size: 12pt;
+    font-family: $main-font-face;
+  }
+  .detail-title {
+    text-transform: uppercase;
+    font-family: $hero-font-face;
+    font-size: 20pt;
+  }
+  .detail-description{
+    font-family: $main-font-face;
+  }
+  .detail-specs{
+    list-style: none;
+    indent: none;
+    padding: 0;
+    li{
+      width: 100%;
+    }
+  }
+  .print-link, .email-link{
+    font-size: 16pt;
+    margin: 12px;
+  }
+  .detail-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+      border: 1px solid $dark-font-color;
+      background-color: transparent;
+    }
+    button:focus{
+      outline: none;
+    }
+  }
+  .related-title{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $main-font-face;
+    margin-bottom: 1em;
+    h2{
+      font-size: 12pt;
+    }
+    .bar{
+      margin: 0 auto;
+      height: 3px;
+      width: 40px;
+      background-color: lighten($light-font-color, 35%);
+    }
+  }
+  .related-items{
+    height: 300px;
+    margin-bottom: 3em;
+  }
+  .related-item{
+    height: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    img{
+      max-width: 100%;
+      background-position: center;
+      margin-bottom: 10px;
+    }
+    .product-info{
+      text-transform: uppercase;
+    }
+  }
+}

@@ -52,7 +52,7 @@
             <ul class="nav navbar-nav" id="nav-ul">
               <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
               <li role="presentation" class="dropdown1 menu-opt">
-                <a href="./pages/products">PRODUCTS</a>
+                <a href="./products">PRODUCTS</a>
                 <ul class="dropdown-menu1">
                   <li ><a href="#">All Products</a></li>
                   <li><a href="#">Textiles</a></li>
@@ -69,13 +69,93 @@
                   <li><a href="#">New York</a></li>
                 </ul>
               </li>
-              <li class="menu-opt" role="presentation"><a href="#">CART</a></li>
+              <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
             </ul>
           </nav>
         </div>
       </div>
     </div>
-
+  <div class="product-detail-content">
+    <div class="wrapper">
+      <div class="product-breadcrumb" role="navigation">
+        <a href="../index.html" title='back to homepage'>home</a>
+        <span aria-hidden='true'>></span>
+        <a href="./products" title='back to homepage'>all</a>
+        <span aria-hidden='true'>></span>
+        <a href="#" title='back to homepage'>???</a>
+      </div>
+      <div class="row main-display">
+        <div class="col-sm-6 col-sm-offset-2">
+          <img src="../img/products/product-1.jpg" alt="">
+        </div>
+        <div class="col-sm-4 product-detail-info">
+          <p class='detail-price'>$1200</p>
+          <p class='detail-title'>Tortoise Shell Box</p>
+          <p class='detail-description'>A beautiful antique box.</p>
+          <ul class='detail-specs'>
+            <li>Height: 4"</li>
+            <li>Width: 8"</li>
+          </ul>
+          <div class="detail-options">
+            <a href="#" class="print-link"><span class="glyphicon glyphicon-print"></span></a>
+            <a href="#" class="email-link"><span class="glyphicon glyphicon-envelope"></span></a>
+          </div>
+          <div class="detail-nav">
+            <button type="button" class="btn btn-secondary"><</button>
+            <button type="button" class="btn btn-secondary">></button>
+          </div>
+        </div>
+      </div>
+      <div class="related-title">
+        <h2>related</h2>
+        <div class="bar"></div>
+      </div>
+      <div class="row related-items">
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-5.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">Antique Dresser</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-6.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">mid-century pottery</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-7.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">Custom Design Leather Chair</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-8.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">Coffee Table</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-7.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">Custom Design Leather Chair</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-2 related-item" href="./product-detail">
+          <img src="../img/products/product-8.jpg" alt="" class="product-image">
+          <div class="product-info">
+            <p class="product-title">Coffee Table</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <div class="footer">
     <div class="wrapper">

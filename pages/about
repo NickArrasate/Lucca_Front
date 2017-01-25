@@ -39,33 +39,44 @@
   </div>
   <div class="site-header" role="banner">
     <div class="wrapper">
+      <div class="mobile-cart"></div>
       <img src="../img/logoboxtop-transparent.png" alt="">
-      <ul class="nav nav-pills" id="main-nav">
-        <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
-        <li role="presentation" class="dropdown1 menu-opt">
-          <a href="./products">PRODUCTS</a>
-          <ul class="dropdown-menu1">
-            <li ><a href="#">All Products</a></li>
-            <li><a href="#">Textiles</a></li>
-            <li><a href="#">Objects</a></li>
-            <li><a href="#">Wall Decor</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="#">ABOUT</a></li>
-        <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
-        <li role="presentation" class="dropdown2 menu-opt">
-          <a href="#">LOCATIONS</a>
-          <ul class="dropdown-menu2">
-            <li><a href="#">Los Angeles</a></li>
-            <li><a href="#">New York</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
-      </ul>
+      <nav class="nav nav-pills navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse " id="nav-collapse">
+            <ul class="nav navbar-nav" id="nav-ul">
+              <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
+              <li role="presentation" class="dropdown1 menu-opt">
+                <a href="./products">PRODUCTS</a>
+                <ul class="dropdown-menu1">
+                  <li ><a href="#">All Products</a></li>
+                  <li><a href="#">Textiles</a></li>
+                  <li><a href="#">Objects</a></li>
+                  <li><a href="#">Wall Decor</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="#">ABOUT</a></li>
+              <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
+              <li role="presentation" class="dropdown2 menu-opt">
+                <a href="#">LOCATIONS</a>
+                <ul class="dropdown-menu2">
+                  <li><a href="#">Los Angeles</a></li>
+                  <li><a href="#">New York</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
-  </div>
   <div class="about-content">
-    <div class="wrapper">
+    <div class="content-wrapper">
     <h2>about us</h2>
     <p>Lucca Antiques is a business that showcases the owners appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
     <p>For more than a decade, Lucca Antiques has operated expansive retail store locations in design districts. Lucca Antiques locations include Los Angeles and New York.</p>

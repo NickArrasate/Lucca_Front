@@ -39,33 +39,44 @@
   </div>
   <div class="site-header" role="banner">
     <div class="wrapper">
+      <div class="mobile-cart"></div>
       <img src="../img/logoboxtop-transparent.png" alt="">
-      <ul class="nav nav-pills" id="main-nav">
-        <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
-        <li role="presentation" class="dropdown1 menu-opt">
-          <a href="#">PRODUCTS</a>
-          <ul class="dropdown-menu1">
-            <li ><a href="#">All Products</a></li>
-            <li><a href="#">Textiles</a></li>
-            <li><a href="#">Objects</a></li>
-            <li><a href="#">Wall Decor</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
-        <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
-        <li role="presentation" class="dropdown2 menu-opt">
-          <a href="#">LOCATIONS</a>
-          <ul class="dropdown-menu2">
-            <li><a href="#">Los Angeles</a></li>
-            <li><a href="#">New York</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
-      </ul>
+      <nav class="nav nav-pills navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+              <span class="sr-only">Toggle button</span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse " id="nav-collapse">
+            <ul class="nav navbar-nav" id="nav-ul">
+              <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
+              <li role="presentation" class="dropdown1 menu-opt">
+                <a href="#">PRODUCTS</a>
+                <ul class="dropdown-menu1">
+                  <li ><a href="#">All Products</a></li>
+                  <li><a href="#">Textiles</a></li>
+                  <li><a href="#">Objects</a></li>
+                  <li><a href="#">Wall Decor</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+              <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
+              <li role="presentation" class="dropdown2 menu-opt">
+                <a href="#">LOCATIONS</a>
+                <ul class="dropdown-menu2">
+                  <li><a href="#">Los Angeles</a></li>
+                  <li><a href="#">New York</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
-  </div>
   <div class="products-header">
-    <div class="wrapper">
+    <div class="content-wrapper">
       <h2 class="clearfix">ALL</h2>
       <div class="sort clearfix">
         <label for="sortBy">SORT:&nbsp; </label>
@@ -83,7 +94,7 @@
     </div>
   </div>
   <div class="products">
-    <div class="wrapper">
+    <div class="content-wrapper">
       <div class="row">
         <div class="col-sm-3 sort-menu">
           <h4>all locations</h4>
@@ -96,64 +107,64 @@
         </div>
         <div class="col-sm-9 product-display">
           <div class="row product-row">
-            <div class="col-sm-3 product-card">
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-1.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Tray</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-2.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Object</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-3.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Clay Vase</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-4.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Contemporary Abstract Painting</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
+            </a>
           </div>
           <div class="row product-row">
-            <div class="col-sm-3 product-card">
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-5.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Antique Dresser</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-6.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">mid-century pottery</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-7.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Custom Design Leather Chair</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
-            <div class="col-sm-3 product-card">
+            </a>
+            <a class="col-sm-3 product-card" href="./product-detail">
               <img src="../img/products/product-8.jpg" alt="" class="product-image">
               <div class="product-info">
                 <p class="product-title">Coffee Table</p>
                 <p class="product-price">$1200</p>
               </div>
-            </div>
+            </a>
           </div>
           <div class="product-pagination">
             <div class="btn-group pagination-buttons" role="group" aria-label="Basic example">
@@ -171,7 +182,7 @@
     </div>
   </div>
   <div class="footer">
-    <div class="wrapper">
+    <div class="content-wrapper">
       <div class="footer-support">
         <p>SUPPORT</p>
         <ul>

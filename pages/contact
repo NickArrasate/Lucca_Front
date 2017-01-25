@@ -39,33 +39,44 @@
   </div>
   <div class="site-header" role="banner">
     <div class="wrapper">
+      <div class="mobile-cart"></div>
       <img src="../img/logoboxtop-transparent.png" alt="">
-      <ul class="nav nav-pills" id="main-nav">
-        <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
-        <li role="presentation" class="dropdown1 menu-opt">
-          <a href="./products">PRODUCTS</a>
-          <ul class="dropdown-menu1">
-            <li ><a href="#">All Products</a></li>
-            <li><a href="#">Textiles</a></li>
-            <li><a href="#">Objects</a></li>
-            <li><a href="#">Wall Decor</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
-        <li class="menu-opt" role="presentation"><a href="./#">CONTACT</a></li>
-        <li role="presentation" class="dropdown2 menu-opt">
-          <a href="#">LOCATIONS</a>
-          <ul class="dropdown-menu2">
-            <li><a href="#">Los Angeles</a></li>
-            <li><a href="#">New York</a></li>
-          </ul>
-        </li>
-        <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
-      </ul>
+      <nav class="nav nav-pills navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse " id="nav-collapse">
+            <ul class="nav navbar-nav" id="nav-ul">
+              <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
+              <li role="presentation" class="dropdown1 menu-opt">
+                <a href="./products">PRODUCTS</a>
+                <ul class="dropdown-menu1">
+                  <li ><a href="#">All Products</a></li>
+                  <li><a href="#">Textiles</a></li>
+                  <li><a href="#">Objects</a></li>
+                  <li><a href="#">Wall Decor</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+              <li class="menu-opt" role="presentation"><a href="#">CONTACT</a></li>
+              <li role="presentation" class="dropdown2 menu-opt">
+                <a href="#">LOCATIONS</a>
+                <ul class="dropdown-menu2">
+                  <li><a href="#">Los Angeles</a></li>
+                  <li><a href="#">New York</a></li>
+                </ul>
+              </li>
+              <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
-  </div>
   <div class="contact-content">
-    <div class="wrapper">
+    <div class="content-wrapper">
       <h2>contact us</h2>
       <p>Questions? Comments? We'd love to hear from you.</p>
       <p>Email: example@luccahome.com</p>

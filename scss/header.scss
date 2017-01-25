@@ -7,13 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 }
 .info-bar-account-link{
   span{
-  color: $white-color;
-  width: 15px;
+    color: $white-color;
+    width: 15px;
   }
 }
 .info-bar-search-wrapper{
@@ -36,9 +35,10 @@
 .site-header{
   border-bottom: 1px solid $dark-font-color;
   .wrapper{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    height: 230px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     img {
       height: 230px;
       margin-right: 0;
@@ -46,15 +46,136 @@
     }
   }
 }
-
+//Hidden Cart****************
+.mobile-cart{
+  display: none;
+  height: 40px;
+  width: 40px;
+  margin-left: 3em;
+  background-image: url('../img/cart-ico.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @media (max-width: 806px){
+    display: block;
+  }
+}
 //NAV*************
 
-#main-nav{
+.navbar{
+  margin: 0 !important;
+  border: none !important;
+  .container{
+    width: auto;
+    margin: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: 992px){
+      width: auto;
+      margin: 0 !important;
+      position: relative;
+      top: 0;
+      height: 230px !important;
+      display: flex;
+      align-items: center;
+      #nav-ul{
+        li {
+          a {
+            @include link(10pt);
+        }
+      }
+    }
+  }
+    @media (max-width: 806px){
+      width: auto;
+      margin: 0 !important;
+      position: relative;
+      top: 0;
+      height: 230px !important;
+      display: flex;
+      align-items: center;
+      .navbar-toggle {
+        padding: 0;
+        margin: 0;
+        margin-right: 3em;
+        background: transparent;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-image: url('../img/nav-burger.svg');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+      }
+      .navbar-collapse.collapse {
+        display: none !important;
+      }
+      .navbar-nav {
+        margin: 0;
+        position: absolute;
+        right: 0 !important;
+        top: 100%;
+        background-color: #fff;
+        z-index: 9000;
+        border-left: 1px solid #605555;
+        border-bottom: 1px solid #605555;
+        min-width: 400px;
+        padding: 30px;
+      }
+      .navbar-nav>li {
+        float: none;
+        height: 10px !important;
+        background-color: white;
+      }
+      .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .collapse.in{
+        display:block !important;
+      }
+      .dropdown-menu1, .dropdown-menu2 {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        right: -5px;
+        background-color: white;
+        text-align: left;
+        z-index: 999;
+        li{
+          margin: 6px 0 6px 0;
+        }
+        a:hover{
+          text-decoration: none;
+        }
+      }
+      .dropdown1:hover .dropdown-menu1{
+        display: inline-block;
+        position: absolute;
+        border-top: none;
+        border-right: none;
+      }
+      .dropdown2:hover .dropdown-menu2{
+        display: inline-block;
+        border-top: none;
+        border-right: none;
+      }
+    }
+  }
+}
+
+#nav-ul{
   margin-right: 0;
   padding-right: 0;
   height: 230px;
   .menu-opt{
-    padding: 20px;
+    padding: 15px;
   }
   li {
     text-align: left;
@@ -64,6 +185,7 @@
     a {
       @include link(14pt);
       color: $light-font-color;
+      font-size: 13pt;
       padding: 0;
     }
     a:hover{
@@ -71,7 +193,9 @@
       color: $dark-font-color;
     }
   }
+
 }
+//Nav Bar breaks
 
 //Dropdown Menu Functionality
 .dropdown-menu1, .dropdown-menu2 {
@@ -86,6 +210,7 @@
   margin: 0;
   background-color: white;
   text-align: left;
+  z-index: 999;
   li{
     margin: 6px 0 6px 0;
   }
@@ -95,13 +220,13 @@
 }
 .dropdown1:hover .dropdown-menu1{
   display: block;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 15px;
   border: 1px solid $dark-font-color;
   border-top: none;
 }
 .dropdown2:hover .dropdown-menu2{
   display: block;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 15px;
   border: 1px solid $dark-font-color;
   border-top: none;
 }

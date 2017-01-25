@@ -1,4 +1,11 @@
 
+.products{
+  .content-wrapper{
+    @media screen and (max-width: 768px){
+      width: 80vw;
+    }
+  }
+}
 .sort-menu {
   margin-top: 2em;
   padding: 15px;
@@ -11,6 +18,7 @@
     border-bottom: 1px solid $light-font-color;
   }
 }
+//Location chooser
 .collection-info{
   height: 15px;
   display: flex;
@@ -44,6 +52,7 @@
   span{
     font-size: 10pt;
   }
+
 }
 
 
@@ -64,6 +73,9 @@
     text-transform: uppercase;
   }
 }
+.product-card:hover{
+  text-decoration: none;
+}
 .product-pagination{
   border-top: 1px solid $dark-font-color;
   margin-top: 3em;
@@ -81,5 +93,5 @@
   }
 }
 .product-row {
-  height: 350px;
+  height: auto;
 }
