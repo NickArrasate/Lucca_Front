@@ -1,7 +1,7 @@
 .footer{
-  padding-top: 3em;
-  margin-top: 3em;
+  padding: 3em 2em;
   background-color: $footer-color;
+  position: relative;
 //Footer side by side sections
   .footer-support, .footer-about{
     text-align: left;
@@ -44,5 +44,14 @@
     background-image: url('../img/IG-icon.png');
     background-position: center;
     background-size: cover;
+  }
+  @media (max-width: $med-screen), only screen and (max-device-width: 450px){
+    .footer-support, .footer-about{
+      float: none;
+      margin: 0 auto;
+      width: 80%;
+      display: block;
+
+    }
   }
 }

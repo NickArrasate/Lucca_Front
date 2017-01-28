@@ -51,7 +51,7 @@
           <ul class="nav navbar-nav" id="nav-ul">
             <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
             <li role="presentation" class="menu-opt dropdownhov1">
-              <a href="./products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
+              <a href="./pages/products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
               <ul class="dropdown-wide1">
                 <li><a href="#">All Products</a></li>
                 <li><a href="#">Textiles</a></li>
@@ -65,7 +65,7 @@
               <li><a href="#">Objects</a></li>
               <li><a href="#">Wall Decor</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+            <li class="menu-opt" role="presentation"><a href="#">ABOUT</a></li>
             <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
             <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
               <a href="#">LOCATIONS</a><span data-toggle='collapse' data-target='#sub-collapse2' class='sub-menu'>+</span>
@@ -78,14 +78,25 @@
               <li><a href="#">Los Angeles</a></li>
               <li><a href="#">New York</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="#">CART</a></li>
+            <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
           </ul>
         </div>
       </nav>
     </div>
 
-
-
+  <div class="about-content">
+    <div class="content-wrapper">
+    <h2>terms and conditions</h2>
+    <p>This section sets forth luccahome.com's Terms and Conditions of sale on www.luccahome.com ("website") Lucca Home is a part of  Lucca Antiques, Inc. ("Lucca Antiques”). By completing a purchase with us you agree to follow these Terms and Conditions and to be bound by them.</p>
+    <h2>general terms</h2>
+    <p>Lucca Antiques retail locations may carry many of the products displayed on our Lucca website. In some cases, merchandise on our website may not be available at Lucca Antiques retail locations, may be out of stock, or may be discontinued. Under no circumstances can items purchased online on the Lucca Home website be cancelled, exchanged, or refunded through Lucca Antiques retail locations. We do not accept any returns or exchanges of Lucca Home online purchases. If your purchase arrives damaged by shipping, please contact FED EX for resolution. </p>
+    <p>All prices and services featured on our website are quoted in U.S. dollars, are valid and effective only in the continental U.S.  No trade discount is offered on the Lucca Home website.</p>
+    <p>Every effort has been made to ensure the accuracy of color, condition, prices, item numbers, availability, and dimensions; however, we cannot be responsible for photography or typographical errors. Lucca Home reserves the right to revoke any stated offer and to correct any errors, inaccuracies, or omissions even after an order has been submitted and whether or not the order has been confirmed and your credit card charged. If your credit card has already been charged for the purchase and your order is cancelled, Lucca Home will issue a credit to your credit card account in the amount of the charge.</p>
+    <p>We are proud of our products. When purchasing antique or vintage product there will be color variations on textiles, ceramics and variances will occur in wood products. Products manufactured or handmade from natural materials such as wood/veneer species, ceramic, glass, textile, or other elements, vary by product and may change over time without notice.  Depending on material, production techniques or how product is cared for (such as, extreme temperature changes or incorrect cleaning methods), product may alter in color, finish, size, or other features this is the nature, and beauty, of purchasing vintage, handmade product. Lucca Antiques, Inc. is not responsible for any product alterations after purchase from Lucca Home.</p>
+    <p>Legal</p>
+    <p>We may update or modify these Terms and Conditions at any time and without prior notice. For this reason, you should review our Terms and Conditions each time you purchase products from us. This website and all its contents are protected under copyright by Lucca Antiques, Inc. with all rights reserved.</p>
+  </div>
+</div>
   <div class="footer">
     <div class="wrapper">
       <div class="footer-support">

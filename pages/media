@@ -51,7 +51,7 @@
           <ul class="nav navbar-nav" id="nav-ul">
             <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
             <li role="presentation" class="menu-opt dropdownhov1">
-              <a href="./products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
+              <a href="./pages/products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
               <ul class="dropdown-wide1">
                 <li><a href="#">All Products</a></li>
                 <li><a href="#">Textiles</a></li>
@@ -65,7 +65,7 @@
               <li><a href="#">Objects</a></li>
               <li><a href="#">Wall Decor</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+            <li class="menu-opt" role="presentation"><a href="#">ABOUT</a></li>
             <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
             <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
               <a href="#">LOCATIONS</a><span data-toggle='collapse' data-target='#sub-collapse2' class='sub-menu'>+</span>
@@ -78,14 +78,17 @@
               <li><a href="#">Los Angeles</a></li>
               <li><a href="#">New York</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="#">CART</a></li>
+            <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
           </ul>
         </div>
       </nav>
     </div>
 
-
-
+  <div class="about-content">
+    <div class="content-wrapper">
+    <h2>Media</h2>
+  </div>
+</div>
   <div class="footer">
     <div class="wrapper">
       <div class="footer-support">

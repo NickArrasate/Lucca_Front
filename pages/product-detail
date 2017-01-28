@@ -38,43 +38,52 @@
     </div>
   </div>
   <div class="site-header" role="banner">
-    <div class="wrapper">
-      <div class="mobile-cart"></div>
-      <img src="../img/logoboxtop-transparent.png" alt="">
-      <nav class="nav nav-pills navbar">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse " id="nav-collapse">
-            <ul class="nav navbar-nav" id="nav-ul">
-              <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
-              <li role="presentation" class="dropdown1 menu-opt">
-                <a href="./products">PRODUCTS</a>
-                <ul class="dropdown-menu1">
-                  <li ><a href="#">All Products</a></li>
-                  <li><a href="#">Textiles</a></li>
-                  <li><a href="#">Objects</a></li>
-                  <li><a href="#">Wall Decor</a></li>
-                </ul>
-              </li>
-              <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
-              <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
-              <li role="presentation" class="dropdown2 menu-opt">
-                <a href="#">LOCATIONS</a>
-                <ul class="dropdown-menu2">
-                  <li><a href="#">Los Angeles</a></li>
-                  <li><a href="#">New York</a></li>
-                </ul>
-              </li>
-              <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
-            </ul>
-          </nav>
+    <div class="head-wrapper">
+      <nav class="nav navbar">
+        <div class="mobile-cart"></div>
+        <a id="logo-box" href="../index.html"><img  src="../img/logo-box.png" alt=""></a>
+        <div class="navbar-header">
+          <button type="button" class="navbar-tog collapsed" data-toggle="collapse" data-target="#nav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
         </div>
-      </div>
+        <div class="collapse no-transition navbar-collapse" id="nav-collapse">
+          <ul class="nav navbar-nav" id="nav-ul">
+            <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
+            <li role="presentation" class="menu-opt dropdownhov1">
+              <a href="./products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
+              <ul class="dropdown-wide1">
+                <li><a href="#">All Products</a></li>
+                <li><a href="#">Textiles</a></li>
+                <li><a href="#">Objects</a></li>
+                <li><a href="#">Wall Decor</a></li>
+              </ul>
+            </li>
+            <ul id="sub-collapse1" class="dropdown-menu1">
+              <li ><a href="#">All Products</a></li>
+              <li><a href="#">Textiles</a></li>
+              <li><a href="#">Objects</a></li>
+              <li><a href="#">Wall Decor</a></li>
+            </ul>
+            <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
+            <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
+            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+              <a href="#">LOCATIONS</a><span data-toggle='collapse' data-target='#sub-collapse2' class='sub-menu'>+</span>
+              <ul class="dropdown-wide2">
+                <li><a href="#">Los Angeles</a></li>
+                <li><a href="#">New York</a></li>
+              </ul>
+            </li>
+            <ul id="sub-collapse2" class="dropdown-menu2">
+              <li><a href="#">Los Angeles</a></li>
+              <li><a href="#">New York</a></li>
+            </ul>
+            <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
+
   <div class="product-detail-content">
     <div class="wrapper">
       <div class="product-breadcrumb" role="navigation">
@@ -85,7 +94,7 @@
         <a href="#" title='back to homepage'>???</a>
       </div>
       <div class="row main-display">
-        <div class="col-sm-6 col-sm-offset-2">
+        <div class="col-sm-6 col-sm-offset-1">
           <img src="../img/products/product-1.jpg" alt="">
         </div>
         <div class="col-sm-4 product-detail-info">
@@ -162,10 +171,10 @@
       <div class="footer-support">
         <p>SUPPORT</p>
         <ul>
-          <li><a href="#">RETURNS POLICY</a></li>
-          <li><a href="#">TERMS AND CONDITIONS</a></li>
-          <li><a href="#">CONTACT</a></li>
-          <li><a href="#">MEDIA</a></li>
+          <li><a href="./returns">RETURNS POLICY</a></li>
+          <li><a href="./terms">TERMS AND CONDITIONS</a></li>
+          <li><a href="./contact">CONTACT</a></li>
+          <li><a href="./media">MEDIA</a></li>
         </ul>
       </div>
       <div class="footer-about">
