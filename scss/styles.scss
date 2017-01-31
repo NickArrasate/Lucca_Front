@@ -16,12 +16,17 @@ $overlay-color: rgba(256,256,256,0.4);
 
 $white-color: white;
 $footer-color: #f8f6f8;
+
 //Margins + Padding
 $content-padding: 0 60px;
+$small-padding: 2em;
+$medium-padding: 4em;
+$large-padding: 6em;
 
 //Media Breaks
-$small-break: 905px;
-$med-screen: 768px;
+$small-break: 768px;
+$med-break: 905px;
+$large-break: 1235px;
 //deafults***********
 html,body {
   height:100%;

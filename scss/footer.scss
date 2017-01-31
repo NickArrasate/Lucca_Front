@@ -45,7 +45,7 @@
     background-position: center;
     background-size: cover;
   }
-  @media (max-width: $med-screen), only screen and (max-device-width: 450px){
+  @media (max-width: $med-break), only screen and (max-device-width: 450px){
     .footer-support, .footer-about{
       float: none;
       margin: 0 auto;
