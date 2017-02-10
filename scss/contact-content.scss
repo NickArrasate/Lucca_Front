@@ -18,7 +18,6 @@
     margin-bottom: 1em;
   }
   .contact-input, .contact-message{
-    color: lighten($light-font-color, 35%);
     font-family: $main-font-face;
     font-size: 10pt;
     width: 100%;
@@ -35,6 +34,7 @@
     resize: auto;
     cursor: auto;
     word-wrap: break-word;
+    color: $dark-font-color !important;
   }
   .contact-send {
     -webkit-appearance: none;

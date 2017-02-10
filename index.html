@@ -5,9 +5,8 @@
   <meta charset="utf-8">
   <title>Lucca Home</title>
   <meta name="description" content="Lucca Home">
-  <meta name="author" content="SitePoint">
   <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -21,7 +20,7 @@
   <div class="info-bar">
     <div class="wrapper">
       <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user' ></span>
+        <span class='glyphicon glyphicon-user white' ></span>
       </div>
       <div class="info-bar-search-wrapper">
         <div class="info-bar-search">
@@ -65,24 +64,52 @@
               <li class="sub-opt"><a href="#">New York</a></li>
             </ul>
           </li>
-          <li class="menu-opt" role="presentation"><a href="./pages/cart">CART</a></li>
+
         </ul>
       </div>
     </div>
   </nav>
   <div class="main-content" role='main'>
-    <div class="image-overlay">
-      <div class="homepage-image">
-        <div class="hero-content">
-          <div class="wrapper">
-            <div class="content-text">
-              <h1>WELCOME TO LUCCA HOME</h1>
-              <p>Discover a curated selection of European antiques, Lucca Studio designs and found objects</p>
-              <a href="./pages/products" class="btn btn-large"><span class='cta-span'>VIEW PRODUCTS</span></a>
+    <div class="row">
+
+        <div class="hero-content row">
+          <div class="col-md-12">
+
+
+            <div class="carousel slide" id="homeCarousel" data-ride='carousel' data-intercal='100000'>
+              <div class="carousel-inner">
+                <div class="item active">
+                  <div class="homeSlide" style="background-image: url('./img/fullsizerender.jpg')"></div>
+                  <!-- <img src="./img/fullsizerender.jpg" alt="First slide"> -->
+                </div>
+                <div class="item">
+                  <div class="homeSlide" style="background-image: url('./img/fullsizerender_1.jpg')"></div>
+                </div>
+                <div class="item">
+                  <div class="homeSlide" style="background-image: url('./img/fullsizerender_2.jpg')"></div>
+                </div>
+                <div class="item">
+                  <div class="homeSlide" style="background-image: url('./img/fullsizerender_3.jpg')"></div>
+                </div>
+              </div>
+              <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left white" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right white" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+              <div class="content-text text-center col-md-12">
+                <p>Discover a curated selection of European antiques, Lucca Studio designs and found objects</p>
+                <a href="./pages/products" class="btn btn-large ctaButton"><span class='cta-span'>VIEW PRODUCTS</span></a>
+              </div>
+
+
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+
     </div>
   </div>
   <div class="instagram-slider">
@@ -92,25 +119,31 @@
         <div class="deco"></div>
       </div>
     </div>
-    <div class="image-row">
-      <div class="img-wrapper">
-        <img src="img/home1.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home2.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home3.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home1.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home2.jpg" alt="">
-      </div>
-      <div class="img-wrapper">
-        <img src="img/home3.jpg" alt="">
-      </div>
+    <div class="image-row row">
+      <a class="img-wrapper">
+        <img class="img" src="img/home1.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
+      <a class="img-wrapper">
+        <img class="img" src="img/home2.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
+      <a class="img-wrapper">
+        <img class="img" src="img/home3.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
+      <a class="img-wrapper">
+        <img class="img" src="img/home1.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
+      <a class="img-wrapper">
+        <img class="img" src="img/home3.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
+      <a class="img-wrapper">
+        <img class="img" src="img/home2.jpg" alt="">
+        <div class="insta-icon"></div>
+      </a>
     </div>
   </div>
   <div class="footer">
@@ -119,7 +152,7 @@
         <p>SUPPORT</p>
         <ul>
           <li><a href="./pages/returns">RETURNS POLICY</a></li>
-          <li><a href="./pages/terms">TERMS AND CONDITIONS</a></li>
+          <li><a href="./pages/terms">DISCLOSURE</a></li>
           <li><a href="./pages/contact">CONTACT</a></li>
           <li><a href="./pages/media">MEDIA</a></li>
         </ul>

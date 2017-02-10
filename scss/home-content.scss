@@ -1,10 +1,62 @@
 //HERO IMAGE AND CTA ******************
 .main-content {
-  background-image: url("../img/05-home.jpg");
-  background-position: center;
-  background-size: cover;
-  height: 500px;
+
+  height: auto;
+
   text-align: center;
+}
+#homeCarousel{
+  .homeSlide{
+    background-position: center;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:500px;
+  }
+  .carousel-control{
+    text-shadow: none;
+  }
+  .carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+  .carousel-control:hover{
+    text-shadow: none;
+  }
+  .content-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 75%;
+    color: #FFF;
+    margin: 0 auto;
+    font-family: $main-font-face;
+    font-size: 15pt;
+    padding: 0 2em;
+    .ctaButton{
+      background-color: $white-color;
+      border-radius: 0;
+      height: 60px;
+      width: 200px;
+      padding: 12px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span{
+        border: 1px solid black;
+        height: 40px;
+        width: 180px;
+        color: lighten($dark-font-color, 60%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  }
 }
 .image-overlay{
   height: 100%;
@@ -20,30 +72,9 @@
       margin-bottom: 30px;
     }
     p{
-      font-family: $main-font-face;
-      font-size: 15pt;
-      margin-bottom: 30px;
+
     }
-    a{
-      background-color: $white-color;
-      border-radius: 0;
-      height: 60px;
-      width: 200px;
-      padding: 12px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      span{
-        border: 1px solid black;
-        height: 40px;
-        width: 180px;
-        color: lighten($dark-font-color, 60%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+
       span:hover{
         color: $dark-font-color;
       }

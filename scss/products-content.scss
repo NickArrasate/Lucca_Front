@@ -2,6 +2,7 @@
 .sort-menu {
   margin-top: 2em;
   padding: 15px;
+  z-index: -1;
   h4{
     text-transform: uppercase;
     font-weight: 400;
@@ -48,10 +49,12 @@
 
 }
 
-
+.product-row {
+  height: auto;
+}
 .product-card{
   text-align: center;
-  height: 100%;
+  height: 100% !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,8 +64,10 @@
     max-width: 100%;
     background-position: center;
     margin-bottom: 10px;
+    margin: auto 0;
   }
   .product-info{
+    align-self: center;
     text-transform: uppercase;
   }
 }
@@ -80,11 +85,28 @@
   button{
     border: 1px solid $dark-font-color;
     background-color: transparent;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding: 2px 0px;
   }
   button:first-child, button:last-child{
-    width: 50px;
+    width: 30px;
   }
 }
-.product-row {
-  height: auto;
+@media only screen and (min-width: $small-break){
+  .product-row {
+    height: 340px;
+  }
+  .pagination-buttons{
+    button{
+      border: 1px solid $dark-font-color;
+      background-color: transparent;
+      height: 40px;
+      width: 40px;
+    }
+    button:first-child, button:last-child{
+      width: 50px;
+    }
+  }
 }

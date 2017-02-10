@@ -7,12 +7,10 @@
   <title>Lucca Home</title>
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
-
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -25,7 +23,7 @@
   <div class="info-bar">
     <div class="wrapper">
       <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user' ></span>
+        <span class='glyphicon glyphicon-user white' ></span>
       </div>
       <div class="info-bar-search-wrapper">
         <div class="info-bar-search">
@@ -37,52 +35,43 @@
       </div>
     </div>
   </div>
-  <div class="site-header" role="banner">
-    <div class="head-wrapper">
-      <nav class="nav navbar">
+  <nav id="main-nav" class="navbar">
+    <div class="container-fluid">
+      <div id="nav-header" class="navbar-header">
         <div class="mobile-cart"></div>
-        <a id="logo-box" href="../index.html"><img  src="../img/logo-box.png" alt=""></a>
-        <div class="navbar-header">
-          <button type="button" class="navbar-tog collapsed" data-toggle="collapse" data-target="#nav-collapse">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-        </div>
-        <div class="collapse no-transition navbar-collapse" id="nav-collapse">
-          <ul class="nav navbar-nav" id="nav-ul">
-            <li class="menu-opt" role="presentation"><a href="../index.html">HOME</a></li>
-            <li role="presentation" class="menu-opt dropdownhov1">
-              <a href="./products">PRODUCTS</a><span data-toggle='collapse' data-target='#sub-collapse1' class='sub-menu  no-transition'>+</span>
-              <ul class="dropdown-wide1">
-                <li><a href="#">All Products</a></li>
-                <li><a href="#">Textiles</a></li>
-                <li><a href="#">Objects</a></li>
-                <li><a href="#">Wall Decor</a></li>
-              </ul>
-            </li>
-            <ul id="sub-collapse1" class="dropdown-menu1">
-              <li ><a href="#">All Products</a></li>
-              <li><a href="#">Textiles</a></li>
-              <li><a href="#">Objects</a></li>
-              <li><a href="#">Wall Decor</a></li>
+        <a id="logo-box" href="../index.html"><img src="../img/logo-box.png" alt=""></a>
+        <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active menu-opt"><a href="../index.html">HOME</a></li>
+          <li role="presentation" class="menu-opt dropdownhov1">
+            <a href="../pages/products">PRODUCTS</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
+            <ul class="sub-collapse1 collapse">
+              <li class="sub-opt"><a href="#">All Products</a></li>
+              <li class="sub-opt"><a href="#">Textiles</a></li>
+              <li class="sub-opt"><a href="#">Objects</a></li>
+              <li class="sub-opt"><a href="#">Wall Decor</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="./about">ABOUT</a></li>
-            <li class="menu-opt" role="presentation"><a href="./contact">CONTACT</a></li>
-            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
-              <a href="#">LOCATIONS</a><span data-toggle='collapse' data-target='#sub-collapse2' class='sub-menu'>+</span>
-              <ul class="dropdown-wide2">
-                <li><a href="#">Los Angeles</a></li>
-                <li><a href="#">New York</a></li>
-              </ul>
-            </li>
-            <ul id="sub-collapse2" class="dropdown-menu2">
-              <li><a href="#">Los Angeles</a></li>
-              <li><a href="#">New York</a></li>
+          </li>
+          <li class="menu-opt" role="presentation"><a href="../pages/about">ABOUT</a></li>
+          <li class="menu-opt" role="presentation"><a href="../pages/contact">CONTACT</a></li>
+          <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+            <a href="#">LOCATIONS</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
+            <ul class="sub-collapse2 collapse">
+              <li class="sub-opt"><a href="#">Los Angeles</a></li>
+              <li class="sub-opt"><a href="#">New York</a></li>
             </ul>
-            <li class="menu-opt" role="presentation"><a href="./cart">CART</a></li>
-          </ul>
-        </div>
-      </nav>
+          </li>
+
+        </ul>
+      </div>
     </div>
+  </nav>
 
   <div class="product-detail-content">
     <div class="wrapper">
@@ -94,7 +83,7 @@
         <a href="#" title='back to homepage'>???</a>
       </div>
       <div class="row main-display">
-        <div class="col-sm-6 col-sm-offset-1">
+        <div class="col-sm-6 col-sm-offset-1 product-image-wrap">
           <img src="../img/products/product-1.jpg" alt="">
         </div>
         <div class="col-sm-4 product-detail-info">
@@ -120,21 +109,21 @@
         <div class="bar"></div>
       </div>
       <div class="row related-items">
-        <a class="col-sm-2 related-item" href="./product-detail">
+        <a class="col-sm-2 col-xs-6 related-item" href="./product-detail">
           <img src="../img/products/product-5.jpg" alt="" class="product-image">
           <div class="product-info">
             <p class="product-title">Antique Dresser</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-2 related-item" href="./product-detail">
+        <a class="col-sm-2 col-xs-6 related-item" href="./product-detail">
           <img src="../img/products/product-6.jpg" alt="" class="product-image">
           <div class="product-info">
             <p class="product-title">mid-century pottery</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-2 related-item" href="./product-detail">
+        <a class="col-sm-2 col-xs-6 related-item" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <div class="product-info">
             <p class="product-title">Custom Design Leather Chair</p>
@@ -148,14 +137,14 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-2 related-item" href="./product-detail">
+        <a class="col-sm-2 col-xs-6 related-item" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <div class="product-info">
             <p class="product-title">Custom Design Leather Chair</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-2 related-item" href="./product-detail">
+        <a class="col-sm-2 col-xs-6 related-item" href="./product-detail">
           <img src="../img/products/product-8.jpg" alt="" class="product-image">
           <div class="product-info">
             <p class="product-title">Coffee Table</p>
@@ -167,12 +156,12 @@
   </div>
 
   <div class="footer">
-    <div class="wrapper">
+    <div class="content-wrapper">
       <div class="footer-support">
         <p>SUPPORT</p>
         <ul>
           <li><a href="./returns">RETURNS POLICY</a></li>
-          <li><a href="./terms">TERMS AND CONDITIONS</a></li>
+          <li><a href="./terms">DISCLOSURE</a></li>
           <li><a href="./contact">CONTACT</a></li>
           <li><a href="./media">MEDIA</a></li>
         </ul>

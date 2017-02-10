@@ -21,18 +21,67 @@
     opacity: 0.2;
   }
   .image-row{
-    width: 100%;
+    padding: 0 !important;
+    width: auto;
     height: 80%;
     margin: 0 !important;
     text-align: center;
-    display: flex;
-    justify-content: space-around;
     .img-wrapper{
+      position: relative;
       display: inline-block;
-      width: 16.2%;
-      height: 16vw;
+      width: 16.2% * 2;
+      height: 16vw * 2;
       overflow: hidden;
-      padding: 1px;
+      padding: 0px;
+      background-color: black;
+      .img{
+        height: 100%;
+      }
+      .insta-icon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: 35px;
+        width: 35px;
+        color: white;
+        background-image: url('../img/IG-icon-light.png');
+        background-position: center;
+        background-size: cover;
+        display: none;
+      }
+    }
+
+    .img-wrapper:hover{
+      cursor: pointer;
+      .img{
+        opacity: 0.6;
+      }
+      .insta-icon{
+        display: block;
+        animation: .2s mymove linear;
+        -webkit-animation:  .2s mymove linear; /* Safari 4.0 - 8.0 */
+      }
+    }
+
+
+}
+@keyframes mymove {
+  0%   {top: 140%;}
+  100% {top: 0;}
+  }
+  @media screen and (min-width: $small-break){
+    .image-row{
+      width: 100%;
+      margin: 0 !important;
+
+      .img-wrapper{
+        display: inline-block;
+        width: 16.2%;
+        height: 16vw;
+      }
     }
   }
 }
