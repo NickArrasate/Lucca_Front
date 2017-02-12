@@ -38,7 +38,7 @@
 // Default Navigation Properties for smallest views***************************
 #main-nav{
   border: none;
-  border-bottom: 1px solid $dark-font-color;
+  border-bottom: 1px solid lighten($dark-font-color,30%);
   border-radius: 0px;
   margin: 0 auto;
   padding: 0;
@@ -82,7 +82,7 @@
   img {
     height: 104px;
     width: 250px;
-    z-index: -9;
+    z-index: -1;
   }
 }
 #nav-tog {
@@ -108,6 +108,7 @@
 #myNavbar{
   margin: 0;
   position: relative;
+  z-index: 999;
   background-color: white;
   border-bottom: 1px solid $dark-font-color;
 }
@@ -139,7 +140,7 @@
 }
 .sub-collapse1, .sub-collapse2{
   width: 100%;
-  left: 0;
+  left: -10%;
   text-decoration: none;
   list-style: none;
   list-style-type: none;
@@ -153,7 +154,7 @@
   color: $dark-font-color !important;
 }
 .navbar-nav>li>a{
-  color: $medium-font-color !important;
+  color: lighten($dark-font-color, 10%) !important;
   padding: 15px !important;
 }
 .navbar-nav>li>a:hover{
@@ -161,7 +162,7 @@
   background: transparent !important;
 }
 .sub-opt>a{
-  color: $medium-font-color !important;
+  color: lighten($dark-font-color, 10%) !important;
 }
 .sub-opt>a:hover{
   color: $dark-font-color !important;
@@ -190,6 +191,7 @@
     height: auto !important;
     width: 100% !important;
     margin: auto;
+
     position: absolute;
     right: 0;
     bottom: 0;
@@ -199,6 +201,7 @@
     margin: 0;
     background-color: white;
     border: none;
+
   }
   .sub-collapse1, .sub-collapse2{
     position: absolute;

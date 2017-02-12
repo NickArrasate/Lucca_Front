@@ -1,5 +1,7 @@
 html, body {
-  height: 100%; }
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .wrapper {
   height: 100%;
@@ -41,7 +43,7 @@ a, span, li, p {
 .info-bar {
   width: 100%;
   height: 30px;
-  background-color: #81CC45; }
+  background-color: #2d3741; }
   .info-bar .wrapper {
     display: flex;
     justify-content: space-between;
@@ -73,7 +75,7 @@ a, span, li, p {
 
 #main-nav {
   border: none;
-  border-bottom: 1px solid #2d3741;
+  border-bottom: 1px solid #6d849a;
   border-radius: 0px;
   margin: 0 auto;
   padding: 0;
@@ -117,7 +119,7 @@ a, span, li, p {
   #logo-box img {
     height: 104px;
     width: 250px;
-    z-index: -9; }
+    z-index: -1; }
 
 #nav-tog {
   position: absolute;
@@ -142,6 +144,7 @@ a, span, li, p {
 #myNavbar {
   margin: 0;
   position: relative;
+  z-index: 999;
   background-color: white;
   border-bottom: 1px solid #2d3741; }
 
@@ -172,7 +175,7 @@ a, span, li, p {
 
 .sub-collapse1, .sub-collapse2 {
   width: 100%;
-  left: 0;
+  left: -10%;
   text-decoration: none;
   list-style: none;
   list-style-type: none;
@@ -186,7 +189,7 @@ a, span, li, p {
   color: #2d3741 !important; }
 
 .navbar-nav > li > a {
-  color: #576a7d !important;
+  color: #42515f !important;
   padding: 15px !important; }
 
 .navbar-nav > li > a:hover {
@@ -194,7 +197,7 @@ a, span, li, p {
   background: transparent !important; }
 
 .sub-opt > a {
-  color: #576a7d !important; }
+  color: #42515f !important; }
 
 .sub-opt > a:hover {
   color: #2d3741 !important; }
@@ -328,68 +331,44 @@ a, span, li, p {
   height: auto;
   text-align: center; }
 
-#homeCarousel .homeSlide {
-  background-position: center;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  vertical-align: middle;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 500px; }
-#homeCarousel .carousel-control {
-  text-shadow: none; }
-#homeCarousel .carousel-control.left, #homeCarousel .carousel-control.right {
-  background-image: none; }
-#homeCarousel .carousel-control:hover {
-  text-shadow: none; }
-#homeCarousel .content-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  color: #FFF;
-  margin: 0 auto;
-  font-family: "Nunito", sans-serif;
-  font-size: 15pt;
-  padding: 0 2em; }
-  #homeCarousel .content-text .ctaButton {
-    background-color: white;
-    border-radius: 0;
-    height: 60px;
-    width: 200px;
-    padding: 12px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    #homeCarousel .content-text .ctaButton span {
-      border: 1px solid black;
-      height: 40px;
-      width: 180px;
-      color: #c7d0d9;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-#homeCarousel .image-overlay {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.4); }
-  #homeCarousel .image-overlay .wrapper {
-    padding-top: 16vh;
-    display: flex;
-    justify-content: center; }
-    #homeCarousel .image-overlay .wrapper h1 {
-      font-family: "Cinzel", serif;
-      letter-spacing: 3px;
-      margin-bottom: 30px; }
-    #homeCarousel .image-overlay .wrapper span:hover {
-      color: #2d3741; }
-  @media only screen and (max-device-width: 450px) {
-    #homeCarousel .image-overlay {
-      padding-top: 6vh; } }
+#homeCarousel {
+  position: relative; }
+  #homeCarousel .homeSlide {
+    background-position: center;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 700px; }
+  #homeCarousel .carousel-control {
+    text-shadow: none; }
+  #homeCarousel .carousel-control.left, #homeCarousel .carousel-control.right {
+    background-image: none; }
+    #homeCarousel .carousel-control.left span, #homeCarousel .carousel-control.right span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -25%); }
+  #homeCarousel .carousel-control:hover {
+    text-shadow: none; }
+  #homeCarousel .content-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 60%;
+    max-width: 80%;
+    color: #FFF;
+    margin: 0 auto;
+    font-family: "Nunito", sans-serif;
+    font-size: 19pt;
+    font-weight: 400 !important;
+    padding: 0 1em; }
+    #homeCarousel .content-text p {
+      color: white !important;
+      font-weight: 400;
+      margin: 0 !important; }
 
 .instagram-slider {
   width: 100%; }

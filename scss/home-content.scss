@@ -1,11 +1,10 @@
 //HERO IMAGE AND CTA ******************
 .main-content {
-
   height: auto;
-
   text-align: center;
 }
 #homeCarousel{
+  position: relative;
   .homeSlide{
     background-position: center;
     background-position-x: 50%;
@@ -13,14 +12,20 @@
     vertical-align: middle;
     background-size: cover;
     background-repeat: no-repeat;
-    height:500px;
+    height: 700px;
   }
   .carousel-control{
     text-shadow: none;
   }
   .carousel-control.left, .carousel-control.right {
-    background-image: none
-}
+    background-image: none;
+    span{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%,-25%);
+    }
+  }
   .carousel-control:hover{
     text-shadow: none;
   }
@@ -29,58 +34,18 @@
     top: 50%;
     left: 50%;
     transform:translate(-50%,-50%);
-    width: 75%;
+    min-width: 60%;
+    max-width: 80%;
     color: #FFF;
     margin: 0 auto;
     font-family: $main-font-face;
-    font-size: 15pt;
-    padding: 0 2em;
-    .ctaButton{
-      background-color: $white-color;
-      border-radius: 0;
-      height: 60px;
-      width: 200px;
-      padding: 12px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      span{
-        border: 1px solid black;
-        height: 40px;
-        width: 180px;
-        color: lighten($dark-font-color, 60%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-  }
-}
-.image-overlay{
-  height: 100%;
-  width: 100%;
-  background-color: $overlay-color;
-  .wrapper{
-    padding-top: 16vh;
-    display: flex;
-    justify-content: center;
-    h1{
-      font-family: $hero-font-face;
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-    }
+    font-size: 19pt;
+    font-weight: 400 !important;
+    padding: 0 1em;
     p{
-
-    }
-
-      span:hover{
-        color: $dark-font-color;
-      }
-    }
-    @media only screen and (max-device-width: 450px){
-      padding-top: 6vh;
+      color: white !important;
+      font-weight: 400;
+      margin: 0 !important;
     }
   }
 }

@@ -10,7 +10,7 @@ $letter-spacing: 1px;
 
 //Colors
 
-$info-bar-bg: #81CC45; //PANTONE jasmine green
+$info-bar-bg: $dark-font-color; //PANTONE jasmine green
 $info-bar-search: #b1a8aa;
 $overlay-color: rgba(256,256,256,0.4);
 $white-color: white;
@@ -29,8 +29,8 @@ $large-break: 1235px;
 //deafults***********
 html,body {
   height:100%;
-  // -webkit-font-smoothing: antialiased;
-	// -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 .wrapper{
   height: 100%;
