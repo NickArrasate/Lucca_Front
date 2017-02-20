@@ -131,24 +131,29 @@
 .sub-menu:focus{
   outline: none;
 }
+.collapsing{
+
+}
+.sub-collapse1, .sub-collapse2{
+  height: auto;
+  width: 100%;
+  text-decoration: none;
+  list-style: none;
+  list-style-type: none;
+  list-style-position: outside;
+  background-color: $white-color;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
 .sub-opt{
-  padding-left: 12px;
+  left: 0;
+  padding-left: 15px !important;
+  margin: 10px 0;
   height: 30px;
 }
 .sub-opt>a:hover{
   text-decoration: none;
-}
-.sub-collapse1, .sub-collapse2{
-  width: 100%;
-  left: -10%;
-  text-decoration: none;
-  list-style: none;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px 6px 10px 15px;
-  background-color: $white-color;
-  text-align: left;
-  box-sizing: border-box;
 }
 .navbar-nav .active{
   color: $dark-font-color !important;
@@ -162,13 +167,13 @@
   background: transparent !important;
 }
 .sub-opt>a{
-  color: lighten($dark-font-color, 10%) !important;
+  color: $dark-font-color !important;
 }
 .sub-opt>a:hover{
   color: $dark-font-color !important;
 }
 .navbar-nav>li>a{
-  @include link(12pt);
+  @include link(14pt);
 }
 
 //Above First Break****************************************************
@@ -191,7 +196,6 @@
     height: auto !important;
     width: 100% !important;
     margin: auto;
-
     position: absolute;
     right: 0;
     bottom: 0;
@@ -204,9 +208,9 @@
 
   }
   .sub-collapse1, .sub-collapse2{
+    display: none;
     position: absolute;
     top: 100%;
-    display: none;
     width: 100%;
     left:0;
     text-decoration: none;
@@ -288,9 +292,10 @@
 @media screen and (min-width: $large-break){
   #myNavbar{
     li>a{
-    @include link(14pt);
+      @include link(17pt);
+      font-weight: 400;
+    }
   }
-}
   #logo-box{
     right: auto;
     left: $large-padding;

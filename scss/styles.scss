@@ -1,8 +1,8 @@
 //sass variables
 //Fonts
 
-$main-font-face: 'Nunito', sans-serif;
-$hero-font-face: 'Cinzel', serif;
+$hero-font-face: 'Nunito', sans-serif;
+$main-font-face: 'Cinzel', serif;
 $dark-font-color: #2d3741;
 $medium-font-color: lighten($dark-font-color, 20%);
 $light-font-color: lighten($dark-font-color, 40%);
@@ -29,8 +29,17 @@ $large-break: 1235px;
 //deafults***********
 html,body {
   height:100%;
-  -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+	// -moz-osx-font-smoothing: grayscale;
+}
+.light-text{
+  color: white !important;
+}
+.dark-text{
+  color: $dark-font-color !important;
+}
+.white{
+  color: white !important;
 }
 .wrapper{
   height: 100%;
@@ -59,9 +68,7 @@ a, span, li, p {
   letter-spacing: $letter-spacing;
   background: none;
 }
-.white{
-  color: white !important;
-}
+
 //clearfix
 .clearfix{
   display: table;

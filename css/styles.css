@@ -1,7 +1,14 @@
 html, body {
-  height: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  height: 100%; }
+
+.light-text {
+  color: white !important; }
+
+.dark-text {
+  color: #2d3741 !important; }
+
+.white {
+  color: white !important; }
 
 .wrapper {
   height: 100%;
@@ -18,19 +25,16 @@ html, body {
       width: 80vw; } }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   font-weight: 700;
   color: #2d3741 !important;
   letter-spacing: 1px; }
 
 a, span, li, p {
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   color: #2d3741 !important;
   letter-spacing: 1px;
   background: none; }
-
-.white {
-  color: white !important; }
 
 .clearfix {
   display: table;
@@ -166,24 +170,26 @@ a, span, li, p {
 .sub-menu:focus {
   outline: none; }
 
+.sub-collapse1, .sub-collapse2 {
+  height: auto;
+  width: 100%;
+  text-decoration: none;
+  list-style: none;
+  list-style-type: none;
+  list-style-position: outside;
+  background-color: white;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 0 !important; }
+
 .sub-opt {
-  padding-left: 12px;
+  left: 0;
+  padding-left: 15px !important;
+  margin: 10px 0;
   height: 30px; }
 
 .sub-opt > a:hover {
   text-decoration: none; }
-
-.sub-collapse1, .sub-collapse2 {
-  width: 100%;
-  left: -10%;
-  text-decoration: none;
-  list-style: none;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px 6px 10px 15px;
-  background-color: white;
-  text-align: left;
-  box-sizing: border-box; }
 
 .navbar-nav .active {
   color: #2d3741 !important; }
@@ -197,17 +203,17 @@ a, span, li, p {
   background: transparent !important; }
 
 .sub-opt > a {
-  color: #42515f !important; }
+  color: #2d3741 !important; }
 
 .sub-opt > a:hover {
   color: #2d3741 !important; }
 
 .navbar-nav > li > a {
   color: #576a7d;
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   letter-spacing: 1px;
-  font-size: 12pt;
-  font-weight: 600; }
+  font-size: 14pt;
+  font-weight: 400; }
 
 @media only screen and (min-width: 768px), only screen and (max-device-width: 450px) {
   #nav-tog {
@@ -238,9 +244,9 @@ a, span, li, p {
     border: none; }
 
   .sub-collapse1, .sub-collapse2 {
+    display: none;
     position: absolute;
     top: 100%;
-    display: none;
     width: 100%;
     left: 0;
     text-decoration: none;
@@ -312,10 +318,11 @@ a, span, li, p {
 @media screen and (min-width: 1235px) {
   #myNavbar li > a {
     color: #576a7d;
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     letter-spacing: 1px;
-    font-size: 14pt;
-    font-weight: 600; }
+    font-size: 17pt;
+    font-weight: 400;
+    font-weight: 400; }
 
   #logo-box {
     right: auto;
@@ -332,15 +339,19 @@ a, span, li, p {
   text-align: center; }
 
 #homeCarousel {
-  position: relative; }
+  position: relative;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  height: auto; }
   #homeCarousel .homeSlide {
-    background-position: center;
-    background-position-x: 50%;
-    background-position-y: 50%;
-    vertical-align: middle;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 700px; }
+    width: 100%;
+    max-height: 100%; }
+  #homeCarousel .bottom {
+    background-position: bottom;
+    vertical-align: bottom; }
+  #homeCarousel .top {
+    background-position: top;
+    vertical-align: top; }
   #homeCarousel .carousel-control {
     text-shadow: none; }
   #homeCarousel .carousel-control.left, #homeCarousel .carousel-control.right {
@@ -354,94 +365,63 @@ a, span, li, p {
     text-shadow: none; }
   #homeCarousel .content-text {
     position: absolute;
-    top: 50%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
     min-width: 60%;
     max-width: 80%;
     color: #FFF;
     margin: 0 auto;
-    font-family: "Nunito", sans-serif;
-    font-size: 19pt;
+    font-family: "Cinzel", serif;
+    font-size: 14pt;
     font-weight: 400 !important;
-    padding: 0 1em; }
+    padding: 0 .5em; }
     #homeCarousel .content-text p {
-      color: white !important;
       font-weight: 400;
       margin: 0 !important; }
 
-.instagram-slider {
-  width: 100%; }
-  .instagram-slider .title {
-    margin: 5em 0 2em 0;
-    text-align: center;
-    font-size: 12pt;
-    font-family: "Nunito", sans-serif; }
-    .instagram-slider .title p {
-      color: #8b9daf; }
-  .instagram-slider .deco {
-    content: "";
-    margin: auto;
-    width: 30px;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: black;
-    opacity: 0.2; }
-  .instagram-slider .image-row {
-    padding: 0 !important;
-    width: auto;
-    height: 80%;
-    margin: 0 !important;
-    text-align: center; }
-    .instagram-slider .image-row .img-wrapper {
-      position: relative;
-      display: inline-block;
-      width: 32.4%;
-      height: 32vw;
-      overflow: hidden;
-      padding: 0px;
-      background-color: black; }
-      .instagram-slider .image-row .img-wrapper .img {
-        height: 100%; }
-      .instagram-slider .image-row .img-wrapper .insta-icon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        height: 35px;
-        width: 35px;
-        color: white;
-        background-image: url("../img/IG-icon-light.png");
-        background-position: center;
-        background-size: cover;
-        display: none; }
-    .instagram-slider .image-row .img-wrapper:hover {
-      cursor: pointer; }
-      .instagram-slider .image-row .img-wrapper:hover .img {
-        opacity: 0.6; }
-      .instagram-slider .image-row .img-wrapper:hover .insta-icon {
-        display: block;
-        animation: .2s mymove linear;
-        -webkit-animation: .2s mymove linear;
-        /* Safari 4.0 - 8.0 */ }
-@keyframes mymove {
-  0% {
-    top: 140%; }
-  100% {
-    top: 0; } }
-  @media screen and (min-width: 768px) {
-    .instagram-slider .image-row {
-      width: 100%;
-      margin: 0 !important; }
-      .instagram-slider .image-row .img-wrapper {
-        display: inline-block;
-        width: 16.2%;
-        height: 16vw; } }
+.home-display {
+  height: auto; }
+  .home-display .home-image {
+    height: 400px;
+    margin: 20px;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 3em; }
+  .home-display p {
+    margin: 20px; }
 
+.home-display.tall {
+  height: auto;
+  padding-top: 0; }
+  .home-display.tall .home-image {
+    height: 600px;
+    margin: 20px;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 3em; }
+  .home-display.tall p {
+    margin: 20px; }
+
+.home-image.bottom {
+  background-position: bottom;
+  vertical-align: bottom; }
+
+.home-image.top {
+  background-position: top;
+  vertical-align: top; }
+
+.home-image.right {
+  background-position-x: 80%; }
+
+.home-image.center {
+  background-position: center; }
+
+@media only screen and (min-width: 768px), only screen and (max-device-width: 450px) {
+  #homeCarousel .content-text {
+    font-size: 18pt; } }
 .footer {
   padding: 3em 2em;
   background-color: #f8f6f8;
@@ -464,16 +444,16 @@ a, span, li, p {
       margin-top: 12px; }
       .footer ul li a {
         color: #576a7d;
-        font-family: "Nunito", sans-serif;
+        font-family: "Cinzel", serif;
         letter-spacing: 1px;
         font-size: 9pt;
-        font-weight: 600; }
+        font-weight: 400; }
   .footer a {
     color: #576a7d;
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     letter-spacing: 1px;
     font-size: 12pt;
-    font-weight: 600; }
+    font-weight: 400; }
   .footer .copyright {
     width: 100%;
     margin-top: 10em;
@@ -498,7 +478,7 @@ a, span, li, p {
   padding-top: 2em;
   padding-bottom: .2em; }
 .products-header h2 {
-  font-family: "Cinzel", serif;
+  font-family: "Nunito", sans-serif;
   font-size: 26pt;
   width: 100%;
   text-align: center;
@@ -507,7 +487,7 @@ a, span, li, p {
   width: 100%;
   text-align: right; }
   .products-header .sort label {
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     font-size: 8pt; }
 
 #sortBy {
@@ -533,11 +513,11 @@ a, span, li, p {
   padding: 15px;
   z-index: -1; }
   .sort-menu h4 {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 12pt;
-    font-family: "Cinzel", serif;
-    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5em;
+    margin-top: 2.5em;
+    font-family: "Nunito", sans-serif;
     border-bottom: 1px solid #8b9daf; }
 
 .collection-info {
@@ -623,7 +603,7 @@ a, span, li, p {
     width: 50px; } }
 .product-detail-content .product-breadcrumb {
   padding: 15px 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   text-transform: uppercase; }
   .product-detail-content .product-breadcrumb a, .product-detail-content .product-breadcrumb span {
     margin: 0 10px;
@@ -653,13 +633,13 @@ a, span, li, p {
   justify-content: space-between; }
 .product-detail-content .detail-price {
   font-size: 12pt;
-  font-family: "Nunito", sans-serif; }
+  font-family: "Cinzel", serif; }
 .product-detail-content .detail-title {
   text-transform: uppercase;
-  font-family: "Cinzel", serif;
+  font-family: "Nunito", sans-serif;
   font-size: 20pt; }
 .product-detail-content .detail-description {
-  font-family: "Nunito", sans-serif; }
+  font-family: "Cinzel", serif; }
 .product-detail-content .detail-specs {
   list-style: none;
   indent: none;
@@ -682,7 +662,7 @@ a, span, li, p {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   margin-bottom: 1em; }
   .product-detail-content .related-title h2 {
     font-size: 12pt; }
@@ -728,11 +708,11 @@ a, span, li, p {
 .about-content h2 {
   width: 100%;
   text-align: center;
-  margin-bottom: 1em;
-  margin-top: 2em;
-  font-family: "Cinzel", serif; }
+  margin-bottom: 1.5em;
+  margin-top: 2.5em;
+  font-family: "Nunito", sans-serif; }
 .about-content p {
-  font-family: "Nunito", sans-serif;
+  font-family: "Cinzel", serif;
   margin-bottom: 1em;
   font-size: 10pt;
   line-height: 20px; }
@@ -749,14 +729,14 @@ a, span, li, p {
     text-align: center;
     margin-bottom: 1.5em;
     margin-top: 2.5em;
-    font-family: "Cinzel", serif; }
+    font-family: "Nunito", sans-serif; }
   .contact-content p {
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     font-size: 10pt;
     line-height: 20px;
     margin-bottom: 1em; }
   .contact-content .contact-input, .contact-content .contact-message {
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     font-size: 10pt;
     width: 100%;
     margin-bottom: 1em;
@@ -788,7 +768,7 @@ a, span, li, p {
     font-weight: 300;
     font-size: 10pt;
     letter-spacing: 2px;
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -824,10 +804,10 @@ a, span, li, p {
     height: 12px; }
   .media-item-info a {
     color: #576a7d;
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     letter-spacing: 1px;
     font-size: 11pt;
-    font-weight: 600;
+    font-weight: 400;
     font-weight: 400; }
 
 .modal-fullscreen {
@@ -910,10 +890,10 @@ a, span, li, p {
   transform: translateY(-50%); }
   .close span {
     color: #576a7d;
-    font-family: "Nunito", sans-serif;
+    font-family: "Cinzel", serif;
     letter-spacing: 1px;
     font-size: 40pt;
-    font-weight: 600;
+    font-weight: 400;
     color: white !important; }
 
 /*# sourceMappingURL=styles.css.map */
