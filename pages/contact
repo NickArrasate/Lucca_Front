@@ -3,115 +3,152 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>Lucca Home</title>
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
-
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
 
 <body>
-  <div class="info-bar">
-    <div class="wrapper">
-      <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user white' ></span>
-      </div>
-      <div class="info-bar-search-wrapper">
+  <div class="header-fixed">
+    <div class="info-bar">
+      <div class="wrapper">
         <div class="info-bar-search">
           <form class="search" action="/search" method="get" role="search">
+            <button type="submit" id="search-btn" class="search"></button>
             <input type="search-bar" id="search-input" name="q" type="search">
-            <button type="submit" id="search-btn" class="glyphicon glyphicon-search"></button>
           </form>
+        </div>
+        <div class="insta-icon">
         </div>
       </div>
     </div>
+    <nav id="main-nav" class="navbar">
+      <div class="container-fluid">
+        <div id="nav-header" class="navbar-header">
+          <div class="mobile-cart"></div>
+          <a id="logo-box" href="../index.html"><img src="../img/logo-box.png" alt=""></a>
+          <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active menu-opt"><a href="../index.html">Home</a></li>
+            <li role="presentation" class="menu-opt dropdownhov1">
+              <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
+              <ul class="sub-collapse1 collapse">
+                <li class="sub-opt"><a href="#">All Products</a></li>
+                <li class="sub-opt"><a href="#">Lighting</a></li>
+                <li class="sub-opt"><a href="#">Mirrors</a></li>
+                <li class="sub-opt"><a href="#">Seating</a></li>
+                <li class="sub-opt"><a href="#">Storage</a></li>
+                <li class="sub-opt"><a href="#">Tables</a></li>
+                <li class="sub-opt"><a href="#">Textiles</a></li>
+                <li class="sub-opt"><a href="#">Objects</a></li>
+                <li class="sub-opt"><a href="#">Wall Decor</a></li>
+              </ul>
+            </li>
+            <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
+            <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
+            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+              <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
+              <ul class="sub-collapse2 collapse">
+                <li class="sub-opt"><a href="#">Los Angeles</a></li>
+                <li class="sub-opt"><a href="#">New York</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-  <nav id="main-nav" class="navbar">
-    <div class="container-fluid">
-      <div id="nav-header" class="navbar-header">
-        <div class="mobile-cart"></div>
-        <a id="logo-box" href="#"><img src="../img/logo-box.png" alt=""></a>
-        <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active menu-opt"><a href="../index.html">Home</a></li>
-          <li role="presentation" class="menu-opt dropdownhov1">
-            <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
-            <ul class="sub-collapse1 collapse">
-              <li class="sub-opt"><a href="#">All Products</a></li>
-              <li class="sub-opt"><a href="#">Textiles</a></li>
-              <li class="sub-opt"><a href="#">Objects</a></li>
-              <li class="sub-opt"><a href="#">Wall Decor</a></li>
-            </ul>
-          </li>
-          <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
-          <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
-          <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
-            <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
-            <ul class="sub-collapse2 collapse">
-              <li class="sub-opt"><a href="#">Los Angeles</a></li>
-              <li class="sub-opt"><a href="#">New York</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="contact-content">
     <div class="content-wrapper">
-      <h2>contact us</h2>
-      <p>Questions? Comments? We'd love to hear from you.</p>
-      <p>Contact us using the form below.</p>
-      <form class="contact-form" action="" method="post">
-        <input class="contact-input" type="text" name="" placeholder="Name">
-        <input class="contact-input" type="text" name="" placeholder="Email">
-        <input class="contact-input" type="text" name="" placeholder="Phone Number">
-        <textarea class="contact-message" type="textarea" name="" placeholder="Message"></textarea>
-      </form>
-      <button class="contact-send" type="button" name="button">Send</button>
+      <h2>Contact</h2>
+      <h5>Thank you for visiting the Lucca Home website. If you require additional information, please contact us directly.</h4>
+        <div class="row">
+          <div class="col-sm-6 contact-item">
+            <img src="../img/lucca-la.jpg" alt="">
+            <div class="contact-info">
+              <h3>Los Angeles Store</h3>
+              <p>Lucca Antiques</p>
+              <p>744 N La Cienega Blvd.</p>
+              <p>Los Angeles, CA 90069</p>
+              <a href="https://goo.gl/maps/9J8PqPZVamF2" target="_blank">Click for Map</a>
+              <p>Phone: 310-657-7800</p>
+              <p>Email: polly@luccaantiques.com</p>
+              <h4>Los Angeles Store Hours:</h4>
+              <p>Monday - Friday: 10AM - 6PM</p>
+            </div>
+          </div>
+          <div class="col-sm-6 contact-item">
+            <img src="../img/lucca-ny.jpg" alt="">
+            <div class="contact-info">
+              <h3>New York Store</h3>
+              <p>Lucca Antiques</p>
+              <p>306 E. 61st Street (between 1st and 2nd Ave.)</p>
+              <p>4th Floor</p>
+              <p>New York, NY 10065</p>
+              <a href="https://goo.gl/maps/CrQQErBDiuz" target="_blank">Click for Map</a>
+              <p>Phone: 212-343-9005</p>
+              <p>Email: gundi@luccaantiques.com</p>
+              <h4>New York Store Hours:</h4>
+              <p>Monday - Friday: 10AM - 6PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="contact-info warehouse">
+              <h3>Los Angeles Warehouse</h3>
+              <p>Lucca</p>
+              <p>4729 Exposition Blvd.</p>
+              <p>los Angeles, CA 90016</p>
+              <p>Phone: 323-641-7631</p>
+              <p>Email: anna@luccaantiques.com</p>
+              <h4>Warehouse Hours:</h4>
+              <p>Monday - Friday: 8AM - 5PM</p>
+              <p>Closed for lunch: 1PM - 2PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="footer">
-    <div class="wrapper">
-      <div class="footer-support">
-        <p>SUPPORT</p>
-        <ul>
-          <li><a href="./returns">RETURNS POLICY</a></li>
-          <li><a href="./terms">DISCLOSURE</a></li>
-          <li><a href="./contact">CONTACT</a></li>
-          <li><a href="./media">MEDIA</a></li>
-        </ul>
-      </div>
-      <div class="footer-about">
-        <p>ABOUT LUCCA ANTIQUES</p>
-        <p>Lucca Antiques showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
-        <a href="#">More ></a>
-      </div>
-      <div class="copyright clearfix">
-        <h5>&copy LUCCA HOME 2017</h5>
-      </div>
-      <div class="insta-icon">
-
+    <div class="footer">
+      <div class="wrapper">
+        <div class="row">
+          <div class="footer-support col-sm-6">
+            <p>SUPPORT</p>
+            <ul>
+              <li><a href="./disclosure">DISCLOSURE</a></li>
+              <li><a href="./contact">CONTACT</a></li>
+              <li><a href="./media">MEDIA</a></li>
+              <li><a href="./terms">TERMS</a></li>
+            </ul>
+          </div>
+          <div class="footer-about col-sm-6">
+            <p>ABOUT LUCCA Home</p>
+            <p>Lucca Home showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
+            <a href="#">More ></a>
+          </div>
+        </div>
+        <div class="copyright clearfix">
+          <h5>&copy LUCCA HOME 2017</h5>
+        </div>
+        <div class="insta-icon">
+        </div>
       </div>
     </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>

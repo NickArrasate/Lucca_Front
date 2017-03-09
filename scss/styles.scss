@@ -2,6 +2,7 @@
 //Fonts
 
 $hero-font-face: 'Nunito', sans-serif;
+$hero-font-face: 'Cinzel', serif;
 $main-font-face: 'Cinzel', serif;
 $dark-font-color: #2d3741;
 $medium-font-color: lighten($dark-font-color, 20%);
@@ -10,7 +11,7 @@ $letter-spacing: 1px;
 
 //Colors
 
-$info-bar-bg: $dark-font-color; //PANTONE jasmine green
+$info-bar-bg: #4E5055; //PANTONE iron gate
 $info-bar-search: #b1a8aa;
 $overlay-color: rgba(256,256,256,0.4);
 $white-color: white;
@@ -29,8 +30,11 @@ $large-break: 1235px;
 //deafults***********
 html,body {
   height:100%;
-  // -webkit-font-smoothing: antialiased;
-	// -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: auto;
+}
+body{
+  // padding-top: 260px;
 }
 .light-text{
   color: white !important;
@@ -54,6 +58,9 @@ html,body {
   @media only screen and (max-width: 768px), only screen and (max-device-width: 450px){
     width: 80vw;
   }
+}
+.col-md-6,.col-sm-6,.col-md-4,.col-sm-4,.col-md-3,.col-sm-3{
+  padding: 0 !important;
 }
 
 h1,h2,h3,h4,h5{

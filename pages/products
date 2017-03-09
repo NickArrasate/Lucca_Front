@@ -3,206 +3,196 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>Lucca Home</title>
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
-
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
   <!--[if lt IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
-
 <body>
-  <div class="info-bar">
-    <div class="wrapper">
-      <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user white' ></span>
-      </div>
-      <div class="info-bar-search-wrapper">
+  <div class="header-fixed">
+    <div class="info-bar">
+      <div class="wrapper">
         <div class="info-bar-search">
           <form class="search" action="/search" method="get" role="search">
+            <button type="submit" id="search-btn" class="search"></button>
             <input type="search-bar" id="search-input" name="q" type="search">
-            <button type="submit" id="search-btn" class="glyphicon glyphicon-search"></button>
           </form>
+        </div>
+        <div class="insta-icon">
         </div>
       </div>
     </div>
+    <nav id="main-nav" class="navbar">
+      <div class="container-fluid">
+        <div id="nav-header" class="navbar-header">
+          <div class="mobile-cart"></div>
+          <a id="logo-box" href="../index.html"><img src="../img/logo-box.png" alt=""></a>
+          <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active menu-opt"><a href="../index.html">Home</a></li>
+            <li role="presentation" class="menu-opt dropdownhov1">
+              <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
+              <ul class="sub-collapse1 collapse">
+                <li class="sub-opt"><a href="#">All Products</a></li>
+                <li class="sub-opt"><a href="#">Lighting</a></li>
+                <li class="sub-opt"><a href="#">Mirrors</a></li>
+                <li class="sub-opt"><a href="#">Seating</a></li>
+                <li class="sub-opt"><a href="#">Storage</a></li>
+                <li class="sub-opt"><a href="#">Tables</a></li>
+                <li class="sub-opt"><a href="#">Textiles</a></li>
+                <li class="sub-opt"><a href="#">Objects</a></li>
+                <li class="sub-opt"><a href="#">Wall Decor</a></li>
+              </ul>
+            </li>
+            <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
+            <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
+            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+              <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
+              <ul class="sub-collapse2 collapse">
+                <li class="sub-opt"><a href="#">Los Angeles</a></li>
+                <li class="sub-opt"><a href="#">New York</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-  <nav id="main-nav" class="navbar">
-    <div class="container-fluid">
-      <div id="nav-header" class="navbar-header">
-        <div class="mobile-cart"></div>
-        <a id="logo-box" href="#"><img src="../img/logo-box.png" alt=""></a>
-        <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active menu-opt"><a href="../index.html">Home</a></li>
-          <li role="presentation" class="menu-opt dropdownhov1">
-            <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
-            <ul class="sub-collapse1 collapse">
-              <li class="sub-opt"><a href="#">All Products</a></li>
-              <li class="sub-opt"><a href="#">Textiles</a></li>
-              <li class="sub-opt"><a href="#">Objects</a></li>
-              <li class="sub-opt"><a href="#">Wall Decor</a></li>
-            </ul>
-          </li>
-          <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
-          <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
-          <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
-            <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
-            <ul class="sub-collapse2 collapse">
-              <li class="sub-opt"><a href="#">Los Angeles</a></li>
-              <li class="sub-opt"><a href="#">New York</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <div class="products-header">
     <div class="content-wrapper">
       <h2 class="clearfix">ALL</h2>
       <div class="sort clearfix">
-        <label for="sortBy">SORT:&nbsp; </label>
+        <label for="sortBy">Categories:&nbsp; </label>
         <select  id="sortBy" class="sortBy" name="sortBy">
-          <option class="sortOpt" value="manual" selected>Featured</option>
-          <option value="best-selling">Best Selling</option>
-          <option value="title-ascending">Alphabetically, A-Z</option>
-          <option value="title-descending">Alphabetically, Z-A</option>
-          <option value="price-ascending">Price, low to high</option>
-          <option value="price-descending">Price, high to low</option>
-          <option value="created-ascending">Date, new to old</option>
-          <option value="created-descending">Date, old to new</option>
+          <option class="sortOpt" value="antiques" selected>Antiques</option>
+          <option class="sortOpt" value="lucca-studios">Lucca Studios Designs</option>
+          <option class="sortOpt" value="limited-editions">Limited Editions</option>
         </select>
       </div>
     </div>
   </div>
   <div class="products">
     <div class="content-wrapper">
-      <div class="row">
-        <div class="col-sm-3 sort-menu">
-          <h4>all locations</h4>
-          <div class="collection-info">
-            <a href="#"><i class="checkbox"></i>New York</a><span class="collection-count">(8)</span>
+      <div class="row product-row">
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-1.jpg" alt="" class="product-image">
+          <p class="product-title">Tray</p>
+          <div class="product-info">
+            <p class="product-title">Tray</p>
+            <p class="product-price">$1200</p>
           </div>
-          <div class="collection-info">
-            <a href="#"><i class="checkbox"></i>Los Angeles</a><span class="collection-count">(5)</span>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-2.jpg" alt="" class="product-image">
+          <p class="product-title">Antique Object</p>
+          <div class="product-info">
+            <p class="product-title">Antique Object</p>
+            <p class="product-price">$1200</p>
           </div>
-        </div>
-        <div class="col-sm-9 product-display">
-          <div class="row product-row">
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-1.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Tray</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-2.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Antique Object</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-3.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Antique Clay Vase</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-4.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Contemporary Abstract Painting</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-3.jpg" alt="" class="product-image">
+          <p class="product-title">Antique Clay Vase</p>
+          <div class="product-info">
+            <p class="product-title">Antique Clay Vase</p>
+            <p class="product-price">$1200</p>
           </div>
-          <div class="row product-row">
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-5.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Antique Dresser</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-6.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">mid-century pottery</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-7.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Custom Design Leather Chair</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
-            <a class="col-sm-3 product-card" href="./product-detail">
-              <img src="../img/products/product-8.jpg" alt="" class="product-image">
-              <div class="product-info">
-                <p class="product-title">Coffee Table</p>
-                <p class="product-price">$1200</p>
-              </div>
-            </a>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-4.jpg" alt="" class="product-image">
+          <p class="product-title">Contemporary Abstract Painting</p>
+          <div class="product-info">
+            <p class="product-title">Contemporary Abstract Painting</p>
+            <p class="product-price">$1200</p>
           </div>
-          <div class="product-pagination">
-            <div class="btn-group pagination-buttons" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-secondary disabled"><</button>
-              <button type="button" class="btn btn-secondary">1</button>
-              <button type="button" class="btn btn-secondary">2</button>
-              <button type="button" class="btn btn-secondary">3</button>
-              <button type="button" class="btn btn-secondary">...</button>
-              <button type="button" class="btn btn-secondary">7</button>
-              <button type="button" class="btn btn-secondary">></button>
-            </div>
+        </a>
+      </div>
+      <div class="row product-row">
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-5.jpg" alt="" class="product-image">
+          <p class="product-title">Antique Dresser</p>
+          <div class="product-info">
+            <p class="product-title">Antique Dresser</p>
+            <p class="product-price">$1200</p>
           </div>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-6.jpg" alt="" class="product-image">
+          <p class="product-title">mid-century pottery</p>
+          <div class="product-info">
+            <p class="product-title">mid-century pottery</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-7.jpg" alt="" class="product-image">
+          <p class="product-title">Custom Design Leather Chair</p>
+          <div class="product-info">
+            <p class="product-title">Custom Design Leather Chair</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+        <a class="col-sm-3 product-card" href="./product-detail">
+          <img src="../img/products/product-8.jpg" alt="" class="product-image">
+          <p class="product-title">Coffee Table</p>
+          <div class="product-info">
+            <p class="product-title">Coffee Table</p>
+            <p class="product-price">$1200</p>
+          </div>
+        </a>
+      </div>
+      <div class="product-pagination">
+        <div class="btn-group pagination-buttons" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary disabled"><</button>
+          <button type="button" class="btn btn-secondary">1</button>
+          <button type="button" class="btn btn-secondary">2</button>
+          <button type="button" class="btn btn-secondary">3</button>
+          <button type="button" class="btn btn-secondary">...</button>
+          <button type="button" class="btn btn-secondary">7</button>
+          <button type="button" class="btn btn-secondary">></button>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer">
-    <div class="content-wrapper">
-      <div class="footer-support">
+</div>
+<div class="footer">
+  <div class="wrapper">
+    <div class="row">
+      <div class="footer-support col-sm-6">
         <p>SUPPORT</p>
         <ul>
-          <li><a href="./returns">RETURNS POLICY</a></li>
-          <li><a href="./terms">DISCLOSURE</a></li>
+          <li><a href="./disclosure">DISCLOSURE</a></li>
           <li><a href="./contact">CONTACT</a></li>
           <li><a href="./media">MEDIA</a></li>
+          <li><a href="./terms">TERMS</a></li>
         </ul>
       </div>
-      <div class="footer-about">
-        <p>ABOUT LUCCA ANTIQUES</p>
-        <p>Lucca Antiques showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
+      <div class="footer-about col-sm-6">
+        <p>ABOUT LUCCA Home</p>
+        <p>Lucca Home showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
         <a href="#">More ></a>
       </div>
-      <div class="copyright clearfix">
-        <h5>&copy LUCCA HOME 2017</h5>
-      </div>
-      <div class="insta-icon">
-
-      </div>
+    </div>
+    <div class="copyright clearfix">
+      <h5>&copy LUCCA HOME 2017</h5>
+    </div>
+    <div class="insta-icon">
     </div>
   </div>
+</div>
 </body>
 </html>

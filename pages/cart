@@ -22,76 +22,84 @@
 </head>
 
 <body>
-  <div class="info-bar">
-    <div class="wrapper">
-      <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user white' ></span>
-      </div>
-      <div class="info-bar-search-wrapper">
-        <div class="info-bar-search">
-          <form class="search" action="/search" method="get" role="search">
-            <input type="search-bar" id="search-input" name="q" type="search">
-            <button type="submit" id="search-btn" class="glyphicon glyphicon-search"></button>
-          </form>
+  <div class="header-fixed">
+    <div class="info-bar">
+      <div class="wrapper">
+        <!-- <div class="info-bar-account-link">
+          <span class='glyphicon glyphicon-user white' ></span>
+        </div> -->
+        <div class="info-bar-search-wrapper">
+          <div class="info-bar-search">
+            <form class="search" action="/search" method="get" role="search">
+              <button type="submit" id="search-btn" class="search"></button>
+              <input type="search-bar" id="search-input" name="q" type="search">
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    <nav id="main-nav" class="navbar">
+      <div class="container-fluid">
+        <div id="nav-header" class="navbar-header">
+          <div class="mobile-cart"></div>
+          <a id="logo-box" href="../index.html"><img src="../img/logo-box.png" alt=""></a>
+          <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active menu-opt"><a href="../index.html">Home</a></li>
+            <li role="presentation" class="menu-opt dropdownhov1">
+              <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
+              <ul class="sub-collapse1 collapse">
+                <li class="sub-opt"><a href="#">All Products</a></li>
+                <li class="sub-opt"><a href="#">Lighting</a></li>
+                <li class="sub-opt"><a href="#">Mirrors</a></li>
+                <li class="sub-opt"><a href="#">Seating</a></li>
+                <li class="sub-opt"><a href="#">Storage</a></li>
+                <li class="sub-opt"><a href="#">Tables</a></li>
+                <li class="sub-opt"><a href="#">Textiles</a></li>
+
+                <li class="sub-opt"><a href="#">Objects</a></li>
+                <li class="sub-opt"><a href="#">Wall Decor</a></li>
+              </ul>
+            </li>
+            <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
+            <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
+            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+              <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
+              <ul class="sub-collapse2 collapse">
+                <li class="sub-opt"><a href="#">Los Angeles</a></li>
+                <li class="sub-opt"><a href="#">New York</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-  <nav id="main-nav" class="navbar">
-    <div class="container-fluid">
-      <div id="nav-header" class="navbar-header">
-        <div class="mobile-cart"></div>
-        <a id="logo-box" href="#"><img src="../img/logo-box.png" alt=""></a>
-        <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active menu-opt"><a href="../index.html">Home</a></li>
-          <li role="presentation" class="menu-opt dropdownhov1">
-            <a href="../pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
-            <ul class="sub-collapse1 collapse">
-              <li class="sub-opt"><a href="#">All Products</a></li>
-              <li class="sub-opt"><a href="#">Textiles</a></li>
-              <li class="sub-opt"><a href="#">Objects</a></li>
-              <li class="sub-opt"><a href="#">Wall Decor</a></li>
-            </ul>
-          </li>
-          <li class="menu-opt" role="presentation"><a href="../pages/about">About</a></li>
-          <li class="menu-opt" role="presentation"><a href="../pages/contact">Contact</a></li>
-          <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
-            <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
-            <ul class="sub-collapse2 collapse">
-              <li class="sub-opt"><a href="#">Los Angeles</a></li>
-              <li class="sub-opt"><a href="#">New York</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-
   <div class="footer">
     <div class="wrapper">
-      <div class="footer-support">
-        <p>SUPPORT</p>
-        <ul>
-          <li><a href="./returns">RETURNS POLICY</a></li>
-          <li><a href="./terms">DISCLOSURE</a></li>
-          <li><a href="./contact">CONTACT</a></li>
-          <li><a href="./media">MEDIA</a></li>
-        </ul>
+      <div class="row">
+        <div class="footer-support col-sm-6">
+          <p>SUPPORT</p>
+          <ul>
+            <li><a href="./disclosure">DISCLOSURE</a></li>
+            <li><a href="./contact">CONTACT</a></li>
+            <li><a href="./media">MEDIA</a></li>
+            <li><a href="./terms">TERMS</a></li>
+          </ul>
+        </div>
+        <div class="footer-about col-sm-6">
+          <p>ABOUT LUCCA Home</p>
+          <p>Lucca Antiques showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
+          <a href="#">More ></a>
+        </div>
       </div>
-      <div class="footer-about">
-        <p>ABOUT LUCCA ANTIQUES</p>
-        <p>Lucca Antiques showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
-        <a href="#">More ></a>
-      </div>
+
       <div class="copyright clearfix">
         <h5>&copy LUCCA HOME 2017</h5>
       </div>

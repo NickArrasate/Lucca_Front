@@ -1,40 +1,54 @@
-//INFO BAR************
+
 .info-bar {
   width: 100%;
   height: 30px;
   background-color: $info-bar-bg;
   .wrapper{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: flex-end;
+    max-width: 95% !important;
     @media (max-width: $med-break), screen only and (max-device-width: 450px){
       padding: 0 2em;
     }
   }
-}
-.info-bar-account-link{
-  span{
-    color: $white-color;
-    width: 15px;
-    margin-left: $small-padding;
+  #search-input{
+    display: none;
+    border: none;
+    border-bottom: 1px solid $info-bar-search;
+    background: transparent;
   }
+  #search-btn {
+    border: none;
+    background-image: url('../img/new-search-icon.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin: auto 10px;
+    height: 20px;
+    width: 20px;
+  }
+  .insta-icon{
+    height: 20px;
+    width: 20px;
+    background-image: url('../img/IG-icon-light.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin: auto 10px;
+
+  }
+
 }
+
 .info-bar-search-wrapper{
-  float: right;
+  position: absolute;
+  right:0;
   margin-right: $small-padding;
 }
-#search-input{
-  border: none;
-  border-bottom: 1px solid $info-bar-search;
-  background: transparent;
-}
-#search-btn {
-  border: none;
-  background: none;
-  color: $white-color;
-  height: 30px;
-  width: 30px;
-}
+
 // Default Navigation Properties for smallest views***************************
 #main-nav{
   border: none;
@@ -42,20 +56,21 @@
   border-radius: 0px;
   margin: 0 auto;
   padding: 0;
-  height: 230px;
+  height: 130px;
 }
 .container-fluid{
-  height: 100% !important;
+  height: auto !important;
   margin: 0 auto;
   padding: 0 !important;
 }
 #nav-header{
   margin: 0 auto;
   padding: 0;
-  height: 100% !important;
+  height: 129px;
   width: 100% ;
 }
 .mobile-cart{
+  display: none;
   margin: auto 0;
   height: 40px;
   width: 40px;
@@ -71,10 +86,10 @@
 #logo-box{
   position: absolute;
   top: 0;
-  right: 0;
+  right: auto;
   bottom: 0;
-  left: 0;
-  margin: auto;
+  left: 2em;
+  margin: 15px auto;
   padding-right: 0;
   height: 104px;
   width: 250px;
@@ -91,8 +106,8 @@
   bottom: 0;
   right: 2em;
   padding: 0 !important;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   margin: auto 0;
   display: flex;
   flex-direction: column;
@@ -126,7 +141,7 @@
   background: white !important;
   position: absolute;
   top: 12.5px;
-  left: 30%;
+  left: 40%;
 }
 .sub-menu:focus{
   outline: none;
@@ -136,7 +151,7 @@
 }
 .sub-collapse1, .sub-collapse2{
   height: auto;
-  width: 100%;
+  width: 250px !important;
   text-decoration: none;
   list-style: none;
   list-style-type: none;
@@ -153,7 +168,7 @@
   height: 30px;
 }
 .sub-opt>a:hover{
-  text-decoration: none;
+  // text-decoration: none;
 }
 .navbar-nav .active{
   color: $dark-font-color !important;
@@ -178,6 +193,12 @@
 
 //Above First Break****************************************************
 @media only screen and (min-width: $small-break), only screen and (max-device-width: 450px){
+  #main-nav{
+    height: 170px;
+  }
+  #nav-header{
+    height: 169px;
+  }
   #nav-tog{
     display: none;
   }
@@ -185,6 +206,7 @@
     display: none;
   }
   #logo-box{
+    top: -10;
     right: 0;
     left: 0;
     img{
@@ -195,7 +217,7 @@
   #myNavbar{
     height: auto !important;
     width: 100% !important;
-    margin: auto;
+    margin: 0;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -205,7 +227,6 @@
     margin: 0;
     background-color: white;
     border: none;
-
   }
   .sub-collapse1, .sub-collapse2{
     display: none;
@@ -257,9 +278,16 @@
     height: auto;
     max-width: 1100px;
   }
+  #main-nav{
+    height: 130px;
+  }
+  #nav-header{
+    height: 129px;
+  }
   #logo-box{
     right: auto;
     left: $small-padding;
+    margin: auto;
     img{
       height: 104px;
       width: 250px;
@@ -268,8 +296,7 @@
   #myNavbar{
     height: 100% !important;
     width: auto !important;
-    left: auto;
-    right: $small-padding;
+    right: 0;
     margin: auto;
     align-items: center;
     justify-content: flex-end;
@@ -284,9 +311,7 @@
   .menu-opt{
     display: flex !important;
     align-items: center;
-
   }
-
 }
 // Largest Break******************************************
 @media screen and (min-width: $large-break){
@@ -299,13 +324,33 @@
   #logo-box{
     right: auto;
     left: $large-padding;
-    img{
-      height: 125px;
-      width: 300px;
-    }
+    // img{
+    //   height: 125px;
+    //   width: 300px;
+    // }
   }
   #myNavbar{
     left: auto;
     right: $large-padding;
   }
+}
+.header-fixed.smaller{
+  height: 100px;
+}
+#logo-box.smaller{
+  height: 50px;
+  width: 125px;
+  top: 0;
+  margin: 0;
+  overflow: hidden;
+}
+#myNavbar.smaller{
+  height: 100px !important;
+  top: 0;
+  margin:0;
+}
+#nav-header.smaller{
+  height: 100px !important;
+  top: 0;
+  margin:0;
 }

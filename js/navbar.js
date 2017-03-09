@@ -8,4 +8,5 @@ $(document).ready(function(){
         return
       }
   }).resize(); // trigger resize event initially
+
 })

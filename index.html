@@ -17,87 +17,85 @@
   <![endif]-->
 </head>
 <body>
-  <div class="info-bar">
-    <div class="wrapper">
-      <div class="info-bar-account-link">
-        <span class='glyphicon glyphicon-user white' ></span>
-      </div>
-      <div class="info-bar-search-wrapper">
-        <div class="info-bar-search">
-          <form class="search" action="/search" method="get" role="search">
-            <input type="search-bar" id="search-input" name="q" type="search">
-            <button type="submit" id="search-btn" class="glyphicon glyphicon-search"></button>
-          </form>
+  <div class="header-fixed">
+    <div class="info-bar">
+      <div class="wrapper">
+          <div class="info-bar-search">
+            <form class="search" action="/search" method="get" role="search">
+              <button type="submit" id="search-btn" class="search"></button>
+              <input type="search-bar" id="search-input" name="q" type="search">
+            </form>
+          </div>
+        <div class="insta-icon">
         </div>
       </div>
     </div>
+    <nav id="main-nav" class="navbar">
+      <div class="container-fluid">
+        <div id="nav-header" class="navbar-header">
+          <div class="mobile-cart"></div>
+          <a id="logo-box" href="#"><img src="./img/logo-box.png" alt=""></a>
+          <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active menu-opt"><a href="#">Home</a></li>
+            <li role="presentation" class="menu-opt dropdownhov1">
+              <a href="./pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
+              <ul class="sub-collapse1 collapse">
+                <li class="sub-opt"><a href="#">All Products</a></li>
+                <li class="sub-opt"><a href="#">Lighting</a></li>
+                <li class="sub-opt"><a href="#">Mirrors</a></li>
+                <li class="sub-opt"><a href="#">Seating</a></li>
+                <li class="sub-opt"><a href="#">Storage</a></li>
+                <li class="sub-opt"><a href="#">Tables</a></li>
+                <li class="sub-opt"><a href="#">Textiles</a></li>
+                <li class="sub-opt"><a href="#">Objects</a></li>
+                <li class="sub-opt"><a href="#">Wall Decor</a></li>
+              </ul>
+            </li>
+            <li class="menu-opt" role="presentation"><a href="./pages/about">About</a></li>
+            <li class="menu-opt" role="presentation"><a href="./pages/contact">Contact</a></li>
+            <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
+              <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
+              <ul class="sub-collapse2 collapse">
+                <li class="sub-opt"><a href="#">Los Angeles</a></li>
+                <li class="sub-opt"><a href="#">New York</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
-  <nav id="main-nav" class="navbar">
-    <div class="container-fluid">
-      <div id="nav-header" class="navbar-header">
-        <div class="mobile-cart"></div>
-        <a id="logo-box" href="#"><img src="./img/logo-box.png" alt=""></a>
-        <button id='nav-tog' type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active menu-opt"><a href="#">Home</a></li>
-          <li role="presentation" class="menu-opt dropdownhov1">
-            <a href="./pages/products">Products</a><button data-toggle='collapse' data-target='.sub-collapse1' class='sub-menu'>+</button>
-            <ul class="sub-collapse1 collapse">
-              <li class="sub-opt"><a href="#">All Products</a></li>
-              <li class="sub-opt"><a href="#">Textiles</a></li>
-              <li class="sub-opt"><a href="#">Objects</a></li>
-              <li class="sub-opt"><a href="#">Wall Decor</a></li>
-            </ul>
-          </li>
-          <li class="menu-opt" role="presentation"><a href="./pages/about">About</a></li>
-          <li class="menu-opt" role="presentation"><a href="./pages/contact">Contact</a></li>
-          <li role="presentation" class="dropdown2 menu-opt dropdownhov2">
-            <a href="#">Locations</a><button data-toggle='collapse' data-target='.sub-collapse2' class='sub-menu'>+</button>
-            <ul class="sub-collapse2 collapse">
-              <li class="sub-opt"><a href="#">Los Angeles</a></li>
-              <li class="sub-opt"><a href="#">New York</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   <div class="main-content" role='main'>
     <div class="row">
       <div class="hero-content row">
-        <div class="col-md-12">
-          <div class="carousel slide" id="homeCarousel" data-ride='carousel' data-intercal='100000'>
+
+          <div class="carousel slide" id="homeCarousel" data-ride='carousel' data-interval='100000'>
             <div class="carousel-inner">
-              <!-- <div class="item active">
-                <div class="homeSlide" style="background-image: url('./img/fullsizerender-dark.jpg')"></div>
-              </div> -->
               <div class="item active">
-                <img class="homeSlide top" src="./img/lucca-image-4.jpg">
-                <div class="content-text text-right col-md-12">
-                  <p class="light-text">European Antiques</p>
+                <img class="homeSlide bottom" src="./img/lucca-image-78.jpg">
+                <div class="content-text top right">
+                  <p class="light-text">A curated selection of European Antiques</p>
                 </div>
               </div>
               <div class="item">
                 <img class="homeSlide bottom" src="./img/lucca-image-1.jpg">
-                <div class="content-text text-center col-md-12">
+                <div class="content-text top right ">
                   <p class="light-text">Lucca Studio Designs</p>
                 </div>
               </div>
               <div class="item">
-                <img class="homeSlide bottom" src="./img/lucca-image-3.jpg">
-                <div class="content-text text-left col-md-12">
-                  <p class="light-text">A curated selection of found objects</p>
+                <img class="homeSlide bottom" src="./img/lucca-image-2.jpg">
+                <div class="content-text top right">
+                  <p class="light-text">and found objects</p>
                 </div>
               </div>
-              <!-- <div class="item">
-                <div class="homeSlide" style="background-image: url('./img/lucca-image-6.jpg')"></div>
-              </div> -->
             </div>
             <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left white" aria-hidden="true"></span>
@@ -109,45 +107,48 @@
             </a>
 
           </div>
-        </div>
+
       </div>
     </div>
   </div>
   <div class="row home-display">
-    <div class="col-sm-4">
-      <div class="home-image center" style="background-image: url('./img/lucca-mellencamp-1.jpg')"></div>
+    <div class="col-md-4">
+      <div class="home-image bottom right" style="background-image: url('./img/lucca-image-5.jpg')"></div>
     </div>
-    <div class="col-sm-4">
-      <div class="home-image bottom" style="background-image: url('./img/lucca-image-8.jpg')"></div>
+    <div class="col-md-4">
+      <div class="home-image bottom center" style="background-image: url('./img/lucca-image-8.jpg')"></div>
     </div>
-    <div class="col-sm-4">
-      <div class="home-image center" style="background-image: url('./img/lucca-mellencamp-2.jpg')"></div>
+    <div class="col-md-4">
+      <div class="home-image bottom righter" style="background-image: url('./img/lucca-image-80.jpg')"></div>
     </div>
   </div>
-  <div class="row home-display tall">
-    <div class="col-md-6">
+  <!-- <div class="row home-display tall">
+    <div class="col-sm-6">
       <div class="home-image right" style="background-image: url('./img/lucca-image-5.jpg')"></div>
     </div>
-    <div class="col-md-6">
-      <div class="home-image bottom" style="background-image: url('./img/lucca-image-7.jpg')"></div>
+    <div class="col-sm-6">
+      <div class="home-image bottom" style="background-image: url('./img/lucca-image-77.jpg')"></div>
     </div>
-  </div>
+  </div> -->
   <div class="footer">
     <div class="wrapper">
-      <div class="footer-support">
-        <p>SUPPORT</p>
-        <ul>
-          <li><a href="./pages/returns">RETURNS POLICY</a></li>
-          <li><a href="./pages/terms">DISCLOSURE</a></li>
-          <li><a href="./pages/contact">CONTACT</a></li>
-          <li><a href="./pages/media">MEDIA</a></li>
-        </ul>
+      <div class="row">
+        <div class="footer-support col-sm-6">
+          <p>SUPPORT</p>
+          <ul>
+            <li><a href="./pages/disclosure">DISCLOSURE</a></li>
+            <li><a href="./pages/contact">CONTACT</a></li>
+            <li><a href="./pages/media">MEDIA</a></li>
+            <li><a href="./pages/terms">TERMS</a></li>
+          </ul>
+        </div>
+        <div class="footer-about col-sm-6">
+          <p>ABOUT LUCCA Home</p>
+          <p>Lucca Home showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
+          <a href="#">More ></a>
+        </div>
       </div>
-      <div class="footer-about">
-        <p>ABOUT LUCCA Home</p>
-        <p>Lucca Antiques showcases owners' appreciation of fine antiques, architectural elements and their passion for creating their own designs from old materials and found objects.</p>
-        <a href="#">More ></a>
-      </div>
+
       <div class="copyright clearfix">
         <h5>&copy LUCCA HOME 2017</h5>
       </div>
@@ -156,6 +157,7 @@
       </div>
     </div>
   </div>
+  <!-- <script type="text/javascript" src='./js/classie.js'></script> -->
   <script type="text/javascript" src='./js/navbar.js'></script>
 </body>
 </html>
