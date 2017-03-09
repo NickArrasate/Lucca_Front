@@ -1,0 +1,113 @@
+/* note .s_product3 .wrapper  is the EXACT same css definition as line 74 .item-category in grid.css. this defintion should be in global */
+
+.width300 {width:300px;}
+
+.s_product3 .wrapper {
+	display:block;
+	margin-top: 25px;
+	overflow:hidden;
+}
+
+.product-written-details dt {
+display:block;
+width:120px;
+}
+
+.product-written-details dl dd dl dt {width:auto}
+
+.product-written-details dl dd dl {margin:0 0 5px 0}
+
+/*
+.product-written-details .halfWidth {width:45%}
+.product-written-details  .item-details .halfWidth dd {float:left;
+padding:3px;
+width:50px;}
+.product-written-details .floatLeft {float:left; clear:none}
+*/
+.purchase input {border:0; margin:12px 0 0;padding:5px; vertical-align:middle; text-align:center;}
+
+#product-images {list-style-type:none; margin:0; padding:0}
+
+/* .print and .breadcrumbs is helvetica */
+
+.s_product3 #item-purchase-form h4 {font-weight:bold; margin:5px 0; font-size:100%}
+
+.s_product3 h2 {color:#790100; font-size: 20px; margin:0 0 10px;}
+
+.s_product3 .breadcrumbs {float: left}
+
+	.breadcrumbs a, .print a {color:#968375; font-size: 12px;}
+	
+	.print a {text-decoration:underline}
+
+.s_product3 .print {float: right}
+
+.product-visuals{position:relative}
+.product-visuals, .product-written-details {margin:0 0 20px;}
+	
+	.product-visuals dl {margin:35px 0 0 0}
+	.product-visuals dl dd img {height:74px; width:74px; float:left; cursor:pointer;}
+	.product-visuals dl dd {border:2px solid #fff; float:left;height:78px;}
+	.product-visuals dl dd.active {border:2px solid #7C1E1C; height:78px;}
+		
+.product-written-details dt, .product-written-details dd {float:left}
+.product-written-details p {color:#534741; line-height:17px;}
+
+.product-written-details .top-details-wrapper {margin: 0}
+
+.product-written-details dl {
+	clear:both;
+	margin:0 0 15px;
+	overflow:hidden;
+}
+
+.product-written-details .item-details dl dd  {
+	float:left;
+	margin:0 0 0 5px;
+	text-align:left;
+	line-height: 18px;
+}
+
+.product-written-details ul {margin:0;padding:0;list-style-type:none}
+.product-written-details ul label {margin:0 10px 0 0}
+
+.product-written-details form {color:#534741;}
+
+	.product-written-details form ul li { /*float:left;*/ }
+	
+	.product-written-details form select  {font-size:11px}
+
+.product-written-details  .item-details {margin:20px 0 0}
+
+	.product-written-details .item-details dt span {
+		background:#E3E4E6 none repeat scroll 0 0;
+		line-height:20px;
+		padding:5px 5px 3px;
+		text-indent:10px;
+		width:auto;
+	}
+
+	.product-written-details  .item-price {margin:0 0 17px; font-weight:bold; color: #000}
+	
+
+	.product-written-details form dl dd {overflow:hidden; float: none; margin:0 0 12px;}
+
+.category-results-divider-bottom {
+	background:url(../img/item-category-divider.png) repeat-x;
+	height:2px;
+}
+
+.product-visuals #zoom-image {
+	width: 100%;
+}
+
+#modal_gallery .modal-header{
+    border-bottom:none
+}
+#modal_gallery .modal-footer{
+    border-top:none
+}
+#zoom-button{
+    margin-top:10px;
+    color:#666;
+}

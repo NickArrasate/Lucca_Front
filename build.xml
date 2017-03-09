@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Lucca Site" default="main">
+
+  <property file="default.properties" />
+
+  <taskdef name="dbautoupdate" classname="${dbautoupdate.basedir}/phing.tasks.my.dbautoupdate.DbAutoUpdateTask" />
+  <taskdef name="dbcheck" classname="${dbautoupdate.basedir}/phing.tasks.my.dbcheck.DbCheckTask" />
+  <taskdef name="myexec" classname="${dbautoupdate.basedir}/phing.tasks.my.helpers.MyExecTask" />
+  
+  <target name="create">
+    <dbautoupdate method="create"/>
+  </target>
+  
+  <target name="init">
+    <dbautoupdate method="init"/>
+  </target>
+
+  <target name="print">
+    <dbautoupdate method="print"/>
+  </target>
+
+  <target name="apply">
+    <dbautoupdate method="apply"/>
+  </target>
+
+  <target name="mark">
+    <dbautoupdate method="mark"/>
+  </target>
+
+  <target name="check_dbs">
+    <dbautoupdate method="check_dbs"/>
+  </target>
+  
+</project>

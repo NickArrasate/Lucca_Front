@@ -1,0 +1,218 @@
+<script type="text/javascript">
+window.print();
+</script>
+<?php
+//debug($item_details);
+$this->pageTitle = "Lucca Antiques";
+?>
+<div class="s_product3">
+
+	<div class="wrapper">
+	
+		<?php foreach($item_details as $item_detail) { ?>
+	
+		<div class="product-visuals">
+		
+			<?php $settings = array('w'=>350,'crop'=>1); ?>
+			<img src="<?=$resizeimage->resize(WWW_ROOT . '/files/'. $primary_image, $settings)?>" />	
+			
+		</div>
+		<div class="product-written-details">
+
+		<h2><?php echo $item_detail['Item']['name'] ?></h2>
+		<p><?php echo $item_detail['Item']['description'] ?></p>
+		
+		<?php
+				$variation_count = sizeof($item_detail['ItemVariation']);
+
+				switch ($item_category_id) {
+					case 1:
+						// ANTIQUE **************************************************************************************8
+						// is an antique dont bother listing a qty. -- add a form attribute that's hidden instead
+						$quantity = '<dl>';
+						if((int)$item_detail['ItemVariation'][0]['quantity'] > 1){
+							$quantity .= '<dt>Quantity available: </dt><dd>' . $item_detail['ItemVariation'][0]['quantity'];
+						}elseif((int)$item_detail['ItemVariation'][0]['quantity'] == 1)  {
+							$quantity .= '';
+						} else {
+							$quantity .= '';
+						}
+						$quantity .= '</dl>';
+						$price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
+						// there are no variations for antiques, but i still need the id of the main variation
+						$variation = '';
+						break;
+					case 2:
+						// LUCCA STUDIO *************************************************************
+						// is a lucca studio make a select list of 10
+						$quantity = '';
+						// the price for the main variation
+						$price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
+						$variation = '<dl>';
+						if($variation_count > 1) {
+							// if there are variations, list the ids
+							$variation .= '<dt><span>Variations</span></dt><dd>';
+							foreach($item_detail['ItemVariation'] as $v) {
+								$variation .= $v['name'] .' ($' . $fieldformatting->price_formatting($v['price']) .')<br/>';
+							}
+						}
+						$variation .= '</dd></dl>';
+						break;
+					case 3:
+						// FOUND ITEM **********************************************
+						$quantity = '<dl>';
+						if((int)$item_detail['ItemVariation'][0]['quantity'] > 1){
+							$quantity .= '<dt><dd>' . $item_detail['ItemVariation'][0]['quantity'] .' Available</dd>';
+						}elseif((int)$item_detail['ItemVariation'][0]['quantity'] == 1)  {
+							$quantity .= '<dd><strong>1 Available</strong></dd>';
+						} else {
+							$quantity .= '';
+						}
+						$quantity .= '</dl>';
+						$price = '$' . $fieldformatting->price_formatting($item_detail['ItemVariation'][0]['price']);
+						$variation = '';
+						// for found items,  there are NO variations except for the main variation
+						$variation = '';
+						
+						break;
+				}
+				
+				if(isset($options)) {
+					$option_count = sizeof($options);
+					$option = '';
+					if($option_count > 0) {
+					$option .= '<dl><dt><span>Addons:</span></dt><dd>';
+					foreach($options as $a) {
+						$option .= $a['Option']['name'] . ' +($' . $fieldformatting->price_formatting($a['Option']['price']) .') <br/>';
+					}
+					$option .= '</dd></dl>';
+				}
+			} 
+			?>
+			
+			<dl>
+				<dd class="item-price"><?php if(isset($price)) {echo 'Price: ' . $price; } ?></dd>
+				
+				<?php if($item_detail['Item']['status'] !== 'Sold') { ?>
+				<?php } else { ?>
+					<dd class="sold"><span class="button gray-background red-text-border">SOLD</span></dd>
+				<?php } ?>
+			</dl>
+		</form>
+		
+		<div class="item-category-border "></div>
+		
+		<div class="item-details">
+			<dl>
+				<dt><span>Condition<span></dt>
+				<dd class="width300"><?php echo $item_detail['Item']['condition'] ?></dd>
+			</dl>
+			
+			<dl>
+			<dt><span>Measurements</span></dt>
+			<dd>
+			<?php if ($item_detail['Item']['height'] !== null && $item_detail['Item']['height'] !== '') { ?>
+				<strong>Height: </strong>
+				
+				<?php
+				echo $item_detail['Item']['height'] . $item_detail['Item']['units'];
+				?>
+				
+			<br/>
+			<?php } ?>
+			<?php if ($item_detail['Item']['height_2'] !== null && $item_detail['Item']['height_2'] !== '') { ?>
+			
+				<strong>Height 2: </strong>
+				<?php
+				echo $item_detail['Item']['height_2'] . $item_detail['Item']['units'];
+				?>
+			<br/>
+			<?php } ?>
+			
+			<?php if ($item_detail['Item']['width'] != null && $item_detail['Item']['width'] !== '') { ?>
+				<strong>Width: </strong>
+					<?php
+					echo $item_detail['Item']['width'] . $item_detail['Item']['units'];
+					?>
+			<br/>
+			<?php } ?>
+			
+			<?php if ($item_detail['Item']['depth'] != null && $item_detail['Item']['depth'] !== '') { ?>
+
+				<strong>Depth: </strong>
+				<?php
+				echo $item_detail['Item']['depth'] . $item_detail['Item']['units'];
+				?>
+			<br/>
+			<?php } ?>
+			
+			<?php if ($item_detail['Item']['diameter'] != null && $item_detail['Item']['diameter'] !== '') { ?>
+
+				<strong>Diameter: </strong>
+				<?php
+				echo $item_detail['Item']['diameter'] . $item_detail['Item']['units'];
+				?>
+			<br/>
+			<?php } ?>
+			</dd>
+			</dl>
+			
+			<dl>
+				<dt><span>Specifications</span></dt>
+				<dd class="width300">
+					<?php if ($item_detail['Item']['materials_and_techniques'] !== null && $item_detail['Item']['materials_and_techniques'] !== '') { ?>
+						<strong>Materials/Techniques: </strong>
+							<?php
+							echo $item_detail['Item']['materials_and_techniques'];
+							?>
+					<br/>
+					<?php } ?>
+					
+					<?php if ($item_detail['Item']['country_of_origin'] !== null && $item_detail['Item']['country_of_origin'] !== '') { ?>
+						<strong>Origin: </strong>
+							<?php
+							echo $item_detail['Item']['country_of_origin'];
+							?>
+					<br/>
+					<?php } ?>
+					
+					<?php if ($item_detail['Item']['creator'] !== null && $item_detail['Item']['creator'] !== '') { ?>
+						<strong>Creator:</strong>
+							<?php
+							echo $item_detail['Item']['creator'];
+							?>
+					<br/>
+					<?php } ?>
+					
+					<?php if ($item_detail['Item']['period'] !== null && $item_detail['Item']['period'] !== '') { ?>
+
+						<strong>Period:</strong>
+
+							<?php
+							echo $item_detail['Item']['period'];
+							?>
+					<br/>
+
+					<?php } ?>
+				</dd>
+			</dl>
+			
+			
+			<dl>
+				<dt><span>Contact</span></dt>
+				<dd class="width300">
+					<?php 
+					// modify the data, replace new lines with code. or do this when displaying the data
+					$contact = preg_split('/\n/' ,$item_detail['Item']['contact'] );
+					foreach($contact as $c) {
+						$tagged_c[] = '<li>' . $c . '</li>';
+					}
+					$item_detail['Item']['contact'] = '<ul>' . implode($tagged_c) . '</ul>';
+					echo $item_detail['Item']['contact'];
+					?>
+				</dd>
+			</dl>
+		</div>
+		</div>
+		<?php } ?>
+	

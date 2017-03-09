@@ -1,0 +1,72 @@
+body{
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+#PrintSheetContent{
+	clear: both;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#BigImageBox{
+	padding: 20px 0px;
+	text-align: center;
+}
+h2.ProductTitle{
+	float: left;
+	font-weight: lighter;
+	color:#000000; 
+	font-size: 18px; 
+	margin:0 0 0px;
+	padding: 20px 0px 0px 0px;
+	}
+h3.Price{
+	margin: 0px;
+	padding: 0px;
+}
+h3.details{
+	clear: both;
+	margin: 0px;
+	padding:0px 0px 0px 0px;
+	font-weight: lighter;
+	font-size: 14px;
+}
+#ContentDetailsBox{
+	clear: both;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	padding: 20px 0px 10px 0px;
+}
+#ContentDetailsItem{
+	clear: both;
+	padding-bottom: 15px;
+}
+#ContentDetailsItem h5{
+	float: left;
+	width: 200px;
+}
+h5.NoPad{
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+	font-weight: bold;
+}
+h6{
+	float: right;
+	width: 700px;
+}
+h6.DetailTitle{
+	margin: 0px;
+	padding: 0px;
+	font-size: 16px;
+	font-style: italic;
+	font-weight: lighter;
+}
+span.OfNote{
+	font-style: normal;
+	font-size: 20px;
+}
+#ThumbBox{
+	clear: both;
+	padding: 25px 0px 0px 0px;
+}

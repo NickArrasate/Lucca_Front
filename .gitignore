@@ -1,0 +1,6 @@
+*.swp
+*.swo
+/nbproject/private/
+_notes
+.idea
+.DS_Store

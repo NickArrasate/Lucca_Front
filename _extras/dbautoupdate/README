@@ -1,0 +1,147 @@
+-----------------------------------------
+ВВЕДЕНИЕ
+-----------------------------------------
+
+DbAutoUpdate создан для автоматизации применения апдейтов к БД, которые хранятся
+в  виде sql скриптов ("дельта скрипты").
+Апдейты могу применяться сразу к нескольким типам БД. Имя дельта файла содержит перечень типов БД,
+к которым применяется данный sql.
+Результаты обработки скриптов записываются в таблицу логов (changelog) каждой из БД.
+На данный момент DbAutoUpdate работает с MySQL базами данных.
+
+-----------------------------------------
+DELTA СКРИПТЫ
+-----------------------------------------
+
+Формат имени дельта скриптов:
+
+# уникальный номер
+# точка
+# список типов БД через минус, к которым нужно применить дельта файл, напр., live, live-edit, live-dict_edit-edit
+# точка
+# описание (любое)
+# точка
+# .sql или .undo.sql
+
+Например, 001.live.initial_structure.sql, 001.live.initial_structure.undo.sql
+Дельта и ее undo дельта должны иметь один номер.
+
+-----------------------------------------
+ИСПОЛЬЗОВАНИЕ
+-----------------------------------------
+Запускается из командной строки:
+  phing -f path/to/dbautoupdate/build.xml -Dproperty1=value1 -Dproperty2=value2 <...> <target_name>
+
+Если build.xml находится в той же директории, то его можно не указывать.
+Можно передавать произвольное кол-во аргументов (-Dproperty1=value1).
+
+Поддерживаются следующие методы (<target_name>):
+create
+    -- создает все заданные БД, кроме первичной
+init
+    -- создает во всех заданных БД таблицу 'changelog'
+apply
+    -- применяет дельта скрипты
+print
+    -- печатает что должно быть сделано, не выполняя реальных действий
+mark
+    -- помечает дельта скрипты так как будто бы они были применены, не выполняя реальных действий
+check_dbs
+    -- проверяет структуру БД
+
+-----------------------------------------
+НАСТРОЙКИ
+-----------------------------------------
+
+DbAutoUpdate это таск Phing, таким образом он настраивается через конфигурационный файл.
+
+Задать св-во можно следующими способами:
+ (1) из командной строки, напр. -Dtype=admin init
+ (2) в файле св-в, имя которого указано в св-ве -Dfile.properties=filename
+ (3) в файле дефолтных св-в: /extras/dbautoupdate/default.properties
+
+
+-- список типов БД, через запятую, для которых применяются дельты
+dbautoupdate.db_types = live,edit
+
+-- скул запрос, возвращающий имя и хост баз данных каждого из типов БД. (БД каждого типа может быть много)
+dbautoupdate.dsn.live.query = SELECT 'rzd' db_name, '127.0.0.1' host
+dbautoupdate.dsn.edit.query = SELECT 'rzd_edit' db_name, '127.0.0.1' host
+  
+-- элементы DSN первичной БД. В первичной БД заданы доступы для всех типов БД
+dbautoupdate.dsn.db_driver.value = mysql
+dbautoupdate.dsn.host.value = 127.0.0.1
+dbautoupdate.dsn.port.value = 3306
+dbautoupdate.dsn.username.value = root
+dbautoupdate.dsn.password.value = 123
+dbautoupdate.dsn.db_name.value = rzd
+
+-- игнорировать дельты с номером меньше указанного
+dbautoupdate.apply.first = 61
+
+-- игнорировать дельты с номером больше указанного
+dbautoupdate.apply.last = 63
+
+-- игнорировать дельты до и после указанного
+dbautoupdate.apply.single = 69
+
+-- применять дельты только к базам заданного типа
+dbautoupdate.apply.db_types = live
+
+-- применить/не применять обратные дельты
+dbautoupdate.undo = true
+
+
+
+-- путь где хранятся дельты
+dbautoupdate.dir = ../../_sql/deltas/
+
+-- директория где лежит скул для таблицы changelog
+dbautoupdate.dir.init = ${dbautoupdate.basedir}
+
+Свойства для метода db_check_dbs проверки структуры БД:
+Для проверки структуры баз выбранных типов нужно задать параметры DSN для канонических баз данных этого типа,
+напр., для проверки структуры баз типа admin нужно задать dsn для канонической админской БД подобным образом:
+
+dbautoupdate.check_dbs.dsn.admin.db_driver.value = mysql
+dbautoupdate.check_dbs.dsn.admin.host.value = 127.0.0.1
+dbautoupdate.check_dbs.dsn.admin.port.value = 3306
+dbautoupdate.check_dbs.dsn.admin.username.value = qgo
+dbautoupdate.check_dbs.dsn.admin.password.value = 123
+dbautoupdate.check_dbs.dsn.admin.db_name.value = qtest_admin
+
+
+Для проверки данных нужно задать св-во в значение data:
+  dbautoupdate.check_dbs.compare_mode = data
+Если это св-во имеет  значение 'structure', то будут сравниватся только структуры БД.
+
+
+-----------------------------------------
+ПРИМЕРЫ
+-----------------------------------------
+Инициирует таблицу логов:
+  phing -f extras/dbautoupdate/build.xml init
+
+Печатает какие дельты должны быть применены:
+  phing -f extras/dbautoupdate/build.xml print
+
+Применяет дельту с номером 1:
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.apply.single=1 apply
+
+Применяет undo дельту с номером 1:
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.apply.single=1  -Ddbautoupdate.undo=true apply
+
+Помечает дельту 2 как примененную:
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.apply.single=2 mark
+
+Проверяет структуру БД (сравнивает с канонической):
+  phing -f extras/dbautoupdate/build.xml check_dbs
+
+Проверяет данные в БД (сравнивает с каноническими):
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.check_dbs.compare_mode=data check_dbs
+
+Применяет дельты начиная с первой:
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.apply.first=1 apply
+
+Применить все undo дельты начиная с первой (откатить все дельты с 1-й):
+  phing -f extras/dbautoupdate/build.xml -Ddbautoupdate.apply.first=1 -Ddbautoupdate.undo=true apply

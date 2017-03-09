@@ -1,0 +1,631 @@
+.orders h3.center {
+	font-size:19px;
+	font-style:italic;
+	font-weight:normal;
+	line-height:40px;
+	overflow:hidden;
+}
+.hidden{display:none}
+.product-images img, .item-photos img{border:1px solid #ccc}
+
+.grid dd.price {
+color:#343434;
+text-align:left;
+}
+.grid dd.end-info-block {
+margin:0 0 10px;
+}
+
+.general select {overflow:hidden}
+.general .actions {margin: 5px 0 0; }
+body .content .general .actions .button {width:100px; height: 20px; text-align:center; display: block; margin:5px 0 0;}
+body .content .general .button {margin:0;}
+.content .details a.button {
+display:block;
+line-height:18px;
+margin:10px 0 0 5px;
+max-width:100px;
+min-width:60px;
+padding:2px 0;
+text-align:center;
+}
+
+.underline {text-decoration: underline}
+.italic {font-style:italic}
+input, textarea, select {font-family:Helvetica, Arial, san-serif; font-size: 12px;}
+
+.underline { text-decoration:underline}
+.underline:hover {cursor:pointer}
+
+.order-detail .actions {
+margin:10px 0 0;
+text-align:left;
+width:100%;
+}
+
+.grid {min-height:450px}
+
+.summary .column dl dd dl dd, .column dl dd dl dt {float:left; text-align:left;}
+
+.float-right {float:right}
+
+.order-detail textarea, .products-in-order input, .order-detail .totals input, .order-detail  .shipping-method,
+.order-detail  .billing-and-shipping div div, .order-detail  .billing-and-shipping input {border:1px solid #ccc}
+.order-detail .actions {float:right }
+
+ .order-detail .billing-and-shipping input[type="text"]{width: 200px;}
+
+ .order-detail .billing-and-shipping input[type="checkbox"] {border:0}
+ 
+.products-in-order input, .order-detail .totals input {width:40px;}
+.products-in-order a {text-decoration: underline}
+
+.order-detail .totals {float:right; width:200px;overflow:hidden; clear:both;  text-align:right; line-height:18px}
+.order-detail .totals dt {float:left;width:100px;margin:0 10px 0 0; font-weight: bold;}
+
+.order-detail .billing-and-shipping {
+clear:both;
+overflow:hidden;
+width:100%;
+}
+
+.order-detail  .billing-and-shipping div {float: left; margin:0 20px 0 0}
+.order-detail  .shipping-method, .order-detail  .billing-and-shipping  div div {background-color:#E6E6E6; width:350px; padding:10px}
+.order-detail  .billing-and-shipping dt, .order-detail  .shipping-method dt{float:left; width:120px; font-style:italic;}
+.order-detail  .shipping-method dd, .order-detail  .shipping-method dt, .order-detail  .billing-and-shipping dd, .order-detail  .billing-and-shipping dt {line-height:24px}
+
+.products-in-order .qty, .products-in-order .amt {width:30px;}
+.products-in-order .price, .products-in-order  .amt {text-align:right}
+.products-in-order .sku, .products-in-order .name, .products-in-order .variation, .products-in-order .category { text-align: left}
+.products-in-order .name {width: 35%}
+
+.total {margin:0; float:right; clear:both; text-align:right; font-size:140%; font-weight:bold; border-top:1px solid #333; padding:5px 10px 5px 0;background-color: #DCDDDF}
+.total dt, .total dd {float:left; width:90px;}
+
+
+.orders .no, .orders .date, .orders .name {text-align:left}
+.orders .amount {text-align:right} 
+.orders .checkbox {width:50px;}
+.orders .stripe, .orders .stripe td, .orders .stripe th {border:1px solid #ccc; border-collapse:collapse}
+.orders .stripe td, .orders .stripe th {padding:5px 25px 5px 5px}
+.orders p {margin:10px 0; font-size:13px;}
+.orders .pagination {float: right}
+.orders .no a {text-decoration: underline}
+.orders table {width:910px;}
+
+body {
+	font-family: helvetica, Arial, sans-serif;
+	font-size: 75.6%;
+}
+.pagination div {float:left; margin: 0 10px 0 0}
+.pagination .disabled {display:none}
+.create-buttons {margin:10px 0 0}
+
+body .autofill {border-left:0}
+.autofill label {float:left;width:100px; font-weight:bold}
+.autofill textarea {font-family:Helvetica; font-size:12px; border:1px solid #ccc;padding:5px;margin:5px 0; min-height:110px;}
+
+body .breadcrumbs a, body .breadcrumbs {
+color:#4d4d4d;
+font-size:15px;
+font-weight:bold;
+margin:10px 0 0;
+}
+
+body .content .create-addon .button {margin:0}
+
+.email-item dt {float:left; width:110px; font-weight:bold}
+
+body  .floatRight {float: right}
+
+.notifications{ font-weight:bold; color:#802E34; font-size:16px; font-style:italic; margin:5px 0}
+
+body .header .logout {
+float:right;
+padding:10px;
+}
+
+body .header .logout  .button {vertical-align: middle}
+
+#image_upload dt {font-weight:bold; margin:10px 0;font-size:14px}
+
+.pagination .current {font-weight: bold}
+.create-variations {clear:both}
+
+.email-item .item-photos dd {float:left}
+.item-photos {overflow:hidden;clear:both; width:700px}
+
+#number_file_inputs input {border:1px solid #ccc}
+#number_file_inputs {width:430px;text-align:right}
+.button:hover {cursor: default}
+
+.email-item input, .email-item textarea {border:1px solid #ccc; font-family: Helvetica; font-size:12px;}
+.email-item input {vertical-align:top}
+.email-item input[type='checkbox'] {border:0; border-collapse: collapse}
+.email-item input[type='text'], .email-item textarea {width:500px}
+
+.white-background {background-color: #fefefe; border:1px solid #666}
+
+.button {font-size:14px; padding:5px 10px; border:1px solid #888}
+.button-small {font-size:12px; padding:2px 5px; border:1px solid #888}
+
+.header a img { border:0; margin: 0 60px 0 0}
+
+.grid .subheader .pagination {float:right}
+.grid .subheader .pagination dl dd {float:left; margin:0 10px 0 0}
+
+dd {margin: 0 0 0 5px}
+
+.product-details .column ul {margin:0;padding:0; list-style-type:none}
+
+
+.grid table dl {margin: 0 10px}
+.grid  table dl dd a{text-decoration: underline}
+.grid .actions dd:first-child {float:left}
+.grid .actions dd {text-align:right}
+.grid .actions {margin:0}
+.grid table dl dt {height:40px; margin:5px 0;}
+.grid table {border-collapse:collapse}
+.grid table tr{border-bottom:1px dotted #444}
+.grid table .last {border-bottom: 0}
+.grid a img {border:0}
+
+.edit-images .subheader {line-height:25px}
+.edit-images .summary p {line-height:16px;
+margin:5px 0;
+padding:0;}
+
+.column dl {margin:5px 0; overflow:hidden}
+
+
+.active {font-weight: bold;}
+
+#item_statuses dd {
+font-size:13px;
+line-height:22px;
+margin:10px 0;
+}
+a {text-decoration: none; color:#222}
+
+select {border:1px solid #9f9f9f; font-size:12px}
+
+#item_statuses a {color:#222; text-decoration: none}
+
+.subnavigation { background-color: #d4d5d6; font-size: 14px}
+.subnavigation a {display:block;margin:7px 5px 7px 0}
+
+
+dt a {font-weight:bold;}
+
+#add-fileupload, #delete-variation, #delete {text-decoration: underline; color: blue; cursor: pointer}
+#add-fileupload:hover, #delete-variation:hover, #delete:hover {text-decoration: none}
+
+.nav {font-size: 115%;margin: -10px 0 0}
+.nav dd  {float:left;}
+.nav a {color:#353535;
+font-weight:bold;
+margin:20px 0 0 10px;
+display:block;
+text-decoration:none;
+padding:10px;
+}
+.nav .active a {background-color:#4a4a4a; color:#efefef; text-decoration:none}
+
+.subnavigation .active {background-color:#802E34;color:#fefefe; display:block;padding:0 10px}
+.subnavigation .active a {color: #efefef}
+.subnavigation dd {margin: 0 10px 0 0}
+.subnavigation a {text-decoration:none; color:#858585; padding:0 0 0 10px}
+
+.header dd, .subnavigation dd {float:left}
+.header, .subnavigation {clear:both; overflow:hidden; margin:0;}
+.container {
+margin:25px auto;
+overflow:hidden;
+width:950px;
+}
+#item_statuses {float:left; width: 140px;}
+
+dl dd {margin:0}
+
+.header {
+	border-bottom:1px dotted #353535;
+}
+
+.required {text-align:right;float:right;margin: 0;}
+
+.details .actions dd {float:left}
+
+.details input, .details textarea , .details select {width:250px; border:1px solid #bdbdbd; font-family: Helvetica; font-size:12px}
+
+.details .item-detail-thumbs  dd{float:left; margin:0 5px}
+.details .item-detail-thumbs {margin: 0; overflow:hidden;}
+.details .short-input {float:left; margin:5px 0; width:150px}
+.details .short-input dd {margin: 0}
+.details .short-input input {
+width:100px;
+}
+
+.column {float: left; width:340px; padding-right:10px;}
+
+
+.instructions {font-weight:bold}
+.item-detail-thumbs dt {font-weight:bold;
+margin:10px 0;
+display:block;
+}
+.details .item-detail-thumbs dt a {font-weight:normal}
+.subheader {overflow:hidden; border-bottom:1px dotted #575757; margin:0;}
+.subheader dd { margin: 0}
+.subheader dd select, .subheader dd h3 {float: left; line-height: 35px;}
+
+.add-variations dt {float:left;
+font-weight:bold;
+width:100px;}
+.existing-variations .name {width:300px}
+.existing-variations .price {width:60px}
+.edit-variations input {border:1px solid #bdbdbd}
+.add-variations dl {margin:5px 0;}
+
+.add-variations {margin:0 0 20px 0}
+
+.create-addon dt {font-weight: bold} 
+
+.details .column dd label, .summary .column dt label  {
+float:left;
+width:150px;
+font-weight:bold;
+clear: both
+}
+
+.summary .column dd {overflow:hidden; margin: 0 0 0 5px; line-height:17px;}
+
+label.status {font-weight: bold}
+
+.edit-images .summary, .edit-variations .summary {width:508px; margin:10px 0;padding:0 10px 0 10px; border:1px solid #bbb}
+.edit-images .summary  dt , .edit-variations .summary  dt {font-weight: bold;}
+.edit-images .summary dt, .edit-images .summary dd , .edit-variations .summary dt, .edit-variations .summary dd {float:left; margin:0 5px 0 0;}
+.edit-images .summary dd , .edit-variations .summary dd {width:auto; overflow:hidden}
+.edit-images .summary dl, .edit-variations .summary dl  {clear:both; overflow:hidden; margin:7px 0 7px 2px;}
+
+
+.edit-images #image_upload dd {border:1px solid #BBBBBB;
+margin:0 0 10px;
+width:508px;
+padding:5px 10px;
+overflow:hidden;
+}
+.edit-images #image_upload dd  img {margin:0 10px 0 0; float:left; border:1px solid #ccc}
+.edit-images #image_upload dd  a {margin:5px 10px 0 0;}
+.edit-images #image_upload {width:528px}
+.edit-images #image_upload dd ul li {float:left; list-style-type:none;margin:0}
+	.edit-images #image_upload dd ul li.filename {width:130px;}
+	.edit-images #image_upload dd ul li span {left:135px;
+position:relative;
+top:10px;}
+.edit-images .filename input {margin: 15px 0 0 0}
+.edit-images #image_upload dd ul {overflow: hidden; padding:0; margin:0;}
+
+.dark-background {background-color:#e6e6e6}
+#delete-dialog{display:none;}
+.details th,.summary th, .edit-variations th, .addons th  {text-align:left;padding:5px; text-indent: 10px}
+.details table, .details table td, 
+	.summary table, .summary table td ,
+		.edit-variations table, .edit-variations table td,
+		.addons table, .addons table td
+			{border:1px solid #ccc; border-collapse:collapse}
+ .details table th, .summary table th, .edit-variations table th, .addons table th 
+	{border:1px solid #b0b0b0; border-collapse:collapse}
+.details table td, .summary table td, .edit-variations table td, .addons table td {text-indent: 10px}
+.details table, .summary table, .edit-variations table, .addons table {clear:both; width:700px}
+
+.summary .general dd:first-child {
+margin:0 20px 0 0;
+}
+.summary .general dd {float:left; margin:0 20px 0 0;}
+.summary .general, .summary .product-details, .summary .product-images {border-bottom: 1px dotted #575757;overflow:hidden; padding:0 0 10px 0}
+.summary .general {border-bottom:none;}
+.summary .product-images dd {float: left; margin:0 10px 0 0;}
+.summary .actions dd {clear:both; line-height:20px}
+.actions {clear:both;
+display:block;
+overflow:hidden;
+margin:-15px 0 0;}
+.general h5, .general form {float:left;}
+.general h5 {margin:3px 10px 0 0; font-size: 110%}
+.summary p {clear:both; padding:20px 0 0;}
+.summary .product-details {width:700px}
+
+.summary .product-details div {float:left}
+
+h4 {clear:both; font-size:115%;}
+
+.summary h4 { text-decoration:underline;}
+.details dd{margin:10px 0;}
+
+.addons input {border:1px solid #bbb}
+
+.details textarea {height:60px}
+
+body .content .button {border:1px solid #8D8E92;
+width:auto;
+margin:10px 0;
+font-size:14px;
+padding:2px 5px;}
+.gray-background {background-color: #e7e7e9}
+.black-text {color:#111}
+
+h3 {
+font-size:160%;
+margin:5px 0 0;
+}
+
+.addons h3 {margin: 0}
+.addons input[type="text"] {width:200px; margin:3px 0 0}
+
+body .addons {border:0}
+
+.content table td {
+padding:10px 25px 10px 0;
+width:150px;
+}
+
+.grid .subheader dd select {margin:10px 0 0 10px}
+
+body .grid  table td {
+	margin:20px 10px
+}
+
+img.active {border: 1px solid #ccc}
+
+.addons form dt {float:left; width:50px; margin:5px 0 0; font-weight:bold;}
+.addons form dl {clear:both}
+.addons form dd {margin: 0 10px 5px 0}
+
+.content {
+margin:0 0 100px;
+float:left;
+padding:0 10px;
+min-height:300px;
+}
+
+.gray-left-border {
+	border-left:1px solid #747476;
+	float:left;
+	overflow:hidden;
+	padding:0 0 0 15px;
+	width:768px;
+}	
+
+.addons table { margin: 20px 0 0}
+.addons table td {padding: 5px 15px}
+.addons form dd {float:left;}
+
+
+.cake-sql-log{clear:both; overflow:hidden}
+
+.paging div {float:left;margin: 0 20px 0 0}
+
+.details label.inline_label {clear:none !important;float:none !important;font-weight:normal !important;}
+.details .little-input {float:left; margin:5px 0; width:100px}
+.details .little-input dd {margin:0}
+.details .little-input input {width:50px;}
+.details .little-input label {width:50px !important;text-align:center;font-weight:normal !important;}
+.details .group-header label {float:none !important;}
+
+.notesPlace {
+	padding-bottom:5px;
+	border-bottom: 1px dotted #575757;
+	color: #565655;
+	width: 100%;
+}
+
+.notesPlace a {
+	color: #0B43D0;
+}
+
+.notesPlace .header {
+	float:left;
+	font-size:115%;
+	color:#4D4D4D;
+	border:none;
+}
+.notesPlace .header span {
+	cursor:pointer;
+}
+.notesPlace .filter {
+	float:right;
+	padding-bottom:3px;
+}
+.notesPlace .notesForm {
+	clear:both;
+	width: 70%;
+	padding-bottom: 5px;
+}
+.notesPlace textarea {
+	border: 1px solid #9b9b99;
+	width: 100%;
+	height: 71px;
+	color: #9B9B99;
+	resize: none;
+}
+.notesPlace .hiddenFields {
+	display: none;
+}
+.notesPlace .subheading {
+	width: 50px;
+	float:left;
+}
+.notesPlace .hiddenFields .button {
+	margin-left:160px;
+	
+}
+.notesPlace .notesList {
+	clear:both;
+	margin-top:3px;
+}
+.notesPlace .notesList div.note {
+	margin:5px 0px;
+	clear: both;
+	padding-top:10px;
+	border-top:1px solid #eee;
+	margin-top:5px
+}
+.notesPlace .notesList p {
+	margin: 0;
+	padding: 0;
+}
+.notesPlace .notesList .bottomMenu {
+	text-align: right;
+}
+.notesPlace .notesList .commentForm {
+	display: none;
+	float: right;
+	width: 90%;
+	margin-right: 5px;
+	padding-bottom:10px;
+}
+.notesPlace .notesList .commentForm form {
+	float: left;
+	width: 70%;
+}
+.notesPlace .paginator {
+	clear: both;
+}
+div.delete-note {
+	float:right;
+	margin-top:18px;
+}
+div.cancel-edit-note {
+	float: left;
+	margin-top: 20px;
+}
+table.lucca-process {
+	width: 930px;
+	text-align: center;
+	border-collapse:collapse;
+}
+table.lucca-process tr {
+	text-align: left;
+}
+table.lucca-process tr.item {
+	border-top: 2px solid #d6d6d6;
+}
+table.lucca-process th {
+	text-align: center;
+	color: #999999;
+	font-size: 14px;
+}
+table.lucca-process td {
+	padding: 5px;
+}
+table.lucca-process td.quantity {
+	text-align: center;
+	width: 20px;
+}
+table.lucca-process td.image {
+	width: 100px;
+}
+table.lucca-process td.name {
+	width: 200px;
+	font-weight: bold;
+}
+table.lucca-process td.description {
+	width: 400px;
+}
+table.lucca-process td.note-link {
+	width: 210px;
+}
+table.lucca-process td.note-link a {
+	color: #3366cc;
+}
+table.lucca-process .notesPlace {
+	border: none;
+}
+table.lucca-process .notesPlace .header span {
+	font-size:12px;
+	color: #3366cc;
+}
+table.lucca-process .divider {
+	border-right: 1px solid #d6d6d6;
+}
+.process-lucca-filter {
+	margin-top:20px;
+	margin-bottom: 15px;
+}
+.process-lucca-paging a {
+	color: #3366cc;
+}
+div.view-all-notes {
+	padding-top: 5px;
+	text-align: right;
+	color: #3366cc;
+}
+.hidden-inventory-quantity {
+	display: none;
+}
+dd.hide-from-front-end {
+	padding-top: 10px;
+	clear:both;
+}
+ul.grid-output {
+	width: 768px;
+	padding: 0px;
+	margin: 10px 0px 0px 0px;
+}
+ul.grid-output li.item {
+	width: 162px;
+	height: 366px;
+	padding: 10px 0px 10px 0px;
+	margin: 0px 25px 0px 5px;
+	float: left;
+	list-style: none;
+}
+ul.grid-output li.separator {
+	border-top: 1px #575757 dotted;
+	height: 5px;
+	margin-top: 5px;
+	list-style: none;
+	float: left;
+	width: 768px;
+	clear: both;
+}
+ul.grid-output li.placeholder {
+	border: 1px #575757 dotted;
+	width: 160px !important;
+	height: 364px !important;
+	float: left;
+	list-style: none;
+	padding: 10px 0px 10px 0px;
+	margin: 0px 25px 0px 5px;
+}
+tr.products-rows {
+}
+tr.products-rows td.name,
+tr.products-rows td.description,
+tr.products-rows td.quantity,
+tr.products-rows td.note-link {
+	border-top: 1px solid #D6D6D6;
+}
+tr.products-rows td.note-link {
+	text-align: center;
+}
+tr.products-rows td.name {
+	font-weight: normal;
+	padding-left: 20px;
+	width: 180px;
+}
+dl.subnavigation dd.search {
+	float: right;
+}
+dl.subnavigation dd.search label {
+	float: right;
+	color: #858585;
+	padding: 7px 0px 7px 5px;
+}
+dl.subnavigation dd.search input {
+	float: right;
+	border: 0px;
+	height: 18px;
+	margin: 6px 0px 6px 0px;
+	padding: 0px 5px;
+}

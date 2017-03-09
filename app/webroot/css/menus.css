@@ -1,0 +1,208 @@
+
+.menu-block { margin-top: 17px; background: #9A9B9C; border:0; border-radius: 0; min-height: 38px; margin-bottom: 0;}
+	ul.menus { margin: 0px; padding: 0px; list-style: none; width: 100%;}
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff;
+	}
+		.menus li { margin: 0px; padding: 0px; display: inline-block; }
+		.menus.nav li { display:block; }
+		.menus.nav li a {
+			height: 38px;
+			text-indent: 0px;
+			color: #e9e7e7;
+			font-size: 15.5px;
+			font-family: Helvetica, sans-serif;
+			max-width: 120px;
+			padding-top: 10px;
+			overflow:hidden;
+			display: inline-block;
+			text-overflow:ellipsis;}
+		.menus.nav li a {
+			height:38px;
+			padding:0;
+			padding-top: 10px;
+		}
+		.menu a {
+			text-align: center;
+			margin-right: 10px;
+			margin-left: 22px;
+			vertical-align: middle;}
+
+
+		.nav .menu a:hover,.nav .menu a.selected {color:#a00 !important;}
+		.menu6 a {
+			text-align: center;
+			margin-right: 22px;
+			margin-left: 22px;}
+			.menu6 a:hover, .menu a.selected {color:#a00}
+		.menu7 a {
+			text-align: center;
+			margin-right: 22px;
+			margin-left: 22px;}
+			.menu7 a:hover, .menu7 a.selected {color:#a00}
+		.locations { position: relative; }
+
+.menu .dropdown-menu {
+	top: 38px;
+	width: 180px;
+	background: #9A9B9C;
+	border-radius: 0;
+	border: none;
+	position: absolute;
+	z-index: 60;
+}
+
+.menu .dropdown-menu > li > a:hover {
+	background-color: #9A9B9C;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+	background-color: #9A9B9C;
+	text-decoration: none;
+}
+
+.nav .menu a:hover, .nav .menu a.selected, .nav .menu a:focus {
+	text-decoration: none;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	color: #E9E7E7;
+}
+
+.nav .menu .open .dropdown-toggle {
+	color: #a00;
+}
+
+ul.submenus { margin: 0px; padding: 0px; list-style: none; }
+
+				ul.submenus li {
+					margin: 0px;
+					padding: 0px;
+					display: inline;
+					border-top: 1px solid #e9e7e7;
+				}
+				.menus .submenus li a { height: 41px; text-indent: 10px;max-width: 180px; margin: 0;}
+				.submenu a {
+					width: 180px;
+					margin-right: 10px;
+					margin-left: 0px;
+					text-align: left;
+				}
+					.submenu a:hover {
+						width: 180px;
+						margin-right: 10px;
+						margin-left: 0px;
+						text-align: left;
+					}
+				.submenu1 a {
+					width: 180px;
+					margin-right: 0px;
+					margin-left: 0px;
+					text-align: left;}
+					.submenu1 a:hover {
+						width: 180px;
+						margin-right: 0px;
+						margin-left: 0px;
+						text-align: left;}
+				.submenu2 a {
+					width: 180px;
+					margin-right: 0px;
+					margin-left: 0px;
+					text-align: left;}
+					.submenu2 a:hover {
+						width: 180px;
+						margin-right: 0px;
+						margin-left: 0px;
+						text-align: left;}
+
+/* override for the floating menu */
+
+.header { overflow: visible; }
+.menu-block .menus .search {
+	float: right;
+	width: 38px;
+	height: 38px;
+	display: block;
+	background: url('../img/search.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.menu-block .menus .search .searchform {
+	height: 38px;
+	width: 240px;
+	position: relative;
+	right: 202px;
+	top: -36px;
+	background: #9a9b9c;
+	padding: 5px;
+}
+.menu-block .menus .search .searchform.disabled {
+	display: none;
+}
+.menu-block .menus .search .searchform.enabled {
+	display: block;
+}
+.menu-block .menus .search .searchform input {
+	height: 26px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 160px;
+	margin-right: 5px;
+}
+.menu-block .menus .search .searchform label {
+	font-family: Helvetica;
+	font-size: 15px; 
+	color: #e9e7e7;
+}
+
+@media (max-width: 767px) {
+	.menu-block .menus .search {
+		width: auto;
+		height: auto;
+		float: none;
+		background: none;
+	}
+
+	.menu-block .menus .search .searchform.disabled {
+		display: block;
+	}
+
+	.menu-block .menus .search .searchform {
+		height: auto;
+		display: block !important;
+		/*width: auto;*/
+		top: 0;
+		left: 22px;
+		padding: 10px 0px;
+	}
+
+	ul.submenus {
+		list-style: square outside;
+	}
+
+	.menus .submenus li a {
+		border: 0;
+	}
+}
+
+#homepage .search{
+	display:none
+}
+#SearchAddForm label:hover {
+	cursor:pointer;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+	.menu a {
+		margin-left: 6px;
+		margin-right: 5px;
+	}
+}
+
+@media (min-width: 991px) {
+	.menu-block .menus .search {
+		margin-right: 15px;
+        cursor:pointer;
+	}
+}

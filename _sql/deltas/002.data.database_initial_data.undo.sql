@@ -1,0 +1,17 @@
+TRUNCATE `addons`;
+TRUNCATE `autofills`;
+TRUNCATE `creditcards`;
+TRUNCATE `inventory_locations`;
+TRUNCATE `inventory_quantity`;
+TRUNCATE `items`;
+TRUNCATE `item_categories`;
+TRUNCATE `item_images`;
+TRUNCATE `item_types`;
+TRUNCATE `item_variations`;
+TRUNCATE `note`;
+TRUNCATE `note_status`;
+TRUNCATE `options`;
+TRUNCATE `ordered_items`;
+TRUNCATE `orders`;
+TRUNCATE `people`;
+TRUNCATE `users`;
