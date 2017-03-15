@@ -732,8 +732,9 @@ a, span, li, p {
   text-align: center;
   z-index: -1; }
   .product-detail-content .main-display .product-image-wrap {
-    height: 400px;
+    height: auto;
     display: inline-flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden; }
@@ -741,8 +742,14 @@ a, span, li, p {
     width: auto;
     max-height: auto;
     z-index: -1; }
+  .product-detail-content .main-display .additional-images {
+    width: 100%;
+    height: auto; }
+    .product-detail-content .main-display .additional-images img {
+      width: auto;
+      height: 100px; }
 .product-detail-content .product-detail-info {
-  height: 400px;
+  min-height: 400px;
   text-align: center;
   padding: 20px;
   display: flex;

@@ -84,19 +84,33 @@
       <div class="row main-display">
         <div class="col-sm-6 col-sm-offset-1 product-image-wrap">
           <img src="../img/products/product-1.jpg" alt="">
+          <!--The following row will display additional gallery images.  -->
+          <div class="additional-images row">
+            <img class='col-xs-3' src="../img/products/product-1.jpg" alt="">
+            <img class='col-xs-3' src="../img/products/product-1.jpg" alt="">
+            <img class='col-xs-3' src="../img/products/product-1.jpg" alt="">
+            <img class='col-xs-3' src="../img/products/product-1.jpg" alt="">
+            <img class='col-xs-3' src="../img/products/product-1.jpg" alt="">
+          </div>
         </div>
         <div class="col-sm-4 product-detail-info">
           <p class='detail-price'>$1200</p>
           <p class='detail-title'>Tortoise Shell Box</p>
           <p class='detail-description'>A beautiful antique box.</p>
+          <p>Code: <span class='detail-code'>12345</span></p>
           <ul class='detail-specs'>
             <li>Height: 4"</li>
             <li>Width: 8"</li>
+            <li>Specifications: Lorem Ipsum</li>
+            <li>Location: New York</li>
           </ul>
           <div class="detail-options">
+            <!--Pressing the download buttun takes the user to a 'tear sheet' formatted pdf that can be downloaded or printed  -->
             <a href="#" class="print-link" style="font-size:10pt;"><span class="glyphicon glyphicon-download-alt"></span> print pdf</a>
-            <a href="#" class="email-link" style="font-size:10pt;"><span class="glyphicon glyphicon-envelope"></span></a>
+            <!-- pressing the email should allow user to enter an email address and send current url.  -->
+            <a href="#" class="email-link" style="font-size:10pt;"><span class="glyphicon glyphicon-envelope"> </span> Email</a>
           </div>
+          <!-- These Navigation Buttons should take the user to the next item in the same category for browsing.  -->
           <div class="detail-nav">
             <button type="button" class="btn btn-secondary"><</button>
             <button type="button" class="btn btn-secondary">></button>
