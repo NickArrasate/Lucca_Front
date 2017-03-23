@@ -79,7 +79,7 @@
       <h5>Thank you for visiting the Lucca Home website. If you require additional information, please contact us directly.</h4>
         <div class="row">
           <div class="col-sm-6 contact-item">
-            <img src="../img/lucca-la.jpg" alt="">
+            <img src="../img/lucca-la.jpg" alt="the los angeles storefront">
             <div class="contact-info">
               <h3>Los Angeles Store</h3>
               <p>Lucca Antiques</p>
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="col-sm-6 contact-item">
-            <img src="../img/lucca-ny.jpg" alt="">
+            <img src="../img/lucca-ny.jpg" alt="the new york storefront">
             <div class="contact-info">
               <h3>New York Store</h3>
               <p>Lucca Antiques</p>
