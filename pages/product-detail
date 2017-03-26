@@ -111,7 +111,7 @@
             <a href="#" class="email-link" style="font-size:10pt;"><span class="glyphicon glyphicon-envelope"> </span> Email</a>
           </div>
           <div id='buyNow'>
-            <button type="button" name="buyNow" class="btn btn-secondary">Buy Now</button>
+            <button type="button" name="buyNow" class="btn btn-secondary">Buy Online</button>
           </div>
           <!-- These Navigation Buttons should take the user to the next item in the same category for browsing.  -->
           <div class="detail-nav">
