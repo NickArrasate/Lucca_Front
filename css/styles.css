@@ -28,7 +28,7 @@ html, body {
   padding: 0 2em; }
   @media only screen and (max-width: 768px), only screen and (max-device-width: 450px) {
     .content-wrapper {
-      width: 80vw; } }
+      width: 80%; } }
 
 .col-md-6, .col-sm-6, .col-md-4, .col-sm-4, .col-md-3, .col-sm-3 {
   padding: 0 !important; }
@@ -545,14 +545,18 @@ a, span, li, p {
   width: 100%;
   text-align: center;
   margin-bottom: 2em; }
-.products-header .sort {
+.products-header .row {
   width: 100%;
-  text-align: right; }
+  margin: 0 !important; }
+.products-header .sort {
+  text-align: right;
+  width: 260px; }
   .products-header .sort label {
     font-family: "Cinzel", serif;
     font-size: 8pt; }
 
-#sortBy {
+#sortBy, #sortLoc {
+  width: 120px;
   font-size: 9pt;
   border: 1px solid #2d3741;
   border-radius: 0;
@@ -564,8 +568,7 @@ a, span, li, p {
   background-repeat: no-repeat;
   padding: 5px;
   margin-bottom: .5em;
-  height: 30px;
-  width: 140px; }
+  height: 30px; }
 
 #sortBy:focus {
   outline: 0; }
@@ -777,6 +780,14 @@ a, span, li, p {
 .product-detail-content .print-link, .product-detail-content .email-link {
   font-size: 16pt;
   margin: 12px; }
+.product-detail-content #buyNow {
+  margin-top: 1em; }
+  .product-detail-content #buyNow button {
+    border: 1px solid #2d3741;
+    background-color: transparent;
+    font-family: "Cinzel", serif; }
+  .product-detail-content #buyNow button:focus {
+    outline: none; }
 .product-detail-content .detail-nav {
   display: flex;
   align-items: center;

@@ -75,13 +75,24 @@
   <div class="products-header">
     <div class="content-wrapper">
       <h2 class="clearfix">ALL</h2>
-      <div class="sort clearfix">
-        <label for="sortBy">Categories:&nbsp; </label>
-        <select  id="sortBy" class="sortBy" name="sortBy">
-          <option class="sortOpt" value="antiques" selected>Antiques</option>
-          <option class="sortOpt" value="lucca-studios">Lucca Studios Designs</option>
-          <option class="sortOpt" value="limited-editions">Limited Editions</option>
-        </select>
+      <div class="row">
+
+        <div class="sort col-xs-2 pull-right">
+          <label for="sortBy">Categories:&nbsp; </label>
+          <select  id="sortBy" class="sortBy" name="sortBy">
+            <option class="sortOpt" value="antiques" selected>Antiques</option>
+            <option class="sortOpt" value="lucca-studios">Lucca Studios Designs</option>
+            <option class="sortOpt" value="limited-editions">Limited Editions</option>
+          </select>
+        </div>
+        <div class="sort col-xs-2 pull-right">
+          <label for="sortLoc">Locations:&nbsp; </label>
+          <select  id="sortLoc" class="sortBy" name="sortLoc">
+            <option class="sortOpt" value="antiques" selected>All</option>
+            <option class="sortOpt" value="la">Los Angeles</option>
+            <option class="sortOpt" value="ny">New York</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -162,7 +173,6 @@
           <button type="button" class="btn btn-secondary">2</button>
           <button type="button" class="btn btn-secondary">3</button>
           <!--The following button indicates that there are multiple pages between the beginning and end of the pagination. It is optional and can be removed if needed.  -->
-          <button type="button" class="btn btn-secondary">...</button>
           <button type="button" class="btn btn-secondary">7</button>
           <button type="button" class="btn btn-secondary">></button>
         </div>

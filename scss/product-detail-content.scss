@@ -69,6 +69,17 @@
     font-size: 16pt;
     margin: 12px;
   }
+  #buyNow{
+    margin-top: 1em;
+    button{
+      border: 1px solid $dark-font-color;
+      background-color: transparent;
+      font-family: $main-font-face;
+    }
+    button:focus{
+      outline: none;
+    }
+  }
   .detail-nav {
     display: flex;
     align-items: center;
