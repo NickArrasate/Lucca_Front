@@ -7,6 +7,9 @@
     width: 100%;
     text-align: center;
     font-family: $main-font-face;
+    @media only screen and (max-width: $tiny-break){
+      font-size: 10pt;
+    }
   }
   h3,h4{
     text-align: left;
@@ -20,9 +23,16 @@
     left: 50%;
     transform: translateX(-50%);
     width: 332px;
+    @media only screen and (max-width: $tiny-break){
+      width:240px;
+      // transform: translateX(-30%);
+    }
   }
   img{
     height: 300px;
+    @media only screen and (max-width: $tiny-break){
+      height:217px;
+    }
     margin: 2em auto;
   }
   .contact-info{
@@ -30,10 +40,13 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    max-width: 100%;
+    @media only screen and (max-width: $tiny-break){
+      font-size: 8pt;
+    }
     a{
       margin-bottom: 10px;
     }
-
   }
 
 }

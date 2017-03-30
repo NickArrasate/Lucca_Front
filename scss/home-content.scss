@@ -62,7 +62,6 @@
       text-align: center;
       font-weight: 400;
     }
-
   }
   .content-text.demo{
     background-color: rgba(78,80,85,0.8);
@@ -120,7 +119,7 @@
 .home-image.center{
   background-position-x: center;
 }
-@media only screen and (min-width: $small-break), only screen and (max-device-width: 450px){
+@media only screen and (min-width: $small-break){
   #homeCarousel{
     max-height: 550px;
     .content-text{
@@ -138,7 +137,7 @@
     }
   }
 }
-@media only screen and (min-width: $large-break), only screen and (max-device-width: 450px){
+@media only screen and (min-width: $large-break){
   #homeCarousel{
     max-height: 700px;
     .content-text{
