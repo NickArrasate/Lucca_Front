@@ -8,6 +8,9 @@
   <title>Lucca Home</title>
   <meta name="description" content="Lucca Home">
   <meta name="author" content="SitePoint">
+  <!--[if lt IE10]>
+	 <link rel="stylesheet" type="text/css" href="../css/all-ie-only.css" />
+  <![endif]-->
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
@@ -22,13 +25,13 @@
   <div class="header-fixed">
     <div class="info-bar">
       <div class="wrapper">
+        <div class="insta-icon ">
+        </div>
         <div class="info-bar-search">
-          <form class="search" action="/search" method="get" role="search">
+          <form class="search pull-right" action="/search" method="get" role="search">
             <button type="submit" id="search-btn" class="search"></button>
             <input type="search-bar" id="search-input" name="q" type="search">
           </form>
-        </div>
-        <div class="insta-icon">
         </div>
       </div>
     </div>
@@ -101,7 +104,7 @@
   <div class="products">
     <div class="content-wrapper">
       <div class="row product-row">
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-1.jpg" alt="" class="product-image">
           <p class="product-title">Tray</p>
           <div class="product-info">
@@ -109,7 +112,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-2.jpg" alt="" class="product-image">
           <p class="product-title">Antique Object</p>
           <div class="product-info">
@@ -117,7 +120,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-3.jpg" alt="" class="product-image">
           <p class="product-title">Antique Clay Vase</p>
           <div class="product-info">
@@ -125,7 +128,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-4.jpg" alt="" class="product-image">
           <p class="product-title">Contemporary Abstract Painting</p>
           <div class="product-info">
@@ -133,9 +136,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-      </div>
-      <div class="row product-row">
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-5.jpg" alt="" class="product-image">
           <p class="product-title">Antique Dresser</p>
           <div class="product-info">
@@ -143,7 +144,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-6.jpg" alt="" class="product-image">
           <p class="product-title">mid-century pottery</p>
           <div class="product-info">
@@ -151,7 +152,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <p class="product-title">Custom Design Leather Chair</p>
           <div class="product-info">
@@ -159,7 +160,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-3 product-card" href="./product-detail">
+        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
           <img src="../img/products/product-8.jpg" alt="" class="product-image">
           <p class="product-title">Coffee Table</p>
           <div class="product-info">

@@ -2,10 +2,8 @@
   width: 100%;
   height: 30px;
   background-color: $info-bar-bg;
+  position: relative;
   .wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
     max-width: 95% !important;
     @media (max-width: $med-break), screen only and (max-device-width: 450px){
       padding: 0 2em;
@@ -19,24 +17,29 @@
   }
   #search-btn {
     border: none;
+    float: right;
     background-image: url('../img/new-search-icon.svg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
-    margin: auto 10px;
+    margin: 4px 10px;
+    padding: 0;
     height: 20px;
     width: 20px;
   }
   .insta-icon{
     height: 20px;
     width: 20px;
+    float: right;
+    display: inline-block;
     background-image: url('../img/IG-icon-light.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
-    margin: auto 10px;
+    margin: 4px 10px;
+    padding: 0;
 
   }
 }
@@ -100,7 +103,6 @@
   position: absolute;
   top: 0;
   bottom: 0;
-
   right: 1.5em;
   padding: 0 !important;
   height: 30px;
@@ -146,7 +148,7 @@
   top: 12.5px;
   left: 40%;
   @media only screen and (max-width: $tiny-break){
-    left: 60%;  
+    left: 60%;
   }
 }
 .sub-menu:focus{
