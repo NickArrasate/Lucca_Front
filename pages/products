@@ -81,7 +81,6 @@
     <div class="content-wrapper">
       <h2 class="clearfix">ALL</h2>
       <div class="row">
-
         <div class="sort col-xs-2 pull-right">
           <label for="sortBy">Categories:&nbsp; </label>
           <select  id="sortBy" class="sortBy" name="sortBy">

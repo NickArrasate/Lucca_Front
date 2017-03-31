@@ -50,6 +50,7 @@
 .product-row {
   height: auto;
   min-height: 400px;
+  min-width: 90vw;
 }
 .product-card{
   text-align: center;
@@ -62,7 +63,6 @@
   padding: 0 3em !important;
   padding-top: 25px !important;
   max-width: 100%;
-  width: auto;
   img{
     width: 100%;
     flex-shrink: 0;
