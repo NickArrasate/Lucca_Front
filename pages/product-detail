@@ -109,7 +109,7 @@
           </ul>
           <div class="detail-options">
             <!--Pressing the download buttun takes the user to a 'tear sheet' formatted pdf that can be downloaded or printed  -->
-            <a href="#" class="print-link" style="font-size:10pt;"><span class="glyphicon glyphicon-download-alt"></span> print pdf</a>
+            <a href="./print.html" class="print-link" style="font-size:10pt;"><span class="glyphicon glyphicon-download-alt"></span> print pdf</a>
             <!-- pressing the email should allow user to enter an email address and send current url.  -->
             <a href="#" class="email-link" style="font-size:10pt;"><span class="glyphicon glyphicon-envelope"> </span> Email</a>
           </div>
