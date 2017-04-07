@@ -48,27 +48,19 @@
   .content-text{
     display: none;
     position: absolute;
-    // width: 275px;
-    color: #FFF;
     margin: 0 auto;
     font-family: $main-font-face;
     font-size: 14pt;
     font-weight: 400 !important;
     padding: .7em;
-    background-color: darken(rgba(78,80,85,0.7),20%);
+    background-color: rgba(255,255,255,0.7);
     p{
+      color: $dark-font-color;
       height: auto;
       margin: 0 auto;
       text-align: center;
       font-weight: 400;
     }
-  }
-  .content-text.demo{
-    background-color: rgba(78,80,85,0.8);
-  }
-  .content-text.bottom{
-    top: 80%;
-    transform:translate(-50%,-50%);
   }
   .content-text.top{
     top: 25%;
@@ -76,10 +68,6 @@
   }
   .content-text.right{
     left: 70%;
-    transform:translate(-50%,-50%);
-  }
-  .content-text.left{
-    left: 50%;
     transform:translate(-50%,-50%);
   }
 }

@@ -429,31 +429,23 @@ a, span, li, p {
   #homeCarousel .content-text {
     display: none;
     position: absolute;
-    color: #FFF;
     margin: 0 auto;
     font-family: "Cinzel", serif;
     font-size: 14pt;
     font-weight: 400 !important;
     padding: .7em;
-    background-color: rgba(29, 30, 32, 0.7); }
+    background-color: rgba(255, 255, 255, 0.7); }
     #homeCarousel .content-text p {
+      color: #2d3741;
       height: auto;
       margin: 0 auto;
       text-align: center;
       font-weight: 400; }
-  #homeCarousel .content-text.demo {
-    background-color: rgba(78, 80, 85, 0.8); }
-  #homeCarousel .content-text.bottom {
-    top: 80%;
-    transform: translate(-50%, -50%); }
   #homeCarousel .content-text.top {
     top: 25%;
     transform: translate(-50%, -50%); }
   #homeCarousel .content-text.right {
     left: 70%;
-    transform: translate(-50%, -50%); }
-  #homeCarousel .content-text.left {
-    left: 50%;
     transform: translate(-50%, -50%); }
 
 .home-display {
@@ -569,11 +561,12 @@ a, span, li, p {
     font-size: 8pt; }
 
 #sortBy, #sortLoc {
-  width: 120px;
+  width: 170px;
   font-size: 9pt;
   border: 1px solid #2d3741;
   border-radius: 0;
   -webkit-appearance: none;
+  -moz-appearance: none;
   background-size: 10px;
   background-image: url("../img/sort-icon.svg");
   background-position: right 10px center;
@@ -585,18 +578,6 @@ a, span, li, p {
 
 #sortBy:focus {
   outline: 0; }
-
-.sort-menu {
-  margin-top: 2em;
-  padding: 15px;
-  z-index: -1; }
-  .sort-menu h4 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1.5em;
-    margin-top: 2.5em;
-    font-family: "Cinzel", serif;
-    border-bottom: 1px solid #8b9daf; }
 
 .collection-info {
   height: 15px;
@@ -631,7 +612,6 @@ a, span, li, p {
 .product-row {
   height: auto;
   min-height: 400px;
-  min-width: 100%;
   margin: 0 auto !important; }
 
 .product-card {
@@ -655,11 +635,12 @@ a, span, li, p {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 0 3em !important;
+  padding: 2em !important;
   padding-top: 25px !important;
   max-width: 100%; }
   .product-card img {
-    width: 100%;
+    max-width: 335px;
+    max-height: 80%;
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
@@ -674,7 +655,7 @@ a, span, li, p {
     margin-bottom: 10px;
     margin: auto 0; }
   .product-card .product-title {
-    max-width: 100%;
+    width: 100%;
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
@@ -713,9 +694,10 @@ a, span, li, p {
   border: 1px solid #2d3741;
   background-color: transparent;
   height: 25px;
-  width: 50px;
+  width: 25px;
   text-align: center;
-  padding: 2px 0px; }
+  padding: 2px 0px;
+  font-size: 8pt; }
 .pagination-buttons button:first-child, .pagination-buttons button:last-child {
   width: 30px; }
 
@@ -1060,24 +1042,32 @@ a, span, li, p {
 
 .print-logo {
   text-align: center;
-  margin: 50px auto; }
+  margin: 20px auto; }
+  .print-logo img {
+    width: 200px; }
 
 .product-image-print {
   width: 100%;
   max-height: 400px;
-  overflow-y: hidden;
   text-align: center;
-  margin-bottom: 25px; }
+  margin-bottom: 20px; }
 
 .print-info {
-  margin-bottom: 25px; }
+  margin-bottom: 25px;
+  padding: 1em;
+  width: 40%;
+  float: left;
+  text-align: center; }
 
-.print-specs {
+.product-detail-info {
   list-style-type: none;
-  padding-left: 0;
+  padding: 1em;
+  width: 40%;
+  float: right;
   margin-bottom: 25px; }
 
 .print-address {
-  text-align: center; }
+  text-align: center;
+  clear: both; }
 
 /*# sourceMappingURL=styles.css.map */

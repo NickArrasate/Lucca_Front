@@ -28,11 +28,12 @@
   }
 }
 #sortBy, #sortLoc{
-  width: 120px;
+  width: 170px;
   font-size: 9pt;
   border: 1px solid $dark-font-color;
   border-radius: 0;
   -webkit-appearance: none;
+  -moz-appearance: none;
   background-size: 10px;
   background-image: url('../img/sort-icon.svg');
   background-position: right 10px center;
@@ -41,6 +42,9 @@
   padding: 5px;
   margin-bottom: .5em;
   height: 30px;
+  .sortLoc{
+
+  }
 }
 #sortBy:focus{
   outline: 0;

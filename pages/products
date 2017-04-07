@@ -95,7 +95,7 @@
   <div class="products">
     <div class="content-wrapper">
       <div class="row product-row">
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-1.jpg" alt="" class="product-image">
           <p class="product-title">Tray</p>
           <div class="product-info">
@@ -103,7 +103,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-2.jpg" alt="" class="product-image">
           <p class="product-title">Antique Object</p>
           <div class="product-info">
@@ -111,7 +111,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-3.jpg" alt="" class="product-image">
           <p class="product-title">Antique Clay Vase</p>
           <div class="product-info">
@@ -119,7 +119,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-4.jpg" alt="" class="product-image">
           <p class="product-title">Contemporary Abstract Painting</p>
           <div class="product-info">
@@ -127,7 +127,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-5.jpg" alt="" class="product-image">
           <p class="product-title">Antique Dresser</p>
           <div class="product-info">
@@ -135,7 +135,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-6.jpg" alt="" class="product-image">
           <p class="product-title">mid-century pottery</p>
           <div class="product-info">
@@ -143,7 +143,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <p class="product-title">Custom Design Leather Chair</p>
           <div class="product-info">
@@ -151,7 +151,7 @@
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-md-3 product-card" href="./product-detail">
+        <a class="col-xs-12 col-sm-6 col-md-4 product-card" href="./product-detail">
           <img src="../img/products/product-8.jpg" alt="" class="product-image">
           <p class="product-title">Coffee Table</p>
           <div class="product-info">
