@@ -113,9 +113,6 @@
             <!-- pressing the email should allow user to enter an email address and send current url.  -->
             <a href="#" class="email-link" style="font-size:10pt;"><span class="glyphicon glyphicon-envelope"> </span> Email</a>
           </div>
-          <div id='buyNow'>
-            <button type="button" name="buyNow" class="btn btn-secondary">Buy Online</button>
-          </div>
           <!-- These Navigation Buttons should take the user to the next item in the same category for browsing.  -->
           <div class="detail-nav">
             <button type="button" class="btn btn-secondary"><</button>
