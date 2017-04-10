@@ -196,7 +196,7 @@
     </div>
   </div>
 </body>
-<script src="../js/jquery.imageLens.js" type="text/javascript"></script>
+<script src="../js/ipad-smooth.js" type="text/javascript"></script>
 <script type="text/javascript">
   $(function(){
     console.log('lens');
