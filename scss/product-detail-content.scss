@@ -126,7 +126,7 @@
     margin-bottom: 2em;
   }
   .related-item{
-    // height: auto;
+    height: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -140,9 +140,9 @@
     }
     .related-info{
       width: 100%;
-      height: 80px ;
+      height: 100px ;
       display: block;
-      font-size: 10pt;
+      font-size: 8pt;
       text-transform: uppercase;
       overflow-x:visible;
     }
