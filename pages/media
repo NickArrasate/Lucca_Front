@@ -238,5 +238,6 @@
   </div>
   <!--This script calls the modal controls  -->
   <script type="text/javascript" src='../js/modal.js'></script>
+  <script src="../js/ipad-smooth.js" type="text/javascript"></script>
 </body>
 </html>
