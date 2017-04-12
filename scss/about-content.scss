@@ -19,4 +19,19 @@
   p:last-child{
     margin-bottom: 6em;
   }
+
+  #about-image{
+    height: auto;
+    display: inline-block;
+    text-align: center;
+    padding: 1em !important;
+    img{
+      max-width: 100%;
+      margin-left: 0 auto;
+    }
+    p{
+      margin: 1.3em 0;
+      font-size: 8pt;
+    }
+  }
 }

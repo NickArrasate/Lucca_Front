@@ -790,15 +790,6 @@ a, span, li, p {
     font-family: "Cinzel", serif; }
   .product-detail-content #buyNow button:focus {
     outline: none; }
-.product-detail-content .detail-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; }
-  .product-detail-content .detail-nav button {
-    border: 1px solid #2d3741;
-    background-color: transparent; }
-  .product-detail-content .detail-nav button:focus {
-    outline: none; }
 .product-detail-content .related-title {
   width: 100%;
   text-align: center;
@@ -859,6 +850,17 @@ a, span, li, p {
   line-height: 20px; }
 .about-content p:last-child {
   margin-bottom: 6em; }
+.about-content #about-image {
+  height: auto;
+  display: inline-block;
+  text-align: center;
+  padding: 1em !important; }
+  .about-content #about-image img {
+    max-width: 100%;
+    margin-left: 0 auto; }
+  .about-content #about-image p {
+    margin: 1.3em 0;
+    font-size: 8pt; }
 
 .contact-content {
   padding-bottom: 3em; }

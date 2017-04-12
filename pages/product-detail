@@ -119,42 +119,42 @@
         <div class="bar"></div>
       </div>
       <div class="row related-items">
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-5.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">Antique Dresser</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-6.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">mid-century pottery</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">Custom Design Leather Chair Custom Design Leather</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-8.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">Coffee Table</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-7.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">Custom Design Leather Chair</p>
             <p class="product-price">$1200</p>
           </div>
         </a>
-        <a class="col-sm-4 col-xs-12 related-item" href="./product-detail">
+        <a class="col-md-4 col-sm-6 col-xs-12 related-item" href="./product-detail">
           <img src="../img/products/product-8.jpg" alt="" class="product-image">
           <div class="related-info">
             <p class="product-title">Coffee Table</p>
