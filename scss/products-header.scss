@@ -1,10 +1,8 @@
 .products-header{
-
   .content-wrapper{
     border-bottom: 1px solid $dark-font-color;
     padding-top: 2em;
     padding-bottom: .2em;
-
   }
   h2{
     font-family: $hero-font-face;
@@ -17,17 +15,17 @@
     width: 100%;
     margin: 0 !important;
   }
+
   .sort{
     text-align: right;
-    width: 260px;
-
+    width: 240px;
     label{
       font-family: $main-font-face;
       font-size: 8pt;
     }
   }
 }
-#sortBy, #sortLoc{
+#sortBy, #sortLoc, #search-input{
   width: 170px;
   font-size: 9pt;
   border: 1px solid $dark-font-color;
@@ -42,10 +40,38 @@
   padding: 5px;
   margin-bottom: .5em;
   height: 30px;
-  .sortLoc{
-
-  }
 }
+
 #sortBy:focus{
   outline: 0;
+}
+.search{
+  height: 61px;
+  margin-bottom: .5em;
+  padding: 5px;
+  font-family: $main-font-face;
+  position: relative;
+  text-align: right;
+  #search-input{
+    background-image: none;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+  }
+  #search-btn {
+    border: none;
+    float: right;
+    background-image: url('../img/search-icon.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    margin: 4px 10px;
+    padding: 0 8px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 8px;
+    right: -4px;
+  }
 }

@@ -63,23 +63,6 @@ a, span, li, p {
     @media (max-width: 905px), screen only and (max-device-width: 450px) {
       .info-bar .wrapper {
         padding: 0 2em; } }
-  .info-bar #search-input {
-    display: none;
-    border: none;
-    border-bottom: 1px solid #b1a8aa;
-    background: transparent; }
-  .info-bar #search-btn {
-    border: none;
-    float: right;
-    background-image: url("../img/new-search-icon.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    margin: 4px 10px;
-    padding: 0;
-    height: 20px;
-    width: 20px; }
   .info-bar .insta-icon {
     height: 20px;
     width: 20px;
@@ -532,13 +515,19 @@ a, span, li, p {
     margin-top: 10em;
     text-align: center;
     font-size: 9pt; }
-  .footer .insta-icon {
+  .footer #insta-icon {
     height: 35px;
     width: 35px;
-    margin: 1em auto 6em;
-    background-image: url("../img/IG-icon.png");
-    background-position: center;
-    background-size: cover; }
+    margin: 1em auto 6em; }
+    .footer #insta-icon a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background-image: url("../img/IG-icon.png");
+      background-position: center;
+      background-size: cover; }
+    .footer #insta-icon a:hover {
+      text-decoration: none; }
 
 .products-header .content-wrapper {
   border-bottom: 1px solid #2d3741;
@@ -555,12 +544,12 @@ a, span, li, p {
   margin: 0 !important; }
 .products-header .sort {
   text-align: right;
-  width: 260px; }
+  width: 240px; }
   .products-header .sort label {
     font-family: "Cinzel", serif;
     font-size: 8pt; }
 
-#sortBy, #sortLoc {
+#sortBy, #sortLoc, #search-input {
   width: 170px;
   font-size: 9pt;
   border: 1px solid #2d3741;
@@ -579,6 +568,34 @@ a, span, li, p {
 #sortBy:focus {
   outline: 0; }
 
+.search {
+  height: 61px;
+  margin-bottom: .5em;
+  padding: 5px;
+  font-family: "Cinzel", serif;
+  position: relative;
+  text-align: right; }
+  .search #search-input {
+    background-image: none;
+    position: absolute;
+    bottom: 0px;
+    right: 0; }
+  .search #search-btn {
+    border: none;
+    float: right;
+    background-image: url("../img/search-icon.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    margin: 4px 10px;
+    padding: 0 8px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    bottom: 8px;
+    right: -4px; }
+
 .collection-info {
   height: 15px;
   display: flex;
@@ -595,17 +612,6 @@ a, span, li, p {
     color: #2d3741; }
   .collection-info a:hover {
     text-decoration: none; }
-  .collection-info .checkbox {
-    height: 15px;
-    width: 15px;
-    background-image: url("../img/checkbox.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-    margin: auto 6px auto 6px;
-    vertical-align: text-top;
-    color: black; }
   .collection-info span {
     font-size: 10pt; }
 

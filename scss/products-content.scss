@@ -1,5 +1,6 @@
 
 //Location chooser
+
 .collection-info{
   height: 15px;
   display: flex;
@@ -18,18 +19,7 @@
   a:hover{
     text-decoration: none;
   }
-  .checkbox{
-    height: 15px;
-    width: 15px;
-    background-image: url('../img/checkbox.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-    margin: auto 6px auto 6px;
-    vertical-align: text-top;
-    color: black;
-  }
+
   span{
     font-size: 10pt;
   }

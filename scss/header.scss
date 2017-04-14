@@ -10,25 +10,7 @@
       padding: 0 2em;
     }
   }
-  #search-input{
-    display: none;
-    border: none;
-    border-bottom: 1px solid $info-bar-search;
-    background: transparent;
-  }
-  #search-btn {
-    border: none;
-    float: right;
-    background-image: url('../img/new-search-icon.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    margin: 4px 10px;
-    padding: 0;
-    height: 20px;
-    width: 20px;
-  }
+
   .insta-icon{
     height: 20px;
     width: 20px;
